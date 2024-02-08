@@ -5,7 +5,7 @@ LIBS = -lcuba
 export LHFLAGS=$(shell lhapdf-config --ldflags)
 LIB = -lm 
 LIB = 
-OBJECTS = cuba.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
+OBJECTS = PK.o cuba.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
 PROG = run.x
 $(PROG): $(OBJECTS) main.f  
 	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS) $(LIB) $(LIBS) $(LHFLAGS)

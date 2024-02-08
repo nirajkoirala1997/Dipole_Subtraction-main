@@ -43,14 +43,12 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
       rsp= dsqrt(sp)
       scale = dsqrt(dabs(s34))!xinvmass
 
-      e5 = 0.5d0*(s12 - s34)/(dsqrt(s12))
-      del = 1.0d-7
-      del2 = 1.0d-7
 
       ipass = 0
 
-      if ( scale .ge. 150.0d0 ) ipass=1
+      if ( scale .ge. 140.0d0 ) ipass=1
        fnlo3 = 0.0d0
+      if (p1(0) .eq. 0d0) goto 151
       if ( ipass .eq. 1 ) then
          xmuf=scale
          xmur=scale
@@ -73,6 +71,6 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
          fnlo3=wgt/weight
 c         if (fnlo3 .ne. fnlo3) fnlo3 = 0d0
         endif
-      return
+151      return
       end
 

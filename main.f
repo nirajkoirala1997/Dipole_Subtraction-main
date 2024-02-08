@@ -30,6 +30,7 @@ c      am1 = 0.51099895000d-3
       am5=0d0
       ! energy
       s=ecm*ecm
+
       print*,'  '
       print*,"Press 1 to initialise VEGAS:"
       print*,"Press 2 to initialise CUBA-VEGAS:"

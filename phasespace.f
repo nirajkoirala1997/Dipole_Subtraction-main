@@ -158,14 +158,15 @@ c      write(*,*)'am3,am4 =',am3,am4
       p4m   = dsqrt(dabs(e4**2 - am4**2))
       czeta = (p4m**2 - p3m**2 - p5m**2)/(2.0d0*p3m*p5m)
       
-c      if (czeta**2 .ge. 1.0d0) then
-c       call resetmomenta(p1,p2,p3,p4,p5)
-c      goto 151
-c      endif       
+      if (czeta**2 .ge. 1.0d0) then
+       call resetmomenta(p1,p2,p3,p4,p5)
+       goto 151
+      endif       
       szeta = dsqrt(1.0d0-czeta*czeta)
 c      print*,'Values',e4,p4m,czeta,szeta
-c      if (dabs(czeta) .gt. 1.0d0) then
-c      write(*,*)'Cos (zeta) =', czeta,p4m,p3m,p5m
+      if (dabs(czeta**2) .gt. 1.0d0) then
+      write(*,*)'Cos (zeta) =', czeta,p4m,p3m,p5m
+      endif
 
       p3t   = e3
       p3x   = p3m*(ct*cphi*szeta + st*czeta)
@@ -256,4 +257,16 @@ c---------------------------------------------------------------------
                  write(*,*)"p5= ",p5
          end
 c---------------------------------------------------------------------
+c---------------------------------------------------------------------
+         subroutine p2dtop1d_4(p,p1,p2,p3,p4)
+         implicit double precision (a-h,o-z)
 
+         dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),p(0:3,1:4)
+        do i=0,3
+         p1(i)=p(i,1)
+         p2(i)=p(i,2)
+         p3(i)=p(i,3)
+         p4(i)=p(i,4)
+        enddo
+         end
+c---------------------------------------------------------------------
