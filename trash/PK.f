@@ -8,25 +8,23 @@ c-----------------------------------------------------------
       parameter (pi=3.14159265358979d0)
       dimension AllP(5),AllK(5)
       dimension  p1(0:3),p2(0:3),p3(0:3),p4(0:3),p(0:3,1:4)
-      call p2d_to_p1d_4(p,p1,p2,p3,p4)
+      call p2dtop1d_4(p,p1,p2,p3,p4)
         s12 = 2d0*dot(p1,p2)
-        CLF1 = 1d0
-        CLF2 = -1d0                                  !                 {Ta . Tai}
-        Cf = 4d0/3d0                                 !  Colour factor  ----------
-        Al= 0.118d0                                  !                   Tai^2
-      if (k .eq. 1) then   ! Cloice for [Leg1]       
-       
-        AllP(1) = Al*(Pqq(x)*CLF1*dLog(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {q,q,g}
-        AllP(2) = Al*(Pgq(x)*Clf1*dLog(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {g,q,q~}
-c        AllP(3) = Al*(Pgq(x)*Clf*dLog(xmuf**2/(s12*x)))/2d0/Pi     !{a,ai,i} => {g,q~,q}
+        CLF = -1d0 ! Colour factor
+        Al= 0.118d0
+      if (k .eq. 1) then      ! Cloice for [Leg1]       
+!       {a,ai,i} => {q,q,g}
+        AllP(1) = Al*(Pqq(x)*CLF*dLog(xmuf**2/(s12*x)))/2d0/Pi
+        AllP(2) = Al*(Pgq(x)*Clf*dLog(xmuf**2/(s12*x)))/2d0/Pi
+        AllP(3) = Al*(Pgq(x)*Clf*dLog(xmuf**2/(s12*x)))/2d0/Pi !Contribution for anti-quark
 
-        AllK(1) = Al*(Kbqq(x)-CLF2*Kqq_til(x))/2d0/Pi            !! #colour factor unclear
-        AllK(2) = Al*(Kbgq(x)-CLF2*Kgq_til(x))/2d0/Pi            !! #colour factor unclear
-c        AllK(3) = Al*(Kbgq(x)-CLF*Kgq_til(x))/2d0/Pi             !! #colour factor unclear
+        AllK(1) = Al*(Kbqq(x)-CLF*Kqq_til(x))/2d0/Pi !! #colour factor unclear
+        AllK(2) = Al*(Kbgq(x)-CLF*Kgq_til(x))/2d0/Pi !! #colour factor unclear
+        AllK(3) = Al*(Kbgq(x)-CLF*Kgq_til(x))/2d0/Pi !! #colour factor unclear
 
         SumP = 0d0 
         SumK = 0d0
-       do i=1,2
+       do i=1,3
         SumP = SumP + AllP(i)
         SumK = SumK + AllK(i)
        enddo
@@ -35,18 +33,20 @@ c        AllK(3) = Al*(Kbgq(x)-CLF*Kgq_til(x))/2d0/Pi             !! #colour fac
 
         AllP(1) = Al*(Pqq(x)*CLF*dLog(xmuf**2/(s12*x)))/2d0/Pi
         AllP(2) = Al*(Pgq(x)*Clf*dLog(xmuf**2/(s12*x)))/2d0/Pi
-c        AllP(3) = Al*(Pgq(x)*Clf*dLog(xmuf**2/(s12*x)))/2d0/Pi !Contribution for anti-quark
+        AllP(3) = Al*(Pgq(x)*Clf*dLog(xmuf**2/(s12*x)))/2d0/Pi !Contribution for anti-quark
 
         AllK(1) = Al*(Kbqq(x)-CLF*Kqq_til(x))/2d0/Pi !! #colour factor unclear
         AllK(2) = Al*(Kbgq(x)-CLF*Kgq_til(x))/2d0/Pi !! #colour factor unclear
-c        AllK(3) = Al*(Kbgq(x)-CLF*Kgq_til(x))/2d0/Pi !! #colour factor unclear
-      endif
+        AllK(3) = Al*(Kbgq(x)-CLF*Kgq_til(x))/2d0/Pi !! #colour factor unclear
+
         SumP = 0d0 
         SumK = 0d0
-       do i=1,2
+       do i=1,3
         SumP = SumP + AllP(i)
         SumK = SumK + AllK(i)
        enddo
+      endif
+
       return
       end
 c-----------------------------------------------------------  !P-terms
@@ -87,7 +87,7 @@ c-----------------------------------------------------------!K-terms
       parameter (pi=3.14159265358979d0)
         Cf = 4d0/3d0
         Kbqq = Cf*(Plusd(2d0/(1d0-x)*dLog((1d0-x)/x))-
-     .        (1d0+x)*dLog((1d0-x)/x)+(1d0-x)-
+     .        (1d0-x)*dLog((1d0-x)/x)+(1d0-x)-
      .         delta(1d0-x)*(5d0-Pi**2))
       return
       end                
@@ -110,8 +110,8 @@ c-----------------------------------------------------------!K-terms
       function Kqq_til(x)
       implicit double precision (a-h,o-z)
         Cf = 4d0/3d0
-        Kqq_til = Cf*(1d0-x)*dLog(1d0-x) + 
-     .    Cf*(Plusd(2d0/(1d0-x)*dLog(1d0-x))-Pi**2*delta(1d0-x)/3d0)
+        Kqq_til = Pqq(x)*dLog(1d0-x) + 
+     .    Cf*(Plusd(2d0/(1d0-x)*dLog(1d0-x))-Pi**3*delta(1d0-x)/3d0)
       return
       end
 

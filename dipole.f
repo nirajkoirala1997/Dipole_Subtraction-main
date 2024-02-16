@@ -6,6 +6,7 @@ c     Initial state dipole for the case of Drell- Yan.
       parameter(PI=3.141592653589793238D0)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),
      .           p6(0:3),p7(0:3),p8(0:3),p9(0:3),p(0:3,1:5)
+      common/set/set1
       call p2dtop1d_5(p,p1,p2,p3,p4,p5)
       AL=0.118d0
       s12=2.d0*dot(p1,p2) 
@@ -34,6 +35,7 @@ c     Initial state dipole for the case of Drell- Yan.
      .      2*s12*s25 + s25**2)*Born)/
      .  (s25*(s15 + s25)*(s15 - s12 + s25))
       endif  
+c        if (dipole_uU_g .le. -11110d0)  print*,"Born:",Born
       return
       end 
 c---------------------------------------------------------------------

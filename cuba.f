@@ -3,8 +3,9 @@
 
 c     Common Parameters      
       integer ndim, ncomp, nvec, last,flags, seed, mineval, maxeval
+      integer n4
       real*8 epsrel, epsabs, userdata
-      parameter (ndim = 4)
+      parameter (ndim = 6)
       parameter (ncomp = 1)
       parameter (userdata = 0)
       parameter (nvec = 1)
@@ -15,6 +16,7 @@ c     Common Parameters
       parameter (seed = 0)
       parameter (mineval = 0)
       parameter (maxeval = 500000000)
+      common/countc/n4
 
 c     Suave Specific Parameters
 
@@ -78,6 +80,7 @@ c      read(*,*)flags
       write(*,*)" Initializing Integration using selected method "
       print *, " "
 
+
       IF (i .eq. 1 .or. i .eq. 5) then
       print *, "-------------------- Vegas test --------------------"
       CALL vegas(ndim, ncomp, integrand, userdata, nvec,
@@ -87,6 +90,7 @@ c      read(*,*)flags
         write(*,*)"neval      = ", neval
         write(*,*)"fail       = ", fail
         write(*,*)"Integral   = ",integral(1),"+-",error(1)
+c        write(*,*)'n4 = ',n4
 c         print '(F20.12," +- ",F20.12,"   p = ",F8.3)',
 c     &    (integral(c), error(c), prob(c), c = 1, ncomp)
 
