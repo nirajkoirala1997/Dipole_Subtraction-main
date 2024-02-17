@@ -250,8 +250,8 @@ c      q(3)=gamma*(beta*rsp)
       p4p(2)=p1(2)+p2(2)-p3(2)-p5(2)
       p4p(3)=p1(3)+p2(3)-p3(3)-p5(3)
       
-      perc = dabs(p4(0) - p4p(0))/p4(0)*100.0d0
-      write(*,*)'perc =',perc
+c      perc = dabs(p4(0) - p4p(0))/p4(0)*100.0d0
+c      write(*,*)'perc =',perc
 
 c      am4a = dot(p4,p4)
 c      am4b = dot(p4p,p4p)
@@ -289,10 +289,10 @@ c      if (p3(0) .lt.0d0) then
 c      print*, 'e3 = ',p3(0)
 c      endif
 c
-c      if (p4(0) .lt. 0d0) then
-c      print*, 'e4 = ',p4(0)
-c      n4 = n4+1
-c      endif
+      if (p4p(0) .lt. 0d0) then
+      print*, 'e4 = ',p4p(0)
+      n4 = n4+1
+      endif
 c
 c      if (p5(0) .lt.0d0) then
 c      print*, 'e5 = ',p5(0)

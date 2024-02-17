@@ -13,18 +13,15 @@
       external dipole_uU_g
       external flo2_PK
       external flo2_Vir
-      include 'coupl.inc'
-      include 'nexternal.inc'
-      call setpara('param_card.dat',.true.)
-        set1=0
         name='CT10nlo'
         call initpdfsetbyname(name)
         Call initPDF(1)
 
       !input data card
       open(unit=10,file='run.vegas.dat',status='unknown')    
-      read (10,*) npt1          ! vegas points     LO 2 body
+      read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
+      npt1 = pt1
       close(10)
 
       open(unit=15,file='run.machine.dat',status='unknown')
@@ -49,6 +46,7 @@ c      am1 = 0.51099895000d-3
       print*,"Press 1 to initialise VEGAS:"
       print*,"Press 2 to initialise CUBA-VEGAS:"
         read*,i
+c        i=1
         IF (I .EQ. 1) THEN
         print*,"----------------------------------"
         print*,"|Initializing Dipole Subtraction  |"
@@ -58,7 +56,6 @@ c      am1 = 0.51099895000d-3
         print*,"``````````````````````````````````````"
         print*," "
         print*," "
-c        goto 1990
        call brm48i(40,0,0) ! initialize random number generator
        call vsup(6,npt1,its1,fnlo3,ai_nlo3,sd,chi2)
 c       ai_nlo3=28.0150449
@@ -69,56 +66,7 @@ c       ai_nlo3=28.0150449
        write(*,*)"Unphysical count =",n4
         print*," "
         print*," "
-        stop
-1990        Print*,"2. Calculating Virtual Contribution"
-        print*,"````````````````````````````````````"
-        Print*,"    Virtual + Dipole over 2-Body PS"
-        print*," "
-        print*," "
 
-c        call brm48i(40,0,0) ! initialize random number generator
-c        call vsup(3,npt1,its1,flo2_Vir,ai_lo2,sd,chi2)
-c        ai_lo2=1.9427896217405324E-003
-        ai_lo2=1.079582        
-        print*,"  "
-        write(*,*)'The answer is =', ai_lo2
-        write(*,*)"Integral      =",ai_lo2,"+-",sd
-        write(*,*)"with chisq    =",chi2
-        print*,"  "
-        print*,"  "
-
-
-        print*,"3. Calculating P and K terms for both Legs"
-        print*,"````````````````````````````````````"
-        print*," "
-        print*," "
-         PK=-0.409942883208528E-02
-         print*,"Sum PK =",PK 
-        print*," "
-        print*," "
-        print*," "
-        print*," "
-         print*,"Total Sigma :",ai_nlo3 + ai_lo2! + PK
-c        leg=1
-c        call brm48i(40,0,0) ! initialize random number generator
-c        call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
-c        print*,"  "
-c        write(*,*)'The answer is  =', ai_lo2
-c        write(*,*)"Integral of PK1=",ai_lo2,"+-",sd
-c        write(*,*)"with chisq    =",chi2
-c        print*,"  "
-c
-c        print*,"4. Calculating P and K terms for Leg 2"
-c        print*,"````````````````````````````````````"
-c        leg=2
-cc        call brm48i(40,0,0) ! initialize random number generator
-cc        call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
-c        print*,"  "
-c        write(*,*)'The answer is   =', ai_lo2
-c        write(*,*)"Integral of PK2 =",ai_lo2,"+-",sd
-c        write(*,*)"   with chisq   =",chi2
-c        print*,"  "
-c
         elseif(I .eq. 2) THEN
                 CALL cubacheck
         endif
