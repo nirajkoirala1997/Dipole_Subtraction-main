@@ -85,20 +85,19 @@ c     ppt1 ppt2
       end
 c---------------------------------------------------------------------
 
-c +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++      
-c Three Body Phase space
-c +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++      
+! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++            
+! +                            Three Body Phase space                                      +
+! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++      
 
-      subroutine kinvar3(xx,xxjac,p1,p2,p3,p4,p5)
+      subroutine kinvar3(xx,xxjac,xinvmass,p1,p2,p3,p4,p5,unphy)
       implicit double precision (a-h,o-z)
-      integer n4
-      dimension xx(10)
+      integer n4,unphy
       parameter (pi=3.14159265358979d0)
+      dimension xx(10)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),q(0:3)
       dimension qa(0:3),qb(0:3)
       dimension p4p(0:3),diff(0:3)
       common/energy/s
-      common/countc/n4
 
       am3=0d0
       am4=0d0
@@ -111,7 +110,6 @@ c +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
       s12=xa*xb*s
       rsp = dsqrt(s12)
-c      srs2= rsp
       srs2= 0.5d0*dsqrt(s)
 c     incoming parton 4-vectors
 
@@ -131,7 +129,8 @@ c     outgoing parton 4-vectors
       v=xx(3)
       w=xx(4)
       !N:  Mass of each particles taking part in interaction
-c      if (s12. lt. (am3 + am4)**2 - am5**2) goto 151
+      unphy = 0
+      if (s12 .lt. (am3 + am4)**2 - am5**2)  unphy = 1
 
 c-------------------------------------------------------
 c 2 --> 3 body massive phase space parametrization based 
@@ -170,41 +169,24 @@ c-------------------------------------------------------
       xjac6 = e3max - e3min
       e3    = xjac6*xx(6) + e3min
       p3m   = dsqrt(dabs(e3**2 - am3**2))
-c      write(*,*)'Sigma, tau, a1, b1, a2=',sigma, tau, a1,b1,a2
-c      write(*,*)'am3,am4 =',am3,am4
 
       e4    = rsp - e3 -e5
-
-c      if (e3 .lt.0d0) then
-c      print*, 'e3 = ',e3
-c      endif
-
-      if (e4 .lt.0d0) then
-      print*, 'e4 = ',e4
-      endif
-
-c      if (e5 .lt.0d0) then
-c      print*, 'e5 = ',e5
-c      endif
-
       p4m   = dsqrt(dabs(e4**2 - am4**2))
-      czeta = (p4m**2 - p3m**2 - p5m**2)/(2.0d0*p3m*p5m)
-      
+      czeta = (p4m**2 - p3m**2 - p5m**2)/(2d0*p3m*p5m)
 
-      if (czeta**2 .ge. 1.0d0) then
-       call resetmomenta(p1,p2,p3,p4,p5)
-       goto 151
-      endif       
+c    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c      will check unphysical ps points
+      if (czeta .ge. 1.0d0) then
+        unphy = unphy+1 ! additinal term comes with basic mass conservation
+        goto 151
+      endif
+c    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
       zeta = dacos(czeta)
       szeta = dsin(zeta)
 
 c      szeta = dsqrt(1.0d0-czeta*czeta)
 c      print*,'Values',e4,p4m,czeta,szeta
-
-      if (dabs(czeta**2) .gt. 1.0d0) then
-      write(*,*)'Cos (zeta) =', czeta,p4m,p3m,p5m
-      endif
 
       p3t   = e3
       p3x   = p3m*(ct*cphi*szeta + st*czeta)
@@ -229,77 +211,22 @@ c      endif
       p3(2)=p3y
       p3(3)=gamma*(p3z + beta*p3t)
 
-      p4(0)=gamma*(p4t + beta*p4z)
-      p4(1)=p4x
-      p4(2)=p4y
-      p4(3)=gamma*(p4z + beta*p4t)
+c      p4(0)=gamma*(p4t + beta*p4z)
+c      p4(1)=p4x
+c      p4(2)=p4y
+c      p4(3)=gamma*(p4z + beta*p4t)
 
       p5(0)=gamma*(p5t + beta*p5z)
       p5(1)=p5x
       p5(2)=p5y
       p5(3)=gamma*(p5z + beta*p5t)
 
-c      q(0)=gamma*(rsp)
-c      q(1)=0.0d0
-c      q(2)=0.0d0
-c      q(3)=gamma*(beta*rsp)
 
-
-      p4p(0)=p1(0)+p2(0)-p3(0)-p5(0)
-      p4p(1)=p1(1)+p2(1)-p3(1)-p5(1)
-      p4p(2)=p1(2)+p2(2)-p3(2)-p5(2)
-      p4p(3)=p1(3)+p2(3)-p3(3)-p5(3)
+      p4(0)=p1(0)+p2(0)-p3(0)-p5(0)
+      p4(1)=p1(1)+p2(1)-p3(1)-p5(1)
+      p4(2)=p1(2)+p2(2)-p3(2)-p5(2)
+      p4(3)=p1(3)+p2(3)-p3(3)-p5(3)
       
-c      perc = dabs(p4(0) - p4p(0))/p4(0)*100.0d0
-c      write(*,*)'perc =',perc
-
-c      am4a = dot(p4,p4)
-c      am4b = dot(p4p,p4p)
-      am3a = dot(p3,p3)
-      am5a = dot(p5,p5)
-
-c       print*,"1:",dot(p1,p1)
-c       print*,"2:",dot(p2,p2)
-c       print*,"3:",dot(p3,p3)
-c       print*,"4:",dot(p4,p4)
-c       print*,"4b:",dot(p4p,p4p)
-c       print*,"5:",dot(p5,p5)
-c       print*," "
-        
-c      d1 = am4a - am4b
-
-c      if(d1 .ne. 0.0d0) then
-c      write(*,*)'Diff =',d1,am4a,am4b
-c      endif
-c      write(*,*)'m3,m5 =',am3a,am5a
-
-c      do i = 0,3
-c      diff(i) = p1(i)+p2(i)+p3(i)+p5(i)+p4p(i)
-c      print*,"diff",i,diff(i)
-c      enddo
-c      print*," "
-c
-c      if(diff(i) .lt. 0.0d0) then
-c      write(*,*)'Diff =',diff(i)
-c      endif
-c
-c      enddo
-      
-c      if (p3(0) .lt.0d0) then
-c      print*, 'e3 = ',p3(0)
-c      endif
-c
-      if (p4p(0) .lt. 0d0) then
-      print*, 'e4 = ',p4p(0)
-      n4 = n4+1
-      endif
-c
-c      if (p5(0) .lt.0d0) then
-c      print*, 'e5 = ',p5(0)
-c      endif
-
-c      print*,p3(0),p5(0)
-
 c     p3 + p4
       q(0) = p3(0) +p4(0)
       q(1) = p3(1) +p4(1)
@@ -308,6 +235,9 @@ c     p3 + p4
     
 c     xxjac
       xxjac = xjac3*xjac4*xjac5*xjac6
+
+      xinvmass =dsqrt(2d0*dot(p3,p4))
+
 
  151  return
       end 

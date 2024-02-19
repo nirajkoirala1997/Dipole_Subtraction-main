@@ -61,6 +61,10 @@ c SumK = Sum_{i=1}^{4}K(i)
 
       call smatrix(p(0,1),CLPK(3)) 
       call cmatrix1(p(0,1),1,CLPK(4)) 
+c      CLPK(1)=1d0
+c      CLPK(2)=1d0
+c      CLPK(3)=1d0
+c      CLPK(4)=1d0
       Al=0.118d0
       Pt(1)=
      - 0

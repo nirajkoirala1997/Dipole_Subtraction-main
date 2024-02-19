@@ -10,6 +10,7 @@ OBJECTS = cuba.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o ph
 PROG = run.x
 $(PROG): $(OBJECTS) main.f  
 	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS) $(LIB) $(LIBS) $(LHFLAGS) $(LDFLAGS) 
+	rm -f $(OBJECTS)
 clean: 
 	rm -f *.o core *~ *.x
 $(PROG): *.inc

@@ -77,23 +77,23 @@ c     Cuhre Specific Parameters
 c        i=1
 c      write(*,*)"READ VERBOSE:"
 c      read(*,*)flags
-      print*,"Enter the precision."
-      print*,"Current Value of epsrel:",epsrel
-      print*,"Current Value of epsabs:",epsabs
-      print*," "
-      print*,"Press 1 to go with it else press 2 to modify"
-      read*,i2
-      if ( i2 .eq. 2 ) then
-              print*,"Enter epsrel:"
-              read*,epsrel
-              print*,"Enter epsabs:"
-              read*,epsabs
-              print*," "
-              print*,"Values are "
-              print*,"epsrel:",epsrel
-              print*,"epsabs:",epsabs
-              call sleep(1)
-      endif
+c      print*,"Enter the precision."
+c      print*,"Current Value of epsrel:",epsrel
+c      print*,"Current Value of epsabs:",epsabs
+c      print*," "
+c      print*,"Press 1 to go with it else press 2 to modify"
+c      read*,i2
+c      if ( i2 .eq. 2 ) then
+c              print*,"Enter epsrel:"
+c              read*,epsrel
+c              print*,"Enter epsabs:"
+c              read*,epsabs
+c              print*," "
+c              print*,"Values are "
+c              print*,"epsrel:",epsrel
+c              print*,"epsabs:",epsabs
+c              call sleep(1)
+c      endif
       print *, " "
       write(*,*)" Initializing Integration using selected method "
       print *, " "

@@ -13,9 +13,8 @@
       external dipole_uU_g
       external flo2_PK
       external flo2_Vir
-        name='CT10nlo'
-        call initpdfsetbyname(name)
-        Call initPDF(1)
+c       name='CT10nlo'
+c        name='MMHT2014nlo68cl'
 
       !input data card
       open(unit=10,file='run.vegas.dat',status='unknown')    
@@ -24,11 +23,14 @@
       npt1 = pt1
       close(10)
 
-      open(unit=15,file='run.machine.dat',status='unknown')
+      open(unit=15,file='../run.machine.dat',status='unknown')
       read (15,*) mid           ! machine id Tevatron:0 LHC:1
       read (15,*) ecm           ! ecm
+      read (15,*) name        !lhapdf set
       close(15)
       
+        call initpdfsetbyname(name)
+        Call initPDF(1)
 c      am1 = 0.51099895000d-3
       am1=0.0d0
       am2=0.0d0
@@ -45,8 +47,8 @@ c      am1 = 0.51099895000d-3
       print*,'  '
       print*,"Press 1 to initialise VEGAS:"
       print*,"Press 2 to initialise CUBA-VEGAS:"
-        read*,i
-c        i=1
+c        read*,i
+        i=1
         IF (I .EQ. 1) THEN
         print*,"----------------------------------"
         print*,"|Initializing Dipole Subtraction  |"

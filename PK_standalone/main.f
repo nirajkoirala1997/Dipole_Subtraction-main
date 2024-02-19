@@ -10,21 +10,21 @@
       include 'nexternal.inc'
       call setpara('param_card.dat',.true.)
 
-      name='CT10nlo'
-      call initpdfsetbyname(name)
-      Call initPDF(1)
-
       !input data card
       open(unit=10,file='run.vegas.dat',status='unknown')
       read (10,*) npt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
       close(10)
 
-      open(unit=15,file='run.machine.dat',status='unknown')
+      open(unit=15,file='../run.machine.dat',status='unknown')
       read (15,*) mid           ! machine id Tevatron:0 LHC:1
       read (15,*) ecm           ! ecm
+      read (16,*) name          !lhapdf set
       close(15)
-        s=ecm*ecm
+
+      call initpdfsetbyname(name)
+      Call initPDF(1)
+       s=ecm*ecm
        print*,"  "
        print*,"  "
         print*,"____________________________________"

@@ -28,12 +28,15 @@
        call setlum(f1,f2,xl)
       if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
       if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
+c      call getPK(leg,x,xmuf,p,SumP,SumK)
 
         do i=0,3
         xp1(i) = x*p1(i)
         xp2(i) = x*p2(i)
         enddo
 
+c      if (leg .eq. 1) Born(leg)=Born_uU2eE(0,xp1,p2,p3,p4)
+c      if (leg .eq. 2) Born(leg)=Born_uU2eE(0,p1,xp2,p3,p4)
       if (leg .eq. 1) Born(leg)=Born_uU2eE(0,xp1,p2,p3,p4)
       if (leg .eq. 2) Born(leg)=Born_uU2eE(0,p1,xp2,p3,p4)
 
