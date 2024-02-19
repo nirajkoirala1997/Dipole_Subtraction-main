@@ -25,6 +25,7 @@ c SumI[-2,-1,0] = Sum_{i=1}^{2}coef[-2,-1,0]
  
       common /MASS/ mt,mb  
       common /usedalpha/ AL  
+      common/renor_scale/mu
     
       Pi=3.141592653589793238D0 
       Eul=0.5772156649015328606065120d0 
@@ -33,7 +34,7 @@ c SumI[-2,-1,0] = Sum_{i=1}^{2}coef[-2,-1,0]
       CF=4.D0/3.D0 
       CA=3.D0 
       TR=0.5D0 
-      mu=174.3D0 
+c      mu=174.3D0 
       Nf=1D0 
       
       s12=2.d0*dot(p(0,1),p(0,2)) 

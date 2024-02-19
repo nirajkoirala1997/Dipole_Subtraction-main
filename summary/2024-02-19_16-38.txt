@@ -1,0 +1,280 @@
+g77 -O   -c -o PK.o PK.f
+g77 -O   -c -o pdf_lha.o pdf_lha.f
+g77 -O   -c -o lum.o lum.f
+g77 -O   -c -o integrand.o integrand.f
+g77 -O   -c -o phasespace.o phasespace.f
+g77 -O   -c -o vsup.o vsup.f
+g77 -O   -c -o PKterm.o PKterm.f
+g77 -O   -c -o couplings.o couplings.f
+g77 -O   -c -o matrixLO1.o matrixLO1.f
+g77 -O   -c -o cmatrix.o cmatrix.f
+g77 main.f -O  -o runPK PK.o pdf_lha.o lum.o integrand.o phasespace.o vsup.o PKterm.o couplings.o matrixLO1.o cmatrix.o -L./ -ldhelas3 -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/lib -lLHAPDF
+rm -f *.o
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0001.dat
+MMHT2014nlo68cl PDF set, member #1, version 3; LHAPDF ID = 25101
+   
+   
+ ____________________________________
+ 1. Calculating P and K terms for Leg 1
+ ____________________________________
+ ````````````````````````````````````
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=     913952.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  26
+   1     -0.3267617E-03 0.1040E-03 -0.3267617E-03 0.1040E-03  0.000    
+   2     -0.5515360E-03 0.1447E-03 -0.4605968E-03 0.9177E-04  1.445    
+   3     -0.7274679E-03 0.1605E-03 -0.5825547E-03 0.8352E-04  1.741    
+   4     -0.8564631E-03 0.1485E-03 -0.6990671E-03 0.7315E-04  2.011    
+   5     -0.9751395E-03 0.1142E-03 -0.8323085E-03 0.5893E-04  2.572    
+   6     -0.1480988E-02 0.4212E-03 -0.8813499E-03 0.7008E-04  2.543    
+   7     -0.1090281E-02 0.5851E-04 -0.1023394E-02 0.4099E-04  2.925    
+   8     -0.2969914E-02 0.1694E-02 -0.1035043E-02 0.6006E-04  2.053    
+   9     -0.1341824E-02 0.1023E-03 -0.1112024E-02 0.5190E-04  2.623    
+  10     -0.1719618E-02 0.1107E-03 -0.1270156E-02 0.4596E-04  5.938    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=    9759362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  47
+   1     -0.2593927E-02 0.2905E-03 -0.2593927E-02 0.2905E-03  0.000    
+   2     -0.2134060E-02 0.9719E-04 -0.2199327E-02 0.1002E-03  2.565    
+   3     -0.2254502E-02 0.1854E-03 -0.2210825E-02 0.8766E-04  1.359    
+   4     -0.2326179E-02 0.2776E-03 -0.2221207E-02 0.8354E-04 0.9600    
+   5     -0.2381508E-02 0.2109E-03 -0.2243735E-02 0.7777E-04 0.8423    
+   6     -0.2247652E-02 0.1054E-03 -0.2245042E-02 0.6306E-04 0.6831    
+   7     -0.3068130E-02 0.8227E-03 -0.2253362E-02 0.6596E-04 0.7746    
+   8     -0.2685149E-02 0.5486E-03 -0.2260749E-02 0.6623E-04 0.7495    
+   9     -0.2290717E-02 0.3038E-03 -0.2261919E-02 0.6440E-04 0.6676    
+  10     -0.2718941E-02 0.4364E-03 -0.2273780E-02 0.6426E-04 0.7225    
+  11     -0.3481455E-02 0.8773E-03 -0.2286364E-02 0.6666E-04 0.9364    
+  12     -0.2523744E-02 0.2614E-03 -0.2300155E-02 0.6456E-04 0.9222    
+  13     -0.2484141E-02 0.2343E-03 -0.2312202E-02 0.6222E-04 0.8950    
+  14     -0.2461477E-02 0.2477E-03 -0.2320321E-02 0.6032E-04 0.8556    
+  15     -0.2360424E-02 0.2151E-03 -0.2322815E-02 0.5810E-04 0.8049    
+  16     -0.2566848E-02 0.3426E-03 -0.2329691E-02 0.5729E-04 0.7840    
+  17     -0.2250308E-02 0.1030E-03 -0.2314361E-02 0.5112E-04 0.7683    
+  18     -0.2146024E-02 0.9832E-04 -0.2287134E-02 0.4643E-04 0.8397    
+  19     -0.2439693E-02 0.2510E-03 -0.2291874E-02 0.4563E-04 0.8143    
+  20     -0.3173061E-02 0.7215E-03 -0.2297444E-02 0.4615E-04 0.8699    
+   
+ The answer is  = -0.00229744446
+ Integral of PK1= -0.00229744446+-  4.61517664E-05
+ with chisq    =  0.869870465
+   
+ ____________________________________
+ 2. Calculating P and K terms for Leg 2
+ ____________________________________
+ ````````````````````````````````````
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=     913952.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  26
+   1     -0.3205679E-03 0.1004E-03 -0.3205679E-03 0.1004E-03  0.000    
+   2     -0.5388764E-03 0.1422E-03 -0.4481964E-03 0.8948E-04  1.446    
+   3     -0.6556291E-03 0.1286E-03 -0.5548259E-03 0.7369E-04  1.508    
+   4     -0.9285656E-03 0.1933E-03 -0.6719720E-03 0.7566E-04  2.405    
+   5     -0.9329364E-03 0.1462E-03 -0.7649370E-03 0.6687E-04  2.360    
+   6     -0.2816786E-02 0.1455E-02 -0.8300719E-03 0.1217E-03  2.300    
+   7     -0.1255002E-02 0.1513E-03 -0.9865320E-03 0.9604E-04  2.703    
+   8     -0.1469541E-02 0.1533E-03 -0.1145776E-02 0.7986E-04  3.401    
+   9     -0.2044888E-02 0.3255E-03 -0.1257307E-02 0.8016E-04  4.296    
+  10     -0.2209671E-02 0.3049E-03 -0.1392225E-02 0.7925E-04  5.304    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=    9759362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  47
+   1     -0.2335599E-02 0.1409E-03 -0.2335599E-02 0.1409E-03  0.000    
+   2     -0.2449578E-02 0.2289E-03 -0.2369123E-02 0.1213E-03 0.1833    
+   3     -0.2277194E-02 0.9187E-04 -0.2312849E-02 0.7434E-04 0.2762    
+   4     -0.2103637E-02 0.4786E-04 -0.2175169E-02 0.4236E-04  2.024    
+   5     -0.2126196E-02 0.6338E-04 -0.2161597E-02 0.3550E-04  1.657    
+   6     -0.3834815E-02 0.1479E-02 -0.2164362E-02 0.4063E-04  1.570    
+   7     -0.2249099E-02 0.1004E-03 -0.2173670E-02 0.3765E-04  1.438    
+   8     -0.2203354E-02 0.7020E-04 -0.2178935E-02 0.3361E-04  1.289    
+   9     -0.2157728E-02 0.6153E-04 -0.2175092E-02 0.2998E-04  1.171    
+  10     -0.2364322E-02 0.1397E-03 -0.2182762E-02 0.2924E-04  1.230    
+  11     -0.2088635E-02 0.5469E-04 -0.2166668E-02 0.2628E-04  1.318    
+  12     -0.2547492E-02 0.3084E-03 -0.2169690E-02 0.2629E-04  1.338    
+  13     -0.2393273E-02 0.1569E-03 -0.2175578E-02 0.2590E-04  1.389    
+  14     -0.2179413E-02 0.8281E-04 -0.2175857E-02 0.2477E-04  1.301    
+  15     -0.2503145E-02 0.1913E-03 -0.2181638E-02 0.2461E-04  1.421    
+  16     -0.2083195E-02 0.5856E-04 -0.2170270E-02 0.2295E-04  1.474    
+  17     -0.2163508E-02 0.7207E-04 -0.2169756E-02 0.2194E-04  1.398    
+  18     -0.2502300E-02 0.1885E-03 -0.2174627E-02 0.2184E-04  1.505    
+  19     -0.2256350E-02 0.1071E-03 -0.2177531E-02 0.2138E-04  1.458    
+  20     -0.2504943E-02 0.1334E-03 -0.2186522E-02 0.2114E-04  1.712    
+   
+ The answer is   = -0.00218652201
+ Integral of PK2 = -0.00218652201+-  2.11393213E-05
+    with chisq   =  1.71164115
+   
+Total PK1 + PK2 =     -0.448396646497789E-02
+   
+   
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+gfortran -O  -c -o misc.o misc.f
+gfortran -O  -c -o Iterm.o Iterm.f
+gfortran -O  -c -o matrixLO1.o matrixLO1.f
+gfortran -O  -c -o couplings.o couplings.f
+gfortran -O  -c -o cmatrix.o cmatrix.f
+gfortran -O  -c -o cuba.o cuba.f
+gfortran -O  -c -o lum.o lum.f
+gfortran -O  -c -o pdf_lha.o pdf_lha.f
+gfortran -O  -c -o vsup.o vsup.f
+gfortran -O  -c -o integrand.o integrand.f
+gfortran -O  -c -o phasespace.o phasespace.f
+gfortran main.f -O -o runVir misc.o Iterm.o matrixLO1.o couplings.o cmatrix.o cuba.o lum.o pdf_lha.o vsup.o integrand.o phasespace.o -lm  -lcuba -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/lib -lLHAPDF -L./ -ldhelas3 
+rm -f *.o
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0001.dat
+MMHT2014nlo68cl PDF set, member #1, version 3; LHAPDF ID = 25101
+  
+  
+ ____________________________________
+ 3. Calculating Virtual Contribution
+ ____________________________________
+ ````````````````````````````````````
+     Virtual + Dipole over 2-Body PS
+  
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  3  NCALL=      93312.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  36
+   1      0.9700370     0.2609E-01  0.9700370     0.2609E-01  0.000    
+   2      0.9857251     0.7140E-02  0.9846644     0.6840E-02 0.3316    
+   3      0.9811405     0.5285E-02  0.9824525     0.4178E-02 0.2486    
+   4      0.9819441     0.4837E-02  0.9822345     0.3160E-02 0.1676    
+   5      0.9899692     0.4856E-02  0.9845693     0.2646E-02 0.5753    
+   6      0.9784458     0.4605E-02  0.9830568     0.2295E-02 0.7256    
+   7      0.9815740     0.4839E-02  0.9827844     0.2074E-02 0.6174    
+   8      0.9809017     0.4733E-02  0.9824814     0.1899E-02 0.5482    
+   9      0.9799494     0.4549E-02  0.9821063     0.1753E-02 0.5127    
+  10      0.9830473     0.4543E-02  0.9822287     0.1635E-02 0.4597    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  3  NCALL=     949104.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  39
+   1      0.9857636     0.1084E-02  0.9857636     0.1084E-02  0.000    
+   2      0.9811550     0.1071E-02  0.9834433     0.7618E-03  9.148    
+   3      0.9827982     0.1073E-02  0.9832272     0.6211E-03  4.696    
+   4      0.9849932     0.1071E-02  0.9836732     0.5373E-03  3.808    
+   5      0.9831973     0.1071E-02  0.9835775     0.4802E-03  2.896    
+   6      0.9818365     0.1067E-02  0.9832850     0.4379E-03  2.760    
+   7      0.9855085     0.1079E-02  0.9836005     0.4058E-03  2.908    
+   8      0.9840994     0.1091E-02  0.9836612     0.3803E-03  2.518    
+   9      0.9826289     0.1090E-02  0.9835494     0.3591E-03  2.304    
+  10      0.9842797     0.1070E-02  0.9836234     0.3404E-03  2.094    
+  11      0.9832264     0.1066E-02  0.9835867     0.3243E-03  1.898    
+  12      0.9840403     0.1066E-02  0.9836251     0.3102E-03  1.740    
+  13      0.9811315     0.1054E-02  0.9834272     0.2976E-03  2.023    
+  14      0.9850312     0.1072E-02  0.9835423     0.2867E-03  2.028    
+  15      0.9830909     0.1054E-02  0.9835112     0.2767E-03  1.895    
+  16      0.9835021     0.1072E-02  0.9835107     0.2679E-03  1.769    
+  17      0.9841009     0.1075E-02  0.9835452     0.2600E-03  1.676    
+  18      0.9817307     0.1059E-02  0.9834425     0.2525E-03  1.740    
+  19      0.9815449     0.1070E-02  0.9833429     0.2457E-03  1.808    
+  20      0.9839484     0.1070E-02  0.9833732     0.2395E-03  1.729    
+   
+ The answer is =  0.98337321885321538     
+ Integral      =  0.98337321885321538      +-   2.3948550898716535E-004
+ with chisq    =   1.7291428186725677     
+   
+   
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+gfortran -O  -c -o cuba.o cuba.f
+gfortran -O  -c -o dipole.o dipole.f
+gfortran -O  -c -o lum.o lum.f
+gfortran -O  -c -o pdf_lha.o pdf_lha.f
+gfortran -O  -c -o vsup.o vsup.f
+gfortran -O  -c -o mat.amp.o mat.amp.f
+gfortran -O  -c -o integrand.o integrand.f
+gfortran -O  -c -o misc.o misc.f
+gfortran -O  -c -o phasespace.o phasespace.f
+gfortran main.f -O -o run.x cuba.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o  -lcuba -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/lib -lLHAPDF  
+rm -f cuba.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0001.dat
+MMHT2014nlo68cl PDF set, member #1, version 3; LHAPDF ID = 25101
+   
+ ----------------------------------
+ |Initializing Dipole Subtraction  |
+ ----------------------------------
+  
+ 4. real - Dipole Over 3body phasespace
+ ``````````````````````````````````````
+  
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1     -0.2389294E-03 0.8167E-05 -0.2389294E-03 0.8167E-05  0.000    
+   2     -0.2341520E-03 0.4196E-05 -0.2351820E-03 0.3755E-05 0.2738    
+   3     -0.2356797E-03 0.2744E-05 -0.2355056E-03 0.2218E-05 0.1430    
+   4     -0.2305587E-03 0.2679E-05 -0.2335521E-03 0.1715E-05 0.7593    
+   5     -0.2358570E-03 0.2304E-05 -0.2343782E-03 0.1375E-05 0.7301    
+   6     -0.2333467E-03 0.2070E-05 -0.2340657E-03 0.1146E-05 0.6196    
+   7     -0.2348072E-03 0.1943E-05 -0.2342572E-03 0.9874E-06 0.5343    
+   8     -0.2357554E-03 0.2016E-05 -0.2345490E-03 0.8865E-06 0.5215    
+   9     -0.2341953E-03 0.1954E-05 -0.2344889E-03 0.8075E-06 0.4600    
+  10     -0.2354910E-03 0.1945E-05 -0.2346370E-03 0.7456E-06 0.4339    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=     786432.
+                              IT=    0  ITMX=   20
+                              MDS=  1   ND=  50
+   1     -0.2341104E-03 0.7756E-06 -0.2341104E-03 0.7756E-06  0.000    
+   2     -0.2346121E-03 0.6285E-06 -0.2344137E-03 0.4882E-06 0.2524    
+   3     -0.2337400E-03 0.6225E-06 -0.2341579E-03 0.3842E-06 0.4886    
+   4     -0.2342081E-03 0.6359E-06 -0.2341714E-03 0.3288E-06 0.3272    
+   5     -0.2335500E-03 0.6462E-06 -0.2340441E-03 0.2931E-06 0.4287    
+   6     -0.2346938E-03 0.6158E-06 -0.2341646E-03 0.2646E-06 0.5248    
+   7     -0.2345589E-03 0.6351E-06 -0.2342231E-03 0.2443E-06 0.4920    
+   8     -0.2335256E-03 0.6229E-06 -0.2341306E-03 0.2274E-06 0.5766    
+   9     -0.2342400E-03 0.6246E-06 -0.2341434E-03 0.2137E-06 0.5078    
+  10     -0.2351260E-03 0.6342E-06 -0.2342444E-03 0.2025E-06 0.6922    
+  11     -0.2335205E-03 0.6318E-06 -0.2341773E-03 0.1928E-06 0.7417    
+  12     -0.2352179E-03 0.6388E-06 -0.2342649E-03 0.1846E-06 0.8965    
+  13     -0.2348808E-03 0.6604E-06 -0.2343098E-03 0.1778E-06 0.8890    
+  14     -0.2345592E-03 0.6274E-06 -0.2343284E-03 0.1711E-06 0.8318    
+  15     -0.2347678E-03 0.6198E-06 -0.2343596E-03 0.1649E-06 0.8056    
+  16     -0.2337184E-03 0.6346E-06 -0.2343192E-03 0.1596E-06 0.8156    
+  17     -0.2352279E-03 0.6400E-06 -0.2343728E-03 0.1549E-06 0.8837    
+  18     -0.2325424E-03 0.1460E-05 -0.2343528E-03 0.1539E-06 0.9226    
+  19     -0.2336884E-03 0.6661E-06 -0.2343192E-03 0.1500E-06 0.9238    
+  20     -0.2359572E-03 0.6229E-06 -0.2344103E-03 0.1458E-06  1.223    
+   
+ The answer is =  -2.3441025305964477E-004
+ Integral      =  -2.3441025305964477E-004 +-   1.4581105821787366E-007
+ with chisq    =   1.2230484167839846     
+ Unphysical count =           0
+  
+  
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

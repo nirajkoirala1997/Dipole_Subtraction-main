@@ -24,7 +24,9 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
       common/amass/am1,am2,am3,am4,am5
       common/energy/s
       common/set/set1
+      common/distribution/xq
       common/countc/n4
+      common/usedalpha/AL
 
       xa = xx(1)
       xb = xx(2)
@@ -32,9 +34,8 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
 
       ipass1 = 0
 
-      xq = 100.0d0
-      eps = 0.5d0
-      xlow = xq -eps
+        eps = 0.5d0*2d0
+       xlow = xq - eps
       xhigh = xq + eps
 
       xcut = xq - 10.0d0
@@ -54,8 +55,7 @@ c        if (scale .le. 0d0 ) print*,"Scale :",scale
         ipass = 0
         fnlo3 = 0
 
-c        if ( scale .ge. xlow .and. scale .le. xhigh) ipass=1
-        if ( scale .ge. xlow ) ipass = 1!.and. scale .le. xhigh) ipass=1
+        if ( scale .ge. xlow .and. scale .le. xhigh) ipass=1
          if ( ipass .eq. 1 ) then
 
           xmuf=scale
@@ -67,6 +67,7 @@ c           xmur=xq
           call pdf(xa,xmuf,f1)
           call pdf(xb,xmuf,f2)
           call setlum(f1,f2,xl)
+          AL = alphasPDF(xmur)
           call p1dtop2d_5(p1,p2,p3,p4,p5,p)
 
           call  uu2ee_r(p,sig)

@@ -5,21 +5,27 @@
       common/energy/s
       external flo2_PK
       common/leg_choice/leg
+      common/usedalpha/AL
+      common/distribution/xq
+      
 
       include 'coupl.inc'
       include 'nexternal.inc'
       call setpara('param_card.dat',.true.)
 
       !input data card
-      open(unit=10,file='run.vegas.dat',status='unknown')
-      read (10,*) npt1          ! vegas points     LO 2 body
+      open(unit=10,file='../run.vegas.dat',status='unknown')
+      read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
+      npt1 = pt1
       close(10)
 
       open(unit=15,file='../run.machine.dat',status='unknown')
       read (15,*) mid           ! machine id Tevatron:0 LHC:1
       read (15,*) ecm           ! ecm
-      read (16,*) name          !lhapdf set
+      read (15,*) name          !lhapdf set
+      read (15,*) iorder        !iorder no of q for distribution
+      read (15,*) xq            ! initialise xq value
       close(15)
 
       call initpdfsetbyname(name)

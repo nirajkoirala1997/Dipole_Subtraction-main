@@ -11,21 +11,43 @@
       common/pdfname/name
       common/factscale/xmuf
       common/leg_choice/leg
+      common/usedalpha/AL
+      common/distribution/xq
+      
 
-      call kinvar2(yy,xinvmass,p1,p2,p3,p4)
-      call p1d_to_p2d_4(p1,p2,p3,p4,p)
 
       xa     = yy(1)
       xb     = yy(2)
        x     = yy(4)
+      rsp = dsqrt(xa*xb*s)
+
+      ipass1 = 0
+
+        eps = 0.5d0*2d0
+       xlow = xq - eps
+      xhigh = xq + eps
+
+      xcut = xq - 10.0d0
+
+      if (rsp .gt. xcut) ipass1 = 1
+      if (ipass1 .eq.1) then
+
+      call kinvar2(yy,xinvmass,p1,p2,p3,p4)
+      call p1d_to_p2d_4(p1,p2,p3,p4,p)
+
       scale  = xinvmass
-      if( scale .gt. 100d0) then
+c      if( scale .gt. 100d0) then
+        ipass = 0
+        flo2_PK = 0
+        if ( scale .ge. xlow .and. scale .le. xhigh) ipass=1
+         if ( ipass .eq. 1 ) then
             xmuf=scale
             xmur=scale
 
        call pdf(xa,xmuf,f1)
        call pdf(xb,xmuf,f2)
        call setlum(f1,f2,xl)
+       AL = alphasPDF(xmur)
       if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
       if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
 c      call getPK(leg,x,xmuf,p,SumP,SumK)
@@ -53,6 +75,7 @@ c            xnorm=hbarc2/16d0/pi/(s*xa*xb)
             flo2_PK=0d0
             return
          endif
+        endif
 
          return
       end
@@ -64,8 +87,9 @@ c--------------------------------------------------------------------o
        implicit double precision (a-h,o-z)
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
+       common/usedalpha/AL
        ge=0.007547169811320755d0
-       Al=0.118d0
+c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
        gs=DSQRT(Al*4.d0*PI)
       IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0

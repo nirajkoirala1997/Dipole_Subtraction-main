@@ -1,4 +1,4 @@
-FC = gfortran
+FC = g77#gfortran
 FFLAGS   = -O
 LDFLAGS = -L./ -ldhelas3
 LIBS = -lcuba

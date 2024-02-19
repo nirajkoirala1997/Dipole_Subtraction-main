@@ -23,53 +23,74 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       character*50 name
       common/pdfname/name
       common/leg_choice/leg
-      s = 1000**2
+      common/energy/s
+      common/distribution/xq
+      common/renor_scale/scale
+      common/usedalpha/AL
+      rs  = dsqrt(s)
 
-      call kinvar2(yy,xinvmass,p1,p2,p3,p4)
-      call p1d_to_p2d_4(p1,p2,p3,p4,p)
+
       xa     = yy(1)
       xb     = yy(2)
-      AL     = 0.118d0
-      ge=0.007547169811320755d0
-      Al=0.118d0
-      e= DSQRT(ge*4.d0*PI)
-      gs=DSQRT(Al*4.d0*PI)
-      qu2=4d0/9d0
+
+      rsp = dsqrt(xa*xb*s)
+        
+      ipass = 0
+        eps = 0.5d0*2d0
+       xlow = xq - eps
+      xhigh = xq + eps
+
+      xcut = xq - 10.0d0
+
+      if (rsp .gt. xcut) then
+
+        call kinvar2(yy,xinvmass,p1,p2,p3,p4)
+        call p1d_to_p2d_4(p1,p2,p3,p4,p)
+
+        scale  = xinvmass
+        if ( scale .ge. xlow .and. scale .le. xhigh) then 
+             
+              xmuf=scale
+              xmur=scale
+              xmu2 =scale**2
+
+         call pdf(xa,xmuf,f1)
+         call pdf(xb,xmuf,f2)
+         call setlum(f1,f2,xl)
+          AL = alphasPDF(xmur)
+
+        ge=0.007547169811320755d0
+        e= DSQRT(ge*4.d0*PI)
+        gs=DSQRT(Al*4.d0*PI)
+        qu2=4d0/9d0
+
+          s12= 2d0*dot(p1,p2)
+          t=-2d0*dot(p2,p4)
+          u=-2d0*dot(p2,p3)
 
 
-      scale  = xinvmass
-      if( scale .gt. 100d0) then
-            xmuf=scale
-            xmur=scale
-       call pdf(xa,xmuf,f1)
-       call pdf(xb,xmuf,f2)
-       call setlum(f1,f2,xl)
+            VIR= gs**2*8*ge**4*qu2*(5*(-6 + 11*Pi**2)*s12**2 +
+     -   2*(-48 + 55*Pi**2)*s12*t + 2*(-48 + 55*Pi**2)*t**2 -
+     -   6*(s12**2 + 6*s12*t + 6*t**2)*Log(xmu2/s12) -
+     -   6*(s12**2 + 2*s12*t + 2*t**2)*Log(xmu2/s12)**2)/
+     -     (24*Pi**2*s12**2)
+           VIR = VIR/36d0
 
-        s= 2d0*dot(p1,p2)
-        t=-2d0*dot(p2,p4)
-        u=-2d0*dot(p2,p3)
+c          VIR= (32*AL*(-2 + Pi**2)*e**4*qu2*(s**2 +
+c       .          2*s*t + 2*t**2))/(Pi*s**2)
+          call Iterm(p,coef,SumI)
 
-c        VIR=(4*Al*e**4*qu2*(5*(-6 + 5*Pi**2)*s**2 + 
-c     -     2*(-48 + 25*Pi**2)*s*t + 2*(-48 + 25*Pi**2)*t**2 - 
-c     -     6*(s**2 + 6*s*t + 6*t**2)*Log((xmuf**2/s)) - 
-c     -     6*(s**2 + 2*s*t + 2*t**2)*Log((xmuf**2/s))**2))/(3.*Pi*s**2)
+c          print*,SUMI(0),VIR
 
-        VIR= (32*AL*(-2 + Pi**2)*e**4*qu2*(s**2 +
-     .          2*s*t + 2*t**2))/(Pi*s**2)
-        call Iterm(p,coef,SumI)
+          sig= xl(1)*(Vir+Born_uU2eE(0,p1,p2,p3,p4)*SumI(0))
+c          sig= xl(1)*Born_uU2eE(0,p1,p2,p3,p4)*SumI(0)
 
-c        print*,SumI
-
-        sig= xl(1)*(Vir+Born_uU2eE(0,p1,p2,p3,p4)*SumI(0))
-c        sig= xl(1)*Born_uU2eE(0,p1,p2,p3,p4)*SumI(0)
-
-         xnorm=hbarc2/16d0/pi/s
-         wgt=xnorm*sig*vwgt
-         flo2_Vir=wgt/vwgt
-
-         if( flo2_Vir .ne. flo2_Vir) flo2_Vir=0
-                                ! There is a factor of 1/2
-         else                   ! from xeps interval
+           xnorm=hbarc2/16d0/pi/s
+           wgt=xnorm*sig*vwgt
+           flo2_Vir=wgt/vwgt
+        if (flo2_Vir .ne. flo2_Vir) flo2_vir=0d0
+           endif                        
+         else                  
             flo2_Vir=0d0
          endif
          return
@@ -82,8 +103,9 @@ c--------------------------------------------------------------------o
        implicit double precision (a-h,o-z)
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
+       common/usedalpha/AL
        ge=0.007547169811320755d0
-       Al=0.118d0
+c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
        gs=DSQRT(Al*4.d0*PI)
       IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0
