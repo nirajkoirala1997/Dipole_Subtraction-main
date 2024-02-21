@@ -58,7 +58,7 @@ c     -            2*(3*s34*s35*s45 + s34**2*(s35 + s45) +
 c     -               s35*s45*(s35 + s45))))))/
 c     -  (9.*(s13 + s14 - s34)**2*s34**2*(s34 + s35 + s45)**2)
       ! Total contribution from qg ang qq initiated process
-      msq = msq1 !+ msq2
+      msq = msq1 !+ msq2 !this msq2 is the contribution from qg initiaied process
 c      msq = msq1
 
       return

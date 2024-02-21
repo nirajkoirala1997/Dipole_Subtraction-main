@@ -46,9 +46,6 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
        call kinvar3(xx,xxjac,xinvmass,p1,p2,p3,p4,p5,unphy)
        if (unphy .eq. 0) then ! with zero unphysical PS points proceed
      
-        sp = xa*xb*s
-        rsp= dsqrt(sp)
-
         scale = xinvmass
 
 c        if (scale .le. 0d0 ) print*,"Scale :",scale
@@ -60,7 +57,7 @@ c        if (scale .le. 0d0 ) print*,"Scale :",scale
 
           xmuf=scale
           xmur=scale
-c
+
 c           xmuf=xq
 c           xmur=xq
 

@@ -13,8 +13,6 @@
       common/leg_choice/leg
       common/usedalpha/AL
       common/distribution/xq
-      
-
 
       xa     = yy(1)
       xb     = yy(2)
@@ -32,52 +30,49 @@
       if (rsp .gt. xcut) ipass1 = 1
       if (ipass1 .eq.1) then
 
-      call kinvar2(yy,xinvmass,p1,p2,p3,p4)
-      call p1d_to_p2d_4(p1,p2,p3,p4,p)
+        call kinvar2(yy,xinvmass,p1,p2,p3,p4)
+        call p1d_to_p2d_4(p1,p2,p3,p4,p)
 
-      scale  = xinvmass
-c      if( scale .gt. 100d0) then
+        scale  = xinvmass
+c       if( scale .gt. 100d0) then
         ipass = 0
         flo2_PK = 0
         if ( scale .ge. xlow .and. scale .le. xhigh) ipass=1
          if ( ipass .eq. 1 ) then
-            xmuf=scale
-            xmur=scale
+                xmuf = scale
+                xmur = scale
 
-       call pdf(xa,xmuf,f1)
-       call pdf(xb,xmuf,f2)
-       call setlum(f1,f2,xl)
-       AL = alphasPDF(xmur)
-      if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
-      if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
-c      call getPK(leg,x,xmuf,p,SumP,SumK)
+                call pdf(xa,xmuf,f1)
+                call pdf(xb,xmuf,f2)
+                call setlum(f1,f2,xl)
+                AL = alphasPDF(xmur)
+                x = yy(4)
+                if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
+                if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
+c                print*,"xvalue:",x,leg
+c                call getPK(leg,yy(4),xmur,p,SumP,SumK)
 
-        do i=0,3
-        xp1(i) = x*p1(i)
-        xp2(i) = x*p2(i)
-        enddo
+                do i=0,3
+                 xp1(i) = x*p1(i)
+                 xp2(i) = x*p2(i)
+                enddo
 
-c      if (leg .eq. 1) Born(leg)=Born_uU2eE(0,xp1,p2,p3,p4)
-c      if (leg .eq. 2) Born(leg)=Born_uU2eE(0,p1,xp2,p3,p4)
-      if (leg .eq. 1) Born(leg)=Born_uU2eE(0,xp1,p2,p3,p4)
-      if (leg .eq. 2) Born(leg)=Born_uU2eE(0,p1,xp2,p3,p4)
+       if (leg .eq. 1) Born(leg)=Born_uU2eE(0,xp1,p2,p3,p4)
+       if (leg .eq. 2) Born(leg)=Born_uU2eE(0,p1,xp2,p3,p4)
 
-       PK =SumP+SumK
+                PK =SumP+SumK
 
-       sig = xl(1)*Born(leg)* PK
+                sig = xl(1)*Born(leg)* PK
 
-c            xnorm=hbarc2/16d0/pi/(s*xa*xb)
-       xnorm=hbarc2/16d0/pi/s
-       wgt=xnorm*sig*vwgt
-       flo2_PK=wgt/vwgt
-       return              ! There is a factor of 1/2
-         else                   ! from xeps interval
+c               xnorm=hbarc2/16d0/pi/(s*xa*xb)
+                xnorm = hbarc2/16d0/pi/s
+                  wgt = xnorm*sig*vwgt
+              flo2_PK = wgt/vwgt
+         else           
             flo2_PK=0d0
-            return
          endif
         endif
-
-         return
+      return
       end
 
 c---------------------------------------------------------------------

@@ -12,8 +12,6 @@
       character*50 name
       external fnlo3
       external dipole_uU_g
-      external flo2_PK
-      external flo2_Vir
 
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')    

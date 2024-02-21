@@ -1,4 +1,5 @@
-FC = g77
+#FC = gfortran#g77
+FC = f77#gfortran#g77
 FFLAGS   = -O 
 LDFLAGS = -L./ -ldhelas3
 #export LHFLAGS = $(shell lhapdf-config --ldflags)

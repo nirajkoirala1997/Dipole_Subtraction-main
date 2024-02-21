@@ -40,7 +40,6 @@ c SumK = Sum_{i=1}^{4}K(i)
       CF=4.D0/3.D0 
       CA=3.D0 
       TR=0.5D0 
-      muF=174.3D0 
       Nf=1.D0 
 
 
@@ -61,11 +60,7 @@ c SumK = Sum_{i=1}^{4}K(i)
 
       call smatrix(p(0,1),CLPK(3)) 
       call cmatrix1(p(0,1),1,CLPK(4)) 
-c      CLPK(1)=1d0
-c      CLPK(2)=1d0
-c      CLPK(3)=1d0
-c      CLPK(4)=1d0
-      Al=0.118d0
+
       Pt(1)=
      - 0
    
@@ -154,7 +149,6 @@ c SumK = Sum_{i=1}^{4}K(i)
       CF=4.D0/3.D0 
       CA=3.D0 
       TR=0.5D0 
-c      muF=174.3D0 
       Nf=1.D0 
       AL=0.118d0
 

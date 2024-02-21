@@ -27,7 +27,7 @@
       read (15,*) iorder        !iorder no of q for distribution
       read (15,*) xq            ! initialise xq value
       close(15)
-
+        xq_initial = xq
       call initpdfsetbyname(name)
       Call initPDF(1)
        s=ecm*ecm
@@ -39,31 +39,43 @@
         print*,"````````````````````````````````````"
 
         leg=1
-        call brm48i(40,0,0) ! initialize random number generator
-        call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
-        PK1 = ai_lo2
-       print*,"  "
-        write(*,*)'The answer is  =', ai_lo2
-        write(*,*)"Integral of PK1=",ai_lo2,"+-",sd
-        write(*,*)"with chisq    =",chi2
-        print*,"  "
+        do j=0,iorder
+          print*,"For xq:",xq
+          call brm48i(40,0,0) ! initialize random number generator
+          call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
+
+          xq=xq+50d0
+          PK1 = ai_lo2
+
+          print*,"  "
+          write(*,*)'The answer is  =', ai_lo2
+          write(*,*)"Integral of PK1=",ai_lo2,"+-",sd
+          write(*,*)"with chisq    =",chi2
+          print*,"  "
+        enddo
 
         print*,"____________________________________"
         print*,"2. Calculating P and K terms for Leg 2"
         print*,"____________________________________"
         print*,"````````````````````````````````````"
         leg=2
-        call brm48i(40,0,0) ! initialize random number generator
-        call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
-        PK2= ai_lo2
-        print*,"  "
-        write(*,*)'The answer is   =', ai_lo2
-        write(*,*)"Integral of PK2 =",ai_lo2,"+-",sd
-        write(*,*)"   with chisq   =",chi2
-        print*,"  "
-        write(*,'(A,3e27.15)'),"Total PK1 + PK2 =",PK1+PK2
-        print*,"  "
-        print*,"  "
+        xq = xq_initial
+        print*," "
+        print*,"For xq:",xq
+        do j=0,iorder
+          call brm48i(40,0,0) ! initialize random number generator
+          call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
+          PK2= ai_lo2
+          xq=xq+50d0
+          print*,"  "
+          write(*,*)'The answer is   =', ai_lo2
+          write(*,*)"Integral of PK2 =",ai_lo2,"+-",sd
+          write(*,*)"   with chisq   =",chi2
+          print*,"  "
+        enddo  
+c          write(*,'(A,3e27.15)')"Total PK1 + PK2 =",PK1+PK2
+cc          print*,"  "
+c          print*,"  "
 
 
        end

@@ -136,7 +136,6 @@ c-------------------------------------------------------
 c 2 --> 3 body massive phase space parametrization based 
 c on the algorithm given in FormCalc version 4.1
 c-------------------------------------------------------
-
       ct    = -1d0+2d0*v
       xjac3 = 2d0
       st   = dsqrt(1d0-ct*ct)
@@ -177,7 +176,7 @@ c-------------------------------------------------------
 c    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c      will check unphysical ps points
       if (czeta .ge. 1.0d0) then
-        unphy = unphy+1 ! additinal term comes with basic mass conservation
+        unphy = unphy+1 
         goto 151
       endif
 c    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -228,10 +227,10 @@ c      p4(3)=gamma*(p4z + beta*p4t)
       p4(3)=p1(3)+p2(3)-p3(3)-p5(3)
       
 c     p3 + p4
-      q(0) = p3(0) +p4(0)
-      q(1) = p3(1) +p4(1)
-      q(2) = p3(2) +p4(2)
-      q(3) = p3(3) +p4(3)
+c      q(0) = p3(0) +p4(0)
+c      q(1) = p3(1) +p4(1)
+c      q(2) = p3(2) +p4(2)
+c      q(3) = p3(3) +p4(3)
     
 c     xxjac
       xxjac = xjac3*xjac4*xjac5*xjac6

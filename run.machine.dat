@@ -1,5 +1,5 @@
-1				!machine id Tevatron:0 LHC:1	
-13000.0				!ecm
-MMHT2014nlo68cl 		!lhapdf set name common for all
-1				! max distribution
+1				! machine id Tevatron:0 LHC:1	
+13000.0				! ecm
+MMHT2014nlo68cl 		! lhapdf set name common for all
+6				! max # of distribution increment 50 GeV from xq
 100d0				! initialise xq value for the first time 
