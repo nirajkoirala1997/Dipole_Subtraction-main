@@ -52,7 +52,8 @@ c        if (scale .le. 0d0 ) print*,"Scale :",scale
         ipass = 0
         fnlo3 = 0
 
-        if ( scale .ge. xlow .and. scale .le. xhigh) ipass=1
+c        if ( scale .ge. xlow .and. scale .le. xhigh) ipass=1
+        if ( scale .ge. xlow ) ipass =1 !.and. scale .le. xhigh) ipass=1
          if ( ipass .eq. 1 ) then
 
           xmuf=scale
@@ -65,6 +66,7 @@ c           xmur=xq
           call pdf(xb,xmuf,f2)
           call setlum(f1,f2,xl)
           AL = alphasPDF(xmur)
+c          Al = 0.118d0 
           call p1dtop2d_5(p1,p2,p3,p4,p5,p)
 
           call  uu2ee_r(p,sig)

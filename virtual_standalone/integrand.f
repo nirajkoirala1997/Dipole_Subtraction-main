@@ -27,7 +27,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       common/distribution/xq
       common/renor_scale/scale
       common/usedalpha/AL
-
+      external Born_uU2eE
+       
       rs  = dsqrt(s)
       xa     = yy(1)
       xb     = yy(2)
@@ -35,7 +36,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       rsp = dsqrt(xa*xb*s)
         
       ipass = 0
-        eps = 0.5d0*2d0
+        eps = 0.5d0!0.5d0*5d0
        xlow = xq - eps
       xhigh = xq + eps
 
@@ -45,13 +46,25 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
         call p1d_to_p2d_4(p1,p2,p3,p4,p)
+         Born_our=Born_uU2eE(0,p1,p2,p3,p4)
+              s12= 2d0*dot(p1,p2)
+              t=-2d0*dot(p2,p4)
+              u=-2d0*dot(p2,p3)
+c        print*,p1
+c        print*,p2
+c        print*,p3
+c        print*,p4
+c        print*,"Next"
 
         scale  = xinvmass
-        if ( scale .ge. xlow .and. scale .le. xhigh) then 
+        if ( scale .ge. xlow ) then !.and. scale .le. xhigh) then 
+c              print*,"Before",yy(1),yy(2)
              
               xmuf=scale
               xmur=scale
-              xmu2 =scale**2
+              xmu2=xmuf**2
+c              xmuf=xq
+c              xmur=xq
 
               call pdf(xa,xmuf,f1)
               call pdf(xb,xmuf,f2)
@@ -63,59 +76,89 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
               gs=DSQRT(Al*4.d0*PI)
               qu2=4d0/9d0
 
-              s12= 2d0*dot(p1,p2)
-              t=-2d0*dot(p2,p4)
-              u=-2d0*dot(p2,p3)
 
-
-c              VIR= gs**2*8*e**4*qu2*(5*(-6 + 11*Pi**2)*s12**2 +
-c     -        2*(-48 + 55*Pi**2)*s12*t + 2*(-48 + 55*Pi**2)*t**2 -
-c     -        6*(s12**2 + 6*s12*t + 6*t**2)*Log(xmu2/s12) -
-c     -        6*(s12**2 + 2*s12*t + 2*t**2)*Log(xmu2/s12)**2)/
-c     -          (24*Pi**2*s12**2)
+c
+              VIR= gs**2*8*e**4*qu2*(5*(-6 + 11*Pi**2)*s12**2 +
+     -        2*(-48 + 55*Pi**2)*s12*t + 2*(-48 + 55*Pi**2)*t**2 -
+     -        6*(s12**2 + 6*s12*t + 6*t**2)*Log(xmu2/s12) -
+     -        6*(s12**2 + 2*s12*t + 2*t**2)*Log(xmu2/s12)**2)/
+     -          (24*Pi**2*s12**2)
                VIR= (32*AL*(-2 + Pi**2)*e**4*qu2*(s12**2 +
      .          2*s12*t + 2*t**2))/(Pi*s12**2)
                VIR = VIR/36d0
-              call Iterm(p,coef,SumI)
+             call Iterm(p,coef,SumI)
+c
 
 
+              sig= xl(1)*(Vir+SumI(0))
+c              sig= xl(1)*Vir
 
-              sig= xl(1)*(Vir+Born_uU2eE(0,p1,p2,p3,p4)*SumI(0))
-c               sig= xl(1)*Born_uU2eE(0,p1,p2,p3,p4)*SumI(0)
 
-              xnorm=hbarc2/16d0/pi/s
+c               sig= xl(1)*Born_uU2eE(0,p1,p2,p3,p4)
+c               print*,Born_uU2eE(0,p1,p2,p3,p4)
+c                print*," "
+c               print*,p
+c               print*,p1
+c               print*,p2
+c               print*,p3
+cc               print*,p4
+c                call cmatrix1(P,1,ANS)
+c                ANS = (-ANS*3/4)
+c                print*,"Helas:",ANS
+c                print*," "
+c                print*,"Ratio1:",Born_our/ANS
+c                print*,"Ratio2:",ANS/Born_our
+
+c                stop
+c               sig= xl(1)*ANS
+c               sig= xl(1)*Born_our
+c               sig = 1d0
+
+c              xnorm=hbarc2/16d0/pi/(xa*xb*s)
+              xnorm=hbarc2/16d0/pi/(yy(1)*yy(2)*s)
+c              print*,"After",yy(1),
               wgt=xnorm*sig*vwgt
-              flo2_Vir=wgt/vwgt
+              flo2_Vir=wgt/vwgt!/2d0/eps
 c              if (flo2_Vir .ne. flo2_Vir) flo2_vir=0d0
-        endif                        
+                return
        else                  
         flo2_Vir=0d0
+        return
        endif
-      return
+       else
+        flo2_Vir=0d0
+       endif
       end
 
 c---------------------------------------------------------------------
 
+c---------------------------------------------------------------------
+c     [u U -> e E]  Born 
 c--------------------------------------------------------------------o
        function Born_uU2eE(k,p1,p2,p3,p4)
        implicit double precision (a-h,o-z)
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
        common/usedalpha/AL
-       ge=0.007547169811320755d0
+c       ge=0.007547169811320755d0
+       ge=1d0/128d0
 c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
        gs=DSQRT(Al*4.d0*PI)
-      IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0
+c       write(*,*)'e = ',e
+      IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0 
       IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
-      IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2
+      IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2    
       s13 =  2.0d0*dot(p1,p3) ! t
       s23 =  2.0d0*dot(p2,p3) ! u
       s12 =  2.0d0*dot(p1,p2) ! s
-      qu2 = 4d0/9d0
+      XNC = 1/4d0
+      xnorm =1d0
+      qu2 = 1d0!4d0/9d0
 
       Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
      .            s23)))/(3d0*s12**2)
        return
        end
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c---------------------------------------------------------------------
+

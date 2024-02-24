@@ -40,7 +40,7 @@
 
         leg=1
         do j=0,iorder
-          print*,"For xq:",xq
+          print*,"For xq:",xq_initial
           call brm48i(40,0,0) ! initialize random number generator
           call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
 
@@ -63,8 +63,8 @@
         print*," "
         print*,"For xq:",xq
         do j=0,iorder
-          call brm48i(40,0,0) ! initialize random number generator
-          call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
+c          call brm48i(40,0,0) ! initialize random number generator
+c          call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
           PK2= ai_lo2
           xq=xq+50d0
           print*,"  "

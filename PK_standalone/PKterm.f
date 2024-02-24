@@ -60,6 +60,9 @@ c SumK = Sum_{i=1}^{4}K(i)
 
       call smatrix(p(0,1),CLPK(3)) 
       call cmatrix1(p(0,1),1,CLPK(4)) 
+c      do i=1,4
+c       CLPK(i)=1d0
+c      enddo
 
       Pt(1)=
      - 0

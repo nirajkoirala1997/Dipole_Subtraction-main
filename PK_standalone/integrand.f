@@ -16,60 +16,79 @@
 
       xa     = yy(1)
       xb     = yy(2)
-       x     = yy(4)
       rsp = dsqrt(xa*xb*s)
 
       ipass1 = 0
+      xq = 2500
 
-        eps = 0.5d0*2d0
+        eps = 0.5d0
        xlow = xq - eps
       xhigh = xq + eps
 
       xcut = xq - 10.0d0
 
       if (rsp .gt. xcut) ipass1 = 1
-      if (ipass1 .eq.1) then
+      if (ipass1 .eq. 1) then
 
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
-        call p1d_to_p2d_4(p1,p2,p3,p4,p)
+         call p1d_to_p2d_4(p1,p2,p3,p4,p)
 
         scale  = xinvmass
 c       if( scale .gt. 100d0) then
         ipass = 0
-        flo2_PK = 0
-        if ( scale .ge. xlow .and. scale .le. xhigh) ipass=1
+        flo2_PK = 0d0
+        if ( scale .ge. xlow ) ipass =1!.and. scale .le. xhigh) ipass=1
          if ( ipass .eq. 1 ) then
                 xmuf = scale
                 xmur = scale
+                AL = alphasPDF(xmur)
+                call getPK(1,yy(4),xmur,p,SumP,SumK)
+                PK =SumK+SumK
+                 do i=0,3
+                 xp1(i) = yy(4)*p1(i)
+                 xp2(i) = yy(4)*p2(i)
+                enddo
+           Born_1=Born_uU2eE(0,xp1,p2,p3,p4)
+           if (leg .eq. 1) call PKterm1(p,yy(4),SumP,SumK)
+c         Born_2=Born_uU2eE(0,p1,p2,p3,p4)
+
+c                print*,p(0,2)
+cc                print*,p(1,2)
+c                print*,p(2,2)
+c                print*,p(3,2)
 
                 call pdf(xa,xmuf,f1)
                 call pdf(xb,xmuf,f2)
                 call setlum(f1,f2,xl)
-                AL = alphasPDF(xmur)
-                x = yy(4)
-                if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
-                if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
-c                print*,"xvalue:",x,leg
-c                call getPK(leg,yy(4),xmur,p,SumP,SumK)
+                AL = 0.118d0
+c                xx = yy(4)
+c                leg=1
+c                print*,"Sump:",SumP
+c                print*,"Sumk:",SumK
+c                if (leg .eq. 2) call PKterm2(p,xx,SumP,SumK)
+c                print*," "
+c                print*,"xvalue:",xx,leg
+c                print*,"SumP:",SumP
+c                print*,"SumK:",SumK
 
-                do i=0,3
-                 xp1(i) = x*p1(i)
-                 xp2(i) = x*p2(i)
-                enddo
 
-       if (leg .eq. 1) Born(leg)=Born_uU2eE(0,xp1,p2,p3,p4)
-       if (leg .eq. 2) Born(leg)=Born_uU2eE(0,p1,xp2,p3,p4)
+c               print*,"SumP:",SumP
+c               print*,"SumK:",SumK
+c               print*,"Born(1):",Born(2)
+c               print*," "
+c               
 
-                PK =SumP+SumK
+                sig = xl(1)* PK
+c                print*,Born(2)
+c                sig = xl(1)*PK*Born_1
 
-                sig = xl(1)*Born(leg)* PK
-
-c               xnorm=hbarc2/16d0/pi/(s*xa*xb)
-                xnorm = hbarc2/16d0/pi/s
-                  wgt = xnorm*sig*vwgt
-              flo2_PK = wgt/vwgt
-         else           
-            flo2_PK=0d0
+               xnorm=hbarc2/16d0/pi/(s*yy(1)*yy(2))
+c                xnorm = hbarc2/16d0/pi/s
+c                  wgt = xnorm*sig*vwgt
+c                  flo2_PK = wgt/vwgt
+                  flo2_PK = xnorm*sig
+                  if (flo2_PK .ne. flo2_PK) print*,PK,xnorm,vwgt,wgt 
+                  return
          endif
         endif
       return
@@ -82,16 +101,13 @@ c--------------------------------------------------------------------o
        implicit double precision (a-h,o-z)
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
-       common/usedalpha/AL
        ge=0.007547169811320755d0
-c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
-       gs=DSQRT(Al*4.d0*PI)
       IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0
       IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
       IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2
       s13 =  2.0d0*dot(p1,p3) ! t
-      s23 =  2.0d0*dot(p2,p3) ! u
+      s23 =  2.0d0*dot(p1,p4) ! u
       s12 =  2.0d0*dot(p1,p2) ! s
       qu2 = 4d0/9d0
 
