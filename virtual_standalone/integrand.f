@@ -15,7 +15,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       function flo2_Vir(yy,vwgt)
       implicit double precision (a-h,o-z)
       dimension yy(10)
-      dimension f1(-6:6),f2(-6:6),xl(1)
+      dimension f1(-6:6),f2(-6:6),xl(15)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
      .          ,p(0:3,1:4),c(1:2),Born(1:2),coef(2,-2:0),SumI(-2:0)
       parameter (pi=3.14159265358979d0)
@@ -46,19 +46,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
         call p1d_to_p2d_4(p1,p2,p3,p4,p)
-         Born_our=Born_uU2eE(0,p1,p2,p3,p4)
-              s12= 2d0*dot(p1,p2)
-              t=-2d0*dot(p2,p4)
-              u=-2d0*dot(p2,p3)
-c        print*,p1
-c        print*,p2
-c        print*,p3
-c        print*,p4
-c        print*,"Next"
 
         scale  = xinvmass
         if ( scale .ge. xlow ) then !.and. scale .le. xhigh) then 
-c              print*,"Before",yy(1),yy(2)
              
               xmuf=scale
               xmur=scale
@@ -76,6 +66,9 @@ c              xmur=xq
               gs=DSQRT(Al*4.d0*PI)
               qu2=4d0/9d0
 
+              s12= 2d0*dot(p1,p2)
+              t=-2d0*dot(p2,p4)
+              u=-2d0*dot(p2,p3)
 
 c
               VIR= gs**2*8*e**4*qu2*(5*(-6 + 11*Pi**2)*s12**2 +
@@ -86,41 +79,16 @@ c
                VIR= (32*AL*(-2 + Pi**2)*e**4*qu2*(s12**2 +
      .          2*s12*t + 2*t**2))/(Pi*s12**2)
                VIR = VIR/36d0
-             call Iterm(p,coef,SumI)
+              call Iterm(p,coef,SumI)
 c
 
 
               sig= xl(1)*(Vir+SumI(0))
-c              sig= xl(1)*Vir
 
-
-c               sig= xl(1)*Born_uU2eE(0,p1,p2,p3,p4)
-c               print*,Born_uU2eE(0,p1,p2,p3,p4)
-c                print*," "
-c               print*,p
-c               print*,p1
-c               print*,p2
-c               print*,p3
-cc               print*,p4
-c                call cmatrix1(P,1,ANS)
-c                ANS = (-ANS*3/4)
-c                print*,"Helas:",ANS
-c                print*," "
-c                print*,"Ratio1:",Born_our/ANS
-c                print*,"Ratio2:",ANS/Born_our
-
-c                stop
-c               sig= xl(1)*ANS
-c               sig= xl(1)*Born_our
-c               sig = 1d0
-
-c              xnorm=hbarc2/16d0/pi/(xa*xb*s)
-              xnorm=hbarc2/16d0/pi/(yy(1)*yy(2)*s)
-c              print*,"After",yy(1),
+              xnorm=hbarc2/16d0/pi/(xa*xb*s)
               wgt=xnorm*sig*vwgt
-              flo2_Vir=wgt/vwgt!/2d0/eps
-c              if (flo2_Vir .ne. flo2_Vir) flo2_vir=0d0
-                return
+              flo2_Vir=wgt/vwgt/2d0/eps
+            return
        else                  
         flo2_Vir=0d0
         return

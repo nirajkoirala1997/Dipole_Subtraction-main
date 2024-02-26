@@ -7,6 +7,7 @@
       common/leg_choice/leg
       common/usedalpha/AL
       common/distribution/xq
+      dimension PK1(0:30),PK2(0:30)
       
 
       include 'coupl.inc'
@@ -23,9 +24,10 @@
       open(unit=15,file='../run.machine.dat',status='unknown')
       read (15,*) mid           ! machine id Tevatron:0 LHC:1
       read (15,*) ecm           ! ecm
-      read (15,*) name          !lhapdf set
-      read (15,*) iorder        !iorder no of q for distribution
+      read (15,*) name          ! lhapdf set
+      read (15,*) iorder        ! iorder no of q for distribution
       read (15,*) xq            ! initialise xq value
+      read (15,*) xincr         ! increment in Gev from xq 
       close(15)
         xq_initial = xq
       call initpdfsetbyname(name)
@@ -40,15 +42,15 @@
 
         leg=1
         do j=0,iorder
-          print*,"For xq:",xq_initial
+          print*,"For xq:",xq
           call brm48i(40,0,0) ! initialize random number generator
           call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
 
-          xq=xq+50d0
-          PK1 = ai_lo2
+c          xq=xq+xincr
+          xq=xq_initial*j
+          PK1(j) = ai_lo2
 
           print*,"  "
-          write(*,*)'The answer is  =', ai_lo2
           write(*,*)"Integral of PK1=",ai_lo2,"+-",sd
           write(*,*)"with chisq    =",chi2
           print*,"  "
@@ -61,21 +63,24 @@
         leg=2
         xq = xq_initial
         print*," "
-        print*,"For xq:",xq
         do j=0,iorder
-c          call brm48i(40,0,0) ! initialize random number generator
-c          call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
-          PK2= ai_lo2
-          xq=xq+50d0
+        print*,"For xq:",xq
+          call brm48i(40,0,0) ! initialize random number generator
+          call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
+          PK2(j) = ai_lo2
+          xq=xq_initial*j
           print*,"  "
-          write(*,*)'The answer is   =', ai_lo2
           write(*,*)"Integral of PK2 =",ai_lo2,"+-",sd
           write(*,*)"   with chisq   =",chi2
           print*,"  "
         enddo  
-c          write(*,'(A,3e27.15)')"Total PK1 + PK2 =",PK1+PK2
-cc          print*,"  "
-c          print*,"  "
+        xq = xq_initial
+        print*,"Total PK1 + PK2 for" 
+        do j=0,iorder
+          write(*,'(A,i7,A,3e27.15)')"xq=",
+     .             int(xq)," is ",PK1(j)+PK2(j)
+        xq = xq + xincr
+        enddo
 
 
        end

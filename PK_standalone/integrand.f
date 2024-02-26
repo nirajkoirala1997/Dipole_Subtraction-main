@@ -16,78 +16,50 @@
 
       xa     = yy(1)
       xb     = yy(2)
-      rsp = dsqrt(xa*xb*s)
+      x      = yy(4)
+      sp     = xa*xb*s
+      rsp    = dsqrt(sp) 
 
       ipass1 = 0
-      xq = 2500
 
-        eps = 0.5d0
+        eps = 0.5d0*2d0
        xlow = xq - eps
       xhigh = xq + eps
 
       xcut = xq - 10.0d0
 
-      if (rsp .gt. xcut) ipass1 = 1
-      if (ipass1 .eq. 1) then
+      if (rsp .gt. xcut) then
 
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
-         call p1d_to_p2d_4(p1,p2,p3,p4,p)
-
+        call p1d_to_p2d_4(p1,p2,p3,p4,p)
         scale  = xinvmass
-c       if( scale .gt. 100d0) then
+
         ipass = 0
         flo2_PK = 0d0
-        if ( scale .ge. xlow ) ipass =1!.and. scale .le. xhigh) ipass=1
-         if ( ipass .eq. 1 ) then
+        if ( scale .ge. xlow .and. scale .le. xhigh) then   
                 xmuf = scale
                 xmur = scale
                 AL = alphasPDF(xmur)
-                call getPK(1,yy(4),xmur,p,SumP,SumK)
+c                 do i=0,3
+c                 xp1(i) = yy(4)*p1(i)
+c                 xp2(i) = yy(4)*p2(i)
+c                enddo
+c           Born_1=Born_uU2eE(0,xp1,p2,p3,p4)
+           if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
+           if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
                 PK =SumK+SumK
-                 do i=0,3
-                 xp1(i) = yy(4)*p1(i)
-                 xp2(i) = yy(4)*p2(i)
-                enddo
-           Born_1=Born_uU2eE(0,xp1,p2,p3,p4)
-           if (leg .eq. 1) call PKterm1(p,yy(4),SumP,SumK)
 c         Born_2=Born_uU2eE(0,p1,p2,p3,p4)
-
-c                print*,p(0,2)
-cc                print*,p(1,2)
-c                print*,p(2,2)
-c                print*,p(3,2)
 
                 call pdf(xa,xmuf,f1)
                 call pdf(xb,xmuf,f2)
                 call setlum(f1,f2,xl)
-                AL = 0.118d0
-c                xx = yy(4)
-c                leg=1
-c                print*,"Sump:",SumP
-c                print*,"Sumk:",SumK
-c                if (leg .eq. 2) call PKterm2(p,xx,SumP,SumK)
-c                print*," "
-c                print*,"xvalue:",xx,leg
-c                print*,"SumP:",SumP
-c                print*,"SumK:",SumK
-
-
-c               print*,"SumP:",SumP
-c               print*,"SumK:",SumK
-c               print*,"Born(1):",Born(2)
-c               print*," "
-c               
 
                 sig = xl(1)* PK
-c                print*,Born(2)
-c                sig = xl(1)*PK*Born_1
 
-               xnorm=hbarc2/16d0/pi/(s*yy(1)*yy(2))
+               xnorm=hbarc2/16d0/pi/sp
 c                xnorm = hbarc2/16d0/pi/s
-c                  wgt = xnorm*sig*vwgt
-c                  flo2_PK = wgt/vwgt
-                  flo2_PK = xnorm*sig
-                  if (flo2_PK .ne. flo2_PK) print*,PK,xnorm,vwgt,wgt 
+                  wgt = xnorm*sig*vwgt
+                  flo2_PK = wgt/vwgt
                   return
          endif
         endif

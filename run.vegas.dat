@@ -1,2 +1,2 @@
-1E+6    		! vegas points     NLO 3 body
-10		 	! vegas iterations NLO 3 body
+5E+7    		! vegas points     NLO 2 body
+10		 	! vegas iterations NLO 2 body
