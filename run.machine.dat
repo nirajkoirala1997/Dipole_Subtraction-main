@@ -3,4 +3,4 @@
 MMHT2014lo68cl 			! lhapdf set name common for all
 20				! max # of distribution increment 50 GeV from xq for PK increase PK(0:15) size
 100d0				! initialise xq value for the first time 
-200				! step size
+100				! step size

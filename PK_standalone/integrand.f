@@ -59,7 +59,7 @@ c         Born_2=Born_uU2eE(0,p1,p2,p3,p4)
                xnorm=hbarc2/16d0/pi/sp
 c                xnorm = hbarc2/16d0/pi/s
                   wgt = xnorm*sig*vwgt
-                  flo2_PK = wgt/vwgt
+                  flo2_PK = wgt/vwgt/2d0/eps
                   return
          endif
         endif

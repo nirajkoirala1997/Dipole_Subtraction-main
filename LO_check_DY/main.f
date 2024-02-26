@@ -2,6 +2,7 @@
       implicit double precision (a-h,o-z)
       dimension x(10),y(10),ai_lo2(1:50)
       parameter (pi=3.14159265358979d0)
+
       common/energy/s
       common/amass/am1,am2,am3,am4,am5
       common/usedalpha/AL
@@ -16,7 +17,7 @@
       open(unit=10,file='../run.vegas.dat',status='unknown')    
       read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
-      npt1 = pt1
+      npt1 = pt1/10
       close(10)
 
       open(unit=15,file='../run.machine.dat',status='unknown')
@@ -25,7 +26,7 @@
       read (15,*) name          !lhapdf set
       read (15,*) it_max        !lhapdf set
       read (15,*) xq_initial
-      read (15,*) xstep         !step
+      read (15,*) step_size         !step
       close(15)
 
         call initpdfsetbyname(name)
@@ -45,37 +46,24 @@ c      print*,'  '
 c      print*,"Press 1 to initialise VEGAS:"
 c      print*,"Press 2 to initialise CUBA-VEGAS:"
 c        read*,i
-c
-c        
-c        open(unit=17,file='Output.dat',status='unknown')
-c        do i=1,6
-c        read(17,*) y(i)
-c        enddo
-c        close(17)
-c        do i=1,6
-c        print*,x(i)/y(i)
-c        enddo
-c        stop
-
         i=1
-        if (i .eq.  1) then
+        if (i .eq. 1 ) then
         print*," "
         print*," "
         print*,"____________________________________"
-        Print*,"3. Calculating Virtual Contribution"
+        Print*," Calculating LO_DY"
         print*,"____________________________________"
         print*,"````````````````````````````````````"
-        Print*,"    Virtual + Dipole over 2-Body PS"
         print*," "
         print*," "
         xq = xq_initial
         do j=1,it_max
 
-
           print*," "
-      write(*,*) achar(27)//'[1;33m' // "For xq = ",int(xq) ,achar(27) 
+      write(*,*) achar(27)//'[1;33m' // "For xq = ",int(xq) ,achar(27)
      .   //'[0m'
           print*," "
+
 c        print*,"To write result in Outputfile press 1 else 2:"
 c        read*,j
          call brm48i(40,0,0) ! initialize random number generator
@@ -86,27 +74,24 @@ c     .          position='append')
 c         write(17,*) xq,ai_lo2
 c         close(17)
 c         endif
-         
-         xq = xq + xstep
-
             print*,"  "
             print*,"  "
-            write(*,*)achar(27)//'[1;32m'//"Integral=", 
+            write(*,*)achar(27)//'[1;32m'//"Integral=",
      .  ai_lo2(j),achar(27) //'[0m', "+-",sd
             write(*,*)"with chisq    =",chi2
             print*," "
             print*," "
-
+         xq = xq + step_size
         enddo
 
-        xq = xq_initial
+         xq = xq_initial
        write(*,*)achar(27)//'[1;32m'//"   xq"," ","           Integral",
      . achar(27)//'[0m'
         do j=1,it_max
-          write(*,'(i7,3e27.15)')
-     .             int(xq),ai_lo2(j)
-          xq = xq + xstep
+          write(*,'(i7,3e27.15)')int(xq),ai_lo2(j)
+          xq = xq + step_size
         enddo
+
 c
         elseif(I .eq. 2) THEN
                 CALL cubacheck

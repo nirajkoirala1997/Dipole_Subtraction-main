@@ -1,7 +1,9 @@
       program Drell_yan_dipoleSubtraction 
       implicit double precision (a-h,o-z)
       integer leg
+      character*50 green
       parameter (pi=3.14159265358979d0)
+      dimension ai_nlo3(0:50)
       common/energy/s
       common/amass/am1,am2,am3,am4,am5
       common/leg_choice/leg
@@ -12,20 +14,22 @@
       character*50 name
       external fnlo3
       external dipole_uU_g
+      green = ''//achar(27)//'[32m'//char(27)//'[0m'
 
       !input data card
-      open(unit=10,file='../run.vegas.dat',status='unknown')    
+      open(unit=10,file='run.vegas.dat',status='unknown')    
       read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
       npt1 = pt1
       close(10)
 
-      open(unit=15,file='../run.machine.dat',status='unknown')
-      read (15,*) mid           ! machine id Tevatron:0 LHC:1
-      read (15,*) ecm           ! ecm
-      read (15,*) name        !lhapdf set
-      read (15,*) iorder        !iorder no of q for distribution
-      read (15,*) xq            ! initialise xq value
+      open(unit=15,file='run.machine.dat',status='unknown')
+      read (15,*) mid                   ! machine id Tevatron:0 LHC:1
+      read (15,*) ecm                   ! ecm
+      read (15,*) name                  !lhapdf set
+      read (15,*) it_max                !it_max no of q for distribution
+      read (15,*) xq_initial            ! initialise xq value
+      read (15,*) step_size             ! size in the multiplle of loop variable 
 
       close(15)
       
@@ -57,21 +61,37 @@ c        read*,i
           print*," "
           print*," "
 
-          do index = 1,iorder
-            print*,"For xq=",xq ! base value
+          xq = xq_initial
+          do j = 1,it_max
+            
+c            print*,"For xq=",xq ! base value
+c            write(*, '(A)') // green // "For xq = " // reset //
+          print*," "
+      write(*,*) achar(27)//'[1;33m' // "For xq = ",int(xq) ,achar(27) 
+     .   //'[0m'
+          print*," "
+
             call brm48i(40,0,0) ! initialize random number generator
-            call vsup(6,npt1,its1,fnlo3,ai_nlo3,sd,chi2)
+            call vsup(6,npt1,its1,fnlo3,ai_nlo3(j),sd,chi2)
 
-            xq = xq + 50
-c           ai_nlo3=28.0150449
             print*,"  "
-            write(*,*)'The answer is =', ai_nlo3
-            write(*,*)"Integral      =",ai_nlo3,"+-",sd
+            print*,"  "
+            write(*,*)achar(27)//'[1;32m'//"Integral=", 
+     .  ai_nlo3(j),achar(27) //'[0m', "+-",sd
             write(*,*)"with chisq    =",chi2
-            write(*,*)"Unphysical count =",n4
             print*," "
             print*," "
-
+            xq = xq + step_size 
+          enddo
+          
+          xq = xq_initial
+       write(*,*)achar(27)//'[1;92m'//"   xq"," ","           Integral",
+     . achar(27)//'[0m'
+          
+          do j=1,it_max
+          write(*,'(i7,3e27.15)')int(xq),ai_nlo3(j)
+          
+          xq = xq + step_size 
           enddo
 
         elseif(I .eq. 2) THEN

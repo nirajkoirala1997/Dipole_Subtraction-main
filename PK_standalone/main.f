@@ -7,7 +7,7 @@
       common/leg_choice/leg
       common/usedalpha/AL
       common/distribution/xq
-      dimension PK1(0:30),PK2(0:30)
+      dimension PK1(1:50),PK2(1:50)
       
 
       include 'coupl.inc'
@@ -25,7 +25,7 @@
       read (15,*) mid           ! machine id Tevatron:0 LHC:1
       read (15,*) ecm           ! ecm
       read (15,*) name          ! lhapdf set
-      read (15,*) iorder        ! iorder no of q for distribution
+      read (15,*) it_max        ! it_max no of q for distribution
       read (15,*) xq            ! initialise xq value
       read (15,*) xincr         ! increment in Gev from xq 
       close(15)
@@ -33,53 +33,78 @@
       call initpdfsetbyname(name)
       Call initPDF(1)
        s=ecm*ecm
-       print*,"  "
-       print*,"  "
+       print*,"Enter Leg Choice 1 or 2"
+       read*,leg_user
+       if (leg_user .eq. 1 ) then
+        print*,"  "
+        print*,"  "
         print*,"____________________________________"
-        print*,"1. Calculating P and K terms for Leg 1"
+        print*,"Calculating P and K terms for Leg 1"
         print*,"____________________________________"
         print*,"````````````````````````````````````"
 
         leg=1
-        do j=0,iorder
-          print*,"For xq:",xq
+         
+        do j=1,it_max
+          print*," "
+      write(*,*) achar(27)//'[1;33m' // "For xq = ",int(xq) ,achar(27) 
+     .   //'[0m'
+          print*," "
+
           call brm48i(40,0,0) ! initialize random number generator
           call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
 
-c          xq=xq+xincr
-          xq=xq_initial*j
           PK1(j) = ai_lo2
+            print*,"  "
+            print*,"  "
+            write(*,*)achar(27)//'[1;32m'//"Integral=", 
+     .      ai_lo2,achar(27) //'[0m', "+-",sd
+            write(*,*)"with chisq    =",chi2
+            print*," "
+            print*," "
 
-          print*,"  "
-          write(*,*)"Integral of PK1=",ai_lo2,"+-",sd
-          write(*,*)"with chisq    =",chi2
-          print*,"  "
+           xq=xq + xincr
         enddo
-
+      elseif (leg_user .eq. 2) then
         print*,"____________________________________"
-        print*,"2. Calculating P and K terms for Leg 2"
+        print*,"Calculating P and K terms for Leg 2"
         print*,"____________________________________"
         print*,"````````````````````````````````````"
+        print*," "
         leg=2
         xq = xq_initial
-        print*," "
-        do j=0,iorder
-        print*,"For xq:",xq
+
+        do j=1,it_max
+          print*," "
+      write(*,*) achar(27)//'[1;33m' // "For xq = ",int(xq) ,achar(27) 
+     .   //'[0m'
+          print*," "
+
           call brm48i(40,0,0) ! initialize random number generator
           call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
+
           PK2(j) = ai_lo2
-          xq=xq_initial*j
-          print*,"  "
-          write(*,*)"Integral of PK2 =",ai_lo2,"+-",sd
-          write(*,*)"   with chisq   =",chi2
-          print*,"  "
+
+            print*,"  "
+            print*,"  "
+            write(*,*)achar(27)//'[1;32m'//"Integral=", 
+     .  ai_lo2,achar(27) //'[0m', "+-",sd
+            write(*,*)"with chisq    =",chi2
+            print*," "
+            print*," "
+          xq=xq + xincr
         enddo  
+      endif
         xq = xq_initial
         print*,"Total PK1 + PK2 for" 
-        do j=0,iorder
-          write(*,'(A,i7,A,3e27.15)')"xq=",
-     .             int(xq)," is ",PK1(j)+PK2(j)
-        xq = xq + xincr
+
+       write(*,*)achar(27)//'[1;32m'//"   xq"," ","           Integral",
+     . achar(27)//'[0m'
+       print*," "
+        do j=1,it_max
+          xq = xq_initial*j
+          write(*,'(i7,3e27.15)')
+     .             int(xq),PK1(j)+PK2(j)
         enddo
 
 

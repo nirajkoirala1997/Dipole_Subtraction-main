@@ -48,12 +48,11 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
      
         scale = xinvmass
 
-c        if (scale .le. 0d0 ) print*,"Scale :",scale
         ipass = 0
         fnlo3 = 0
 
-c        if ( scale .ge. xlow .and. scale .le. xhigh) ipass=1
-        if ( scale .ge. xlow ) ipass =1 !.and. scale .le. xhigh) ipass=1
+        if ( scale .ge. xlow .and. scale .le. xhigh) ipass=1
+c        if ( scale .ge. xlow ) ipass =1 !.and. scale .le. xhigh) ipass=1
          if ( ipass .eq. 1 ) then
 
           xmuf=scale
