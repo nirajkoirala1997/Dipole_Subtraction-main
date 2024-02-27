@@ -2,7 +2,7 @@
       implicit double precision (a-h,o-z)
       dimension c(1:2)
       character*50 name
-      character*100 command,run_tag,dir_path
+      character*100 command,run_tag,dir_path,filename,filename1
       common/energy/s
       external flo2_PK
       common/leg_choice/leg
@@ -14,6 +14,7 @@
       include 'coupl.inc'
       include 'nexternal.inc'
       call setpara('param_card.dat',.true.)
+
 
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')
@@ -31,6 +32,8 @@
       read (15,*) xincr         ! increment in Gev from xq 
       read (15,*) run_tag
       close(15)
+
+
         xq_initial = xq
       call initpdfsetbyname(name)
       Call initPDF(1)
@@ -47,6 +50,11 @@ c~~~~~~~~~~~~~~~~ Leg 1~~~~~~~~~~~~~~~~c
         print*,"````````````````````````````````````"
 
         leg=1
+      filename = 'PK1.dat'
+c ~~~~~~~~~~~Writing in a file to compare~~~~~~~~~~~~c        
+        call output(run_tag,filename)            
+c ~~~~~~~~~~~~proceed to write~~~~~~~~~~~~~~~~c
+       
          
         do j=1,it_max
           print*," "
@@ -74,7 +82,7 @@ c~~~~~~~~~~~~~~~~ Leg 1~~~~~~~~~~~~~~~~c
         do j=1,it_max
           write(*,'(i7,3e27.15)')
      .             int(xq),PK1(j)
-          xq = xq + xstep
+          xq = xq + xincr
         enddo
 
 
@@ -88,6 +96,10 @@ c~~~~~~~~~~~~~~~~ Leg  2 ~~~~~~~~~~~~~~~~c
         print*,"````````````````````````````````````"
         print*," "
         leg=2
+      filename = 'PK2.dat'
+c ~~~~~~~~~~~Writing in a file to compare~~~~~~~~~~~~c        
+        call output(run_tag,filename)            
+c ~~~~~~~~~~~~proceed to write~~~~~~~~~~~~~~~~c
         xq = xq_initial
 
         do j=1,it_max
@@ -116,10 +128,8 @@ c~~~~~~~~~~~~~~~~ Leg  2 ~~~~~~~~~~~~~~~~c
         do j=1,it_max
           write(*,'(i7,3e27.15)')
      .             int(xq),PK2(j)
-          xq = xq + xstep
+          xq = xq + xincr
         enddo
-
-
       endif
 c~~~~~~~~~~~~~~~ * END * ~~~~~~~~~~~~~~~~c       
 
@@ -135,25 +145,23 @@ c          write(*,'(i7,3e27.15)')
 c     .             int(xq),PK1(j)+PK2(j)
 c        enddo
 
-c ~~~~~~~~~~~Writing in a file to compare~~~~~~~~~~~~c        
-        call output(run_tag)            
-c ~~~~~~~~~~~~proceed to write~~~~~~~~~~~~~~~~c
 
         if (leg_user .eq. 1) then
-        open(unit=20,file='../summary/'//trim(run_tag)//'/PK_1.dat',
-     .                     status='unknown')
+       open(unit=21,file='../summary/'//trim(run_tag)//
+     .   '/'//trim(filename),status='unknown')
          xq = xq_initial
          do i=1,it_max
-          write(20,*)xq,PK1(i)
+          write(21,*)xq,PK1(i)
           xq = xq + xincr
          enddo
-         close(20)
+         close(21)
         endif
 c ~~~~~~~~~~~           ***              ~~~~~~~~~~~~c        
 c ~~~~~~~~~~~Writing in a file to compare~~~~~~~~~~~~c        
+
         if (leg_user .eq. 2) then
-       open(unit=21,file='../summary/'//trim(run_tag)//'/PK_2.dat',
-     .                  status='unknown')
+       open(unit=21,file='../summary/'//trim(run_tag)//
+     .   '/'//trim(filename),status='unknown')
          xq = xq_initial
          do i=1,it_max
           write(21,*)xq,PK2(i)
@@ -171,35 +179,86 @@ c ~~~~~~~~~~~           ***              ~~~~~~~~~~~~c
       dot=p1(0)*p2(0)-p1(1)*p2(1)-p1(2)*p2(2)-p1(3)*p2(3)
       end
 
+cc ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
+cc ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
+c        subroutine output(run_tag)
+c        implicit none 
+c        integer ierr
+c        character*100 dir_path,run_tag
+c
+c       ! Check if the directory exists
+c       dir_path ="../summary/"// trim(run_tag)   
+c       call system("test -d "// dir_path // " && echo 1 > 
+c     .   command.txt || echo 0  >
+c     .        command.txt")
+c       open(unit=13,file="command.txt",status="unknown")
+c       read(13,*)ierr
+c       close(13)
+c         print*," "
+c        if (ierr .eq. 1) print*,"Directory exists overwriting data in"
+c       call system("rm command.txt")
+c       if( ierr .ne. 1) then 
+c         print*,"Directory not found " //dir_path 
+c         print*,"Making new directory.."
+c         print*," "
+c         print*,"Writing Data in"
+c         CALL SYSTEM("cd ../summary && mkdir -p " // dir_path) 
+c       endif
+c         CALL SYSTEM("cd " //dir_path// 
+c     . " && echo $PWD")
+c        print*," "
+c
+c        end
+cc ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
+cc ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
 c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
 c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
-        subroutine output(run_tag)
+        subroutine output(run_tag,filename1)
         implicit none 
-        integer ierr
-        character*100 dir_path,run_tag
+        integer ierr1,ierr2
+        character*100 dir_path,run_tag,dir_pathtmp,decision
+     . ,filename1,filename
 
        ! Check if the directory exists
-       dir_path ="../summary/"// trim(run_tag)   
-       call system("test -d "// dir_path // " && echo 1 > 
+       dir_path ="../summary/"// trim(run_tag)
+       filename ="../summary/"// trim(run_tag) //"/"// trim(filename1)  
+       dir_pathtmp ="../summary/temp_"// trim(run_tag)   
+c checking Directory
+        call system("test -d "// dir_path // " && echo 1 > 
      .   command.txt || echo 0  >
      .        command.txt")
        open(unit=13,file="command.txt",status="unknown")
-       read(13,*)ierr
+       read(13,*)ierr1
        close(13)
-         print*," "
-        if (ierr .eq. 1) print*,"Directory exists overwriting data in"
        call system("rm command.txt")
-       if( ierr .ne. 1) then 
+       if( ierr1.ne. 1) then 
          print*,"Directory not found " //dir_path 
          print*,"Making new directory.."
          print*," "
-         print*,"Writing Data in"
          CALL SYSTEM("cd ../summary && mkdir -p " // dir_path) 
        endif
-         CALL SYSTEM("cd " //dir_path// 
-     . " && echo $PWD")
-        print*," "
+c checking file
+       call system("test -f "// filename // " && echo 1 > 
+     .   command.txt || echo 0  >
+     .        command.txt")
+       open(unit=13,file="command.txt",status="unknown")
+       read(13,*)ierr2
+       close(13)
+       call system("rm command.txt")
+c Proceed with decision       
 
+       if (ierr2 .eq. 1) then
+        print*,"File  already exist  "//filename
+        print*,"All previous data for this run will be lost. Overwrite ?
+     .     [y/n]"
+        read*,decision
+        if (decision .eq. 'y') then
+        print*,"Overwriting data in"// filename
+        else
+           stop
+        endif
+        endif
+        call sleep(2)
         end
 c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
 c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        

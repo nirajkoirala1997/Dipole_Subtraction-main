@@ -18,6 +18,9 @@ c       Leading Order
       read (15,*) run_tag               ! name of run directory to save output
       close(15)
 
+      print*,"Reading Data from "//trim(run_tag)
+      call sleep(1)
+
 
         open(unit=17,file='../summary/'//trim(run_tag)//'/LO.dat',
      .     status='unknown')
@@ -37,6 +40,7 @@ c       Virtual contribution
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqVir(i),xintVir(i)
+c        read(17,*) xqVir(i),xintVir(i)
         enddo
         close(17)
         print*," "
@@ -63,6 +67,7 @@ c        print*,"Real - Dipole"
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqreal(i),xintreal(i)
+c        read(17,*) xqreal(i),xintreal(i)
         enddo
         close(17)
 
@@ -77,10 +82,11 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~`PK terms
 
         print*," "
 c        print*,"PK term1"
-        open(unit=17,file='../summary/'//trim(run_tag)//'/PK_1.dat',
+        open(unit=17,file='../summary/'//trim(run_tag)//'/PK1.dat',
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqPKterm1(i),xintPKterm1(i)
+c        read(17,*) xqPKterm1(i),xintPKterm1(i)
         enddo
         close(17)
         print*," "
@@ -93,10 +99,11 @@ c        print*,"PK term1"
         print*," "
 c        print*,"PK term2"
         print*," "
-        open(unit=17,file='../summary/'//trim(run_tag)//'/PK_2.dat',
+        open(unit=17,file='../summary/'//trim(run_tag)//'/PK2.dat',
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqPKterm2(i),xintPKterm2(i)
+c        read(17,*) xqPKterm2(i),xintPKterm2(i)
         enddo
         close(17)
         print*," "
@@ -112,16 +119,16 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~`PK terms end
 c        print*," "
 c        print*,"Sigma_Chinmoy"
 c        print*," "
-c        open(unit=17,file='NLO_chinmoy.dat',status='unknown')
-c        do i=1,20!it_max
-c        read(17,*) xqPKterm2(i),xintPKterm2(i)
+c        open(unit=17,file='LO_2chinmoy.dat',status='unknown')
+c        do i=1,it_max
+c        read(17,*) xqLO(i),xintLO(i)
 c        enddo
 c        close(17)
 c        print*," "
-c       write(*,*)achar(27)//'[1;32m'//"   xq"," ","           Integral",
+c       write(*,*)achar(27)//'[1;32m'//"   xq"," ","       ChinIntegral",
 c     . achar(27)//'[0m'
 c        do i=1,it_max
-c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),xintPKterm2(i)
+c          write(*,'(i7,3e27.15)')int(xqLO(i)),xintLO(i)
 c        enddo
 
 
@@ -133,5 +140,7 @@ c       Total sig_NLO will be
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqPKterm2(i)),xintPKterm2(i)+
      .  xintPKterm1(i)+xintvir(i)+xintreal(i)+xintLO(i)
+c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
+c     .  xintvir(i)+xintreal(i)+xintLO(i)
         enddo
         end

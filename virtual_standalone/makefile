@@ -8,7 +8,6 @@ OBJECTS = misc.o Iterm.o matrixLO1.o couplings.o cmatrix.o cuba.o lum.o pdf_lha.
 PROG = runVir
 $(PROG): $(OBJECTS) main.f  
 	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS) $(LIB) $(LIBS) $(LHFLAGS) $(LDFLAGS) 
-	rm -f *.o
 clean: 
 	rm -f *.o core *~ *.x $(PROG)
 $(PROG): *.inc

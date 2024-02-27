@@ -40,17 +40,19 @@ c      if (x .ge. 1d0) print*,"rand:",yy(1),yy(2),yy(4)
                 xmuf = scale
                 xmur = scale
                 AL = alphasPDF(xmur)
-c                 do i=0,3
-c                 xp1(i) = yy(4)*p1(i)
-c                 xp2(i) = yy(4)*p2(i)
-c                enddo
-c           Born_1=Born_uU2eE(0,p1,xp2,p3,p4)
+                 do i=0,3
+                 xp2(i) = yy(4)*p2(i)
+                 xp1(i) = yy(4)*p1(i)
+                enddo
+          if(leg .eq. 1) Born_1=Born_uU2eE(0,xp1,p2,p3,p4)
+          if(leg .eq. 2) Born_2=Born_uU2eE(0,p1,xp2,p3,p4)
            call p1d_to_p2d_4(p1,p2,p3,p4,p)
-c           call getPK(2,yy(4),xmuf,p,SumP,SumK)
-           if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
-           if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
+           call getPK(leg,x,xmuf,p,SumP,SumK)
+c           if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
+c           if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
                 PK =SumP+SumK
-c                PK =Born_1*PK
+                if(leg .eq. 1) PK =Born_1*PK
+                if(leg .eq. 2) PK =Born_2*PK
 c         Born_2=Born_uU2eE(0,p1,p2,p3,p4)
 
                 
@@ -64,10 +66,6 @@ c         Born_2=Born_uU2eE(0,p1,p2,p3,p4)
 c                xnorm = hbarc2/16d0/pi/s
                   wgt = xnorm*sig*vwgt
                   flo2_PK = wgt/vwgt/2d0/eps
-c             if (flo2_PK .ne. flo2_PK) then 
-c                 call getPK(3,x,xmuf,p,SumP,SumK)  
-c                 stop
-c            endif
                   return
          endif
         endif
@@ -91,7 +89,7 @@ c--------------------------------------------------------------------o
       s12 =  2.0d0*dot(p1,p2) ! s
       qu2 = 1d0!4d0/9d0
 
-      Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
+      Born_uU2eE= 2d0*CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
      .            s23)))/(3d0*s12**2)
        return
        end
