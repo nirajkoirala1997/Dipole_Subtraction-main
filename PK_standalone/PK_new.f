@@ -13,7 +13,8 @@ c-----------------------------------------------------------
         s12 = 2d0*dot(p1,p2)
         Cf = 4d0/3d0                      
         Tr = 0.5d0
-      if (k .eq. 1) then   ! Cloice for [Leg1]       
+
+      if (k .eq. 1 .or. k .eq. 3) then   ! Cloice for [Leg1]       
 !       
         AllP(1) = Al*(Cf*Plusd((1+x**2)/(1-x))*
      .            (-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {q,q,g}
@@ -31,7 +32,7 @@ c-----------------------------------------------------------
      .              (1-x)**2)*Log(1d0-x))/2d0/Pi  
         
 
-      elseif (k .eq. 2) then  ! Cloice for [Leg2]
+      elseif (k .eq. 2 .or. k .eq. 3) then  ! Cloice for [Leg2]
 
 
         AllP(1) = Al*(Cf*Plusd((1+x**2)/(1-x))*
@@ -49,15 +50,26 @@ c-----------------------------------------------------------
      .           Tr*2d0*x*(1d0-x)-(-1)*Tr*(x**2+
      .              (1-x)**2)*Log(1d0-x))/2d0/Pi  
         
-
       endif
 
+c        if (k .eq. 3) then
+c                print*,"gaya"
+c                do i=1,2
+c                print*,Allp(i),allk(i)
+c                print*,"LOG:",Log(xmuf**2/(s12*x))
+c                print*,"next:",xmuf**2,s12*x,x
+c                enddo
+c        endif
         SumP = 0d0 
         SumK = 0d0
        do i=1,2
         SumP = SumP + AllP(i)
         SumK = SumK + AllK(i)
        enddo
+       if (x .eq. 1d0) then
+               sump=0d0
+               sumk=0d0
+       endif
 c       print*,"P:",SumP
 c       print*,"K:",SumK
 

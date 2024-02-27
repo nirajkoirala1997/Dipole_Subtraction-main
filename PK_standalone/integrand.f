@@ -1,7 +1,7 @@
       function flo2_PK(yy,vwgt)
       implicit double precision (a-h,o-z)
       dimension yy(10)
-      dimension f1(-6:6),f2(-6:6),xl(1)
+      dimension f1(-6:6),f2(-6:6),xl(15)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
      .          ,p(0:3,1:4),Born(1:2)
       parameter (pi=3.14159265358979d0)
@@ -17,6 +17,7 @@
       xa     = yy(1)
       xb     = yy(2)
       x      = yy(4)
+c      if (x .ge. 1d0) print*,"rand:",yy(1),yy(2),yy(4)
       sp     = xa*xb*s
       rsp    = dsqrt(sp) 
 
@@ -31,7 +32,6 @@
       if (rsp .gt. xcut) then
 
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
-        call p1d_to_p2d_4(p1,p2,p3,p4,p)
         scale  = xinvmass
 
         ipass = 0
@@ -44,12 +44,16 @@ c                 do i=0,3
 c                 xp1(i) = yy(4)*p1(i)
 c                 xp2(i) = yy(4)*p2(i)
 c                enddo
-c           Born_1=Born_uU2eE(0,xp1,p2,p3,p4)
+c           Born_1=Born_uU2eE(0,p1,xp2,p3,p4)
+           call p1d_to_p2d_4(p1,p2,p3,p4,p)
+c           call getPK(2,yy(4),xmuf,p,SumP,SumK)
            if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
            if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
-                PK =SumK+SumK
+                PK =SumP+SumK
+c                PK =Born_1*PK
 c         Born_2=Born_uU2eE(0,p1,p2,p3,p4)
 
+                
                 call pdf(xa,xmuf,f1)
                 call pdf(xb,xmuf,f2)
                 call setlum(f1,f2,xl)
@@ -60,6 +64,10 @@ c         Born_2=Born_uU2eE(0,p1,p2,p3,p4)
 c                xnorm = hbarc2/16d0/pi/s
                   wgt = xnorm*sig*vwgt
                   flo2_PK = wgt/vwgt/2d0/eps
+c             if (flo2_PK .ne. flo2_PK) then 
+c                 call getPK(3,x,xmuf,p,SumP,SumK)  
+c                 stop
+c            endif
                   return
          endif
         endif
@@ -81,7 +89,7 @@ c--------------------------------------------------------------------o
       s13 =  2.0d0*dot(p1,p3) ! t
       s23 =  2.0d0*dot(p1,p4) ! u
       s12 =  2.0d0*dot(p1,p2) ! s
-      qu2 = 4d0/9d0
+      qu2 = 1d0!4d0/9d0
 
       Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
      .            s23)))/(3d0*s12**2)

@@ -12,26 +12,28 @@
       common/countc/n4
       common/distribution/xq
       character*50 name
+      character*100 run_tag
       external fnlo3
       external dipole_uU_g
       green = ''//achar(27)//'[32m'//char(27)//'[0m'
 
       !input data card
-      open(unit=10,file='run.vegas.dat',status='unknown')    
+      open(unit=10,file='../run.vegas.dat',status='unknown')    
       read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
       npt1 = pt1
       close(10)
 
-      open(unit=15,file='run.machine.dat',status='unknown')
+      open(unit=15,file='../run.machine.dat',status='unknown')
       read (15,*) mid                   ! machine id Tevatron:0 LHC:1
       read (15,*) ecm                   ! ecm
       read (15,*) name                  !lhapdf set
       read (15,*) it_max                !it_max no of q for distribution
       read (15,*) xq_initial            ! initialise xq value
       read (15,*) step_size             ! size in the multiplle of loop variable 
-
+      read (15,*) run_tag               ! name of run directory to save output
       close(15)
+        name = 'MMHT2014nlo68cl' 
       
         call initpdfsetbyname(name)
         Call initPDF(1)
@@ -94,7 +96,49 @@ c            write(*, '(A)') // green // "For xq = " // reset //
           xq = xq + step_size 
           enddo
 
+          call output(run_tag)
+        open(unit=20,file='../summary/'//trim(run_tag)//'/real.dat',
+     .                     status='unknown')
+         xq = xq_initial
+         do i=1,it_max
+          write(20,*)xq,ai_nlo3(i)
+          xq = xq + xincr
+         enddo
+         close(20)
         elseif(I .eq. 2) THEN
                 CALL cubacheck
         endif
        end
+
+
+c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
+c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
+        subroutine output(run_tag)
+        implicit none 
+        integer ierr
+        character*100 dir_path,run_tag
+
+       ! Check if the directory exists
+       dir_path ="../summary/"// trim(run_tag)   
+       call system("test -d "// dir_path // " && echo 1 > 
+     .   command.txt || echo 0  >
+     .        command.txt")
+       open(unit=13,file="command.txt",status="unknown")
+       read(13,*)ierr
+       close(13)
+         print*," "
+        if (ierr .eq. 1) print*,"Directory exists overwriting data in"
+       call system("rm command.txt")
+       if( ierr .ne. 1) then 
+         print*,"Directory not found " //dir_path 
+         print*,"Making new directory.."
+         print*," "
+         print*,"Writing Data in"
+         CALL SYSTEM("cd ../summary && mkdir -p " // dir_path) 
+       endif
+         CALL SYSTEM("cd " //dir_path// 
+     . " && echo $PWD")
+        print*," "
+        end
+c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
+c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        

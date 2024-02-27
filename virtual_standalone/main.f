@@ -7,6 +7,7 @@
       common/usedalpha/AL
       common/distribution/xq
       character*50 name
+      character*100 run_tag
       external flo2_Vir
       include 'coupl.inc'
       include 'nexternal.inc'
@@ -26,6 +27,7 @@
       read (15,*) it_max        !lhapdf set
       read (15,*) xq_initial
       read (15,*) xstep         !step
+      read (15,*) run_tag       ! dir name to save data
       close(15)
 
         call initpdfsetbyname(name)
@@ -107,8 +109,51 @@ c         endif
      .             int(xq),ai_lo2(j)
           xq = xq + xstep
         enddo
+
+           call output(run_tag)
+        open(unit=20,file='../summary/'//trim(run_tag)//'/virtual.dat',
+     .                     status='unknown')
+         xq = xq_initial
+         do i=1,it_max
+          write(20,*)xq,ai_lo2(i)
+          xq = xq + xincr
+         enddo
+         close(20)
+       
 c
         elseif(I .eq. 2) THEN
                 CALL cubacheck
         endif
        end
+       
+c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
+c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
+        subroutine output(run_tag)
+        implicit none 
+        integer ierr
+        character*100 dir_path,run_tag
+
+       ! Check if the directory exists
+       dir_path ="../summary/"// trim(run_tag)   
+       call system("test -d "// dir_path // " && echo 1 > 
+     .   command.txt || echo 0  >
+     .        command.txt")
+       open(unit=13,file="command.txt",status="unknown")
+       read(13,*)ierr
+       close(13)
+         print*," "
+        if (ierr .eq. 1) print*,"Directory exists overwriting data in"
+       call system("rm command.txt")
+       if( ierr .ne. 1) then 
+         print*,"Directory not found " //dir_path 
+         print*,"Making new directory.."
+         print*," "
+         print*,"Writing Data in"
+         CALL SYSTEM("cd ../summary && mkdir -p " // dir_path) 
+       endif
+         CALL SYSTEM("cd " //dir_path// 
+     . " && echo $PWD")
+        print*," "
+        end
+c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
+c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        

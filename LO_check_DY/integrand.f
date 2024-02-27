@@ -44,9 +44,10 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
       if (rsp .gt. xcut) then
 
-        call kinvar2(yy,xinvmass,p1,p2,p3,p4)
 
+        call kinvar2(yy,xinvmass,p1,p2,p3,p4)
         scale  = xinvmass
+c      if (scale .ge. 0d0) then
         if ( scale .ge. xlow .and. scale .le. xhigh) then 
              
               xmuf=scale
@@ -109,7 +110,7 @@ c--------------------------------------------------------------------o
        parameter(PI=3.141592653589793238D0)
        common/usedalpha/AL
 c       ge=0.007547169811320755d0
-       ge=1d0/128d0
+       ge=1d0/137d0
 c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
        gs=DSQRT(Al*4.d0*PI)
@@ -123,8 +124,8 @@ c       write(*,*)'e = ',e
       XNC = 1/4d0
       xnorm =1d0
       qu2 = 1d0!4d0/9d0
-
-      Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
+c       2 added because of u u~ symm
+      Born_uU2eE= 2d0*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
      .            s23)))/(3d0*s12**2)
        return
        end
