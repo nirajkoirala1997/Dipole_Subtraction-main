@@ -8,7 +8,7 @@
 
         
 c       Leading Order
-      open(unit=15,file='../run.machine.dat',status='unknown')
+      open(unit=15,file='../../run.machine.dat',status='unknown')
       read (15,*) mid                   ! machine id Tevatron:0 LHC:1
       read (15,*) ecm                   ! ecm
       read (15,*) name                  !lhapdf set
@@ -18,11 +18,22 @@ c       Leading Order
       read (15,*) run_tag               ! name of run directory to save output
       close(15)
 
+      open(unit=15,file='../'//trim(run_tag)//'/run.machine.dat'
+     . ,status='unknown')
+      read (15,*) mid                   ! machine id Tevatron:0 LHC:1
+      read (15,*) ecm                   ! ecm
+      read (15,*) name                  !lhapdf set
+      read (15,*) it_max                !it_max no of q for distribution
+      read (15,*) xq_initial            ! initialise xq value
+      read (15,*) step_size             ! size in the multiplle of loop variable
+      read (15,*) run_tag               ! name of run directory to save output
+      close(15)
+
       print*,"Reading Data from "//trim(run_tag)
       call sleep(1)
 
 
-        open(unit=17,file='../summary/'//trim(run_tag)//'/LO.dat',
+        open(unit=17,file='../'//trim(run_tag)//'/LO.dat',
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqLO(i),xintLO(i)
@@ -36,7 +47,7 @@ c       Leading Order
 
 c       Virtual contribution
 
-        open(unit=17,file='../summary/'//trim(run_tag)//'/virtual.dat',
+        open(unit=17,file='../'//trim(run_tag)//'/virtual.dat',
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqVir(i),xintVir(i)
@@ -60,10 +71,8 @@ c     .             ,xintVir(i)/xintLO(i)
 c        enddo
 c       Real emission Contribution        
 
-        print*," "
 c        print*,"Real - Dipole"
-        print*," "
-        open(unit=17,file='../summary/'//trim(run_tag)//'/real.dat',
+        open(unit=17,file='../'//trim(run_tag)//'/real.dat',
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqreal(i),xintreal(i)
@@ -80,9 +89,7 @@ c        read(17,*) xqreal(i),xintreal(i)
 
 c ~~~~~~~~~~~~~~~~~~~~~~~~`PK terms
 
-        print*," "
-c        print*,"PK term1"
-        open(unit=17,file='../summary/'//trim(run_tag)//'/PK1.dat',
+        open(unit=17,file='../'//trim(run_tag)//'/PK1.dat',
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqPKterm1(i),xintPKterm1(i)
@@ -96,10 +103,7 @@ c        read(17,*) xqPKterm1(i),xintPKterm1(i)
           write(*,'(i7,3e27.15)')int(xqPKterm1(i)),xintPKterm1(i)
         enddo
 
-        print*," "
-c        print*,"PK term2"
-        print*," "
-        open(unit=17,file='../summary/'//trim(run_tag)//'/PK2.dat',
+        open(unit=17,file='../'//trim(run_tag)//'/PK2.dat',
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqPKterm2(i),xintPKterm2(i)
@@ -139,7 +143,7 @@ c       Total sig_NLO will be
      . achar(27)//'[0m'
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqPKterm2(i)),xintPKterm2(i)+
-     .  xintPKterm1(i)+xintvir(i)+xintreal(i)+xintLO(i)
+     .  xintPKterm1(i)+xintvir(i)+xintreal(i)!+xintLO(i)
 c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
 c     .  xintvir(i)+xintreal(i)+xintLO(i)
         enddo

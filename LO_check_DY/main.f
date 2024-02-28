@@ -29,6 +29,7 @@
       read (15,*) xq_initial
       read (15,*) step_size         !step
       read (15,*) run_tag           !run_tag saves the output 
+      read (15,*) iprint            !save data in output file ../summary
       close(15)
 
 
@@ -62,7 +63,7 @@ c        read*,i
         xq = xq_initial
 c       writes data in output file
         filename = "LO.dat"
-        call output(run_tag,filename)
+        if (iprint .eq. 1) call output(run_tag,filename)
         
         do j=1,it_max
 
@@ -99,68 +100,18 @@ c         endif
           xq = xq + step_size
         enddo
 
-
+        if (iprint .eq. 0) goto 123
         open(unit=20,file='../summary/'//trim(run_tag)//'/'
      .  //trim(filename),status='unknown')
          xq = xq_initial
          do i=1,it_max
           write(20,*)xq,ai_lo2(i)
-          xq = xq + xincr
+          xq = xq + step_size
          enddo
          close(20)
+123         continue
 c
         elseif(I .eq. 2) THEN
                 CALL cubacheck
         endif
        end
-
-c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
-
-c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        
-        subroutine output(run_tag,filename1)
-        implicit none 
-        integer ierr1,ierr2
-        character*100 dir_path,run_tag,dir_pathtmp,decision
-     . ,filename1,filename
-
-       ! Check if the directory exists
-       dir_path ="../summary/"// trim(run_tag)
-       filename ="../summary/"// trim(run_tag) //"/"// trim(filename1)  
-       dir_pathtmp ="../summary/temp_"// trim(run_tag)   
-c checking Directory
-        call system("test -d "// dir_path // " && echo 1 > 
-     .   command.txt || echo 0  >
-     .        command.txt")
-       open(unit=13,file="command.txt",status="unknown")
-       read(13,*)ierr1
-       close(13)
-       call system("rm command.txt")
-       if( ierr1.ne. 1) then 
-         print*,"Directory not found " //dir_path 
-         print*,"Making new directory.."
-         print*," "
-         CALL SYSTEM("cd ../summary && mkdir -p " // dir_path) 
-       endif
-c checking file
-       call system("test -f "// filename // " && echo 1 > 
-     .   command.txt || echo 0  >
-     .        command.txt")
-       open(unit=13,file="command.txt",status="unknown")
-       read(13,*)ierr2
-       close(13)
-       call system("rm command.txt")
-c Proceed with decision       
-
-       if (ierr2 .eq. 1) then
-        print*,"File  already exist  "//filename
-        print*,"All previous data for this run will be lost. Overwrite ?
-     .     [y/n]"
-        read*,decision
-        if (decision .eq. 'y') then
-        print*,"Overwriting data in"// filename
-        else
-           stop
-        endif
-        endif
-        call sleep(3)
-        end

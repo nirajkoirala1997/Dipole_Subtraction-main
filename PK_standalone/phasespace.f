@@ -42,7 +42,7 @@ c     p3 + p4
       q(3) = p3(3) +p4(3)
 
 c     invariant mass of diphoton pair.
-      s34    = 2*dot(p3,p4)
+      s34    = 2d0*dot(p3,p4)
       xxinvmass= dsqrt(s34)
 
 c     yy1: rapidity of photons 3 

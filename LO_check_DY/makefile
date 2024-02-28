@@ -1,6 +1,6 @@
 FC = gfortran
 FFLAGS   = -O
-LDFLAGS = -L./ -ldhelas3
+LDFLAGS = -L./ -ldhelas3 -lc -L./../ -lfile
 LIBS = -lcuba
 export LHFLAGS=$(shell lhapdf-config --ldflags)
 LIB = -lm 

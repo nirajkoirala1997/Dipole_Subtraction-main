@@ -17,11 +17,8 @@
       xa     = yy(1)
       xb     = yy(2)
       x      = yy(4)
-c      if (x .ge. 1d0) print*,"rand:",yy(1),yy(2),yy(4)
       sp     = xa*xb*s
       rsp    = dsqrt(sp) 
-
-      ipass1 = 0
 
         eps = 0.5d0*2d0
        xlow = xq - eps
@@ -32,29 +29,33 @@ c      if (x .ge. 1d0) print*,"rand:",yy(1),yy(2),yy(4)
       if (rsp .gt. xcut) then
 
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
-        scale  = xinvmass
+            do i=0,3
+             xp2(i) = x*p2(i)
+             xp1(i) = x*p1(i)
+            enddo
 
-        ipass = 0
+        if(leg .eq. 1)  then
+           call p1d_to_p2d_4(xp1,p2,p3,p4,p)
+           scale2 = 2.0d0*dot(xp1,p2)
+
+        elseif(leg .eq. 2) then
+           call p1d_to_p2d_4(p1,xp2,p3,p4,p)
+           scale2 = 2.0d0*dot(p1,xp2)
+       endif
+        scale = dsqrt(scale2)
+
         flo2_PK = 0d0
         if ( scale .ge. xlow .and. scale .le. xhigh) then   
+
                 xmuf = scale
                 xmur = scale
                 AL = alphasPDF(xmur)
-                 do i=0,3
-                 xp2(i) = yy(4)*p2(i)
-                 xp1(i) = yy(4)*p1(i)
-                enddo
-          if(leg .eq. 1) Born_1=Born_uU2eE(0,xp1,p2,p3,p4)
-          if(leg .eq. 2) Born_2=Born_uU2eE(0,p1,xp2,p3,p4)
-           call p1d_to_p2d_4(p1,p2,p3,p4,p)
-           call getPK(leg,x,xmuf,p,SumP,SumK)
-c           if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
-c           if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
-                PK =SumP+SumK
-                if(leg .eq. 1) PK =Born_1*PK
-                if(leg .eq. 2) PK =Born_2*PK
-c         Born_2=Born_uU2eE(0,p1,p2,p3,p4)
 
+c          if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
+c          if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
+
+              call getPK(leg,x,xmuf,p,SumP,SumK)
+               PK =SumP+SumK
                 
                 call pdf(xa,xmuf,f1)
                 call pdf(xb,xmuf,f2)
@@ -91,7 +92,8 @@ c--------------------------------------------------------------------o
 
       Born_uU2eE= 2d0*CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
      .            s23)))/(3d0*s12**2)
+c      Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
+c     .            s23)))/(3d0*s12**2)
        return
        end
 c---------------------------------------------------------------------
-

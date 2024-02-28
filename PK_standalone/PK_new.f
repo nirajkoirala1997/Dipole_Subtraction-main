@@ -9,67 +9,67 @@ c-----------------------------------------------------------
       dimension AllP(5),AllK(5)
       dimension  p1(0:3),p2(0:3),p3(0:3),p4(0:3),p(0:3,1:4)
       common /usedalpha/ AL      
+      external Born_uU2eE
       call p2d_to_p1d_4(p,p1,p2,p3,p4)
         s12 = 2d0*dot(p1,p2)/x
         Cf = 4d0/3d0                      
         Tr = 0.5d0
 
-      if (k .eq. 1 .or. k .eq. 3) then   ! Cloice for [Leg1]       
-!       
-        AllP(1) = Al*(Cf*Plusd((1+x**2)/(1-x))*
-     .            (-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {q,q,g}
-        AllP(2) = Al*(Tr*(2*x**2+1-
-     .                 2*x)*(-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {g,q,q~}
+      if (k .eq. 1) then   ! Cloice for [Leg1]       
 
-        AllK(1) = Al*(Cf*(Plusd(2d0/(1d0-x)*Log((1d0-x)/x))-
-     .        (1d0+x)*Log((1d0-x)/x)+(1d0-x)-
-     .         delta(1d0-x)*(5d0-Pi**2))- Cf*(1d0+x)*Log(1d0-x) + 
-     .    Cf*(Plusd(2d0/(1d0-x)*dLog(1d0-x))-
-     .              Pi**2*delta(1d0-x)/3d0))/2d0/Pi 
+        coefx = Al*(Cf*(-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {q,q,g}
+        coefx = coefx*Born_uU2eE(0,p1,p2,p3,p4)
 
-        AllK(2) = Al*(Tr*(x**2+(1-x)**2)*Log((1d0-x)/x) +
-     .           Tr*2d0*x*(1d0-x)-(-1)*Tr*(x**2+
-     .              (1-x)**2)*Log(1d0-x))/2d0/Pi  
-        
+        coef1 = Al*(Cf*(-1)*Log(xmuf**2/(s12)))/2d0/Pi
+        p1(0) = p1(0)/x
+        p1(3) = p1(3)/x
+        coef1 = coef1*Born_uU2eE(0,p1,p2,p3,p4) 
 
-      elseif (k .eq. 2 .or. k .eq. 3) then  ! Cloice for [Leg2]
+        ALLP(1) = Plusd((1+x**2)/(1-x))*(coefx - coef1)
+
+      B=Al*Cf*((1d0+x)*Log((1d0-x)/x)+(1d0-x)-(1d0+x)*Log(1d0-x))/2d0/Pi
+       Aplus=Plusd(2d0/(1d0-x)*Log((1d0-x)/x))+
+     .    Plusd(2d0/(1d0-x)*dLog(1d0-x))
+        call p2d_to_p1d_4(p,p1,p2,p3,p4)
+        coefx = Al*Cf*Born_uU2eE(0,p1,p2,p3,p4)/2d0/Pi
+        B = B * Born_uU2eE(0,p1,p2,p3,p4)
+        p1(0) = p1(0)/x
+        p1(3) = p1(3)/x
+        coef1 = Al*Cf*Born_uU2eE(0,p1,p2,p3,p4)/2d0/Pi
+        AllK(1)= Aplus*(coefx - coef1) - B 
+
+      elseif (k .eq. 2 ) then  ! Cloice for [Leg2]
+
+        coefx = Al*(Cf*(-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {q,q,g}
+        coefx = coefx*Born_uU2eE(0,p1,p2,p3,p4)
+
+        coef1 = Al*(Cf*(-1)*Log(xmuf**2/(s12)))/2d0/Pi
+        p2(0) = p2(0)/x
+        p2(3) = p2(3)/x
+        coef1 = coef1*Born_uU2eE(0,p1,p2,p3,p4) 
+
+        ALLP(1) = Plusd((1+x**2)/(1-x))*(coefx - coef1)
 
 
-        AllP(1) = Al*(Cf*Plusd((1+x**2)/(1-x))*
-     .            (-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {q,q,g}
-        AllP(2) = Al*(Tr*(2*x**2+1-
-     .                 2*x)*(-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {g,q,q~}
 
-        AllK(1) = Al*(Cf*(Plusd(2d0/(1d0-x)*Log((1d0-x)/x))-
-     .        (1d0+x)*Log((1d0-x)/x)+(1d0-x)-
-     .         delta(1d0-x)*(5d0-Pi**2))- Cf*(1d0+x)*Log(1d0-x) + 
-     .    Cf*(Plusd(2d0/(1d0-x)*dLog(1d0-x))-
-     .              Pi**2*delta(1d0-x)/3d0))/2d0/Pi !! #colour factor unclear
+      B=Al*Cf*((1d0+x)*Log((1d0-x)/x)+(1d0-x)-(1d0+x)*Log(1d0-x))/2d0/Pi
+       Aplus=Plusd(2d0/(1d0-x)*Log((1d0-x)/x))+
+     .    Plusd(2d0/(1d0-x)*dLog(1d0-x))
+        call p2d_to_p1d_4(p,p1,p2,p3,p4)
+        coefx = Al*Cf*Born_uU2eE(0,p1,p2,p3,p4)/2d0/Pi
+        B = B * Born_uU2eE(0,p1,p2,p3,p4)
+        p2(0) = p2(0)/x
+        p2(3) = p2(3)/x
+        coef1 = Al*Cf*Born_uU2eE(0,p1,p2,p3,p4)/2d0/Pi
+        AllK(1)= Aplus*(coefx - coef1) - B 
 
-        AllK(2) = Al*(Tr*(x**2+(1-x)**2)*Log((1d0-x)/x) +
-     .           Tr*2d0*x*(1d0-x)-(-1)*Tr*(x**2+
-     .              (1-x)**2)*Log(1d0-x))/2d0/Pi  
-        
       endif
-
-c        if (k .eq. 3) then
-c                print*,"gaya"
-c                do i=1,2
-c                print*,Allp(i),allk(i)
-c                print*,"LOG:",Log(xmuf**2/(s12*x))
-c                print*,"next:",xmuf**2,s12*x,x
-c                enddo
-c        endif
         SumP = 0d0 
         SumK = 0d0
-       do i=1,2
+       do i=1,1
         SumP = SumP + AllP(i)
         SumK = SumK + AllK(i)
        enddo
-       if (x .eq. 1d0) then
-               sump=0d0
-               sumk=0d0
-       endif
 c       print*,"P:",SumP
 c       print*,"K:",SumK
 
