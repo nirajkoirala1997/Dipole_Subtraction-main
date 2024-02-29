@@ -4,6 +4,7 @@
       dimension f1(-6:6),f2(-6:6),xl(15)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
      .          ,p(0:3,1:4),Born(1:2)
+      dimension AllP(5),AllK(5)
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=0.3894d9)
       character*50 name
@@ -54,14 +55,17 @@
 c          if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
 c          if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
 
-              call getPK(leg,x,xmuf,p,SumP,SumK)
-               PK =SumP+SumK
+              call getPK(leg,x,xmuf,p,ALLP,ALLK)
+c               PK =SumP+SumK
                 
                 call pdf(xa,xmuf,f1)
                 call pdf(xb,xmuf,f2)
                 call setlum(f1,f2,xl)
 
-                sig = xl(1)* PK
+                sig1 = xl(1)* (ALLP(1)+ALLK(1))  !  [qq lum]
+                sig2 = xl(8)* (ALLP(2)+ALLK(2))  !  [gq lum]
+
+                sig = sig1 + sig2
 
                xnorm=hbarc2/16d0/pi/sp
 c                xnorm = hbarc2/16d0/pi/s

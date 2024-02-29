@@ -3,6 +3,7 @@
         dimension xqLO(1:50),xintLO(1:50),xqvir(1:50),xintvir(1:50),
      .    xqreal(1:50),xintreal(1:50),xqPKterm1(1:50),xintPKterm1(1:50)
      .                                ,xqPKterm2(1:50),xintPKterm2(1:50)
+     .                                ,xqch(1:50),xintch(1:50)
         character*100 run_tag
         character*50 name
 
@@ -117,34 +118,59 @@ c        read(17,*) xqPKterm2(i),xintPKterm2(i)
           write(*,'(i7,3e27.15)')int(xqPKterm2(i)),xintPKterm2(i)
         enddo
 
-c ~~~~~~~~~~~~~~~~~~~~~~~~`PK terms end
 
 
 c        print*," "
 c        print*,"Sigma_Chinmoy"
-c        print*," "
-c        open(unit=17,file='LO_2chinmoy.dat',status='unknown')
-c        do i=1,it_max
-c        read(17,*) xqLO(i),xintLO(i)
-c        enddo
-c        close(17)
-c        print*," "
-c       write(*,*)achar(27)//'[1;32m'//"   xq"," ","       ChinIntegral",
-c     . achar(27)//'[0m'
-c        do i=1,it_max
-c          write(*,'(i7,3e27.15)')int(xqLO(i)),xintLO(i)
-c        enddo
+        print*," "
+        open(unit=17,file='../'//trim(run_tag)//'/smqqb.nlo.out',
+     .  status='unknown')
+        do i=1,it_max
+        read(17,*) xqch(i),xintch(i)
+        enddo
+        close(17)
+        print*," "
+       write(*,*)achar(27)//'[1;32m'//"   xq"," ","       ChinIntegral",
+     . achar(27)//'[0m'
+        do i=1,it_max
+          write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
+        enddo
 
+ 
+       print*," "
+       write(*,*)achar(27)//'[1;32m'//"   xq  ",
+     ." sigma NLO chinmoy", 
+     . achar(27)//'[0m'
+        do i=1,it_max
+          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),xintch(i)
+        enddo
+
+       
 
 c       Total sig_NLO will be
 
-120     print*," "
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","          Sigma_NLO",
+       print*," "
+       write(*,*)achar(27)//'[1;32m'//"   xq  ",
+     . " sigma NLO dipole", 
      . achar(27)//'[0m'
         do i=1,it_max
-          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),xintPKterm2(i)+
-     .  xintPKterm1(i)+xintvir(i)+xintreal(i)!+xintLO(i)
+          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),(xintPKterm2(i)+
+     .  xintPKterm1(i)+xintvir(i)+xintreal(i)+xintLO(i))
 c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
 c     .  xintvir(i)+xintreal(i)+xintLO(i)
         enddo
+
+
+
+120     print*," "
+        write(*,*)achar(27)//'[1;32m'//"   xq  ",
+     .  "  ratio dipole/chinmoy sigma_NLO",
+     . achar(27)//'[0m'
+        do i=1,it_max
+          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),(xintPKterm2(i)+
+     .  xintPKterm1(i)+xintvir(i)+xintreal(i)+xintLO(i))/xintch(i)
+c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
+c     .  xintvir(i)+xintreal(i)+xintLO(i)
+        enddo
+
         end

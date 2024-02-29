@@ -3,7 +3,7 @@
 !                                               |    process               
 ! Kb = Kbar      
 c----------------------------------------------------------- 
-      subroutine getPK(k,x,xmuf,p,SumP,SumK)
+      subroutine getPK(k,x,xmuf,p,ALLP,ALLK)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
       dimension AllP(5),AllK(5)
@@ -17,61 +17,81 @@ c-----------------------------------------------------------
 
       if (k .eq. 1) then   ! Cloice for [Leg1]       
 
+c       [P term]
         coefx = Al*(Cf*(-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {q,q,g}
-        coefx = coefx*Born_uU2eE(0,p1,p2,p3,p4)
+        Bornx = Born_uU2eE(0,p1,p2,p3,p4)
+        coefx = coefx*Bornx
 
         coef1 = Al*(Cf*(-1)*Log(xmuf**2/(s12)))/2d0/Pi
         p1(0) = p1(0)/x
         p1(3) = p1(3)/x
+        Born1 = Born_uU2eE(0,p1,p2,p3,p4)
         coef1 = coef1*Born_uU2eE(0,p1,p2,p3,p4) 
 
         ALLP(1) = Plusd((1+x**2)/(1-x))*(coefx - coef1)
 
+        AllP(2) = Al*Bornx*(Tr*(2*x**2+1-
+     .                 2*x)*(-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {g,q,q~}
+
+c       [K term]
       B=Al*Cf*((1d0+x)*Log((1d0-x)/x)+(1d0-x)-(1d0+x)*Log(1d0-x))/2d0/Pi
+
        Aplus=Plusd(2d0/(1d0-x)*Log((1d0-x)/x))+
      .    Plusd(2d0/(1d0-x)*dLog(1d0-x))
         call p2d_to_p1d_4(p,p1,p2,p3,p4)
-        coefx = Al*Cf*Born_uU2eE(0,p1,p2,p3,p4)/2d0/Pi
-        B = B * Born_uU2eE(0,p1,p2,p3,p4)
+        Bornx = Born_uU2eE(0,p1,p2,p3,p4)
+        coefx = Al*Cf*Bornx/2d0/Pi
+        B = B * Bornx
         p1(0) = p1(0)/x
         p1(3) = p1(3)/x
-        coef1 = Al*Cf*Born_uU2eE(0,p1,p2,p3,p4)/2d0/Pi
+        Born1 = Born_uU2eE(0,p1,p2,p3,p4)
+        coef1 = Al*Cf*Born1/2d0/Pi
         AllK(1)= Aplus*(coefx - coef1) - B 
+
+        AllK(2) = Al*Bornx*(Tr*(x**2+(1-x)**2)*dLog((1d0-x)/x) +
+     .           Tr*2d0*x*(1d0-x)-CLF*Tr*(x**2+
+     .              (1-x)**2)*dLog(1d0-x))/2d0/Pi  
+
 
       elseif (k .eq. 2 ) then  ! Cloice for [Leg2]
 
+c       [P term]
         coefx = Al*(Cf*(-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {q,q,g}
-        coefx = coefx*Born_uU2eE(0,p1,p2,p3,p4)
+        Bornx = Born_uU2eE(0,p1,p2,p3,p4)
+        coefx = coefx*Bornx
 
         coef1 = Al*(Cf*(-1)*Log(xmuf**2/(s12)))/2d0/Pi
         p2(0) = p2(0)/x
         p2(3) = p2(3)/x
+        Born1 = Born_uU2eE(0,p1,p2,p3,p4)
         coef1 = coef1*Born_uU2eE(0,p1,p2,p3,p4) 
 
         ALLP(1) = Plusd((1+x**2)/(1-x))*(coefx - coef1)
 
+        AllP(2) = Al*Bornx*(Tr*(2*x**2+1-
+     .                 2*x)*(-1)*Log(xmuf**2/(s12*x)))/2d0/Pi    !{a,ai,i} => {g,q,q~}
 
-
+c       [K term]
       B=Al*Cf*((1d0+x)*Log((1d0-x)/x)+(1d0-x)-(1d0+x)*Log(1d0-x))/2d0/Pi
+
        Aplus=Plusd(2d0/(1d0-x)*Log((1d0-x)/x))+
      .    Plusd(2d0/(1d0-x)*dLog(1d0-x))
         call p2d_to_p1d_4(p,p1,p2,p3,p4)
-        coefx = Al*Cf*Born_uU2eE(0,p1,p2,p3,p4)/2d0/Pi
-        B = B * Born_uU2eE(0,p1,p2,p3,p4)
+        Bornx = Born_uU2eE(0,p1,p2,p3,p4)
+        coefx = Al*Cf*Bornx/2d0/Pi
+        B = B * Bornx
         p2(0) = p2(0)/x
         p2(3) = p2(3)/x
-        coef1 = Al*Cf*Born_uU2eE(0,p1,p2,p3,p4)/2d0/Pi
+        Born1 = Born_uU2eE(0,p1,p2,p3,p4)
+        coef1 = Al*Cf*Born1/2d0/Pi
         AllK(1)= Aplus*(coefx - coef1) - B 
 
+        AllK(2) = Al*Bornx*(Tr*(x**2+(1-x)**2)*dLog((1d0-x)/x) +
+     .           Tr*2d0*x*(1d0-x)-CLF*Tr*(x**2+
+     .              (1-x)**2)*dLog(1d0-x))/2d0/Pi  
+
+
       endif
-        SumP = 0d0 
-        SumK = 0d0
-       do i=1,1
-        SumP = SumP + AllP(i)
-        SumK = SumK + AllK(i)
-       enddo
-c       print*,"P:",SumP
-c       print*,"K:",SumK
 
       return
       end
