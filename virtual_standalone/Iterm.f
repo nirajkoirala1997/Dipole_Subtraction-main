@@ -52,6 +52,8 @@ c      mu=174.3D0
       call cmatrix1(p(0,1),1,CLV(1)) 
       
       call cmatrix1(p(0,1),2,CLV(2)) 
+      CLV(1) = CLV(1)*9d0/4d0  ! this is already used in lum so / here
+      CLV(2) = CLV(2)*9d0/4d0
       
       coef(1,-2)=
      - -0.5*(AL*CLV(1))/Pi
@@ -84,7 +86,7 @@ c      mu=174.3D0
       SumI(-1) = 0.d0 
       SumI(-0) = 0.d0 
  
-      do i=1,2 
+      do i=1,1 
       SumI(-2) = SumI(-2) + coef(i,-2) 
       SumI(-1) = SumI(-1) + coef(i,-1) 
       SumI(0) = SumI(0) + coef(i,0) 

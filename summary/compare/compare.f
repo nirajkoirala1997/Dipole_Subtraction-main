@@ -30,8 +30,18 @@ c       Leading Order
       read (15,*) run_tag               ! name of run directory to save output
       close(15)
 
+
       print*,"Reading Data from "//trim(run_tag)
-      call sleep(1)
+      print*," "
+      print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+      print*,"            ecm:", int(ecm),"[GeV]"                   ! ecm
+      print*,"     LHApdfname:   ", name                  !lhapdf set
+      print*,"         it_max:" ,int(it_max)                !it_max no of q for distribution
+      print*,"initial Q value:", int(xq_initial),"[GeV]"            ! initialise xq value
+      print*,"     step size :", int(step_size)             ! size in the multiplle of loop variable
+      print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+      print*," "
+      call sleep(2)
 
 
         open(unit=17,file='../'//trim(run_tag)//'/LO.dat',
@@ -108,7 +118,6 @@ c        read(17,*) xqPKterm1(i),xintPKterm1(i)
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqPKterm2(i),xintPKterm2(i)
-c        read(17,*) xqPKterm2(i),xintPKterm2(i)
         enddo
         close(17)
         print*," "
@@ -122,30 +131,22 @@ c        read(17,*) xqPKterm2(i),xintPKterm2(i)
 
 c        print*," "
 c        print*,"Sigma_Chinmoy"
-        print*," "
         open(unit=17,file='../'//trim(run_tag)//'/smqqb.nlo.out',
-     .  status='unknown')
+     .     status='unknown')
         do i=1,it_max
         read(17,*) xqch(i),xintch(i)
         enddo
         close(17)
-        print*," "
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","       ChinIntegral",
-     . achar(27)//'[0m'
-        do i=1,it_max
-          write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
-        enddo
 
- 
+
        print*," "
        write(*,*)achar(27)//'[1;32m'//"   xq  ",
      ." sigma NLO chinmoy", 
      . achar(27)//'[0m'
         do i=1,it_max
-          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),xintch(i)
+          write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
         enddo
 
-       
 
 c       Total sig_NLO will be
 
@@ -155,7 +156,8 @@ c       Total sig_NLO will be
      . achar(27)//'[0m'
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqPKterm2(i)),(xintPKterm2(i)+
-     .  xintPKterm1(i)+xintvir(i)+xintreal(i)+xintLO(i))
+c     .  xintPKterm1(i)+xintvir(i)+xintreal(i)+xintLO(i))
+     .  xintPKterm1(i)+xintvir(i)+xintreal(i))
 c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
 c     .  xintvir(i)+xintreal(i)+xintLO(i)
         enddo
@@ -168,7 +170,8 @@ c     .  xintvir(i)+xintreal(i)+xintLO(i)
      . achar(27)//'[0m'
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqPKterm2(i)),(xintPKterm2(i)+
-     .  xintPKterm1(i)+xintvir(i)+xintreal(i)+xintLO(i))/xintch(i)
+c     .  xintPKterm1(i)+xintvir(i)+xintreal(i)+xintLO(i))/xintch(i)
+     .  xintPKterm1(i)+xintvir(i)+xintreal(i))/xintch(i)
 c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
 c     .  xintvir(i)+xintreal(i)+xintLO(i)
         enddo

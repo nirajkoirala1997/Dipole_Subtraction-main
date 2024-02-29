@@ -111,7 +111,8 @@ c--------------------------------------------------------------------o
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
        common/usedalpha/AL
-       ge=0.007547169811320755d0
+c       ge=0.007547169811320755d0
+       ge=1d0/128d0
 c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
        gs=DSQRT(Al*4.d0*PI)
@@ -123,9 +124,9 @@ c       Al=0.118d0
       s12 =  2.0d0*dot(p1,p2) ! s
       XNC = 1/4d0
       xnorm =1d0
-      qu2 = 4d0/9d0
+      qu2 = 1d0!4d0/9d0
 
-      Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
+      Born_uU2eE=CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
      .            s23)))/(3d0*s12**2)
        return
        end

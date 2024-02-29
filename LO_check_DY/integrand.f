@@ -36,7 +36,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       rsp = dsqrt(xa*xb*s)
         
       ipass = 0
-        eps = 0.5d0!0.5d0*5d0
+        eps = 0.5d0*2d0
        xlow = xq - eps
       xhigh = xq + eps
 
@@ -61,8 +61,6 @@ c              xmur=xq
               call setlum(f1,f2,xl)
               AL = alphasPDF(xmur)
 
-
-c        call p1d_to_p2d_4(p1,p2,p3,p4,p)
               sig= xl(1)*Born_uU2eE(0,p1,p2,p3,p4)
 
               xnorm=hbarc2/16d0/pi/(xa*xb*s)
@@ -89,7 +87,8 @@ c--------------------------------------------------------------------o
        parameter(PI=3.141592653589793238D0)
        common/usedalpha/AL
 c       ge=0.007547169811320755d0
-       ge=1d0/128d0
+c       ge=1d0/128d0
+       ge=1d0/132.18414234455358d0
 c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
        gs=DSQRT(Al*4.d0*PI)
@@ -104,7 +103,7 @@ c       write(*,*)'e = ',e
       xnorm =1d0
       qu2 = 1d0!4d0/9d0
 c       2 added because of u u~ symm
-      Born_uU2eE= 2d0*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
+      Born_uU2eE= (2d0*e**4*qu2*(-2*s13*s23 + s12*(s13 +
      .            s23)))/(3d0*s12**2)
        return
        end

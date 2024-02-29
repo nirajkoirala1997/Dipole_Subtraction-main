@@ -77,7 +77,7 @@ c          Al = 0.118d0
           flux = 4d0*pi_1*rsp
           xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
           wgt=xxjac*xnorm*sig2*weight
-          fnlo3=wgt/weight
+          fnlo3=wgt/weight/2d0/eps
          endif
        endif
       endif

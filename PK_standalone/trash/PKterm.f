@@ -247,7 +247,7 @@ c SumK = Sum_{i=1}^{4}K(i)
       end
  
       double precision function plusd(xx)
-      implicit none
+      implicit double precision
       double precision xx
       plusd=xx
       return

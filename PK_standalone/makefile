@@ -6,7 +6,7 @@ MYFLAG = #-L./home/niraj/1TB-Disc/Workspace-IITG/Packages/Source/mylibrary -lfil
 #export LHFLAGS = $(shell lhapdf-config --ldflags)
 LHFLAGS = $(shell lhapdf-config --ldflags)
 PROG    = runPK
-OBJECTS4  = PK_new.o pdf_lha.o lum.o integrand.o phasespace.o vsup.o PKterm.o couplings.o matrixLO1.o cmatrix.o
+OBJECTS4  = PK_new.o pdf_lha.o lum.o integrand.o phasespace.o vsup.o couplings.o matrixLO1.o cmatrix.o
 	
 $(PROG): $(OBJECTS4) main.f
 	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS4) $(LDFLAGS) $(LHFLAGS) $(MYFLAG) 

@@ -21,8 +21,8 @@
       sp     = xa*xb*s
       rsp    = dsqrt(sp) 
 
-        eps = 0.5d0*2d0
-       xlow = xq - eps
+      eps = 0.5d0*2d0
+      xlow = xq - eps
       xhigh = xq + eps
 
       xcut = xq - 10.0d0
@@ -31,21 +31,28 @@
 
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
             do i=0,3
-             xp2(i) = x*p2(i)
              xp1(i) = x*p1(i)
+             xp2(i) = x*p2(i)
             enddo
 
-        if(leg .eq. 1)  then
-           call p1d_to_p2d_4(xp1,p2,p3,p4,p)
-           scale2 = 2.0d0*dot(xp1,p2)
+           call p1d_to_p2d_4(p1,p2,p3,p4,p)
 
-        elseif(leg .eq. 2) then
-           call p1d_to_p2d_4(p1,xp2,p3,p4,p)
-           scale2 = 2.0d0*dot(p1,xp2)
-       endif
+c        if(leg .eq. 1)  then
+c           call p1d_to_p2d_4(xp1,p2,p3,p4,p)
+c           scale2 = 2.0d0*dot(xp1,p2)
+c           Born =  Born_uU2eE(0,xp1,p2,p3,p4)
+c
+c        elseif(leg .eq. 2) then
+c           call p1d_to_p2d_4(p1,xp2,p3,p4,p)
+c           scale2 = 2.0d0*dot(p1,xp2)
+c           Born =  Born_uU2eE(0,p1,xp2,p3,p4)
+c       endif
+
+        scale2 = 2.0d0*x*dot(p1,p2)
         scale = dsqrt(scale2)
 
         flo2_PK = 0d0
+
         if ( scale .ge. xlow .and. scale .le. xhigh) then   
 
                 xmuf = scale
@@ -55,17 +62,15 @@
 c          if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
 c          if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
 
-              call getPK(leg,x,xmuf,p,ALLP,ALLK)
-c               PK =SumP+SumK
+              call getPK(x,xmuf,p,xp1,xp2,SumP,SumK)
                 
                 call pdf(xa,xmuf,f1)
                 call pdf(xb,xmuf,f2)
                 call setlum(f1,f2,xl)
 
-                sig1 = xl(1)* (ALLP(1)+ALLK(1))  !  [qq lum]
-                sig2 = xl(8)* (ALLP(2)+ALLK(2))  !  [gq lum]
+                sig1 = xl(1)* (SumP+SumK)  !  [qq lum]
 
-                sig = sig1 + sig2
+                sig = sig1
 
                xnorm=hbarc2/16d0/pi/sp
 c                xnorm = hbarc2/16d0/pi/s
@@ -84,7 +89,8 @@ c--------------------------------------------------------------------o
        implicit double precision (a-h,o-z)
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
-       ge=0.007547169811320755d0
+c       ge=0.007547169811320755d0
+       ge=1d0/128d0
        e= DSQRT(ge*4.d0*PI)
       IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0
       IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
