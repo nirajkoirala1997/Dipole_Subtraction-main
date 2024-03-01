@@ -26,7 +26,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       common/energy/s
       common/distribution/xq
       common/renor_scale/scale
-      common/usedalpha/AL
+      common/usedalpha/AL,ge
       external Born_uU2eE
        
       rs  = dsqrt(s)
@@ -59,12 +59,12 @@ c              xmur=xq
               call setlum(f1,f2,xl)
               AL = alphasPDF(xmur)
 
-c              ge=0.007547169811320755d0
-              ge=1d0/128d0
+c              ge=1d0/128d0
               e= DSQRT(ge*4.d0*PI)
               gs=DSQRT(Al*4.d0*PI)
               qu2=4d0/9d0
               qu2=1d0
+              Cf = 4d0/3d0
 
               s12= 2d0*dot(p1,p2)
               t=-2d0*dot(p2,p4)
@@ -77,12 +77,26 @@ c
      -        6*(s12**2 + 2*s12*t + 2*t**2)*Log(xmu2/s12)**2)/
      -          (24*Pi**2*s12**2)
                VIR = VIR/36d0
-               call p1d_to_p2d_4(p1,p2,p3,p4,p)
-              call Iterm(p,coef,SumI)
+
+               gammaq = 3d0/2d0*Cf
+               xkq     = Cf*(7d0/2d0-pi*pi/6d0)
+           EulerGamma = 0.5772156649015328606065120d0
+
+          SumI(0) = 
+     -      (-6*Al*CF*EulerGamma**2 - 12*Al*CF*gammaq + 
+     -     12*Al*CF*EulerGamma*gammaq - 12*Al*CF*xkq + 5*Al*CF*Pi**2 + 
+     -     12*Al*CF*EulerGamma*Log(4*Pi) - 12*Al*CF*gammaq*Log(4*Pi) - 
+     -     6*Al*CF*Log(4*Pi)**2 + 12*Al*CF*EulerGamma*Log(xmu2/s12) - 
+     -     12*Al*CF*gammaq*Log(xmu2/s12) - 
+     -     12*Al*CF*Log(4*Pi)*Log(xmu2/s12) - 6*Al*CF*Log(xmu2/s12)**2)/
+     -      (24.*Pi)
+          SumI(0) = SumI(0)*Born_uU2eE(0,p1,p2,p3,p4)!/9d0 ! 9 for colour  avg
+c              call p1d_to_p2d_4(p1,p2,p3,p4,p)
+c             call Iterm(p,coef,SumI)
 c
 
 
-              sig= xl(1)*(Vir+SumI(0))
+              sig= xl(1)*(Vir + SumI(0))
 
               xnorm=hbarc2/16d0/pi/(xa*xb*s)
               wgt=xnorm*sig*vwgt
@@ -106,9 +120,8 @@ c--------------------------------------------------------------------o
        implicit double precision (a-h,o-z)
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
-       common/usedalpha/AL
-c       ge=0.007547169811320755d0
-       ge=1d0/128d0
+       common/usedalpha/AL,ge
+c       ge=1d0/128d0
 c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
        gs=DSQRT(Al*4.d0*PI)

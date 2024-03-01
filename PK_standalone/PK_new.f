@@ -3,13 +3,13 @@
 !                                               |    process               
 ! Kb = Kbar      
 c----------------------------------------------------------- 
-      subroutine getPK(x,xmuf,p,xp1,xp2,SumP,SumK)
+      subroutine getPK(iplus,x,xmuf,p,xp1,xp2,SumP,SumK)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
       dimension AllP(4),AllK(4)
       dimension  p1(0:3),p2(0:3),p3(0:3),p4(0:3),p(0:3,1:4)
       dimension  xp1(0:3),xp2(0:3)
-      common /usedalpha/ AL      
+      common /usedalpha/ AL, ge 
       external Born_uU2eE
       external PqqP,Pqqreg
       external AKbarP_qq,AKbarreg_qq,AKbarD_qq
@@ -21,29 +21,33 @@ c-----------------------------------------------------------
         Tr = 0.5d0
         Alp = Al/2.0d0/pi
         xmuf2 = xmuf*xmuf
-
       do k = 1,2
-
-      if (k .eq. 1) then   ! Cloice for [Leg1]       
+      if (k .eq. 1) then       ! Cloice for [Leg1]       
       Bornx = Born_uU2eE(0,xp1,p2,p3,p4)
       elseif (k .eq. 2) then   ! Cloice for [Leg1]       
       Bornx = Born_uU2eE(0,p1,xp2,p3,p4)
       endif
 
 c       [P term]
-        coefx = Alp*(-1.0d0)*dlog(xmuf2/s12/x)    !{a,ai,i} => {q,q,g}
+        coefx = (-1.0d0)*dlog(xmuf2/s12/x)    !{a,ai,i} => {q,q,g}
         coefx = coefx*Bornx
 
-        coef1 = Alp*(-1.0d0)*dlog(xmuf2/s12)    !{a,ai,i} => {q,q,g}
+        coef1 = (-1.0d0)*dlog(xmuf2/s12)    !{a,ai,i} => {q,q,g}
         Born1 = Born_uU2eE(0,p1,p2,p3,p4)
         coef1 = coef1*Born1 
 
-        ALLP(k) = PqqP(x)*(coefx - coef1)
+        if (iplus .eq. 1) then
+        ALLP(k) = Alp*PqqP(x)*(coefx - coef1)
+        Aplus= (AKbarP_qq(x)+AKtilP_qq(x))*(Bornx-Born1)
+       Areg = 0.0d0
+       ADel = 0.0d0
 
-
-       Aplus= (AKbarP_qq(x)+AKtilP_qq(x))*(Bornx-Born1)
+       elseif (iplus .eq. 0) then
+       ALLP(k) = 0.0d0
+       Aplus=  0.0d0
        Areg = (AKbarreg_qq(x)+AKtilreg_qq(x))*Bornx
        ADel = (AKbarD_qq(x)+AKtilD_qq(x))*Born1
+       endif
 
        AllK(k)= Alp*(Aplus+Areg+ADel)
 
@@ -120,8 +124,9 @@ c
       double precision function AKtilD_qq(x)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
+      CF = 4.0d0/3.0d0
       
-      AKtilD_qq = -pi*pi/3.0d0
+      AKtilD_qq = -CF*pi*pi/3.0d0
       return
       end
 

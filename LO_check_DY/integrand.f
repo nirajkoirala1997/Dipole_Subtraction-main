@@ -26,7 +26,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       common/energy/s
       common/distribution/xq
       common/renor_scale/scale
-      common/usedalpha/AL
+      common/usedalpha/AL,ge
       external Born_uU2eE
        
       rs  = dsqrt(s)
@@ -85,7 +85,7 @@ c--------------------------------------------------------------------o
        implicit double precision (a-h,o-z)
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
-       common/usedalpha/AL
+      common/usedalpha/AL,ge
 c       ge=0.007547169811320755d0
 c       ge=1d0/128d0
        ge=1d0/132.18414234455358d0

@@ -4,7 +4,7 @@ c---------------------------------------------------------------------
        dimension p(0:3,1:5),p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3)
        parameter(Pi=3.141592653589793238D0)
        double precision msq,msq1,msq2
-       common/usedalpha/AL
+       common/usedalpha/AL,ge
        call p2dtop1d_5(p,p1,p2,p3,p4,p5)
 
        s12=2.d0*dot(p1,p2)
@@ -18,8 +18,7 @@ c---------------------------------------------------------------------
        s35=2.d0*dot(p3,p5)
        s45=2.d0*dot(p4,p5)
 
-c       ge=0.007547169811320755d0
-       ge=1d0/128d0
+c       ge=1d0/128d0
        qe=DSQRT(ge*4.d0*PI)
        gs=DSQRT(AL*4.d0*PI)
 c       gs=AL

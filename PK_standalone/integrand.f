@@ -12,7 +12,7 @@
       common/pdfname/name
       common/factscale/xmuf
       common/leg_choice/leg
-      common/usedalpha/AL
+      common/usedalpha/AL,ge
       common/distribution/xq
 
       xa     = yy(1)
@@ -35,50 +35,63 @@
              xp2(i) = x*p2(i)
             enddo
 
-           call p1d_to_p2d_4(p1,p2,p3,p4,p)
+        call p1d_to_p2d_4(p1,p2,p3,p4,p)
 
-c        if(leg .eq. 1)  then
-c           call p1d_to_p2d_4(xp1,p2,p3,p4,p)
-c           scale2 = 2.0d0*dot(xp1,p2)
-c           Born =  Born_uU2eE(0,xp1,p2,p3,p4)
-c
-c        elseif(leg .eq. 2) then
-c           call p1d_to_p2d_4(p1,xp2,p3,p4,p)
-c           scale2 = 2.0d0*dot(p1,xp2)
-c           Born =  Born_uU2eE(0,p1,xp2,p3,p4)
-c       endif
+        scalex2 = 2.0d0*x*dot(p1,p2)
+        scalex = dsqrt(scalex2)
 
-        scale2 = 2.0d0*x*dot(p1,p2)
+        scale2 = 2.0d0*dot(p1,p2)
         scale = dsqrt(scale2)
 
-        flo2_PK = 0d0
+      flo2_PK = 0d0
+      PKplus = 0.0d0
+      PKRegDel = 0.0d0
 
-        if ( scale .ge. xlow .and. scale .le. xhigh) then   
 
-                xmuf = scale
-                xmur = scale
-                AL = alphasPDF(xmur)
+        if ( (scale .ge. xlow .and. scale .le. xhigh) .and. 
+     .      (scalex .ge. xlow .and. scalex .le. xhigh))  then   
 
-c          if (leg .eq. 1) call PKterm1(p,x,SumP,SumK)
-c          if (leg .eq. 2) call PKterm2(p,x,SumP,SumK)
+            xmuf = scale
+            xmur = scale
+            AL = alphasPDF(xmur)
 
-              call getPK(x,xmuf,p,xp1,xp2,SumP,SumK)
+            call getPK(1,x,xmuf,p,xp1,xp2,SumP,SumK)
                 
-                call pdf(xa,xmuf,f1)
-                call pdf(xb,xmuf,f2)
-                call setlum(f1,f2,xl)
+            call pdf(xa,xmuf,f1)
+            call pdf(xb,xmuf,f2)
+            call setlum(f1,f2,xl)
 
-                sig1 = xl(1)* (SumP+SumK)  !  [qq lum]
+            sig1 = xl(1)* (SumP+SumK)  !  [qq lum]
 
-                sig = sig1
-
-               xnorm=hbarc2/16d0/pi/sp
-c                xnorm = hbarc2/16d0/pi/s
-                  wgt = xnorm*sig*vwgt
-                  flo2_PK = wgt/vwgt/2d0/eps
-                  return
+            sig = sig1
+            xnorm=hbarc2/16d0/pi/sp
+            wgt = xnorm*sig*vwgt
+            PKplus = wgt/vwgt/2d0/eps
+c            write(*,*)'PKplus =', PKplus
          endif
-        endif
+
+        if (scalex .ge. xlow .and. scalex .le. xhigh) then
+
+            xmuf = scalex
+            xmur = scalex
+            AL = alphasPDF(xmur)
+
+            call getPK(0,x,xmuf,p,xp1,xp2,SumP,SumK)
+                
+            call pdf(xa,xmuf,f1)
+            call pdf(xb,xmuf,f2)
+            call setlum(f1,f2,xl)
+
+            sig1 = xl(1)* (SumP+SumK)  !  [qq lum]
+
+            sig = sig1
+            xnorm=hbarc2/16d0/pi/sp
+            wgt = xnorm*sig*vwgt
+            PKRegDel = wgt/vwgt/2d0/eps
+         endif
+
+         flo2_PK = PKplus + PKRegDel
+      endif
       return
       end
 
@@ -89,8 +102,8 @@ c--------------------------------------------------------------------o
        implicit double precision (a-h,o-z)
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
-c       ge=0.007547169811320755d0
-       ge=1d0/128d0
+       common/usedalpha/AL,ge
+c       ge=1d0/128d0
        e= DSQRT(ge*4.d0*PI)
       IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0
       IF(k .eq. 1)  CF = -4d0/3d0               !leg 1

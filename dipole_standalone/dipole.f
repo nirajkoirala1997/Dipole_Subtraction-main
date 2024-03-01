@@ -7,7 +7,7 @@ c     Initial state dipole for the case of Drell- Yan.
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),
      .           p6(0:3),p7(0:3),p8(0:3),p9(0:3),p(0:3,1:5)
       common/set/set1
-      common/usedalpha/AL
+      common/usedalpha/AL,ge
       call p2dtop1d_5(p,p1,p2,p3,p4,p5)
 c      AL=0.118d0
       s12=2.d0*dot(p1,p2) 
@@ -110,9 +110,9 @@ c--------------------------------------------------------------------o
        implicit double precision (a-h,o-z)
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
-       common/usedalpha/AL
-c       ge=0.007547169811320755d0
-       ge=1d0/128d0
+       common/usedalpha/AL,ge
+c       ge=0.007565203982d0
+c       ge=1d0/128d0
 c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
        gs=DSQRT(Al*4.d0*PI)

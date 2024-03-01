@@ -26,7 +26,7 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
       common/set/set1
       common/distribution/xq
       common/countc/n4
-      common/usedalpha/AL
+      common/usedalpha/AL,ge
 
       xa = xx(1)
       xb = xx(2)

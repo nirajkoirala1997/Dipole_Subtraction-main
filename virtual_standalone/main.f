@@ -4,7 +4,7 @@
       parameter (pi=3.14159265358979d0)
       common/energy/s
       common/amass/am1,am2,am3,am4,am5
-      common/usedalpha/AL
+      common/usedalpha/AL,Al_ew
       common/distribution/xq
       character*50 name
       character*100 run_tag,filename
@@ -18,6 +18,11 @@
       read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
       npt1 = pt1
+      close(10)
+
+
+      open(unit=10,file='../param_card.dat',status='unknown')    
+      read (10,*) Al_ew       ! [ 1/Alpha_ew ]
       close(10)
 
       open(unit=15,file='../run.machine.dat',status='unknown')
@@ -116,6 +121,7 @@ c         endif
         if(iprint .eq. 0) goto 123
         open(unit=20,file='../summary/'//trim(run_tag)//'/'
      .  //trim(filename),status='unknown')
+c     .  //trim(filename),status='unknown', access='append')
          xq = xq_initial
          do i=1,it_max
           write(20,*)xq,ai_lo2(i)

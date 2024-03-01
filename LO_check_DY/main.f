@@ -5,7 +5,7 @@
 
       common/energy/s
       common/amass/am1,am2,am3,am4,am5
-      common/usedalpha/AL
+      common/usedalpha/AL,Al_ew
       common/distribution/xq
       character*50 name
       character*100 run_tag,filename
@@ -19,6 +19,10 @@
       read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
       npt1 = pt1
+      close(10)
+
+      open(unit=10,file='../param_card.dat',status='unknown')    
+      read (10,*) Al_ew       ! [ 1/Alpha_ew ]
       close(10)
 
       open(unit=15,file='../run.machine.dat',status='unknown')
