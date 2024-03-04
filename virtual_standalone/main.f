@@ -1,6 +1,6 @@
       program uU2eE_Virtual 
       implicit double precision (a-h,o-z)
-      dimension x(10),y(10),ai_lo2(1:50)
+      dimension x(10),y(10),ai_lo2(1:50),err(0:50)
       parameter (pi=3.14159265358979d0)
       common/energy/s
       common/amass/am1,am2,am3,am4,am5
@@ -81,7 +81,7 @@ c       writes data in output file
         do j=1,it_max
 
           print*," "
-      write(*,*) achar(27)//'[1;33m' // "For xq = ",int(xq) ,achar(27) 
+      write(*,*) achar(27)//'[1;32m' // "For xq = ",int(xq) ,achar(27) 
      .   //'[0m'
           print*," "
 c        print*,"To write result in Outputfile press 1 else 2:"
@@ -94,7 +94,7 @@ c     .          position='append')
 c         write(17,*) xq,ai_lo2
 c         close(17)
 c         endif
-         
+         err(j) = sd
          xq = xq + xstep
 
             print*,"  "
@@ -109,10 +109,11 @@ c         endif
 
         xq = xq_initial
        write(*,*)achar(27)//'[1;32m'//"   xq"," ","           Integral",
+     .   "         error",
      . achar(27)//'[0m'
         do j=1,it_max
-          write(*,'(i7,3e27.15)')
-     .             int(xq),ai_lo2(j)
+          write(*,'(i7,3e27.15,3e27.15)')
+     .             int(xq),ai_lo2(j),err(j)
           xq = xq + xstep
         enddo
         if(iprint .eq. 0) goto 123
@@ -121,7 +122,7 @@ c         endif
 c     .  //trim(filename),status='unknown', access='append')
          xq = xq_initial
          do i=1,it_max
-          write(20,*)xq,ai_lo2(i)
+          write(20,*)xq,ai_lo2(i),err(i)
           xq = xq + xstep
          enddo
          close(20)

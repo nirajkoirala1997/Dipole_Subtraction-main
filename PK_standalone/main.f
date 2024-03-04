@@ -8,7 +8,7 @@
       common/leg_choice/leg
       common/usedalpha/AL,Al_ew
       common/distribution/xq
-      dimension PK(1:50),PK2(1:50)
+      dimension PK(1:50),err(1:50)
       
 
 c      include 'coupl.inc'
@@ -65,10 +65,11 @@ c ~~~~~~~~~~~Writing in a file to store~~~~~~~~~~~~c
           call vsup(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
 
           PK(j) = ai_lo2
+          err(j)=sd
             print*,"  "
             print*,"  "
             write(*,*)achar(27)//'[1;32m'//"Integral=", 
-     .      ai_lo2,achar(27) //'[0m', "+-",sd
+     .      ai_lo2,achar(27) //'[0m', "+-",err(j)
             write(*,*)"with chisq    =",chi2
             print*," "
             print*," "
@@ -77,10 +78,11 @@ c ~~~~~~~~~~~Writing in a file to store~~~~~~~~~~~~c
         enddo
         xq = xq_initial
        write(*,*)achar(27)//'[1;32m'//"   xq"," ","       Integral PK",
+     .  "                    error",
      . achar(27)//'[0m'
         do j=1,it_max
-          write(*,'(i7,3e27.15)')
-     .             int(xq),PK(j)
+          write(*,'(i7,3e27.15,3e27.15)')
+     .             int(xq),PK(j),err(j)
           xq = xq + xincr
         enddo
 c~~~~~~~~~~~~~~~~~~~~~~~~~ * END * ~~~~~~~~~~~~~~~~~~~~~~~~~~c       
@@ -92,7 +94,7 @@ c ~~~~~~~~~~~Writing in a file to compare~~~~~~~~~~~~c
 c     .   '/'//trim(filename),status='unknown', access='append')
          xq = xq_initial
          do i=1,it_max
-          write(21,*)xq,PK(i)
+          write(21,*)xq,PK(i),err(i)
           xq = xq + xincr
          enddo
          close(21)

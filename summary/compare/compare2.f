@@ -4,6 +4,7 @@
      .    xqreal(1:50),xintreal(1:50),xqPK(1:50),xintPK(1:50)
      .                                ,xqPKterm2(1:50),xintPKterm2(1:50)
      .                                ,xqch(1:50),xintch(1:50)
+     .   ,xLO_err(1:50),xVir_err(1:50),xreal_err(1:50),xPK_err(1:50)
         character*100 run_tag
         character*50 name
 
@@ -86,17 +87,19 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         open(unit=17,file='../'//trim(run_tag)//'/LO.dat',
      .     status='unknown')
         do i=1,it_max
-        read(17,*) xqLO(i),xintLO(i)
+        read(17,*) xqLO(i),xintLO(i),xLO_err(i)
         enddo
         close(17)
         print*,"/LO.dat"
        write(*,*)achar(27)//'[1;32m'//"   xq"," ","        Integral_LO",
+     .     "                   error",
      . achar(27)//'[0m'
         do i=1,it_max
-        write(*,'(i7,3e27.15)')int(xqLO(i)),xintLO(i)
+        write(*,'(i7,3e27.15,3e27.15)')int(xqLO(i)),xintLO(i),xLO_err(i)
         enddo
         call sleep(1)
       endif
+
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c                [Virtual contribution]
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,16 +115,18 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         open(unit=17,file='../'//trim(run_tag)//'/virtual.dat',
      .     status='unknown')
         do i=1,it_max
-        read(17,*) xqVir(i),xintVir(i)
+        read(17,*) xqVir(i),xintVir(i),xVir_err(i)
 c        read(17,*) xqVir(i),xintVir(i)
         enddo
         close(17)
         print*," "
         print*,"/virtual.dat"
        write(*,*)achar(27)//'[1;32m'//"   xq           Integral_VIR",
+     .     "                   error",
      . achar(27)//'[0m'
         do i=1,it_max
-          write(*,'(i7,3e27.15)')int(xqVir(i)),xintVir(i)
+           write(*,'(i7,3e27.15,3e27.15)')int(xqVir(i)),
+     .     xintVir(i),xVir_err(i)
         enddo
         call sleep(1)
         endif
@@ -141,7 +146,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         open(unit=17,file='../'//trim(run_tag)//'/real.dat',
      .     status='unknown')
         do i=1,it_max
-        read(17,*) xqreal(i),xintreal(i)
+        read(17,*) xqreal(i),xintreal(i),xreal_err(i)
 c        read(17,*) xqreal(i),xintreal(i)
         enddo
         close(17)
@@ -149,15 +154,19 @@ c        read(17,*) xqreal(i),xintreal(i)
         print*," "
         print*,"/real.dat"
        write(*,*)achar(27)//'[1;32m'//"   xq           Integral Real",
+     .  "                  error",
      . achar(27)//'[0m'
         do i=1,it_max
-          write(*,'(i7,3e27.15)')int(xqreal(i)),xintreal(i)
+          write(*,'(i7,3e27.15,3e27.15)')int(xqreal(i)),xintreal(i)
+     .       ,xreal_err(i)
         enddo
         call sleep(1)
         endif
+
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c                          PK terms
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
        call system("test -f ../"// trim(run_tag) //"/PK.dat 
      . && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
@@ -169,16 +178,17 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         open(unit=17,file='../'//trim(run_tag)//'/PK.dat',
      .     status='unknown')
         do i=1,it_max
-        read(17,*) xqPK(i),xintPK(i)
+        read(17,*) xqPK(i),xintPK(i),xPK_err(i)
 c        read(17,*) xqPK(i),xintPK(i)
         enddo
         close(17)
         print*," "
         print*,"/PK.dat"
        write(*,*)achar(27)//'[1;32m'//"   xq","          Integral PK",
+     .  "                     error",
      . achar(27)//'[0m'
         do i=1,it_max
-          write(*,'(i7,3e27.15)')int(xqPK(i)),xintPK(i)
+        write(*,'(i7,3e27.15,3e27.15)')int(xqPK(i)),xintPK(i),xPK_err(i)
         enddo
         call sleep(1)
         endif
@@ -190,12 +200,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        if (inlo .eq. 3) then
        print*," "
        write(*,*)achar(27)//'[1;32m'//"   xq  ",
-     . "     sigma NLO dipole", 
+     . "       sigma NLO dipole","                 error",
      . achar(27)//'[0m'
         xq = xq_initial
         do i=1,it_max
-          write(*,'(i7,3e27.15)')int(xq),
-     .  xintPK(i)+xintvir(i)+xintreal(i)!+xintLO(i))
+          write(*,'(i7,3e27.15,3e27.15)')int(xq),
+     .  xintPK(i)+xintvir(i)+xintreal(i)
+     .   ,xVir_err(i)+xreal_err(i)+xPK_err(i)
 c     .  xintvir(i)+xintreal(i))
 c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
 c     .  xintvir(i)+xintreal(i)+xintLO(i)

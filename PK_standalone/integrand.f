@@ -74,7 +74,12 @@ c            write(*,*)'PKplus =', PKplus
 
             xmuf = scalex
             xmur = scalex
-            AL = alphasPDF(xmur)
+c            AL = alphasPDF(xmur)
+                ALSWZ=0.120d0
+                XMT = 172.5d0
+                call InitAlphaS(1, 1.0D0, 91.1876D0, ALSWZ,
+     &                  1.4D0, 4.75D0, XMT )
+              AL = alphaS(xmur)
 
             call getPK(0,x,xmuf,p,xp1,xp2,SumP,SumK)
                 

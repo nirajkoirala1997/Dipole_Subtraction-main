@@ -3,7 +3,7 @@
       integer leg
       character*50 green
       parameter (pi=3.14159265358979d0)
-      dimension ai_nlo3(0:50)
+      dimension ai_nlo3(0:50),xerr(0:50)
       common/energy/s
       common/amass/am1,am2,am3,am4,am5
       common/leg_choice/leg
@@ -77,7 +77,7 @@ c  saves the data in output file
 c            print*,"For xq=",xq ! base value
 c            write(*, '(A)') // green // "For xq = " // reset //
           print*," "
-      write(*,*) achar(27)//'[1;33m' // "For xq = ",int(xq) ,achar(27) 
+      write(*,*) achar(27)//'[1;32m' // "For xq = ",int(xq) ,achar(27) 
      .   //'[0m'
           print*," "
 
@@ -92,14 +92,16 @@ c            write(*, '(A)') // green // "For xq = " // reset //
             print*," "
             print*," "
             xq = xq + step_size 
+            xerr(j) = sd
           enddo
           
           xq = xq_initial
        write(*,*)achar(27)//'[1;92m'//"   xq"," ","           Integral",
+     .   "         error",
      . achar(27)//'[0m'
           
           do j=1,it_max
-          write(*,'(i7,3e27.15)')int(xq),ai_nlo3(j)
+          write(*,'(i7,3e27.15)')int(xq),ai_nlo3(j),xerr(j)
           
           xq = xq + step_size 
           enddo
@@ -109,7 +111,7 @@ c            write(*, '(A)') // green // "For xq = " // reset //
 c     .          //trim(filename),status='unknown', access='append')
          xq = xq_initial
          do i=1,it_max
-          write(20,*)xq,ai_nlo3(i)
+          write(20,*)xq,ai_nlo3(i),xerr(i)
           xq = xq + step_size 
          enddo
          close(20)

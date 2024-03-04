@@ -1,6 +1,6 @@
       program uU2eE_Virtual 
       implicit double precision (a-h,o-z)
-      dimension x(10),y(10),ai_lo2(1:50)
+      dimension x(10),y(10),ai_lo2(1:50),err(0:50)
       parameter (pi=3.14159265358979d0)
 
       common/energy/s
@@ -10,9 +10,6 @@
       character*50 name
       character*100 run_tag,filename
       external flo2_Vir
-      include 'coupl.inc'
-      include 'nexternal.inc'
-      call setpara('param_card.dat',.true.)
 
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')    
@@ -94,13 +91,15 @@ c         endif
             print*," "
             print*," "
          xq = xq + step_size
+         err(j) = sd
         enddo
 
          xq = xq_initial
        write(*,*)achar(27)//'[1;32m'//"   xq"," ","           Integral",
+     .   "                   error",
      . achar(27)//'[0m'
         do j=1,it_max
-          write(*,'(i7,3e27.15)')int(xq),ai_lo2(j)
+          write(*,'(i7,3e27.15)')int(xq),ai_lo2(j),err(j)
           xq = xq + step_size
         enddo
 
@@ -109,7 +108,7 @@ c         endif
      .  //trim(filename),status='unknown')
          xq = xq_initial
          do i=1,it_max
-          write(20,*)xq,ai_lo2(i)
+          write(20,*)xq,ai_lo2(i),err(i)
           xq = xq + step_size
          enddo
          close(20)

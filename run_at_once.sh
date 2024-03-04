@@ -1,10 +1,10 @@
 cd virtual_standalone
 make
-time ./runVir
+./runVir
 cd ../dipole_standalone/
 make
-time ./run.x
+./runDipole
 cd ../PK_standalone/
 make
-time ./runPK
+./runPK
 

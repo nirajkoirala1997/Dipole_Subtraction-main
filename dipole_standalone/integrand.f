@@ -64,8 +64,14 @@ c           xmur=xq
           call pdf(xa,xmuf,f1)
           call pdf(xb,xmuf,f2)
           call setlum(f1,f2,xl)
-          AL = alphasPDF(xmur)
-c          Al = 0.118d0 
+c          AL = alphasPDF(xmur)
+
+                ALSWZ=0.120d0
+                XMT = 172.5d0
+                call InitAlphaS(1, 1.0D0, 91.1876D0, ALSWZ,
+     &                  1.4D0, 4.75D0, XMT )
+              AL = alphaS(xmur)
+
           call p1dtop2d_5(p1,p2,p3,p4,p5,p)
 
           call  uu2ee_r(p,sig)

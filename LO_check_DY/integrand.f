@@ -59,7 +59,12 @@ c              xmur=xq
               call pdf(xa,xmuf,f1)
               call pdf(xb,xmuf,f2)
               call setlum(f1,f2,xl)
-              AL = alphasPDF(xmur)
+c              AL = alphasPDF(xmur)
+                ALSWZ=0.120d0
+                XMT = 172.5d0
+                call InitAlphaS(1, 1.0D0, 91.1876D0, ALSWZ,
+     &                  1.4D0, 4.75D0, XMT )
+              AL = alphaS(xmur)
 
               sig= xl(1)*Born_uU2eE(0,p1,p2,p3,p4)
 
@@ -88,7 +93,7 @@ c--------------------------------------------------------------------o
       common/usedalpha/AL,ge
 c       ge=0.007547169811320755d0
 c       ge=1d0/128d0
-       ge=1d0/132.18414234455358d0
+c       ge=1d0/132.18414234455358d0
 c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
        gs=DSQRT(Al*4.d0*PI)
