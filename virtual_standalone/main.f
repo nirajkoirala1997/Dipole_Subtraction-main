@@ -9,15 +9,12 @@
       character*50 name
       character*100 run_tag,filename
       external flo2_Vir
-      include 'coupl.inc'
-      include 'nexternal.inc'
-      call setpara('param_card.dat',.true.)
 
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')    
       read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
-      npt1 = pt1
+      npt1 = pt1*2
       close(10)
 
 
@@ -70,7 +67,7 @@ c        stop
         print*," "
         print*," "
         print*,"____________________________________"
-        Print*,"3. Calculating Virtual Contribution"
+        Print*,"    Calculating Virtual Contribution"
         print*,"____________________________________"
         print*,"````````````````````````````````````"
         Print*,"    Virtual + Dipole over 2-Body PS"

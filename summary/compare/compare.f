@@ -20,6 +20,7 @@ c       Leading Order
       close(15)
       
 c checking file
+       inlo=0
        call system("test -d ../"// trim(run_tag) //
      . " && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
@@ -86,6 +87,7 @@ c [LO contribution]
         do i=1,it_max
         write(*,'(i7,3e27.15)')int(xqLO(i)),xintLO(i)
         enddo
+        call sleep(1)
       endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -97,6 +99,7 @@ c [Virtual contribution]
        close(13)
        call system("rm command.txt")
        if(ierr .eq. 1) then
+               inlo=inlo+1
         open(unit=17,file='../'//trim(run_tag)//'/virtual.dat',
      .     status='unknown')
         do i=1,it_max
@@ -106,11 +109,12 @@ c        read(17,*) xqVir(i),xintVir(i)
         close(17)
         print*," "
         print*,"/virtual.dat"
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","       Integral_VIR",
+       write(*,*)achar(27)//'[1;32m'//"   xq           Integral_VIR",
      . achar(27)//'[0m'
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqVir(i)),xintVir(i)
         enddo
+        call sleep(1)
         endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -134,6 +138,7 @@ c        print*,"Real - Dipole"
        close(13)
        call system("rm command.txt")
        if(ierr .eq. 1) then
+               inlo=inlo+1
         open(unit=17,file='../'//trim(run_tag)//'/real.dat',
      .     status='unknown')
         do i=1,it_max
@@ -144,11 +149,12 @@ c        read(17,*) xqreal(i),xintreal(i)
 
         print*," "
         print*,"/real.dat"
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","      Integral Real",
+       write(*,*)achar(27)//'[1;32m'//"   xq           Integral Real",
      . achar(27)//'[0m'
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqreal(i)),xintreal(i)
         enddo
+        call sleep(1)
         endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -161,6 +167,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        close(13)
        call system("rm command.txt")
        if(ierr .eq. 1) then
+               inlo=inlo+1
         open(unit=17,file='../'//trim(run_tag)//'/PK.dat',
      .     status='unknown')
         do i=1,it_max
@@ -170,13 +177,43 @@ c        read(17,*) xqPK(i),xintPK(i)
         close(17)
         print*," "
         print*,"/PK.dat"
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","      Integral PK",
+       write(*,*)achar(27)//'[1;32m'//"   xq","          Integral PK",
      . achar(27)//'[0m'
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqPK(i)),xintPK(i)
         enddo
+        call sleep(1)
         endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c       Total sig_NLO will be
+       if (inlo .eq. 3) then
+       print*," "
+       write(*,*)achar(27)//'[1;32m'//"   xq  ",
+     . "     sigma NLO dipole", 
+     . achar(27)//'[0m'
+        xq = xq_initial
+        do i=1,it_max
+          write(*,'(i7,3e27.15)')int(xq),
+     .  xintPK(i)+xintvir(i)+xintreal(i)!+xintLO(i))
+c     .  xintvir(i)+xintreal(i))
+c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
+c     .  xintvir(i)+xintreal(i)+xintLO(i)
+        xq = xq + step_size
+        enddo
+        call sleep(1)
+        endif
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+
 c       call system("test -f ../"// trim(run_tag) //"/PK2.dat 
 c     . && echo 1 > command.txt || echo 0  > command.txt")
 c       open(unit=13,file="command.txt",status="unknown")
@@ -202,6 +239,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c        print*,"Sigma_Chinmoy"
+        inloch = 0
        call system("test -f ../"// trim(run_tag) //"/smqqb.nlo.out
      . && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
@@ -209,6 +247,7 @@ c        print*,"Sigma_Chinmoy"
        close(13)
        call system("rm command.txt")
        if(ierr .eq. 1) then
+               inloch = 1
         open(unit=17,file='../'//trim(run_tag)//'/smqqb.nlo.out',
      .     status='unknown')
         do i=1,it_max
@@ -222,29 +261,9 @@ c        print*,"Sigma_Chinmoy"
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
         enddo
+        call sleep(1)
         endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-c       Total sig_NLO will be
-       print*," "
-       write(*,*)achar(27)//'[1;32m'//"   xq  ",
-     . " sigma NLO dipole", 
-     . achar(27)//'[0m'
-        xq = xq_initial
-        do i=1,it_max
-          write(*,'(i7,3e27.15)')int(xq),(xintPK(i)+
-c     .  xintPK(i)+xintvir(i)+xintreal(i)+xintLO(i))
-     .  xintvir(i)+xintreal(i))
-c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
-c     .  xintvir(i)+xintreal(i)+xintLO(i)
-        xq = xq + step_size
-        enddo
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
 cc~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c       call system("test -f ../"// trim(run_tag) //"smqqb.nlo.out
 c     . && echo 1 > command.txt || echo 0  > command.txt")
@@ -267,6 +286,7 @@ c        xq = xq + step_size
 c        enddo
 c       endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        if (inlo + inloch .eq. 4) then
        call system("test -f ../"// trim(run_tag) //"/smqqb.nlo.out
      . && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
@@ -286,6 +306,7 @@ c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
 c     .  xintvir(i)+xintreal(i)+xintLO(i)
         xq = xq + step_size
         enddo
+        endif
         endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 123        continue

@@ -21,7 +21,7 @@
       open(unit=10,file='../run.vegas.dat',status='unknown')    
       read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
-      npt1 = pt1/5
+      npt1 = pt1/2
       close(10)
 
       open(unit=10,file='../param_card.dat',status='unknown')    
@@ -59,11 +59,11 @@ c      print*,"Press 2 to initialise CUBA-VEGAS:"
 c        read*,i
         i=1
         IF (I .EQ. 1) THEN
-          print*,"----------------------------------"
-          print*,"|Initializing Dipole Subtraction  |"
-          print*,"----------------------------------"
+          print*,"  ----------------------------------"
+          print*,"  |Initializing Dipole Subtraction  |"
+          print*,"  ----------------------------------"
           print*," "
-          print*,"4. real - Dipole Over 3body phasespace"
+          print*,"  real - Dipole Over 3body phasespace"
           print*,"``````````````````````````````````````"
           print*," "
           print*," "
