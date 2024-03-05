@@ -5,11 +5,11 @@
 
       common/energy/s
       common/amass/am1,am2,am3,am4,am5
-      common/usedalpha/AL,Al_ew
+      common/usedalpha/AL,ge   
       common/distribution/xq
       character*50 name
       character*100 run_tag,filename
-      external flo2_Vir
+      external flo2_LO
 
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')    
@@ -19,7 +19,7 @@
       close(10)
 
       open(unit=10,file='../param_card.dat',status='unknown')    
-      read (10,*) Al_ew       ! [ 1/Alpha_ew ]
+      read (10,*) ge       ! [ 1/Alpha_ew ]
       close(10)
 
       open(unit=15,file='../run.machine.dat',status='unknown')
@@ -62,6 +62,7 @@ c        read*,i
         print*," "
         print*," "
         xq = xq_initial
+
 c       writes data in output file
         filename = "LO.dat"
         if (iprint .eq. 1) call output(run_tag,filename)
@@ -73,16 +74,9 @@ c       writes data in output file
      .   //'[0m'
           print*," "
 
-c        print*,"To write result in Outputfile press 1 else 2:"
-c        read*,j
          call brm48i(40,0,0) ! initialize random number generator
-         call vsup(3,npt1,its1,flo2_Vir,ai_lo2(j),sd,chi2)
-c         if (j .eq. 1) then
-c         open(unit=17,file='../Output_low_q_LO.dat',status='unknown',
-c     .          position='append')
-c         write(17,*) xq,ai_lo2
-c         close(17)
-c         endif
+         call vsup(3,npt1,its1,flo2_LO,ai_lo2(j),sd,chi2)
+
             print*,"  "
             print*,"  "
             write(*,*)achar(27)//'[1;32m'//"Integral=",
@@ -95,7 +89,7 @@ c         endif
         enddo
 
          xq = xq_initial
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","           Integral",
+       write(*,*)achar(27)//'[1;32m'//"   xq"," ","        LO Integral",
      .   "                   error",
      . achar(27)//'[0m'
         do j=1,it_max

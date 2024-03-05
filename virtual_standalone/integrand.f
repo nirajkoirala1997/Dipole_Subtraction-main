@@ -57,14 +57,13 @@ c              xmur=xq
               call pdf(xa,xmuf,f1)
               call pdf(xb,xmuf,f2)
               call setlum(f1,f2,xl)
-c              AL = alphasPDF(xmur)
-                ALSWZ=0.120d0
-                XMT = 172.5d0
-                call InitAlphaS(1, 1.0D0, 91.1876D0, ALSWZ,
-     &                  1.4D0, 4.75D0, XMT )
-              AL = alphaS(xmur)
+              AL = alphasPDF(xmur)
+c                ALSWZ=0.120d0
+c                XMT = 172.5d0
+c                call InitAlphaS(1, 1.0D0, 91.1876D0, ALSWZ,
+c     &                  1.4D0, 4.75D0, XMT )
+c              AL = alphaS(xmur)
 
-c              ge=1d0/128d0
               e= DSQRT(ge*4.d0*PI)
               gs=DSQRT(Al*4.d0*PI)
               qu2=4d0/9d0
@@ -75,13 +74,16 @@ c              ge=1d0/128d0
               t=-2d0*dot(p2,p4)
               u=-2d0*dot(p2,p3)
 
-
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c            Only finite part of loop is considered here                    
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
               VIR= gs**2*8*e**4*qu2*(5*(-6 + 11*Pi**2)*s12**2 +
      -        2*(-48 + 55*Pi**2)*s12*t + 2*(-48 + 55*Pi**2)*t**2 -
      -        6*(s12**2 + 6*s12*t + 6*t**2)*Log(xmu2/s12) -
      -        6*(s12**2 + 2*s12*t + 2*t**2)*Log(xmu2/s12)**2)/
      -          (24*Pi**2*s12**2)
                VIR = VIR/36d0
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                
 c         VIR = (8*Al*e**4*qu2*
 c     -  ((-15 + 4*Pi**2)*s12**2 + 8*(-6 + Pi**2)*s12*t +
@@ -97,6 +99,9 @@ c
                xkq     = Cf*(7d0/2d0-pi*pi/6d0)
            EulerGamma = 0.5772156649015328606065120d0
 
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c            Eikonal part = SumI * Born * c(olour factors)           
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         SumI(1)=   (-8*Al*CF*e**4*qu2*
      -   (12*xkq*s12**2 -5*Pi**2*s12**2 + 24*gammaq*s12*t+24*xkq*s12*t- 
      -      10*Pi**2*s12*t + 24*gammaq*t**2 + 24*xkq*t**2 - 
@@ -111,25 +116,7 @@ c
      -         2*t**2*(EulerGamma - gammaq - Log(4*Pi)) + 
      -       s12**2*(1 + EulerGamma - gammaq - Log(4*Pi)))*Log(xmu2/s12)
      -  + 6*(s12**2 + 2*s12*t +2*t**2)*Log(xmu2/s12)**2))/(3.*Pi*s12**2)
-
-
-
-c
-c          SumI(2) = 
-c     -      (-6*Al*CF*EulerGamma**2 - 12*Al*CF*gammaq + 
-c     -     12*Al*CF*EulerGamma*gammaq - 12*Al*CF*xkq + 5*Al*CF*Pi**2 + 
-c     -     12*Al*CF*EulerGamma*Log(4*Pi) - 12*Al*CF*gammaq*Log(4*Pi) - 
-c     -     6*Al*CF*Log(4*Pi)**2 + 12*Al*CF*EulerGamma*Log(xmu2/s12) - 
-c     -     12*Al*CF*gammaq*Log(xmu2/s12) - 
-c     -     12*Al*CF*Log(4*Pi)*Log(xmu2/s12) - 6*Al*CF*Log(xmu2/s12)**2)/
-c     -      (24.*Pi)
-c          SumI(2) = SumI(2)*Born_uU2eE(0,p1,p2,p3,p4)!/9d0 ! 9 for colour  avg
-c          print*,"eikinal:",SumI(1),SumI(2)
-
-
-c              call p1d_to_p2d_4(p1,p2,p3,p4,p)
-c             call Iterm(p,coef,SumI)
-c
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
               sig= xl(1)*(Vir + SumI(1))

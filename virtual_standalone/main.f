@@ -14,7 +14,7 @@
       open(unit=10,file='../run.vegas.dat',status='unknown')    
       read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
-      npt1 = pt1*2
+      npt1 = pt1
       close(10)
 
 

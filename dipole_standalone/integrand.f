@@ -33,9 +33,12 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
       xb = xx(2)
       rsp = dsqrt(xa*xb*s)
 
+      xmz = 91.1876d0
+
       ipass1 = 0
 
         eps = 0.5d0*2d0
+c        eps = 0.5d-1
        xlow = xq - eps
       xhigh = xq + eps
 
@@ -65,13 +68,17 @@ c           xmur=xq
           call pdf(xa,xmuf,f1)
           call pdf(xb,xmuf,f2)
           call setlum(f1,f2,xl)
-c          AL = alphasPDF(xmur)
+          ALSZ = alphasPDF(xmz)
+          AL = alphasPDF(xmur)
 
-                ALSWZ=0.120d0
-                XMT = 172.5d0
-                call InitAlphaS(1, 1.0D0, 91.1876D0, ALSWZ,
-     &                  1.4D0, 4.75D0, XMT )
-              AL = alphaS(xmur)
+c          write(*,*)'Alpha_s (Mz) =', ALSZ
+c          write(*,*)'Alpha_s (muR) =', AL
+
+c                ALSWZ=0.120d0
+c                XMT = 172.5d0
+c                call InitAlphaS(1, 1.0D0, 91.1876D0, ALSWZ,
+c     &                  1.4D0, 4.75D0, XMT )
+c              AL = alphaS(xmur)
 
           call p1dtop2d_5(p1,p2,p3,p4,p5,p)
 

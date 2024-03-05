@@ -3,12 +3,12 @@
         dimension xqLO(1:50),xintLO(1:50),xqvir(1:50),xintvir(1:50),
      .    xqreal(1:50),xintreal(1:50),xqPK(1:50),xintPK(1:50)
      .                                ,xqPKterm2(1:50),xintPKterm2(1:50)
-     .                                ,xqch(1:50),xintch(1:50)
+     .                                ,xqLO_ch(1:50),xintLO_ch(1:50)   
+     .                                ,xqch(1:50),xintch(1:50)   
         character*100 run_tag
         character*50 name
 
         
-c       Leading Order
       open(unit=15,file='../../run.machine.dat',status='unknown')
       read (15,*) mid                   ! machine id Tevatron:0 LHC:1
       read (15,*) ecm                   ! ecm
@@ -59,7 +59,6 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       close(15)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
       print*," "
       print*,"Reading Data from directory: /summary/"//trim(run_tag)
       print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
@@ -97,6 +96,58 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         enddo
         call sleep(1)
       endif
+
+c~~~~~~~~~~~~~~~~~[ Chinmoy LO ]        
+
+             call system("test -f ../"// trim(run_tag) //"/LO2.dat
+     . && echo 1 > command.txt || echo 0  > command.txt")
+       open(unit=13,file="command.txt",status="unknown")
+       read(13,*)ierr
+       close(13)
+       call system("rm command.txt")
+       if(ierr .eq. 1) then
+        open(unit=17,file='../'//trim(run_tag)//'/LO2.dat',
+     .     status='unknown')
+        do i=1,it_max
+        read(17,*) xqLO_ch(i),xintLO_ch(i)
+        enddo
+        close(17)
+        print*,"/LO2.dat"
+       write(*,*)achar(27)//'[1;32m'//"   xq"," ","        Chinmoy_LO",
+     . achar(27)//'[0m'
+        do i=1,it_max
+        write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO_ch(i)
+        enddo
+        call sleep(1)
+      endif
+
+      
+c~~~~~~~~~~~~~~~~~[ ratio ]        
+
+       call system("test -f ../"// trim(run_tag) //"/LO2.dat
+     . && echo 1 > command.txt || echo 0  > command.txt")
+       open(unit=13,file="command.txt",status="unknown")
+       read(13,*)ierr
+       close(13)
+       call system("rm command.txt")
+       if(ierr .eq. 1) then
+        open(unit=17,file='../'//trim(run_tag)//'/LO2.dat',
+     .     status='unknown')
+        do i=1,it_max
+        read(17,*) xqLO_ch(i),xintLO_ch(i)
+        enddo
+        close(17)
+        print*,"/LO2.dat"
+       write(*,*)achar(27)//'[1;32m'//"   xq          LO my/Chinmoy_LO",
+     . achar(27)//'[0m'
+        do i=1,it_max
+        write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
+        enddo
+        call sleep(1)
+        stop
+      endif
+
+
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c                [Virtual contribution]
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

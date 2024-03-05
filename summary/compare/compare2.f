@@ -7,6 +7,7 @@
      .   ,xLO_err(1:50),xVir_err(1:50),xreal_err(1:50),xPK_err(1:50)
         character*100 run_tag
         character*50 name
+        character*100 message
 
         
 c       Leading Order
@@ -46,6 +47,10 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        call system("rm command.txt")
        if(ierr .eq. 0 ) then
        call system("cp ../../run.machine.dat ../"// trim(run_tag))
+       print*,"Enter short text about this run for future references."
+       read(*, '(A)', advance='yes')message
+       call system("echo " //message// " >> ../" //trim(run_tag)//
+     .    "/run.machine.dat")
        endif
         
       open(unit=15,file='../'//trim(run_tag)//'/run.machine.dat'
@@ -57,6 +62,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       read (15,*) xq_initial            ! initialise xq value
       read (15,*) step_size             ! size in the multiplle of loop variable
       read (15,*) run_tag               ! name of run directory to save output
+      read (15,*) iprint
+      read (15, '(A)', iostat=ierr) message  ! this identifies the message for the process
       close(15)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -69,6 +76,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       print*,"         it_max:" ,int(it_max)                !it_max no of q for distribution
       print*,"initial Q value:", int(xq_initial),"[GeV]"            ! initialise xq value
       print*,"     step size :", int(step_size)             ! size in the multiplle of loop variable
+      print*,"Run Description:   ",message
       print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
       print*," "
       call sleep(1)

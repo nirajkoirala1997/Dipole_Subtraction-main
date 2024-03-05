@@ -6,13 +6,13 @@ c     cuba specific parameters
       integer n4,ndim,ncomp,nvec,core,iter,userdata 
       real*8 xx(ndim) ,f(ncomp),weight,flo2_Vir
       common/countc/n4
-      external flo2_Vir
-      f(1) = flo2_Vir(xx,weight)
+      external flo2_LO
+      f(1) = flo2_LO(xx,weight)
       return
       end
 C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      function flo2_Vir(yy,vwgt)
+      function flo2_LO(yy,vwgt)
       implicit double precision (a-h,o-z)
       dimension yy(10)
       dimension f1(-6:6),f2(-6:6),xl(15)
@@ -36,13 +36,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       rsp = dsqrt(xa*xb*s)
         
       ipass = 0
-        eps = 0.5d0*2d0
+        eps = 0.5d0
        xlow = xq - eps
       xhigh = xq + eps
 
       xcut = xq - 10.0d0
 
-      if (rsp .gt. xcut) then
+c      if (rsp .gt. xcut) then
 
 
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
@@ -59,7 +59,7 @@ c              xmur=xq
               call pdf(xa,xmuf,f1)
               call pdf(xb,xmuf,f2)
               call setlum(f1,f2,xl)
-c              AL = alphasPDF(xmur)
+              AL = alphasPDF(xmur)
                 ALSWZ=0.120d0
                 XMT = 172.5d0
                 call InitAlphaS(1, 1.0D0, 91.1876D0, ALSWZ,
@@ -70,15 +70,15 @@ c              AL = alphasPDF(xmur)
 
               xnorm=hbarc2/16d0/pi/(xa*xb*s)
               wgt=xnorm*sig*vwgt
-              flo2_Vir=wgt/vwgt/2d0/eps
+              flo2_LO=wgt/vwgt/2d0/eps
             return
        else                  
-        flo2_Vir=0d0
+        flo2_LO=0d0
         return
        endif
-       else
-        flo2_Vir=0d0
-       endif
+c       else
+c        flo2_LO=0d0
+c       endif
       end
 
 c---------------------------------------------------------------------
@@ -91,13 +91,9 @@ c--------------------------------------------------------------------o
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
       common/usedalpha/AL,ge
-c       ge=0.007547169811320755d0
-c       ge=1d0/128d0
-c       ge=1d0/132.18414234455358d0
-c       Al=0.118d0
        e= DSQRT(ge*4.d0*PI)
        gs=DSQRT(Al*4.d0*PI)
-c       write(*,*)'e = ',e
+
       IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0 
       IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
       IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2    
@@ -108,7 +104,7 @@ c       write(*,*)'e = ',e
       xnorm =1d0
       qu2 = 1d0!4d0/9d0
 c       2 added because of u u~ symm
-      Born_uU2eE= (2d0*e**4*qu2*(-2*s13*s23 + s12*(s13 +
+      Born_uU2eE= 2d0 * (2d0*e**4*qu2*(-2*s13*s23 + s12*(s13 +
      .            s23)))/(3d0*s12**2)
        return
        end
