@@ -17,6 +17,7 @@ c      Our vegas specific
 C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
       dimension  xx(10),p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),q(0:3)
      .             ,p(0:3,1:5),dip(2),B1(1:2),xl(15),f1(-6:6),f2(-6:6)
+     .             , sig(1:2),SumD(1:2)
       integer i35,i45,is5,itest
       integer k1,k2,k3,ipass,n4,unphy
       parameter (pi=3.14159265358979d0)
@@ -75,14 +76,19 @@ c          AL = alphasPDF(xmur)
           call p1dtop2d_5(p1,p2,p3,p4,p5,p)
 
           call  uu2ee_r(p,sig)
-          SumD=dipole_uU_g(1,p)+dipole_uU_g(2,p)
+          SumD(1) = dipole_uU_g(1,p) + dipole_uU_g(2,p)
+          SumD(2) = dipole_gq_q(1,p) + dipole_gq_q(2,p)
 
-          sig2 = xl(1)*(sig - SumD)
+          sig(1) = xl(1)*(sig(1) - SumD(1))
+          sig(2) = xl(8)*(sig(2) - SumD(2))   ! 2 correspond to gq channel
+                
+          sigma = sig(1)! + sig(2)
+
 
           pi_1 = 0.5d0*rsp
           flux = 4d0*pi_1*rsp
           xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
-          wgt=xxjac*xnorm*sig2*weight
+          wgt=xxjac*xnorm*sigma*weight
           fnlo3=wgt/weight/2d0/eps
          endif
        endif

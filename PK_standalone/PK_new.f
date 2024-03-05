@@ -47,13 +47,13 @@ c-----------------------------------------------------------
        Aplus=  0.0d0
        Areg = (AKbarreg_qq(x)+AKtilreg_qq(x))*Bornx
        ADel = (AKbarD_qq(x)+AKtilD_qq(x))*Born1
-                                                   !_________ [ qg channel]
-       AllP(k+1) = Alp*Bornx*Pgq_reg(x)*coefx       
-       AllK(k+1) = Alp*Bornx*( aKbar_gq(x) - (-1d0)*aKtil_gq(x) )
 
        endif
 
        AllK(k)= Alp*(Aplus+Areg+ADel)
+
+       AllP(5-k) = Alp*Bornx*Pgq_reg(x)*coefx       
+       AllK(5-k) = Alp*Bornx*( aKbar_gq(x) - (-1d0)*aKtil_gq(x) )
 
        enddo
 
