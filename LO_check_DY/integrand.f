@@ -1,16 +1,16 @@
-C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
-      integer function integrand(ndim,xx,ncomp,f,userdata,nvec ,core
-     .                            ,weight,iter)
-      implicit none 
-c     cuba specific parameters
-      integer n4,ndim,ncomp,nvec,core,iter,userdata 
-      real*8 xx(ndim) ,f(ncomp),weight,flo2_Vir
-      common/countc/n4
-      external flo2_LO
-      f(1) = flo2_LO(xx,weight)
-      return
-      end
-C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
+cC ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
+c      integer function integrand(ndim,xx,ncomp,f,userdata,nvec ,core
+c     .                            ,weight,iter)
+c      implicit none 
+cc     cuba specific parameters
+c      integer n4,ndim,ncomp,nvec,core,iter,userdata 
+c      real*8 xx(ndim) ,f(ncomp),weight,flo2_Vir
+c      common/countc/n4
+c      external flo2_LO
+c      f(1) = flo2_LO(xx,weight)
+c      return
+c      end
+cC ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       function flo2_LO(yy,vwgt)
       implicit double precision (a-h,o-z)
@@ -60,11 +60,6 @@ c              xmur=xq
               call pdf(xb,xmuf,f2)
               call setlum(f1,f2,xl)
               AL = alphasPDF(xmur)
-                ALSWZ=0.120d0
-                XMT = 172.5d0
-                call InitAlphaS(1, 1.0D0, 91.1876D0, ALSWZ,
-     &                  1.4D0, 4.75D0, XMT )
-              AL = alphaS(xmur)
 
               sig= xl(1)*Born_uU2eE(0,p1,p2,p3,p4)
 
@@ -104,7 +99,7 @@ c--------------------------------------------------------------------o
       xnorm =1d0
       qu2 = 1d0!4d0/9d0
 c       2 added because of u u~ symm
-      Born_uU2eE= 2d0 * (2d0*e**4*qu2*(-2*s13*s23 + s12*(s13 +
+      Born_uU2eE= (2d0*e**4*qu2*(-2*s13*s23 + s12*(s13 +
      .            s23)))/(3d0*s12**2)
        return
        end

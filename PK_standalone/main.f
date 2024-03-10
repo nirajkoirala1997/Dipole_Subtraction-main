@@ -6,7 +6,7 @@
       common/energy/s
       external flo2_PK
       common/leg_choice/leg
-      common/usedalpha/AL,Al_ew
+      common/usedalpha/AL,ge   
       common/distribution/xq
       dimension PK(1:50),err(1:50)
       
@@ -18,6 +18,12 @@ c      call setpara('param_card.dat',.true.)
 
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')
+      read (10,*)
+      read (10,*)
+      read (10,*)
+      read (10,*)
+      read (10,*)
+      read (10,*)
       read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
       npt1 = pt1
@@ -25,7 +31,7 @@ c      call setpara('param_card.dat',.true.)
       
 
       open(unit=10,file='../param_card.dat',status='unknown')    
-      read (10,*) Al_ew       ! [ 1/Alpha_ew ]
+      read (10,*) ge          ! [ 1/Alpha_ew ]
       close(10)
 
       open(unit=15,file='../run.machine.dat',status='unknown')
@@ -42,7 +48,7 @@ c      call setpara('param_card.dat',.true.)
 
         xq_initial = xq
       call initpdfsetbyname(name)
-      Call initPDF(1)
+      Call initPDF(0)
        s=ecm*ecm
 
         print*,"  "
@@ -68,7 +74,7 @@ c ~~~~~~~~~~~Writing in a file to store~~~~~~~~~~~~c
           err(j)=sd
             print*,"  "
             print*,"  "
-            write(*,*)achar(27)//'[1;32m'//"Integral=", 
+            write(*,*)achar(27)//'[1;32m'//"Integral [P+K]=", 
      .      ai_lo2,achar(27) //'[0m', "+-",err(j)
             write(*,*)"with chisq    =",chi2
             print*," "
@@ -77,7 +83,7 @@ c ~~~~~~~~~~~Writing in a file to store~~~~~~~~~~~~c
            xq=xq + xincr
         enddo
         xq = xq_initial
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","       Integral PK",
+       write(*,*)achar(27)//'[1;32m'//"   xq"," ","   Integral PK ",
      .  "                    error",
      . achar(27)//'[0m'
         do j=1,it_max

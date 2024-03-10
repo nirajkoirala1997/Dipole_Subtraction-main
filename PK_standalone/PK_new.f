@@ -6,7 +6,7 @@ c-----------------------------------------------------------
       subroutine getPK(iplus,x,xmuf,p,xp1,xp2,SumP,SumK)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
-      dimension AllP(1:4),AllK(1:4)
+      dimension AllP(1:4),AllK(1:4),SumP(1:2),SumK(1:2)
       dimension  p1(0:3),p2(0:3),p3(0:3),p4(0:3),p(0:3,1:4)
       dimension  xp1(0:3),xp2(0:3)
       common /usedalpha/ AL,ge 
@@ -22,7 +22,7 @@ c-----------------------------------------------------------
         Tr = 0.5d0
         Alp = Al/2.0d0/pi
         xmuf2 = xmuf*xmuf
-      do k = 1,1
+      do k = 1,2
       if (k .eq. 1) then       ! Cloice for [Leg1]       
       Bornx = Born_uU2eE(0,xp1,p2,p3,p4)
       elseif (k .eq. 2) then   ! Cloice for [Leg1]       
@@ -52,18 +52,23 @@ c-----------------------------------------------------------
 
        AllK(k)= Alp*(Aplus+Areg+ADel)
 
+
        AllP(5-k) = Alp*Bornx*Pgq_reg(x)*coefx       
        AllK(5-k) = Alp*Bornx*( aKbar_gq(x) - (-1d0)*aKtil_gq(x) )
 
        enddo
 
-c                                             {1,2   qq channel   }   {3,4  gq channel  }
-       SumP = 0d0
-       SumK = 0d0
+       SumP(1) = 0d0
+       SumK(1) = 0d0
+       SumP(2) = 0d0
+       SumK(2) = 0d0
 
-       do i =1,2
-       SumP = SumP + AllP(i)
-       SumK = SumK + AllK(i)
+c      {1,2   qq channel   }   {3,4  gq channel  }
+       do i =1,2               !~~~~~~~~[ run this loop till 4 to include gq channel also ]
+       SumP(1) = SumP(1) + AllP(i)
+       SumK(1) = SumK(1) + AllK(i)
+       SumP(2) = SumP(2) + AllP(5-i)
+       SumK(2) = SumK(2) + AllK(5-i)
        enddo
 
       return

@@ -1,0 +1,45 @@
+gfortran -O -c ../vsup.f -o vsup.o
+gfortran -O  -c ../vsup.f -o vsup.o
+gfortran -O -c ../vsup.f -o vsup.o
+gfortran main.f -O  -o runPK alphaS.o PK_new.o pdf_lha.o lum.o integrand.o phasespace.o vsup.o -lc -L./../ -lfile -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/lib -lLHAPDF  
+gfortran main.f -O -o runVir alphaS.o misc.o cuba.o lum.o pdf_lha.o vsup.o integrand.o phasespace.o -lm  -lcuba -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/lib -lLHAPDF -lc -L./../ -lfile 
+gfortran main.f -O -o runDipole dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o   -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/lib -lLHAPDF -L./../ -lfile 
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+ ____________________________________
+     Calculating P and K terms       
+ ____________________________________
+ ````````````````````````````````````
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+  
+  
+ ____________________________________
+     Calculating Virtual Contribution
+ ____________________________________
+ ````````````````````````````````````
+     Virtual + Dipole over 2-Body PS
+  
+  
+ File  already exist  ../summary/run_test2/virtual.dat                                                                    
+ All previous data for this run will be lost. Overwrite ?     [y/n]
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  
+ [1;32mFor xq =          500 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+  
+ [1;32mFor xq =          500 [0m
+  
+ RM48 INITIALIZED:        40           0         0

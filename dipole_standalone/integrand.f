@@ -21,7 +21,7 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
       integer i35,i45,is5,itest
       integer k1,k2,k3,ipass,n4,unphy
       parameter (pi=3.14159265358979d0)
-      parameter (hbarc2=0.3894d9)
+      parameter (hbarc2=389.3856741D+6)
       common/amass/am1,am2,am3,am4,am5
       common/energy/s
       common/set/set1
@@ -37,16 +37,15 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
 
       ipass1 = 0
 
-        eps = 0.5d0*2d0
-c        eps = 0.5d-1
-       xlow = xq - eps
+      eps = 0.5d0
+      xlow = xq - eps
       xhigh = xq + eps
 
-      xcut = xq - 10.0d0
+c      xcut = xq - 10.0d0
 
-      if (rsp .gt. xcut) ipass1 = 1
+c      if (rsp .gt. xcut) ipass1 = 1
 
-      if (ipass1 .eq.1) then
+c      if (ipass1 .eq.1) then
        call kinvar3(xx,xxjac,xinvmass,p1,p2,p3,p4,p5,unphy)
        if (unphy .eq. 0) then ! with zero unphysical PS points proceed
      
@@ -55,9 +54,7 @@ c        eps = 0.5d-1
         ipass = 0
         fnlo3 = 0
 
-        if ( scale .ge. xlow .and. scale .le. xhigh) ipass=1
-c        if ( scale .ge. xlow ) ipass =1 !.and. scale .le. xhigh) ipass=1
-         if ( ipass .eq. 1 ) then
+        if ( scale .ge. xlow .and. scale .le. xhigh) then
 
           xmuf=scale
           xmur=scale
@@ -87,8 +84,8 @@ c              AL = alphaS(xmur)
           SumD(2) = dipole_gq_q(1,p) + dipole_gq_q(2,p)
 
           sig(1) = xl(1)*(sig(1) - SumD(1))
-          sig(2) = xl(8)*(sig(2) - SumD(2))   ! 2 correspond to gq channel
-                
+c          sig(2) = xl(8)*(sig(2) - SumD(2))   ! 2 correspond to gq channel
+               
           sigma = sig(1)! + sig(2)
 
 
@@ -99,7 +96,6 @@ c              AL = alphaS(xmur)
           fnlo3=wgt/weight/2d0/eps
          endif
        endif
-      endif
 151   return
       end
 c---------------------------------------------------------------------

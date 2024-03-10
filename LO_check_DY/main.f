@@ -1,4 +1,4 @@
-      program uU2eE_Virtual 
+      program uU2eE_LO 
       implicit double precision (a-h,o-z)
       dimension x(10),y(10),ai_lo2(1:50),err(0:50)
       parameter (pi=3.14159265358979d0)
@@ -35,7 +35,7 @@
 
 
         call initpdfsetbyname(name)
-        Call initPDF(1)
+        Call initPDF(0)
       
 c      am1 = 0.51099895000d-3
       am1=0.0d0
@@ -75,17 +75,17 @@ c       writes data in output file
           print*," "
 
          call brm48i(40,0,0) ! initialize random number generator
-         call vsup(3,npt1,its1,flo2_LO,ai_lo2(j),sd,chi2)
-
+         call vsup(3,npt1,its1,flo2_LO,ans,sd,chi2)
+            ai_lo2(j) = ans
+              err(j)  = sd
             print*,"  "
             print*,"  "
-            write(*,*)achar(27)//'[1;32m'//"Integral=",
-     .  ai_lo2(j),achar(27) //'[0m', "+-",sd
+            write(*,*)achar(27)//'[1;32m'//"Integral[ LO ]=",
+     .  ai_lo2(j),achar(27) //'[0m', "+-",err(j)
             write(*,*)"with chisq    =",chi2
             print*," "
             print*," "
          xq = xq + step_size
-         err(j) = sd
         enddo
 
          xq = xq_initial
@@ -109,6 +109,5 @@ c       writes data in output file
 123         continue
 c
         elseif(I .eq. 2) THEN
-                CALL cubacheck
         endif
        end
