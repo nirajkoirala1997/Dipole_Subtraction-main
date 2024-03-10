@@ -22,7 +22,7 @@ c-----------------------------------------------------------
         Tr = 0.5d0
         Alp = Al/2.0d0/pi
         xmuf2 = xmuf*xmuf
-      do k = 1,2
+      do k = 1,1
       if (k .eq. 1) then       ! Cloice for [Leg1]       
       Bornx = Born_uU2eE(0,xp1,p2,p3,p4)
       elseif (k .eq. 2) then   ! Cloice for [Leg1]       
