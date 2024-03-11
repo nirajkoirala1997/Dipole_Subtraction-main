@@ -94,7 +94,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         do i=1,it_max
         write(*,'(i7,3e27.15)')int(xqLO(i)),xintLO(i)
         enddo
-        call sleep(1)
+c        call sleep(1)
       endif
 
 c~~~~~~~~~~~~~~~~~[ Chinmoy LO ]        
@@ -118,7 +118,7 @@ c~~~~~~~~~~~~~~~~~[ Chinmoy LO ]
         do i=1,it_max
         write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO_ch(i)
         enddo
-        call sleep(1)
+c        call sleep(1)
       endif
 
       
@@ -143,7 +143,7 @@ c~~~~~~~~~~~~~~~~~[ ratio ]
         do i=1,it_max
         write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
         enddo
-        call sleep(1)
+c        call sleep(1)
         stop
       endif
 

@@ -17,10 +17,7 @@
 
       xa     = yy(1)
       xb     = yy(2)
-      xmin   = 0.0d0
-      xmax   = 0.999d0
-      xjac   = (xmax-xmin)
-      x      = xmin+ xjac*yy(4)
+      x      = yy(4)
       sp     = xa*xb*s
       rsp    = dsqrt(sp) 
 
@@ -48,14 +45,12 @@
       PKRegDel = 0.0d0
 
 
-        if ( (scalex .ge. xlow .and. scalex .le. xhigh) 
-c     .     .and.  (scale .ge. xlow .and. scale .le. xhigh)
-     .       )  then   
+        if ( (scale .ge. xlow .and. scale .le. xhigh) .and. 
+     .      (scalex .ge. xlow .and. scalex .le. xhigh))  then   
 
             xmuf = scale
             xmur = scale
             AL = alphasPDF(xmur)
-            ALP = AL/2.0d0/pi/2.0d0/pi
 
             call getPK(1,x,xmuf,p,xp1,xp2,SumP,SumK)
                 
@@ -66,10 +61,10 @@ c     .     .and.  (scale .ge. xlow .and. scale .le. xhigh)
 c            sig1 = xl(1)* (SumP(1)+SumK(1))  !  [qq lum]
             sig1 = xl(1)* SumP(1)  !  [qq lum]
 
-            sig = Alp*sig1
+            sig = sig1
             xnorm=hbarc2/16d0/pi/sp
             wgt = xnorm*sig*vwgt
-            PKplus = xjac*wgt/vwgt/2d0/eps
+            PKplus = wgt/vwgt/2d0/eps
 c            write(*,*)'PKplus =', PKplus
          endif
 

@@ -57,7 +57,7 @@ c      call setpara('param_card.dat',.true.)
         print*,"____________________________________"
         print*,"````````````````````````````````````"
 
-        filename = 'LO.dat'
+        filename = 'PK.dat'
 c ~~~~~~~~~~~Writing in a file to store~~~~~~~~~~~~c        
       if (iprint .eq. 1) call output(run_tag,filename)            
 
