@@ -12,9 +12,9 @@
 
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')    
+      do i=1,3
       read (10,*)
-      read (10,*)
-      read (10,*)
+      enddo
       read (10,*) pt1          ! vegas points     LO 2 body
       read (10,*) its1          ! vegas iterations LO 2 body
       npt1 = pt1

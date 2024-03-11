@@ -23,6 +23,8 @@
       x      = xmin+ xjac*yy(4)
       sp     = xa*xb*s
       rsp    = dsqrt(sp) 
+      xjac = xjac*2.0d0
+      xnorm=hbarc2
 
       eps = 1.0d0
       xlow = xq - eps
@@ -39,12 +41,16 @@
 
         scalex2 = 2.0d0*x*dot(p1,p2)
         scalex = dsqrt(scalex2)
+        pin  = 0.5d0*rsp
+        flux = 4.0d0*pin*rsp
+        flux_x = 4.0d0*x*pin*rsp
 
         scale2 = 2.0d0*dot(p1,p2)
         scale = dsqrt(scale2)
 
       flo2_PK = 0d0
-      PKplus = 0.0d0
+      PKplus_x = 0.0d0
+      PKplus_1 = 0.0d0
       PKRegDel = 0.0d0
 
 
@@ -55,7 +61,8 @@ c     .     .and.  (scale .ge. xlow .and. scale .le. xhigh)
             xmuf = scale
             xmur = scale
             AL = alphasPDF(xmur)
-            ALP = AL/2.0d0/pi/2.0d0/pi
+            AS = 1.0d0
+            ALP = AS*16.0d0/27.0d0
 
             call getPK(1,x,xmuf,p,xp1,xp2,SumP,SumK)
                 
@@ -67,11 +74,19 @@ c            sig1 = xl(1)* (SumP(1)+SumK(1))  !  [qq lum]
             sig1 = xl(1)* SumP(1)  !  [qq lum]
 
             sig = Alp*sig1
-            xnorm=hbarc2/16d0/pi/sp
-            wgt = xnorm*sig*vwgt
-            PKplus = xjac*wgt/vwgt/2d0/eps
+
+            azmth = 2.0d0*pi
+            pf = 0.5d0*rsp
+            ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
+
+            wgt = sig/flux_x*ps2*xjac*vwgt
+            PKplus_x = xnorm*wgt/vwgt/2d0/eps
+
+c              xnorm=hbarc2/16d0/pi/(xa*xb*s)
 c            write(*,*)'PKplus =', PKplus
          endif
+
+         PKplus = PKplus_x - PKplus_1
 
 c        if (scalex .ge. xlow .and. scalex .le. xhigh) then
 c

@@ -11,21 +11,13 @@
       dimension PK(1:50),err(1:50)
       
 
-c      include 'coupl.inc'
-c      include 'nexternal.inc'
-c      call setpara('param_card.dat',.true.)
-
-
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')
+      do i=1,6
       read (10,*)
-      read (10,*)
-      read (10,*)
-      read (10,*)
-      read (10,*)
-      read (10,*)
-      read (10,*) pt1          ! vegas points     LO 2 body
-      read (10,*) its1          ! vegas iterations LO 2 body
+      enddo
+      read (10,*) pt1           ! vegas points     
+      read (10,*) its1          ! vegas iterations 
       npt1 = pt1
       close(10)
       

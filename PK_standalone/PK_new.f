@@ -98,7 +98,7 @@ c      PqqP = CF*(1.0d0+x*x)/(1.0d0-x)
       LOGXM= DLOG(XM)
       XD1=LOGXM/XM
       CQQB1PLUS=16.0D0*XD1
-      PqqP=2.0D0*PI/3.0d0*CF*CQQB1PLUS
+      PqqP=CF*CQQB1PLUS
       return
       end
 
