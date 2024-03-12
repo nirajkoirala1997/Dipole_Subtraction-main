@@ -18,7 +18,7 @@
       xa     = yy(1)
       xb     = yy(2)
       xmin   = 0.0d0
-      xmax   = 0.999d0
+      xmax   = 1.0d0 - 1d-5
       xjac   = (xmax-xmin)
       x      = xmin+ xjac*yy(4)
       sp     = xa*xb*s
@@ -42,17 +42,19 @@
         scalex2 = 2.0d0*x*dot(p1,p2)
         scalex = dsqrt(scalex2)
         pin  = 0.5d0*rsp
-        flux = 4.0d0*pin*rsp
+        flux_1 = 4.0d0*pin*rsp
         flux_x = 4.0d0*x*pin*rsp
 
         scale2 = 2.0d0*dot(p1,p2)
         scale = dsqrt(scale2)
 
-      flo2_PK = 0d0
+      flo2_PK  = 0.0d0
       PKplus_x = 0.0d0
       PKplus_1 = 0.0d0
       PKRegDel = 0.0d0
+      PKplus   = 0.0d0
 
+c        goto 101
 
         if ( (scalex .ge. xlow .and. scalex .le. xhigh) 
 c     .     .and.  (scale .ge. xlow .and. scale .le. xhigh)
@@ -79,14 +81,51 @@ c            sig1 = xl(1)* (SumP(1)+SumK(1))  !  [qq lum]
             pf = 0.5d0*rsp
             ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
 
-            wgt = sig/flux_x*ps2*xjac*vwgt
-            PKplus_x = xnorm*wgt/vwgt/2d0/eps
+            wgt_x = sig/flux_x*ps2*xjac*vwgt
+            PKplus_x = xnorm*wgt_x/vwgt/2d0/eps
 
+c         PKplus = PKplus_x - PKplus_1
 c              xnorm=hbarc2/16d0/pi/(xa*xb*s)
-c            write(*,*)'PKplus =', PKplus
+c            write(*,*)'PKplus =', sig,SumP(1),PKplus_x
          endif
 
+c 101    continue
+
+c        goto 102
+
+        if (scale .ge. xlow .and. scale .le. xhigh)  then   
+
+            xmuf = scale
+            xmur = scale
+            AL = alphasPDF(xmur)
+            AS = 1.0d0
+            ALP = AS*16.0d0/27.0d0
+
+            call getPK(1,x,xmuf,p,xp1,xp2,SumP,SumK)
+                
+            call pdf(xa,xmuf,f1)
+            call pdf(xb,xmuf,f2)
+            call setlum(f1,f2,xl)
+
+c            sig1 = xl(1)* (SumP(1)+SumK(1))  !  [qq lum]
+            sig1 = xl(1)* SumP(1)  !  [qq lum]
+
+            sig = Alp*sig1
+
+            azmth = 2.0d0*pi
+            pf = 0.5d0*rsp
+            ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
+
+            wgt = sig/flux_1*ps2*xjac*vwgt
+            PKplus_1 = xnorm*wgt/vwgt/2d0/eps
+
+c        write(*,*)'PKplus =', PKplus
+         endif
+
+c  102     continue
+
          PKplus = PKplus_x - PKplus_1
+c         PKplus = PKplus_1
 
 c        if (scalex .ge. xlow .and. scalex .le. xhigh) then
 c

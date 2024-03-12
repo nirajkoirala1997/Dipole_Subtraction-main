@@ -30,24 +30,25 @@ c        Alp = Al/2.0d0/pi
         xmuf2 = xmuf*xmuf
 
       do k = 1,2
-      if (k .eq. 1) then       ! Cloice for [Leg1]       
-      Bornx = Born_uU2eE(0,xp1,p2,p3,p4)
-      elseif (k .eq. 2) then   ! Cloice for [Leg1]       
-      Bornx = Born_uU2eE(0,p1,xp2,p3,p4)
-      endif
+c      if (k .eq. 1) then       ! Cloice for [Leg1]       
+c      Bornx = Born_uU2eE(0,xp1,p2,p3,p4)
+c      elseif (k .eq. 2) then   ! Cloice for [Leg2]       
+c      Bornx = Born_uU2eE(0,p1,xp2,p3,p4)
+c      endif
 
 c        coefx = (-1.0d0)*dlog(xmuf2/s12/x)    !{a,ai,i} => {q,q,g}
 c        coefx = coefx*Bornx
-        coefx = Bornx
+c        coefx = Bornx
 
 c        coef1 = (-1.0d0)*dlog(xmuf2/s12)      !{a,ai,i} => {q,q,g}
-        Born1 = Born_uU2eE(0,p1,p2,p3,p4)
+        Born = Born_uU2eE(0,p1,p2,p3,p4)
 c        coef1 = coef1*Born1 
-        coef1 = Born1 
+        coef = Born 
 
         if (iplus .eq. 1) then
 c        ALLP(k) = Alp*PqqP(x)*(coefx - coef1)
-        ALLP(k) = Alp*PqqP(x)*coefx
+c        ALLP(k) = Alp*PqqP(x)*coefx
+        ALLP(k) = Alp*PqqP(x)*coef
 
 c        if (x .lt. 0.9d0) then
 c        write(*,*)'PqqP =', x,PqqP(x),coefx, coef1,AllP(k)
