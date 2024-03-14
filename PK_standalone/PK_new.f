@@ -48,7 +48,7 @@ c        coef1 = coef1*Born1
         if (iplus .eq. 1) then
 c        ALLP(k) = Alp*PqqP(x)*(coefx - coef1)
 c        ALLP(k) = Alp*PqqP(x)*coefx
-        ALLP(k) = Alp*PqqP(x)*coef
+        ALLP(k) = Alp*PqqP(x)
 
 c        if (x .lt. 0.9d0) then
 c        write(*,*)'PqqP =', x,PqqP(x),coefx, coef1,AllP(k)

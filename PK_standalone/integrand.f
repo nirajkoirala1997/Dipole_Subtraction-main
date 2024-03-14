@@ -55,16 +55,17 @@
       PKplus   = 0.0d0
 
 c        goto 101
-
+c       Block for + distribution x = x
         if ( (scalex .ge. xlow .and. scalex .le. xhigh) 
 c     .     .and.  (scale .ge. xlow .and. scale .le. xhigh)
      .       )  then   
 
             xmuf = scale
             xmur = scale
+            ALP = AL/2d0/Pi
             AL = alphasPDF(xmur)
-            AS = 1.0d0
-            ALP = AS*16.0d0/27.0d0
+c            AS = 1.0d0
+c            ALP = AS*16.0d0/27.0d0
 
             call getPK(1,x,xmuf,p,xp1,xp2,SumP,SumK)
                 
@@ -73,8 +74,9 @@ c     .     .and.  (scale .ge. xlow .and. scale .le. xhigh)
             call setlum(f1,f2,xl)
 
 c            sig1 = xl(1)* (SumP(1)+SumK(1))  !  [qq lum]
-            sig1 = xl(1)* SumP(1)  !  [qq lum]
-
+c            sig1 = xl(1)* SumP(1)  !  [qq lum]
+            sig1 = xl(1)* SumP(1) *(-1.0d0)*dlog(xmuf2/s12/x)
+  
             sig = Alp*sig1
 
             azmth = 2.0d0*pi
