@@ -1,96 +1,41 @@
-! a -> ai+ i ||  q -> q g || P{a,ai} -> P{q,q} || a- Incoming
-!                                               | ai- Undergoing Born
-!                                               |    process               
-! Kb = Kbar      
-c----------------------------------------------------------- 
-      subroutine getPK(iplus,x,xmuf,p,xp1,xp2,SumP,SumK)
+c---------------------------------------------------------------------------- 
+      subroutine getPK(iplus,x,xmuf,p1,p2,p3,p4,SumPlus,SumReg,SumDel)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
-      dimension AllP(1:4),AllK(1:4),SumP(1:2),SumK(1:2)
-      dimension  p1(0:3),p2(0:3),p3(0:3),p4(0:3),p(0:3,1:4)
-      dimension  xp1(0:3),xp2(0:3)
-c      common /usedalpha/ AL,ge 
-      external Born_uU2eE
+      dimension  p1(0:3),p2(0:3),p3(0:3),p4(0:3)
+      common /usedalpha/ AL,ge 
       external PqqP,Pqqreg
       external AKbarP_qq,AKbarreg_qq,AKbarD_qq
       external AKtilP_qq,AKtilreg_qq,AKtilD_qq
       external aKbar_gq,aKtil_gq,Pgq_reg 
 
-c       SumP(1) = 0d0
-c       SumK(1) = 0d0
-c       SumP(2) = 0d0
-c       SumK(2) = 0d0
-
-      call p2d_to_p1d_4(p,p1,p2,p3,p4)
         s12 = 2d0*dot(p1,p2)
         Cf = 4d0/3d0                      
         Tr = 0.5d0
         Alp = Al/2.0d0/pi
-c        Alp = 1.0d0
         xmuf2 = xmuf*xmuf
 
-      do k = 1,2
-c      if (k .eq. 1) then       ! Cloice for [Leg1]       
-c      Bornx = Born_uU2eE(0,xp1,p2,p3,p4)
-c      elseif (k .eq. 2) then   ! Cloice for [Leg2]       
-c      Bornx = Born_uU2eE(0,p1,xp2,p3,p4)
-c      endif
+          Pplus = 0.0d0
+       SumPlus  = 0.0d0
+         SumReg = 0.0d0
+         SumDel = 0.0d0
 
-c        coefx = (-1.0d0)*dlog(xmuf2/s12/x)    !{a,ai,i} => {q,q,g}
-c        coefx = coefx*Bornx
-c        coefx = Bornx
+        if ( iplus .eq. 1 ) then
+          Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12/x)
+        SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
+         SumReg = (AKbarreg_qq(x)+AKtilreg_qq(x))
+         SumPlus = PqqP(x)
 
-c        coef1 = (-1.0d0)*dlog(xmuf2/s12)      !{a,ai,i} => {q,q,g}
-        Born = Born_uU2eE(0,p1,p2,p3,p4)
-c        coef1 = coef1*Born1 
-        coef = Born
+        elseif( iplus .eq. 0 ) then
+          Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
+         SumDel = (AKbarD_qq(x)+AKtilD_qq(x))
+        SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
 
-       Aplus=  0.0d0
-       Areg = 0.0d0
-       ADel = 0.0d0
-
-        if (iplus .eq. 1) then
-
-        ALLP(k) = PqqP(x)
-
-c        if (x .lt. 0.9d0) then
-c        write(*,*)'PqqP =', x,PqqP(x),coefx, coef1,AllP(k)
-c        endif
-
-        Aplus= (AKbarP_qq(x)+AKtilP_qq(x))
-        ALLK(k) = Aplus
-c       endif
-
-       elseif (iplus .eq. 0) then
-c       ALLP(k) = 0.0d0
-c       Areg = (AKbarreg_qq(x)+AKtilreg_qq(x))*Bornx
-c       ADel = (AKbarD_qq(x)+AKtilD_qq(x))*Born1
-       Areg = (AKbarreg_qq(x)+AKtilreg_qq(x))
-       ADel = (AKbarD_qq(x)+AKtilD_qq(x))
-
-       endif
-
-       AllK(k)= Alp*coef*(Aplus+Areg+ADel)
-c
-c
-c       AllP(5-k) = Alp*Bornx*Pgq_reg(x)*coefx       
-c       AllK(5-k) = Alp*Bornx*( aKbar_gq(x) - (-1d0)*aKtil_gq(x) )
-
-       enddo
-
-       SumP(1) = AllP(1)+AllP(2)
-       SumK(1) = AllK(1)+AllK(2)
-
-c      {1,2   qq channel   }   {3,4  gq channel  }
-c       do i =1,2               !~~~~~~~~[ run this loop till 4 to include gq channel also ]
-c       SumP(1) = SumP(1) + AllP(i)
-c       SumK(1) = SumK(1) + AllK(i)
-c       SumP(2) = SumP(2) + AllP(5-i)
-c       SumK(2) = SumK(2) + AllK(5-i)
-c       enddo
+        endif
 
       return
       end
+
 c----------------------------------------------------------- !Misc-functions
                                                             
       double precision function PqqP(x)

@@ -1,30 +1,14 @@
-c      subroutine kinvar2_PK(xx,xxinvmass,all_PS)
-      subroutine kinvar2_PK(xa,xb,xc,xxinvmass,all_PS)
+! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++            
+! +                            Two Body Phase space                                      +
+! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++            
+
+c---------------------------------------------------------------------
+      subroutine kinvar2_PK(xa,xb,xc,xxinvmass,p1,p2,p3,p4)
       implicit double precision (a-h,o-z)
-      dimension xx(10),all_PS(0:3,1:4,0:2)
-      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3)
-      dimension qa(0:3),qb(0:3)
-      dimension xxinvmass(0:2),yya(0:2),yyb(0:2)
+      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
       common/energy/s
 
-c~~~~~~~~~~~~~~~~~~~~[ normal kinematics ]       
-      yya(0) = xx(1) 
-      yyb(0) = xx(2)
-c~~~~~~~~~~~~~~~~~~~~[ Leg 1 scaled ]
-      yya(1) = xx(1)*xx(4) 
-      yyb(1) = xx(2)
-c~~~~~~~~~~~~~~~~~~~~[ Leg 2 scaled ]
-      yya(2) = xx(1) 
-      yyb(2) = xx(2)*xx(4) 
-
-      do i=0,2
-
-      xa=yya(i)
-      xb=yyb(i)
-
-      v=xx(3)
-      omv=1d0-v
-
+      omv=1d0-xc
       srs2=0.5*dsqrt(s)
 
 c     incoming parton 4-vectors
@@ -49,65 +33,17 @@ c     outgoing parton 4-vectors
       p4(2)=p1(2)+p2(2)-p3(2)
       p4(3)=p1(3)+p2(3)-p3(3)
         
-c     all_PS(4momenta,particleID,kinematic type)
-      do j=0,3
-      all_PS(j,1,i) = p1(j)
-      all_PS(j,2,i) = p2(j)
-      all_PS(j,3,i) = p3(j)
-      all_PS(j,4,i) = p4(j)
-      enddo
 
 c     invariant mass of final particles
-      s34    = 2*dot(p3,p4)
-      xxinvmass(i) = dsqrt(s34)
+      s34    = 2.0d0*dot(p3,p4)
+      xxinvmass = dsqrt(s34)
 
-c     p3 + p4
-c      q(0) = p3(0) +p4(0)
-c      q(1) = p3(1) +p4(1)
-c      q(2) = p3(2) +p4(2)
-c      q(3) = p3(3) +p4(3)
-
-c
-cc     yy1: rapidity of photons 3 
-c      yrpda  = (p3(0)+p3(3))/(p3(0)-p3(3))
-c      yy1    = 0.5*dlog(yrpda)
-c
-cc     yy2: rapiditiy of photon 4
-c      yrpdb  = (p4(0)+p4(3))/(p4(0)-p4(3))
-c      yy2    = 0.5*dlog(yrpdb)
-c
-cc     rapidity YY
-c      p2q = dot(p2,q)
-c      p1q = dot(p1,q)
-c      rr  = xa*p2q/(xb*p1q)
-c      YY12  = dlog(rr)/2.d0
-c
-cc     cos-theta
-c      ccst1=p3(3)/p3(0)
-c      ccst2=p4(3)/p4(0)
-c
-cc     ppt1 ppt2
-c      ppt1=dsqrt(p3(1)**2+p3(2)**2)
-c      ppt2=dsqrt(p4(1)**2+p4(2)**2)
-c
-c      qa(0) =  p3(0) - p4(0)
-c      qa(1) =  p3(1) - p4(1)
-c      qa(2) =  p3(2) - p4(2)
-c      qa(3) =  p3(3) - p4(3)
-c
-c      qb(0) =  p3(0) + p4(0)
-c      qb(1) =  p3(1) + p4(1)
-c      qb(2) =  p3(2) + p4(2)
-c      qb(3) =  p3(3) + p4(3)
-c
-c      p1qa = dot(p1,qa)
-c      p1qb = dot(p1,qb)
-c
-c      cststar = p1qa/p1qb
-      enddo
       return
       end
 c---------------------------------------------------------------------
+
+
+
 
 ! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++            
 ! +                            Three Body Phase space                                      +
