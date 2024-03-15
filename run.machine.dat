@@ -5,4 +5,4 @@ MMHT2014nlo68cl			! lhapdf set name common for all
 100d0				! initialise xq value for the first time 
 200				! step size
 run_test5			! name of dir to save data for analysis
-1				! 1 to write data in file or 0 just to run
+0				! 1 to write data in file or 0 just to run
