@@ -45,7 +45,7 @@ c      rsp    = dsqrt(sp)
         sig4 = 0.0d0
 
 
-        do k = 1,1
+        do k = 1,2
 
         do iplus = 0,1
 
