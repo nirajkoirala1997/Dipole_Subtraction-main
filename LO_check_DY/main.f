@@ -37,6 +37,13 @@
       close(15)
 
 
+      open(unit=20,file='../output_files.dat',status='unknown')
+      read (20,*)
+      read (20,*)
+      read (20,*)
+      read (20,*) filename
+      close(20)
+
         call initpdfsetbyname(name)
         Call initPDF(0)
       

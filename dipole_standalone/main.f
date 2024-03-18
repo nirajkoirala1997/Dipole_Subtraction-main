@@ -15,7 +15,6 @@
       character*100 run_tag,filename
       external fnlo3
       external dipole_uU_g
-      green = ''//achar(27)//'[32m'//char(27)//'[0m'
 
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')    
@@ -39,6 +38,11 @@
       read (15,*) iprint                ! to save data in output file         
       close(15)
       
+
+      open(unit=20,file='../output_files.dat',status='unknown')
+      read (20,*) filename
+      close(20)
+
         call initpdfsetbyname(name)
         Call initPDF(0)
 c        Al = alslhaPDF(mur)
@@ -51,7 +55,6 @@ c      am1 = 0.51099895000d-3
       leg=0
       ! energy
       s=ecm*ecm
-      filename = "real.dat"
       print*,'  '
 c      print*,"Press 1 to initialise VEGAS:"
 c      print*,"Press 2 to initialise CUBA-VEGAS:"

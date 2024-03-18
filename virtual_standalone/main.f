@@ -36,6 +36,14 @@
       read (15,*) iprint            !save data in output file ../summary
       close(15)
 
+
+      open(unit=20,file='../output_files.dat',status='unknown')
+      read (20,*)
+      read (20,*) filename
+      close(20)
+
+
+
         call initpdfsetbyname(name)
         Call initPDF(0)
       
@@ -78,7 +86,6 @@ c        stop
         print*," "
         xq = xq_initial
 c       writes data in output file
-        filename = "virtual.dat"
         if(iprint .eq. 1)  call output(run_tag,filename)
 
         do j=1,it_max

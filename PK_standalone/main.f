@@ -37,6 +37,13 @@
       read (15,*) iprint        ! to print data in file
       close(15)
 
+      open(unit=20,file='../output_files.dat',status='unknown')
+      read (20,*)
+      read (20,*) 
+      read (20,*) filename
+      close(20)
+
+
 
         xq_initial = xq
       call initpdfsetbyname(name)
@@ -49,7 +56,7 @@
         print*,"____________________________________"
         print*,"````````````````````````````````````"
 
-        filename = 'LO.dat'
+c        filename = 'LO.dat'
 c ~~~~~~~~~~~Writing in a file to store~~~~~~~~~~~~c        
       if (iprint .eq. 1) call output(run_tag,filename)            
 

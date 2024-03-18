@@ -16,7 +16,7 @@
       xb     = yy(2)
       xc     = yy(3)
       xmin   = 0.0d0
-      xmax   = 1.0d0 - 1d-5
+      xmax   = 1.0d0 - 1d-8
       xjac   = (xmax-xmin)
       x      = xmin+ xjac*yy(4)
 c      yy(4)  = x
