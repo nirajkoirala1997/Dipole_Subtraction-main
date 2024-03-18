@@ -25,7 +25,7 @@ c      yy(4)  = x
       xxb = x*xb
 c      sp     = xa*xb*s
 c      rsp    = dsqrt(sp) 
-      xjac = xjac*2.0d0
+      xjac = xjac
       xnorm=hbarc2
 
       eps = 0.5d0
@@ -61,13 +61,6 @@ c      rsp    = dsqrt(sp)
 
         elseif (iplus .eq. 0) then
         call kinvar2_PK(xa,xb,xc,xxinvmass,p1,p2,p3,p4)
-          sp   = 2.0d0*dot(p1,p2)
-          sp34   = 2.0d0*dot(p3,p4)
-          rsp  = dsqrt(sp) 
-          rsp34  = dsqrt(sp34) 
-          pin  = 0.5d0*rsp
-          pf   = 0.5d0*rsp
-          flux = 4.0d0*pin*rsp
 c          write(*,*)'rsp, xxinvamas =', rsp, rsp34,xxinvmass
         endif
 
