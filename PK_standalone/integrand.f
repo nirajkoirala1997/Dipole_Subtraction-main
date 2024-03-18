@@ -19,10 +19,12 @@
       xmax   = 1.0d0 - 1d-5
       xjac   = (xmax-xmin)
       x      = xmin+ xjac*yy(4)
-      yy(4)  = x
+c      yy(4)  = x
 
-      sp     = xa*xb*s
-      rsp    = dsqrt(sp) 
+      xxa = x*xa
+      xxb = x*xb
+c      sp     = xa*xb*s
+c      rsp    = dsqrt(sp) 
       xjac = xjac*2.0d0
       xnorm=hbarc2
 
@@ -42,27 +44,42 @@
         sig3 = 0.0d0
         sig4 = 0.0d0
 
-        do k = 1,2
 
-        do iplus = 1,1
+        do k = 1,1
+
+        do iplus = 0,1
 
         if (iplus .eq. 1) then
 
          if (k .eq. 1) then
-          call kinvar2_PK(x*xa,xb,xc,xxinvmass,p1,p2,p3,p4)
+         call kinvar2_PK(xxa,xb,xc,xxinvmass,p1,p2,p3,p4)
+
          elseif (k .eq. 2) then
-          call kinvar2_PK(xa,x*xb,xc,xxinvmass,p1,p2,p3,p4)
+         call kinvar2_PK(xa,xxb,xc,xxinvmass,p1,p2,p3,p4)
          endif
 
+
         elseif (iplus .eq. 0) then
-         call kinvar2_PK(xa,xb,xc,xxinvmass,p1,p2,p3,p4)
+        call kinvar2_PK(xa,xb,xc,xxinvmass,p1,p2,p3,p4)
+          sp   = 2.0d0*dot(p1,p2)
+          sp34   = 2.0d0*dot(p3,p4)
+          rsp  = dsqrt(sp) 
+          rsp34  = dsqrt(sp34) 
+          pin  = 0.5d0*rsp
+          pf   = 0.5d0*rsp
+          flux = 4.0d0*pin*rsp
+c          write(*,*)'rsp, xxinvamas =', rsp, rsp34,xxinvmass
         endif
 
+          sp   = 2.0d0*dot(p1,p2)
+          rsp  = dsqrt(sp) 
+          pin  = 0.5d0*rsp
+          pf   = 0.5d0*rsp
+          flux = 4.0d0*pin*rsp
+c          write(*,*)'rsp, xxinvamas =', rsp, xxinvmass
+         
         scale = xxinvmass
 
-        pin  = 0.5d0*rsp
-        flux_1 = 4.0d0*pin*rsp
-        flux_x = 4.0d0*x*pin*rsp
         coef = Born_uU2eE(0,p1,p2,p3,p4)
 
 
@@ -71,12 +88,14 @@
              xmuf = scale
              xmur = xmuf
             xmuf2 = xmuf*xmuf 
-               AL = alphasPDF(xmur)
-              ALP = AL/2d0/Pi
+c               AL = alphasPDF(xmur)
+c               AL = 1.0d0
+c              ALP = AL/2d0/Pi
+              ALP = 1.0d0
               s12 = 2d0*dot(p1,p2)
 
             azmth = 2.0d0*pi
-               pf = 0.5d0*rsp
+c               pf = 0.5d0*rsp
               ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
 
 
@@ -88,38 +107,41 @@
             call getPK(iplus,x,xmuf,p1,p2,p3,p4,SumPlus,SumReg,SumDel)
            
 
-            if (iplus .eq. 1) then
-            sig1 = xl(1)*SumPlus 
-c            sig2 = xl(1)*SumReg
+            if (iplus .eq. 1) then     ! x=x part
+            sig1 = xl(1)*SumPlus*coef
+c            sig2 = xl(1)*SumReg*coef
 
-            elseif (iplus .eq. 0) then
-            sig3 = xl(1)*SumPlus
-            sig4 = xl(1)*SumDel
-
+            elseif (iplus .eq. 0) then ! x=1 part
+            sig3 = xl(1)*SumPlus*coef
+            sig4 = xl(1)*SumDel*coef
             endif
   
 
             if (iplus .eq. 1) then
-
-            wgt1 = sig1/flux_x*ps2*xjac*vwgt
-            wgt2 = sig2/flux_x*ps2*xjac*vwgt
+            wgt1 = sig1/flux*ps2*xjac*vwgt
             PKplus_x = xnorm*wgt1/vwgt/2d0/eps
-            PKReg = xnorm*wgt2/vwgt/2d0/eps
+c            wgt2 = sig2/flux*ps2*xjac*vwgt
+c            PKReg = xnorm*wgt2/vwgt/2d0/eps
+c           write(*,*)'flux_x =',flux
 
            elseif (iplus .eq.0) then
-            wgt3 = sig3/flux_1*ps2*xjac*vwgt
+            wgt3 = sig3/flux*ps2*xjac*vwgt
             PKplus_1= xnorm*wgt3/vwgt/2d0/eps
-            wgt4 = sig4/flux_1*ps2*xjac*vwgt
-            PKDel= xnorm*wgt3/vwgt/2d0/eps
-           endif
+c            wgt4 = sig4/flux*ps2*xjac*vwgt
+c            PKDel= xnorm*wgt3/vwgt/2d0/eps
+c           write(*,*)'flux_1 =',flux
 
            endif
+
+           endif                ! bin choice
            enddo
 
-            PK(k) = PKplus_x - PKplus_1 + PKReg + PKDel
+c            PK(k) = PKplus_x - PKplus_1 + PKReg + PKDel
+            PK(k) = PKplus_x - PKplus_1
+
          enddo
 
-        flo2_PK =Alp * ( PK(1) + PK(2) )*coef 
+        flo2_PK =Alp * ( PK(1) + PK(2) )
       return
       end
 

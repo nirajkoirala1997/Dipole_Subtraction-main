@@ -8,7 +8,8 @@ c---------------------------------------------------------------------
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
       common/energy/s
 
-      omv=1d0-xc
+      v = xc
+      omv=1d0-v 
       srs2=0.5*dsqrt(s)
 
 c     incoming parton 4-vectors
@@ -36,6 +37,7 @@ c     outgoing parton 4-vectors
 
 c     invariant mass of final particles
       s34    = 2.0d0*dot(p3,p4)
+      s12    = 2.0d0*dot(p1,p2)
       xxinvmass = dsqrt(s34)
 
       return

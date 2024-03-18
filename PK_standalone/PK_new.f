@@ -21,15 +21,16 @@ c----------------------------------------------------------------------------
          SumDel = 0.0d0
 
         if ( iplus .eq. 1 ) then
-          Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12/x)
-        SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
-         SumReg = (AKbarreg_qq(x)+AKtilreg_qq(x))
-         SumPlus = PqqP(x)
+c          Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12/x)
+c        SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
+c         SumReg = (AKbarreg_qq(x)+AKtilreg_qq(x))
+         SumPlus = PqqP(x)  ! For checking
 
         elseif( iplus .eq. 0 ) then
-          Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
-         SumDel = (AKbarD_qq(x)+AKtilD_qq(x))
-        SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
+c          Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
+c         SumDel = (AKbarD_qq(x)+AKtilD_qq(x))
+c        SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
+         SumPlus = PqqP(x)  ! For checking
 
         endif
 
@@ -46,8 +47,8 @@ c----------------------------------------------------------- !Misc-functions
 c      PqqP = CF*(1.0d0+x*x)/(1.0d0-x)
 
       XM=1.0D0-X
-      LOGXM= DLOG(XM)
-      XD1=LOGXM/XM
+      DLOGXM= DLOG(XM)
+      XD1=DLOGXM/XM
       CQQB1PLUS=16.0D0*XD1
       PqqP=CF*CQQB1PLUS
       return
