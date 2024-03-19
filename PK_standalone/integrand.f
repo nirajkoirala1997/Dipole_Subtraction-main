@@ -3,6 +3,7 @@
       dimension yy(10),PK(1:2)
       dimension f1(-6:6),f2(-6:6),xl(15)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
+      dimension xp1(0:3),xp2(0:3)
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+6)
       character*50 name
@@ -16,16 +17,12 @@
       xb     = yy(2)
       xc     = yy(3)
       xmin   = 0.0d0
-      xmax   = 1.0d0 - 1d-8
+      xmax   = 1.0d0 - 1d-5
       xjac   = (xmax-xmin)
       x      = xmin+ xjac*yy(4)
-c      yy(4)  = x
 
-      xxa = x*xa
-      xxb = x*xb
 c      sp     = xa*xb*s
 c      rsp    = dsqrt(sp) 
-      xjac = xjac
       xnorm=hbarc2
 
       eps = 0.5d0
@@ -44,6 +41,13 @@ c      rsp    = dsqrt(sp)
         sig3 = 0.0d0
         sig4 = 0.0d0
 
+        call kinvar2_PK(xa,xb,xc,p1,p2,p3,p4)
+
+        do i = 0,3
+        xp1(i) = x*p1(i)
+        xp2(i) = x*p2(i)
+        enddo
+
 
         do k = 1,2
 
@@ -52,32 +56,45 @@ c      rsp    = dsqrt(sp)
         if (iplus .eq. 1) then
 
          if (k .eq. 1) then
-         call kinvar2_PK(xxa,xb,xc,xxinvmass,p1,p2,p3,p4)
-
+         scale = pobl(xp1,p2,p3,p4)
          elseif (k .eq. 2) then
-         call kinvar2_PK(xa,xxb,xc,xxinvmass,p1,p2,p3,p4)
+         scale = pobl(p1,xp2,p3,p4)
          endif
 
 
         elseif (iplus .eq. 0) then
-        call kinvar2_PK(xa,xb,xc,xxinvmass,p1,p2,p3,p4)
-c          write(*,*)'rsp, xxinvamas =', rsp, rsp34,xxinvmass
+        scale = pobl(p1,p2,p3,p4)
         endif
-
-          sp   = 2.0d0*dot(p1,p2)
-          rsp  = dsqrt(sp) 
-          pin  = 0.5d0*rsp
-          pf   = 0.5d0*rsp
-          flux = 4.0d0*pin*rsp
-c          write(*,*)'rsp, xxinvamas =', rsp, xxinvmass
-         
-        scale = xxinvmass
-
-        coef = Born_uU2eE(0,p1,p2,p3,p4)
 
 
         if (scale .ge. xlow .and. scale .le. xhigh) then   
 
+
+        if (iplus .eq. 1) then
+
+         sp   = 2.0d0*dot(p1,p2)
+         if (k .eq. 1) then
+         scale = pobl(xp1,p2,p3,p4)
+         coef = Born_uU2eE(0,xp1,p2,p3,p4)
+         elseif (k .eq. 2) then
+         scale = pobl(p1,xp2,p3,p4)
+         coef = Born_uU2eE(0,p1,xp2,p3,p4)
+         endif
+
+
+        elseif (iplus .eq. 0) then
+        sp   = 2.0d0*dot(p1,p2)
+        scale = pobl(p1,p2,p3,p4)
+        coef = Born_uU2eE(0,p1,p2,p3,p4)
+        endif
+
+c        write(*,*) 'Ecm =', iplus, rsp
+        
+         rsp  = dsqrt(sp) 
+         pin  = 0.5d0*rsp
+         pf   = 0.5d0*rsp
+         flux = 4.0d0*pin*rsp
+         
              xmuf = scale
              xmur = xmuf
             xmuf2 = xmuf*xmuf 
@@ -85,7 +102,6 @@ c               AL = alphasPDF(xmur)
 c               AL = 1.0d0
 c              ALP = AL/2d0/Pi
               ALP = 1.0d0
-              s12 = 2d0*dot(p1,p2)
 
             azmth = 2.0d0*pi
 c               pf = 0.5d0*rsp
@@ -106,7 +122,7 @@ c            sig2 = xl(1)*SumReg*coef
 
             elseif (iplus .eq. 0) then ! x=1 part
             sig3 = xl(1)*SumPlus*coef
-            sig4 = xl(1)*SumDel*coef
+c            sig4 = xl(1)*SumDel*coef
             endif
   
 

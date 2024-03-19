@@ -1,0 +1,283 @@
+Script started on 2024-02-19 17:02:10+05:30 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="204" LINES="45"]
+g77 -O   -c -o PK.o PK.f
+g77 -O   -c -o pdf_lha.o pdf_lha.f
+g77 -O   -c -o lum.o lum.f
+g77 -O   -c -o integrand.o integrand.f
+g77 -O   -c -o phasespace.o phasespace.f
+g77 -O   -c -o vsup.o vsup.f
+g77 -O   -c -o PKterm.o PKterm.f
+g77 -O   -c -o couplings.o couplings.f
+g77 -O   -c -o matrixLO1.o matrixLO1.f
+g77 -O   -c -o cmatrix.o cmatrix.f
+g77 main.f -O  -o runPK PK.o pdf_lha.o lum.o integrand.o phasespace.o vsup.o PKterm.o couplings.o matrixLO1.o cmatrix.o -L./ -ldhelas3 -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/lib -lLHAPDF
+rm -f *.o
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0001.dat
+MMHT2014nlo68cl PDF set, member #1, version 3; LHAPDF ID = 25101
+   
+   
+ ____________________________________
+ 1. Calculating P and K terms for Leg 1
+ ____________________________________
+ ````````````````````````````````````
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=       8192.
+                              IT=    0  ITMX=    5
+                              MDS=  1   ND=  50
+   1     -0.1162363E-03 0.4468E-04 -0.1162363E-03 0.4468E-04  0.000    
+   2     -0.3349499E-03 0.1214E-03 -0.2320211E-03 0.6611E-04  2.726    
+   3     -0.1719864E-02 0.1029E-02 -0.4740991E-03 0.2447E-03  2.603    
+   4     -0.4973883E-03 0.1238E-03 -0.4853863E-03 0.1581E-03  2.143    
+   5     -0.6962431E-03 0.1229E-03 -0.5887986E-03 0.1080E-03  1.992    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=      76832.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1     -0.7536631E-03 0.3206E-04 -0.7536631E-03 0.3206E-04  0.000    
+   2     -0.1271054E-02 0.4426E-03 -0.7612712E-03 0.4412E-04  1.993    
+   3     -0.9296589E-03 0.1772E-03 -0.7691488E-03 0.4155E-04  1.437    
+   4     -0.2742280E-02 0.1828E-02 -0.7766654E-03 0.6688E-04  1.469    
+   5     -0.8786147E-03 0.5593E-04 -0.8067040E-03 0.5204E-04  1.483    
+   6     -0.8777812E-03 0.1063E-03 -0.8120513E-03 0.4721E-04  1.365    
+   7     -0.9912945E-03 0.1912E-03 -0.8172193E-03 0.4479E-04  1.302    
+   8     -0.9887855E-03 0.1386E-03 -0.8260972E-03 0.4229E-04  1.302    
+   9     -0.8018389E-03 0.5311E-04 -0.8215318E-03 0.3674E-04  1.234    
+  10     -0.9131560E-03 0.1498E-03 -0.8242588E-03 0.3529E-04  1.175    
+   
+ The answer is  = -0.00082425876
+ Integral of PK1= -0.00082425876+-  3.52899155E-05
+ with chisq    =  1.17519787
+   
+ ____________________________________
+ 2. Calculating P and K terms for Leg 2
+ ____________________________________
+ ````````````````````````````````````
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=       8192.
+                              IT=    0  ITMX=    5
+                              MDS=  1   ND=  50
+   1     -0.1118307E-03 0.4305E-04 -0.1118307E-03 0.4305E-04  0.000    
+   2     -0.3303746E-03 0.1207E-03 -0.2267978E-03 0.6536E-04  2.788    
+   3     -0.1249169E-02 0.7095E-03 -0.4095640E-03 0.1798E-03  2.524    
+   4     -0.5038162E-03 0.1731E-03 -0.4404925E-03 0.1369E-03  1.984    
+   5     -0.6940969E-03 0.1024E-03 -0.6029305E-03 0.8207E-04  2.039    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=      76832.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1     -0.1194143E-02 0.2165E-03 -0.1194143E-02 0.2165E-03  0.000    
+   2     -0.1234896E-02 0.2914E-03 -0.1209273E-02 0.1746E-03 0.1271E-01
+   3     -0.7976893E-03 0.5349E-04 -0.8712355E-03 0.6645E-04  2.823    
+   4     -0.8712128E-03 0.1220E-03 -0.8712319E-03 0.5811E-04  2.071    
+   5     -0.8210393E-03 0.5764E-04 -0.8518192E-03 0.4375E-04  1.759    
+   6     -0.7367801E-03 0.3861E-04 -0.8046913E-03 0.3230E-04  2.137    
+   7     -0.8041726E-03 0.5889E-04 -0.8046014E-03 0.2872E-04  1.862    
+   8     -0.1320084E-02 0.3324E-03 -0.8120534E-03 0.3019E-04  2.018    
+   9     -0.8937400E-03 0.7308E-04 -0.8219013E-03 0.2800E-04  1.918    
+  10     -0.8360862E-03 0.6401E-04 -0.8236160E-03 0.2588E-04  1.757    
+   
+ The answer is   = -0.000823616038
+ Integral of PK2 = -0.000823616038+-  2.58786872E-05
+    with chisq   =  1.75735931
+   
+Total PK1 + PK2 =     -0.164787479788431E-02
+   
+   
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+gfortran -O  -c -o misc.o misc.f
+gfortran -O  -c -o Iterm.o Iterm.f
+gfortran -O  -c -o matrixLO1.o matrixLO1.f
+gfortran -O  -c -o couplings.o couplings.f
+gfortran -O  -c -o cmatrix.o cmatrix.f
+gfortran -O  -c -o cuba.o cuba.f
+gfortran -O  -c -o lum.o lum.f
+gfortran -O  -c -o pdf_lha.o pdf_lha.f
+gfortran -O  -c -o vsup.o vsup.f
+[Kvsup.f:251:72:[K
+
+  251 |  24            RC=RC+R(I)
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 24 at [K(1)[K
+[Kvsup.f:267:72:[K
+
+  267 |  27            XI(I,J)=XIN(I)
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 27 at [K(1)[K
+[Kvsup.f:268:72:[K
+
+  268 |  28      XI(ND,J)=ONE
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 28 at [K(1)[K
+[Kvsup.f:364:72:[K
+
+  364 |     3    T = HALF*T
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 3 at [K(1)[K
+[Kvsup.f:365:72:[K
+
+  365 |     2 U(II) = S
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 2 at [K(1)[K
+[Kvsup.f:369:72:[K
+
+  369 |     4 TWOM24 = HALF*TWOM24
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 4 at [K(1)[K
+gfortran -O  -c -o integrand.o integrand.f
+gfortran -O  -c -o phasespace.o phasespace.f
+gfortran main.f -O -o runVir misc.o Iterm.o matrixLO1.o couplings.o cmatrix.o cuba.o lum.o pdf_lha.o vsup.o integrand.o phasespace.o -lm  -lcuba -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/lib -lLHAPDF -L./ -ldhelas3 
+rm -f *.o
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0001.dat
+MMHT2014nlo68cl PDF set, member #1, version 3; LHAPDF ID = 25101
+  
+  
+ ____________________________________
+ 3. Calculating Virtual Contribution
+ ____________________________________
+ ````````````````````````````````````
+     Virtual + Dipole over 2-Body PS
+  
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  3  NCALL=       9826.
+                              IT=    0  ITMX=    5
+                              MDS=  1   ND=  50
+   1      0.8759768     0.7240E-01  0.8759768     0.7240E-01  0.000    
+   2       1.032226     0.2884E-01   1.016204     0.2533E-01  3.500    
+   3      0.9964615     0.2199E-01   1.004558     0.1645E-01  1.877    
+   4       1.001474     0.2043E-01   1.003299     0.1275E-01  1.236    
+   5      0.9597662     0.1803E-01  0.9891495     0.1044E-01  1.888    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  3  NCALL=      93312.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  36
+   1      0.9843360     0.5118E-02  0.9843360     0.5118E-02  0.000    
+   2      0.9885985     0.5059E-02  0.9865010     0.3598E-02 0.3508    
+   3      0.9681363     0.4950E-02  0.9803069     0.2911E-02  4.626    
+   4      0.9882455     0.5699E-02  0.9819705     0.2593E-02  3.589    
+   5      0.9714245     0.4847E-02  0.9796640     0.2287E-02  3.612    
+   6      0.9787099     0.5206E-02  0.9795100     0.2094E-02  2.897    
+   7      0.9785278     0.5054E-02  0.9793665     0.1935E-02  2.420    
+   8      0.9733874     0.4930E-02  0.9785777     0.1801E-02  2.258    
+   9      0.9770566     0.5320E-02  0.9784219     0.1706E-02  1.986    
+  10      0.9821678     0.5497E-02  0.9787530     0.1629E-02  1.811    
+   
+ The answer is =  0.97875301618363308     
+ Integral      =  0.97875301618363308      +-   1.6292529977541389E-003
+ with chisq    =   1.8112559531858727     
+   
+   
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+gfortran -O  -c -o cuba.o cuba.f
+gfortran -O  -c -o dipole.o dipole.f
+gfortran -O  -c -o lum.o lum.f
+gfortran -O  -c -o pdf_lha.o pdf_lha.f
+gfortran -O  -c -o vsup.o vsup.f
+[Kvsup.f:251:72:[K
+
+  251 |  24            RC=RC+R(I)
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 24 at [K(1)[K
+[Kvsup.f:267:72:[K
+
+  267 |  27            XI(I,J)=XIN(I)
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 27 at [K(1)[K
+[Kvsup.f:268:72:[K
+
+  268 |  28      XI(ND,J)=ONE
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 28 at [K(1)[K
+[Kvsup.f:364:72:[K
+
+  364 |     3    T = HALF*T
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 3 at [K(1)[K
+[Kvsup.f:365:72:[K
+
+  365 |     2 U(II) = S
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 2 at [K(1)[K
+[Kvsup.f:369:72:[K
+
+  369 |     4 TWOM24 = HALF*TWOM24
+      |                                                                        [K1[K
+[KWarning:[K Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 4 at [K(1)[K
+gfortran -O  -c -o mat.amp.o mat.amp.f
+gfortran -O  -c -o integrand.o integrand.f
+gfortran -O  -c -o misc.o misc.f
+gfortran -O  -c -o phasespace.o phasespace.f
+gfortran main.f -O -o run.x cuba.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o  -lcuba -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/lib -lLHAPDF  
+rm -f cuba.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0001.dat
+MMHT2014nlo68cl PDF set, member #1, version 3; LHAPDF ID = 25101
+   
+ ----------------------------------
+ |Initializing Dipole Subtraction  |
+ ----------------------------------
+  
+ 4. real - Dipole Over 3body phasespace
+ ``````````````````````````````````````
+  
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    5
+                              MDS=  1   ND=  50
+   1     -0.2208617E-03 0.2339E-04 -0.2208617E-03 0.2339E-04  0.000    
+   2     -0.2397695E-03 0.9933E-05 -0.2372609E-03 0.8893E-05 0.5201    
+   3     -0.2334642E-03 0.8861E-05 -0.2353315E-03 0.6264E-05 0.3038    
+   4     -0.2398612E-03 0.8113E-05 -0.2370990E-03 0.4936E-05 0.2656    
+   5     -0.2450716E-03 0.6917E-05 -0.2399625E-03 0.3991E-05 0.4250    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1     -0.2347063E-03 0.2313E-05 -0.2347063E-03 0.2313E-05  0.000    
+   2     -0.2349529E-03 0.2475E-05 -0.2348214E-03 0.1690E-05 0.5299E-02
+   3     -0.2381565E-03 0.2052E-05 -0.2361915E-03 0.1303E-05 0.7951    
+   4     -0.2331476E-03 0.2096E-05 -0.2353572E-03 0.1107E-05  1.034    
+   5     -0.2355919E-03 0.2100E-05 -0.2354084E-03 0.9793E-06 0.7778    
+   6     -0.2329782E-03 0.2310E-05 -0.2350443E-03 0.9015E-06 0.8095    
+   7     -0.2303282E-03 0.2290E-05 -0.2344330E-03 0.8387E-06  1.273    
+   8     -0.2371922E-03 0.2814E-05 -0.2346633E-03 0.8042E-06  1.216    
+   9     -0.2355995E-03 0.2257E-05 -0.2347696E-03 0.7575E-06  1.082    
+  10     -0.2317521E-03 0.2091E-05 -0.2344275E-03 0.7124E-06  1.165    
+   
+ The answer is =  -2.3442745488538470E-004
+ Integral      =  -2.3442745488538470E-004 +-   7.1238925159857491E-007
+ with chisq    =   1.1650567781261287     
+ Unphysical count =           0
+  
+  
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+
+Script done on 2024-02-19 17:02:15+05:30 [COMMAND_EXIT_CODE="0"]
