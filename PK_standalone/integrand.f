@@ -41,7 +41,7 @@ c      rsp    = dsqrt(sp)
         sig3 = 0.0d0
         sig4 = 0.0d0
 
-        call kinvar2_PK(xa,xb,xc,p1,p2,p3,p4)
+c        call kinvar2_PK(xa,xb,xc,p1,p2,p3,p4)
 
         do i = 0,3
         xp1(i) = x*p1(i)
@@ -56,38 +56,34 @@ c      rsp    = dsqrt(sp)
         if (iplus .eq. 1) then
 
          if (k .eq. 1) then
-         scale = pobl(xp1,p2,p3,p4)
+        call kinvar2_PK(x*xa,xb,xc,Qmass,p1,p2,p3,p4)
          elseif (k .eq. 2) then
-         scale = pobl(p1,xp2,p3,p4)
+         call kinvar2_PK(xa,x*xb,xc,Qmass,p1,p2,p3,p4)
          endif
 
 
         elseif (iplus .eq. 0) then
-        scale = pobl(p1,p2,p3,p4)
+        call kinvar2_PK(xa,xb,xc,Qmass,p1,p2,p3,p4)
         endif
 
+         scale = Qmass
 
         if (scale .ge. xlow .and. scale .le. xhigh) then   
 
 
-        if (iplus .eq. 1) then
-
-         sp   = 2.0d0*dot(p1,p2)
-         if (k .eq. 1) then
-         scale = pobl(xp1,p2,p3,p4)
-         coef = Born_uU2eE(0,xp1,p2,p3,p4)
-         elseif (k .eq. 2) then
-         scale = pobl(p1,xp2,p3,p4)
-         coef = Born_uU2eE(0,p1,xp2,p3,p4)
-         endif
-
-
-        elseif (iplus .eq. 0) then
-        sp   = 2.0d0*dot(p1,p2)
-        scale = pobl(p1,p2,p3,p4)
-        coef = Born_uU2eE(0,p1,p2,p3,p4)
+        if ( x .le. 0.5d0) then
+        if (iplus .eq. 0) then
+c        write(*,*)'scale =', iplus, x,xa,scale
+        elseif (iplus .eq. 1) then
+c        write(*,*)'scale =', iplus, x, xa,scale
+c        write(*,*)' '
+        endif
         endif
 
+         coef = Born_uU2eE(0,p1,p2,p3,p4)
+
+         sp   = 2.0d0*dot(p1,p2)
+c        write(*,*)'xa =', iplus, xa,x
 c        write(*,*) 'Ecm =', iplus, rsp
         
          rsp  = dsqrt(sp) 
@@ -107,6 +103,7 @@ c              ALP = AL/2d0/Pi
 c               pf = 0.5d0*rsp
               ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
 
+c         write(*,*)'xa =', iplus, xa,x
 
             call pdf(xa,xmuf,f1)
             call pdf(xb,xmuf,f2)

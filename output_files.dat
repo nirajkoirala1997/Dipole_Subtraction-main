@@ -1,4 +1,4 @@
 real.dat			! real- dipole output file
 virtual.dat 			! virtual contribution output file
-PKv5d+8_tcd-8.dat		! For PK terms      
+LO.dat		! For PK terms      
 LO.dat				! Leading order

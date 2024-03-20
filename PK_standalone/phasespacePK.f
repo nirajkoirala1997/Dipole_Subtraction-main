@@ -3,7 +3,7 @@
 ! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++            
 
 c---------------------------------------------------------------------
-      subroutine kinvar2_PK(xa,xb,xc,p1,p2,p3,p4)
+      subroutine kinvar2_PK(xa,xb,xc,Qmass,p1,p2,p3,p4)
       implicit double precision (a-h,o-z)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
       common/energy/s
@@ -35,20 +35,22 @@ c     outgoing parton 4-vectors
       p4(3)=p1(3)+p2(3)-p3(3)
         
 
+      Q2 = 2.0d0*dot(p3,p4)
+      Qmass = dsqrt(Q2)
       return
       end
 c---------------------------------------------------------------------
 
 
-      function pobl(p1,p2,p3,p4)
-      implicit double precision (a-h,o-z)
-      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
-
-
-      xinvmass2 = 2.0d0*dot(p3,p4)
-      pobl = dsqrt(xinvmass2)
-      return
-      end
+c      function pobl(p1,p2,p3,p4)
+c      implicit double precision (a-h,o-z)
+c      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
+c
+c
+c      xinvmass2 = 2.0d0*dot(p3,p4)
+c      pobl = dsqrt(xinvmass2)
+c      return
+c      end
 
 
 ! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++            

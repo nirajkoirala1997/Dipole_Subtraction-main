@@ -67,8 +67,11 @@ c        read*,i
           print*," "
           print*," "
           print*," "
+c          run_tag = 'run_008'
+c          filename = "kuchbhi"
 
 c  saves the data in output file           
+          iprint=1
           if(iprint .eq. 1) call output(run_tag,filename)
 
           xq = xq_initial

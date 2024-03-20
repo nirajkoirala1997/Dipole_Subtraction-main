@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd ../
 # Modify the Fortran source file
 sed -i 's/nprn[[:space:]]*=[[:space:]]*1/nprn = 0/' "vsup.f"
 
