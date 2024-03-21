@@ -35,6 +35,7 @@ c checking file
        read(13,*)ierr2
        close(13)
        call system("rm command.txt")
+
 c Proceed with decision       
 
        if (ierr2 .eq. 1) then

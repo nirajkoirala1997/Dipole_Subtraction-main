@@ -9,24 +9,24 @@
       external fxn
       ndim=nd
       ncall=npt
-      nprn = 1
+      nprn=1
       itmx=its
       plot=.false.
-      call vegas_m(1,fxn,avgi,sd,chisq)
+      call vegas(1,fxn,avgi,sd,chisq)
       do i=1,itmx
-         call vegas_m(3,fxn,avgi,sd,chisq)
+         call vegas(3,fxn,avgi,sd,chisq)
       enddo
       ncall=10*npt
       itmx=2*its
       plot=.true.
-      call vegas_m(2,fxn,avgi,sd,chisq)
+      call vegas(2,fxn,avgi,sd,chisq)
       do i=1,itmx
-         call vegas_m(4,fxn,avgi,sd,chisq)
+         call vegas(4,fxn,avgi,sd,chisq)
       enddo
       return
       end
 
-      SUBROUTINE VEGAS_M(ISTAT,FXN,AVGI,SD,CHI2A)
+      SUBROUTINE VEGAS(ISTAT,FXN,AVGI,SD,CHI2A)
 C
 C     PERFORMS N-DIMENSIONAL MONTE CARLO INTEGRATION
 C     BY G.P. LEPAGE   SEPT 1976/(REV)APR 1978

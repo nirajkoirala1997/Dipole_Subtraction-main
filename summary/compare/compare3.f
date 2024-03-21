@@ -133,7 +133,9 @@ c~~~~~~~~~~~~~~~~~[ ratio ]
 
        if(ierr1 + ierr2 .eq. 2) then
         print*,"/"//trim(firstfile)//" and  /"//trim(secondfile)
-       write(*,*)achar(27)//'[1;32m'//"   xq         first / second",
+c       write(*,*)achar(27)//'[1;32m'//"   xq         first / second",
+       write(*,*)achar(27)//'[1;32m'//"   xq
+     . [first-second]/first*100",
      . achar(27)//'[0m'
         do i=1,it_max
        write(*,'(i7,f10.6)')int(xqLO_ch(i)),dabs(xintLO(i)-xintLO_ch(i))
