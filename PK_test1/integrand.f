@@ -17,10 +17,20 @@
 
       xa     = yy(1)
       xb     = yy(2)
-      xmin   = 0.0d0
-      xmax   = 1.0d0 - 1d-5
-      xjac   = (xmax-xmin)
-      x      = xmin+ xjac*yy(4)
+      delta  = 1d-5
+
+c      xmin   = 0.0d0
+c      xmax   = 1.0d0 - delta
+c      xjac   = (xmax-xmin)
+c      x      = xmin+ xjac*yy(4)
+
+      almin = delta
+      almax = 1.0d0
+      al = almin*(almax/almin)**yy(4)
+      aljac = al*dlog(almax/almin)
+      xjac = aljac
+      x = 1.0d0-al
+
       sp     = xa*xb*s
       rsp    = dsqrt(sp) 
       xjac = xjac
@@ -67,14 +77,15 @@ c     .     .and.  (scale .ge. xlow .and. scale .le. xhigh)
             AS = 1.0d0
             ALP = AS
 
-            call getPK(1,x,xmuf,p,xp1,xp2,SumP,SumK)
+            call getPKPlus(x,xmuf,p,xp1,xp2,SumP)
+            call getPKReg(x,xmuf,p,xp1,xp2,SumK)
                 
             call pdf(xa,xmuf,f1)
             call pdf(xb,xmuf,f2)
             call setlum(f1,f2,xl)
 
-c            sig1 = xl(1)* (SumP(1)+SumK(1))  !  [qq lum]
-            sig1 = xl(1)* SumP(1)  !  [qq lum]
+            sig1 = xl(1)* (SumP(1)+SumK(1))  !  [qq lum]
+c            sig1 = xl(1)* (SumK(1))  !  [qq lum]
 
 c        write(*,*)'Flux =', scalex
             sig = Alp*sig1
@@ -100,55 +111,40 @@ c        goto 102
             AS = 1.0d0
             ALP = AS
 
-            call getPK(1,x,xmuf,p,xp1,xp2,SumP,SumK)
+            call getPKPlus(x,xmuf,p,xp1,xp2,SumP)
+            call getPKDel(x,xmuf,p,xp1,xp2,SumK)
                 
             call pdf(xa,xmuf,f1)
             call pdf(xb,xmuf,f2)
             call setlum(f1,f2,xl)
 
-c            sig1 = xl(1)* (SumP(1)+SumK(1))  !  [qq lum]
             sig1 = xl(1)* SumP(1)  !  [qq lum]
+            sig2 = xl(1)* SumK(1)  !  [qq lum]
 
-            sig = Alp*sig1
+            sig1 = Alp*sig1
+            sig2 = Alp*sig2
 
             azmth = 2.0d0*pi
             pf = 0.5d0*rsp
             ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
 
-            wgt = sig/flux_1*ps2*xjac*vwgt
-            PKplus_1 = xnorm*wgt/vwgt/2d0/eps
+            wgt1 = sig1/flux_1*ps2*xjac*vwgt
+            wgt2 = sig2/flux_1*ps2*xjac*vwgt
+            PKplus_1 = xnorm*wgt1/vwgt/2d0/eps
+            PKDel = xnorm*wgt2/vwgt/2d0/eps
 
 c        write(*,*)'PKplus =', PKplus_1
          endif
 
 c  102     continue
 
-         PKplus = PKplus_x - PKplus_1
-c         PKplus = PKplus_1
+         PKterms = PKplus_x - PKplus_1 + PKDel
+c         PKterms = PKplus_x - PKplus_1
+c         PKterms = PKDel
 
-c        if (scalex .ge. xlow .and. scalex .le. xhigh) then
-c
-c            xmuf = scalex
-c            xmur = scalex
-c            AL = alphasPDF(xmur)
-c
-c            call getPK(0,x,xmuf,p,xp1,xp2,SumP,SumK)
-c                
-c            call pdf(xa,xmuf,f1)
-c            call pdf(xb,xmuf,f2)
-c            call setlum(f1,f2,xl)
 
-c            sig1 = xl(1)* (SumP(1)+SumK(1))  !  [qq lum]
-c            sig2 = xl(8)* (SumP(2)+SumK(2))  !  [gq lum]
-c
-c            sig = sig1  !+ sig2    !  ~~~~~[ gq is turned off ]
-c            xnorm=hbarc2/16d0/pi/sp
-c            wgt = xnorm*sig*vwgt
-c            PKRegDel = wgt/vwgt/2d0/eps
-c         endif
+         flo2_PK = PKterms
 
-c         flo2_PK = PKplus + PKRegDel
-         flo2_PK = PKplus
       return
       end
 

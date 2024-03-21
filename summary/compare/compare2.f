@@ -8,6 +8,7 @@
         character*100 run_tag
         character*50 name
         character*100 message
+        character*100 real_dipole,virtual,PK
 
         
 c       Leading Order
@@ -20,6 +21,13 @@ c       Leading Order
       read (15,*) step_size             ! size in the multiplle of loop variable 
       read (15,*) run_tag               ! name of run directory to save output
       close(15)
+
+      open(unit=20,file='../../output_files.dat',status='unknown')
+      read (20,*) real_dipole
+      read (20,*) virtual 
+      read (20,*) PK
+      close(20)
+
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c checking existance of dir and file run.machine.dat
@@ -112,8 +120,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c                [Virtual contribution]
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       call system("test -f ../"// trim(run_tag) //"/virtual.dat 
-     . && echo 1 > command.txt || echo 0  > command.txt")
+       call system("test -f ../"// trim(run_tag) //"/"//trim(virtual)
+     . " && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
        read(13,*)ierr
        close(13)
@@ -143,8 +151,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c                  ["Real - Dipole"]
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       call system("test -f ../"// trim(run_tag) //"/real.dat 
-     . && echo 1 > command.txt || echo 0  > command.txt")
+       call system("test -f ../"// trim(run_tag) //"/"//trim(real_dipole)//
+     . " && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
        read(13,*)ierr
        close(13)
