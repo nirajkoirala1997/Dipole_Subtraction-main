@@ -26,6 +26,35 @@
       return
       end
 
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus specific vsup]      
+      subroutine vsup_2(nd,npt,its,fxn,avgi,sd,chisq)
+      implicit double precision (a-h,o-z)
+      character *25 fname8
+      logical plot
+      common/bvegas/ndim,ncall,nprn,itmx
+      common/plots/plot
+      common/iparallel/ilabel
+      common/chfile/fname8
+      external fxn
+      ndim=nd
+      ncall=npt*100
+      nprn = 1
+      itmx=its
+      plot=.false.
+      call vegas_m(1,fxn,avgi,sd,chisq)
+      do i=1,itmx
+         call vegas_m(3,fxn,avgi,sd,chisq)
+      enddo
+      ncall=ncall*10
+      itmx=its*2
+      plot=.true.
+      call vegas_m(2,fxn,avgi,sd,chisq)
+      do i=1,itmx
+         call vegas_m(4,fxn,avgi,sd,chisq)
+      enddo
+      return
+      end
+
       SUBROUTINE VEGAS_M(ISTAT,FXN,AVGI,SD,CHI2A)
 C
 C     PERFORMS N-DIMENSIONAL MONTE CARLO INTEGRATION

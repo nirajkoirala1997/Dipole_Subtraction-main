@@ -3,7 +3,7 @@
 !                                               |    process               
 ! Kb = Kbar      
 c----------------------------------------------------------- 
-      subroutine getPKPlus(x,xmuf,p,xp1,xp2,SumP)
+      subroutine getPKPlus(x,xmuf,p,xp1,xp2,SumPlus)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
       dimension AllP(1:4),AllK(1:4),SumP(1:2),SumK(1:2)
@@ -42,12 +42,12 @@ c        ALLP(k) = Alp*PqqP(x)*coef
 
        enddo
 
-       SumP(1) = AllP(1)+AllP(2)
+       SumPlus = AllP(1)+AllP(2)
 
       return
       end
 cc----------------------------------------------------------- !Misc-functions
-      subroutine getPKReg(x,xmuf,p,xp1,xp2,SumP)
+      subroutine getPKReg(x,xmuf,p,xp1,xp2,SumReg)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
       dimension AllP(1:4),AllK(1:4),SumP(1:2),SumK(1:2)
@@ -85,7 +85,7 @@ c        coef1 = coef1*Born1
 
        enddo
 
-       SumP(1) = AllP(1)+AllP(2)
+       SumReg = AllP(1)+AllP(2)
 
       return
       end
@@ -124,12 +124,7 @@ c        coef1 = coef1*Born1
         coef = Born 
 
        ADel = (AKbarD_qq(x)+AKtilD_qq(x))*coef
-c       ADel = AKbarD_qq(x)*coef
-c       ADel = AKtilD_qq(x)*coef
        AllP(k)= Alp*ADel
-c       AllP(k)= Alp*coef
-c       print*,AKbarD_qq(x)+AKtilD_qq(x)
-
        enddo
 
        SumP(1) = AllP(1)+AllP(2)

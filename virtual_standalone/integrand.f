@@ -57,7 +57,9 @@ c              xmur=xq
               call pdf(xa,xmuf,f1)
               call pdf(xb,xmuf,f2)
               call setlum(f1,f2,xl)
-              AL = alphasPDF(xmur)
+c              AL = alphasPDF(xmur)
+c               AL = 2d0*PI
+               AL = 1d0
 
               e= DSQRT(ge*4.d0*PI)
               gs=DSQRT(Al*4.d0*PI)

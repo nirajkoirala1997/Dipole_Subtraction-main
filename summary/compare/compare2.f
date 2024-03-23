@@ -8,7 +8,7 @@
         character*100 run_tag
         character*50 name
         character*100 message
-        character*100 real_dipole,virtual,PK
+        character*100 real_dipole,virtual,PK,ref,LO
 
         
 c       Leading Order
@@ -26,6 +26,8 @@ c       Leading Order
       read (20,*) real_dipole
       read (20,*) virtual 
       read (20,*) PK
+      read (20,*) LO
+      read (20,*) ref
       close(20)
 
 
@@ -113,14 +115,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         do i=1,it_max
         write(*,'(i7,3e27.15,3e27.15)')int(xqLO(i)),xintLO(i),xLO_err(i)
         enddo
-        call sleep(1)
       endif
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c                [Virtual contribution]
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       call system("test -f ../"// trim(run_tag) //"/"//trim(virtual)
+       call system("test -f ../"// trim(run_tag) //"/"//trim(virtual)//
      . " && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
        read(13,*)ierr
@@ -128,15 +129,15 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        call system("rm command.txt")
        if(ierr .eq. 1) then
                inlo=inlo+1
-        open(unit=17,file='../'//trim(run_tag)//'/virtual.dat',
-     .     status='unknown')
+        open(unit=17,file='../'//trim(run_tag)//'/'//trim(virtual)
+     .     ,status='unknown')
         do i=1,it_max
         read(17,*) xqVir(i),xintVir(i),xVir_err(i)
 c        read(17,*) xqVir(i),xintVir(i)
         enddo
         close(17)
         print*," "
-        print*,"/virtual.dat"
+        print*,"/"//trim(virtual)
        write(*,*)achar(27)//'[1;32m'//"   xq           Integral_VIR",
      .     "                   error",
      . achar(27)//'[0m'
@@ -144,14 +145,14 @@ c        read(17,*) xqVir(i),xintVir(i)
            write(*,'(i7,3e27.15,3e27.15)')int(xqVir(i)),
      .     xintVir(i),xVir_err(i)
         enddo
-        call sleep(1)
         endif
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c                  ["Real - Dipole"]
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       call system("test -f ../"// trim(run_tag) //"/"//trim(real_dipole)//
+       call system("test -f ../"// trim(run_tag) //"/"
+     .   //trim(real_dipole)//
      . " && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
        read(13,*)ierr
@@ -159,8 +160,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        call system("rm command.txt")
        if(ierr .eq. 1) then
                inlo=inlo+1
-        open(unit=17,file='../'//trim(run_tag)//'/real.dat',
-     .     status='unknown')
+        open(unit=17,file='../'//trim(run_tag)//'/'
+     .   //trim(real_dipole)
+     .     ,status='unknown')
         do i=1,it_max
         read(17,*) xqreal(i),xintreal(i),xreal_err(i)
 c        read(17,*) xqreal(i),xintreal(i)
@@ -168,7 +170,7 @@ c        read(17,*) xqreal(i),xintreal(i)
         close(17)
 
         print*," "
-        print*,"/real.dat"
+        print*,"/"//trim(real_dipole)
        write(*,*)achar(27)//'[1;32m'//"   xq           Integral Real",
      .  "                  error",
      . achar(27)//'[0m'
@@ -176,22 +178,21 @@ c        read(17,*) xqreal(i),xintreal(i)
           write(*,'(i7,3e27.15,3e27.15)')int(xqreal(i)),xintreal(i)
      .       ,xreal_err(i)
         enddo
-        call sleep(1)
         endif
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c                          PK terms
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       call system("test -f ../"// trim(run_tag) //"/PK.dat 
-     . && echo 1 > command.txt || echo 0  > command.txt")
+       call system("test -f ../"// trim(run_tag) //"/"//trim(PK)//
+     . " && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
        read(13,*)ierr
        close(13)
        call system("rm command.txt")
        if(ierr .eq. 1) then
                inlo=inlo+1
-        open(unit=17,file='../'//trim(run_tag)//'/PK.dat',
+        open(unit=17,file='../'//trim(run_tag)//'/'//trim(PK),
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqPK(i),xintPK(i),xPK_err(i)
@@ -199,14 +200,13 @@ c        read(17,*) xqPK(i),xintPK(i)
         enddo
         close(17)
         print*," "
-        print*,"/PK.dat"
+        print*,"/"//trim(PK)
        write(*,*)achar(27)//'[1;32m'//"   xq","          Integral PK",
      .  "                     error",
      . achar(27)//'[0m'
         do i=1,it_max
         write(*,'(i7,3e27.15,3e27.15)')int(xqPK(i)),xintPK(i),xPK_err(i)
         enddo
-        call sleep(1)
         endif
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -218,6 +218,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        write(*,*)achar(27)//'[1;32m'//"   xq  ",
      . "       sigma NLO dipole","                 error",
      . achar(27)//'[0m'
+        call sleep(1)
         xq = xq_initial
         do i=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')int(xq),
@@ -228,7 +229,6 @@ c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
 c     .  xintvir(i)+xintreal(i)+xintLO(i)
         xq = xq + step_size
         enddo
-        call sleep(1)
         endif
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -236,40 +236,35 @@ c       "Sigma_Chinmoy" and Ratio with Dipole
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         inloch = 0
-       call system("test -f ../"// trim(run_tag) //"/smqqb.nlo.out
-     . && echo 1 > command.txt || echo 0  > command.txt")
+       call system("test -f ../"// trim(run_tag) //"/"//trim(ref)//
+     . " && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
        read(13,*)ierr
        close(13)
        call system("rm command.txt")
        if(ierr .eq. 1) then
                inloch = 1
-        open(unit=17,file='../'//trim(run_tag)//'/smqqb.nlo.out',
-     .     status='unknown')
+        open(unit=17,file='../'//trim(run_tag)//'/'//trim(ref)
+     .     ,status='unknown')
         do i=1,it_max
         read(17,*) xqch(i),xintch(i)
         enddo
         close(17)
        print*," "
+       print*,"For comparison with other data "
+       print*," "
+       print*,"/"//trim(ref)
        write(*,*)achar(27)//'[1;32m'//"   xq  ",
      ." sigma NLO chinmoy", 
      . achar(27)//'[0m'
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
         enddo
-        call sleep(1)
         endif
 c~~~~~~~~~~~~~~~~~[ ratio ]        
 
         if (inlo + inloch .eq. 4) then
-       call system("test -f ../"// trim(run_tag) //"/smqqb.nlo.out
-     . && echo 1 > command.txt || echo 0  > command.txt")
-       open(unit=13,file="command.txt",status="unknown")
-       read(13,*)ierr
-       close(13)
-       call system("rm command.txt")
-       if(ierr .eq. 1) then
-        print*," "
+       print*," "
         write(*,*)achar(27)//'[1;32m'//"   xq  ",
      .  "  chinmoy/dipole sigma_NLO",
      . achar(27)//'[0m'
@@ -281,7 +276,6 @@ c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
 c     .  xintvir(i)+xintreal(i)+xintLO(i)
         xq = xq + step_size
         enddo
-        endif
         endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 123        continue
