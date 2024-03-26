@@ -7,11 +7,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plus Term
      .          ,p(0:3,1:4),Born(1:2)
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+6)
-      character*50 name
       common/energy/s
-      common/pdfname/name
       common/factscale/xmuf
-      common/leg_choice/leg
       common/usedalpha/AL,ge
       common/distribution/xq
 
@@ -135,11 +132,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
       dimension SumP(1:2),SumK(1:2)
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+6)
-      character*50 name
       common/energy/s
-      common/pdfname/name
       common/factscale/xmuf
-      common/leg_choice/leg
       common/usedalpha/AL,ge
       common/distribution/xq
 
@@ -208,17 +202,14 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
       function flo2_PKDel(yy,vwgt)
       implicit double precision (a-h,o-z)
       dimension yy(10)
-      dimension f1(-6:6),f2(-6:6),xl(15)
-      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
-     .          ,p(0:3,1:4),Born(1:2)
-      dimension SumP(1:2),SumK(1:2)
+     .         ,f1(-6:6),f2(-6:6),xl(15)
+     .         ,p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
+     .         ,p(0:3,1:4),Born(1:2)
+     .         ,SumP(1:2),SumK(1:2)
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+6)
-      character*50 name
       common/energy/s
-      common/pdfname/name
       common/factscale/xmuf
-      common/leg_choice/leg
       common/usedalpha/AL,ge
       common/distribution/xq
 
@@ -280,7 +271,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
       end
 
 
-c---------------------------------------------------------------------
+c--------------------------------------------------------------------o
 c     [u U -> e E]  Born 
 c--------------------------------------------------------------------o
        function Born_uU2eE(k,p1,p2,p3,p4)

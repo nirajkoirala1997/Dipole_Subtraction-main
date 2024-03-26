@@ -1,11 +1,10 @@
       program intPK
       implicit double precision (a-h,o-z)
       dimension c(1:2)
-      character*50 name
+      character*50 name,mode
       character*100 command,run_tag,dir_path,filename,filename1
       common/energy/s
       external flo2_PK,flo2_PKDel,flo2_PKReg
-      common/leg_choice/leg
       common/usedalpha/AL,ge   
       common/distribution/xq
       dimension PKPlus(1:50),err_Plus(1:50)
@@ -51,52 +50,40 @@ c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c
 c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c        
 
 
-
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P and K terms from Here ] 
         xq_initial = xq
       call initpdfsetbyname(name)
       Call initPDF(0)
        s=ecm*ecm
 
-        print*,"  "
-        print*,"____________________________________"
-        print*,"    Calculating P and K terms       "
-        print*,"____________________________________"
-        print*,"````````````````````````````````````"
-
-
+        mode = "P and K terms"
+        call printframe0(mode)
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
-        print*,"  "
-        print*,"____________________________________"
-        print*,"  Calculating Regular and [+] terms "
-        print*,"____________________________________"
+
+        mode = "[+] distribution "
+        call printframe0(mode)
+        call printframe1(pt1*100,its1)   ! Prints Vegas points
 
         do j=1,it_max
 
-          print*," "
-      write(*,*) achar(27)//'[1;32m' // "For xq = ",int(xq) ,achar(27) 
-     .   //'[0m'
-          print*," "
+        call printframe2(xq)
 
           call brm48i(40,0,0) ! initialize random number generator
-          call vsup_2(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
+          call vsup_2(4,npt1/1000,its1,flo2_PK,ai_lo2,sd,chi2)
 
           PKPlus(j)   = ai_lo2
           err_plus(j) =sd
-            print*,"  "
-            print*,"  "
-            write(*,*)achar(27)//'[1;32m'//"Integral Plus ", 
-     .      PKPlus(j),achar(27) //'[0m', "+-",err_plus(j)
-            write(*,*)"with chisq    =",chi2
-            print*," "
-            print*," "
+
+         mode = "Plus"
+         call printframe3(mode,PKPlus(j),err_plus(j),chi2)   ! Prints Summary of integration
 
            xq=xq + xincr
         enddo
+
         xq = xq_initial
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","   Integral Plus",
-     .  "                    error",
-     . achar(27)//'[0m'
+        call printframe4(mode)
+
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
      .             int(xq),PKPlus(j),err_plus(j)
@@ -105,37 +92,29 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
         xq = xq_initial
-        print*,"  "
-        print*,"____________________________________"
-        print*,"    Calculating Regular terms"
-        print*,"____________________________________"
+
+        mode = "Regular Terms "
+        call printframe0(mode)
+        call printframe1(pt1,its1)
 
         do j=1,it_max
 
-          print*," "
-      write(*,*) achar(27)//'[1;32m' // "For xq = ",int(xq) ,achar(27) 
-     .   //'[0m'
-          print*," "
+        call printframe2(xq)
 
           call brm48i(40,0,0) ! initialize random number generator
           call vsup(4,npt1,its1,flo2_PKReg,ai_lo2,sd,chi2)
 
           PKReg(j) = ai_lo2
           err_Reg(j)=sd
-            print*,"  "
-            print*,"  "
-            write(*,*)achar(27)//'[1;32m'//"Integral Regular", 
-     .      ai_lo2,achar(27) //'[0m', "+-",err(j)
-            write(*,*)"with chisq    =",chi2
-            print*," "
-            print*," "
+
+         mode = "Regular"
+         call printframe3(mode,ai_lo2,sd,chi2)
 
            xq=xq + xincr
         enddo
         xq = xq_initial
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","   Integral Regular",
-     .  "                    error",
-     . achar(27)//'[0m'
+        call printframe4(mode)
+
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
      .             int(xq),PKReg(j),err_Reg(j)
@@ -144,36 +123,39 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ r
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ delta functions ]
         xq = xq_initial
-        print*,"____________________________________"
-        print*," Calculating Delta function terms"
-        print*,"____________________________________"
+
+        mode = "Delta Functions"
+        call printframe0(mode)
+        call printframe1(pt1,its1)
 
         do j=1,it_max
 
-          print*," "
-      write(*,*) achar(27)//'[1;32m' // "For xq = ",int(xq) ,achar(27) 
-     .   //'[0m'
-          print*," "
+        call printframe2(xq)
 
           call brm48i(40,0,0) ! initialize random number generator
           call vsup(3,npt1,its1,flo2_PKDel,ai_lo2,sd,chi2)
 
           PKDel(j) = ai_lo2
           err_Del(j)=sd
-            print*,"  "
-            print*,"  "
-            write(*,*)achar(27)//'[1;32m'//"Integral Delta ", 
-     .      ai_lo2,achar(27) //'[0m', "+-",sd
-            write(*,*)"with chisq    =",chi2
-            print*," "
-            print*," "
+
+         mode = "Delta"
+         call printframe3(mode,ai_lo2,sd,chi2)
 
            xq=xq + xincr
         enddo
         xq = xq_initial
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","  Integral PK ",
-     .  "                    error",
-     . achar(27)//'[0m'
+
+        call printframe4(mode)
+        do j=1,it_max
+          write(*,'(i7,3e27.15,3e27.15)')
+     .             int(xq),PKDel(j),err_Del(j)
+          xq = xq + xincr
+        enddo
+
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Combining All ]
+        xq = xq_initial
+        mode = "Sigma NLO"
+        call printframe4(mode)
 
         do j=1,it_max
         PK(j) = PKPlus(j) + PKReg(j) + PKDel(j)
@@ -185,7 +167,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ d
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[  * END * ]      
 
 c ~~~~~~~~~~~Writing in a file to compare~~~~~~~~~~~~c        
-        if (iprint .eq. 0 ) goto 123
+        if (iprint .ne. 1 ) goto 123
        open(unit=21,file='../summary/'//trim(run_tag)//
      .   '/'//trim(filename),status='unknown')
 c     .   '/'//trim(filename),status='unknown', access='append')
@@ -205,3 +187,5 @@ c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c
       double precision p1(0:3),p2(0:3)
       dot=p1(0)*p2(0)-p1(1)*p2(1)-p1(2)*p2(2)-p1(3)*p2(3)
       end
+
+

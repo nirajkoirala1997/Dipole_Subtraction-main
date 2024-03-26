@@ -1,8 +1,4 @@
-! a -> ai+ i ||  q -> q g || P{a,ai} -> P{q,q} || a- Incoming
-!                                               | ai- Undergoing Born
-!                                               |    process               
-! Kb = Kbar      
-c----------------------------------------------------------- 
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plus Terms]
       subroutine getPKPlus(x,xmuf,p,xp1,xp2,SumPlus)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
@@ -46,7 +42,7 @@ c        ALLP(k) = Alp*PqqP(x)*coef
 
       return
       end
-cc----------------------------------------------------------- !Misc-functions
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular Terms]
       subroutine getPKReg(x,xmuf,p,xp1,xp2,SumReg)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
@@ -89,7 +85,7 @@ c        coef1 = coef1*Born1
 
       return
       end
-cc----------------------------------------------------------- !Misc-functions
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta terms]
        subroutine getPKDel(x,xmuf,p,xp1,xp2,SumP)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
@@ -131,7 +127,8 @@ c        coef1 = coef1*Born1
 
       return
       end
-cc----------------------------------------------------------- !Misc-functions
+
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Misc functions]
                                                             
       double precision function PqqP(x)
       implicit double precision (a-h,o-z)

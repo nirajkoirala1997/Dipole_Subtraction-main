@@ -245,7 +245,7 @@ c            WRITE(ilabel,201) IT,TI,TSI,AVGI,SD,CHI2A
          ENDIF
          IF(NPRN.LT.0) THEN
             DO J=1,NDIM
-               WRITE(6,202) J,(XI(I,J),DI(I,J),D(I,J),I=1,ND)
+            WRITE(6,202) J,(XI(I,J),DI(I,J),D(I,J),I=1,ND)
 c               WRITE(ilabel,202) J,(XI(I,J),DI(I,J),D(I,J),I=1,ND)
             ENDDO
          ENDIF
