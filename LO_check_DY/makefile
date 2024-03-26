@@ -4,7 +4,7 @@ LDFLAGS = -lc -L./../ -lfile
 LIBS = -lcuba
 export LHFLAGS=$(shell lhapdf-config --ldflags)
 LIB = -lm 
-OBJECTS =alphaS.o misc.o lum.o pdf_lha.o vsup.o integrand.o phasespace.o
+OBJECTS = printframe.o alphaS.o misc.o lum.o pdf_lha.o vsup.o integrand.o phasespace.o
 ##OBJECTS =alphaS.o misc.o lum.o pdf_lha.o vsup.o integrand.o kin2.o
 PROG = runLO
 $(PROG): $(OBJECTS) main.f  
@@ -23,6 +23,8 @@ phasespace.o: ../phasespace.f
 	$(FC) $(FFLAGS) -c ../phasespace.f -o phasespace.o
 misc.o: ../misc.f
 	$(FC) $(FFLAGS) -c ../misc.f -o misc.o
+printframe.o: ../printframe.f
+	$(FC) $(FFLAGS) -c ../printframe.f -o printframe.o
 clean: 
 	rm -f *.o core *~ *.x $(PROG)
 $(PROG).o: $(PROG).f param_card.dat

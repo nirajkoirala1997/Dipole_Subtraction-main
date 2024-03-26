@@ -6,7 +6,7 @@
       common/amass/am1,am2,am3,am4,am5
       common/usedalpha/AL,ge
       common/distribution/xq
-      character*50 name
+      character*50 name,mode
       character*100 run_tag,filename
       external flo2_Vir
 
@@ -75,50 +75,39 @@ c        stop
 
         i=1
         if (i .eq.  1) then
-        print*," "
-        print*," "
-        print*,"____________________________________"
-        Print*,"    Calculating Virtual Contribution"
-        print*,"____________________________________"
-        print*,"````````````````````````````````````"
-        Print*,"    Virtual + Dipole over 2-Body PS"
-        print*," "
-        print*," "
+
+        mode = "virtual contribrtion"
+        call printframe0(mode)
         xq = xq_initial
+
 c       writes data in output file
         if(iprint .eq. 1)  call output(run_tag,filename)
 
         do j=1,it_max
 
-          print*," "
-      write(*,*) achar(27)//'[1;32m' // "For xq = ",int(xq) ,achar(27) 
-     .   //'[0m'
-          print*," "
+        call printframe2(xq)
+
          call brm48i(40,0,0) ! initialize random number generator
          call vsup(3,npt1,its1,flo2_Vir,ans,sd,chi2)
            ai_lo2(j) = ans
               err(j) = sd
-                  xq = xq + xstep
 
-            print*,"  "
-            print*,"  "
-          write(*,*)achar(27)//'[1;32m'//"Integral [virtual+eikonal]=", 
-     .  ai_lo2(j),achar(27) //'[0m', "+-",err(j)
-            write(*,*)"with chisq    =",chi2
-            print*," "
-            print*," "
+         call printframe3(mode,ans,sd,chi2)
 
+        xq = xq + xstep
         enddo
 
         xq = xq_initial
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","           Integral",
-     .   "         error",
-     . achar(27)//'[0m'
+
+        call printframe4(mode)
+
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
      .             int(xq),ai_lo2(j),err(j)
           xq = xq + xstep
         enddo
+
+
         if(iprint .eq. 0) goto 123
         open(unit=20,file='../summary/'//trim(run_tag)//'/'
      .  //trim(filename),status='unknown')
@@ -129,6 +118,7 @@ c     .  //trim(filename),status='unknown', access='append')
           xq = xq + xstep
          enddo
          close(20)
+
 123     continue 
 c
         elseif(I .eq. 2) THEN

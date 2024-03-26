@@ -1,0 +1,697 @@
+   100.00000000000000                            NaN                       NaN
+   200.00000000000000                            NaN                       NaN
+   300.00000000000000                            NaN                       NaN
+   400.00000000000000       -3.1258296202695900E-007   1.6326600156171475E-007
+   500.00000000000000        3.3754048544521769E-008   5.0300524175288679E-008
+   600.00000000000000       -2.1858929739220960E-008   2.3196711166470072E-008
+   700.00000000000000       -5.8684513806794853E-009   4.3071254666583327E-009
+   800.00000000000000       -8.9416041147365589E-008   8.9991839095745667E-008
+   900.00000000000000       -4.6810646365791881E-008   7.4881594931208505E-008
+   1000.0000000000000                            NaN                       NaN
+   1100.0000000000000       -1.2267188393617051E-010   2.6175206846548543E-010
+   1200.0000000000000       -3.1163885185893802E-009   2.0571792267144500E-009
+   1300.0000000000000       -2.5027031851853564E-010   2.5719265396310605E-010
+   1400.0000000000000                            NaN                       NaN
+   1500.0000000000000       -1.9024559518370985E-010   1.2645574034812965E-010
+   1600.0000000000000                            NaN                       NaN
+   1700.0000000000000       -6.7955893244817324E-014   6.3766336840356893E-014
+   1800.0000000000000                            NaN                       NaN
+   1900.0000000000000                            NaN                       NaN
+   2000.0000000000000        2.0458727896211133E-012   2.7340991111831653E-012
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   1.E+04
+         Iteration:                    3
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ File  already exist  ../summary/run_test3_04/real2.dat                                                                   
+ All previous data for this run will be lost. Overwrite ?     [y/n]
+ Overwriting data in../summary/run_test3_04/real2.dat                                                                   
+  
+ For xq =          100 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ For xq =          200 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ For xq =          300 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ For xq =          400 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.3524411E-04 0.6561E-04 -0.3524411E-04 0.6561E-04  0.000    
+   2     -0.4403625E-08 0.8243E-08 -0.1772164E-04 0.3289E-04 0.2869    
+   3     -0.3152422E-08 0.2597E-08 -0.4970969E-05 0.1422E-04 0.3718    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1     -0.2450748E-07 0.2503E-07 -0.2450748E-07 0.2503E-07  0.000    
+   2     -0.6975995E-07 0.6318E-07 -0.4983762E-07 0.3543E-07 0.4021    
+   3      0.5380174E-06 0.8070E-06  0.4980015E-07 0.1936E-06 0.6544    
+   4     -0.5762081E-06 0.3982E-06 -0.2281477E-06 0.1823E-06  1.244    
+   5     -0.5375883E-06 0.5025E-06 -0.2885690E-06 0.1768E-06 0.9187    
+   6     -0.4420241E-06 0.4239E-06 -0.3125830E-06 0.1633E-06 0.7502    
+   
+   
+ Integral [real-dipole]:  -3.1258296202695900E-007 +-   1.6326600156171475E-007
+ with chisq    =  0.75020966031210146     
+  
+  
+  
+ For xq =          500 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1      0.3452631E-05 0.3453E-05  0.3452631E-05 0.3453E-05  0.000    
+   2      0.1542725E-10 0.1146E-10  0.1227579E-05 0.1456E-05  1.289    
+   3      0.1411682E-10 0.4742E-10  0.1190077E-05 0.1170E-05 0.9830    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1      0.4340728E-06 0.4343E-06  0.4340728E-06 0.4343E-06  0.000    
+   2      0.4834360E-09 0.1290E-08  0.3806260E-06 0.2876E-06 0.2457    
+   3     -0.8501287E-09 0.5452E-09  0.1208671E-06 0.1326E-06  1.083    
+   4     -0.1556396E-08 0.8055E-09  0.5829071E-07 0.8031E-07  1.156    
+   5     -0.1410788E-08 0.8266E-09  0.4126866E-07 0.6073E-07  1.133    
+   6     -0.1224186E-08 0.8263E-09  0.3375405E-07 0.5030E-07  1.109    
+   
+   
+ Integral [real-dipole]:   3.3754048544521769E-008 +-   5.0300524175288679E-008
+ with chisq    =   1.1086172432227857     
+  
+  
+  
+ For xq =          600 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.6457338E-04 0.6457E-04 -0.6457338E-04 0.6457E-04  0.000    
+   2     -0.1221083E-08 0.1112E-08 -0.2928783E-04 0.3075E-04  1.093    
+   3     -0.1013088E-07 0.7536E-08 -0.1609953E-04 0.1861E-04  1.126    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1      0.2134746E-08 0.4283E-08  0.2134746E-08 0.4283E-08  0.000    
+   2     -0.1130655E-07 0.4951E-08 -0.1069542E-07 0.3481E-08 0.6472    
+   3     -0.2991198E-06 0.2903E-06 -0.5762938E-07 0.6765E-07  1.239    
+   4     -0.1157127E-07 0.5489E-08 -0.3897028E-07 0.4522E-07  1.183    
+   5     -0.7433565E-08 0.2271E-08 -0.2338640E-07 0.2878E-07  1.183    
+   6     -0.1652407E-07 0.6631E-08 -0.2185893E-07 0.2320E-07  1.136    
+   
+   
+ Integral [real-dipole]:  -2.1858929739220960E-008 +-   2.3196711166470072E-008
+ with chisq    =   1.1356834130957290     
+  
+  
+  
+ For xq =          700 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.2018758E-04 0.2019E-04 -0.2018758E-04 0.2019E-04  0.000    
+   2     -0.8890318E-09 0.4855E-09 -0.4638269E-05 0.6842E-05  1.540    
+   3     -0.1590908E-08 0.1412E-08 -0.3591774E-05 0.4916E-05  1.233    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1     -0.1312911E-08 0.6555E-09 -0.1312911E-08 0.6555E-09  0.000    
+   2     -0.2282488E-08 0.1678E-08 -0.1619071E-08 0.7690E-09 0.3435    
+   3     -0.4189964E-07 0.3362E-07 -0.1005662E-07 0.8901E-08  1.697    
+   4     -0.2208980E-08 0.1394E-08 -0.8071261E-08 0.6671E-08  1.591    
+   5     -0.2948401E-08 0.1714E-08 -0.6895315E-08 0.5250E-08  1.527    
+   6     -0.1591842E-08 0.9050E-09 -0.5868451E-08 0.4307E-08  1.511    
+   
+   
+ Integral [real-dipole]:  -5.8684513806794853E-009 +-   4.3071254666583327E-009
+ with chisq    =   1.5107565439110946     
+  
+  
+  
+ For xq =          800 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.1457615E-04 0.1429E-04 -0.1457615E-04 0.1429E-04  0.000    
+   2     -0.4240929E-07 0.4091E-07 -0.7191921E-05 0.7087E-05  1.051    
+   3     -0.3176236E-08 0.2716E-08 -0.4369207E-05 0.4510E-05  1.091    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1     -0.6380587E-06 0.6367E-06 -0.6380587E-06 0.6367E-06  0.000    
+   2     -0.4968978E-08 0.2280E-08 -0.1154983E-06 0.1881E-06  1.632    
+   3     -0.3036386E-08 0.1688E-08 -0.7502071E-07 0.1229E-06  1.321    
+   4     -0.2021043E-07 0.1929E-07 -0.6905741E-07 0.1005E-06  1.182    
+   5     -0.2725998E-08 0.1614E-08 -0.5443116E-07 0.7937E-07  1.138    
+   6     -0.5215506E-06 0.5096E-06 -0.8941604E-07 0.8999E-07  1.029    
+   
+   
+ Integral [real-dipole]:  -8.9416041147365589E-008 +-   8.9991839095745667E-008
+ with chisq    =   1.0288132271384745     
+  
+  
+  
+ For xq =          900 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.8427858E-05 0.8428E-05 -0.8427858E-05 0.8428E-05  0.000    
+   2     -0.1219813E-08 0.4768E-09 -0.1118133E-05 0.2170E-05  1.734    
+   3     -0.3740410E-10 0.1863E-10 -0.7289014E-06 0.1430E-05  1.370    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1     -0.9565659E-09 0.7098E-09 -0.9565659E-09 0.7098E-09  0.000    
+   2     -0.5220802E-08 0.3120E-08 -0.3543288E-08 0.1747E-08  1.422    
+   3     -0.7841515E-06 0.7845E-06 -0.1424105E-06 0.1910E-06  1.221    
+   4     -0.2152647E-08 0.8805E-09 -0.7009612E-07 0.1152E-06  1.209    
+   5     -0.3198911E-08 0.2195E-08 -0.5973658E-07 0.9469E-07  1.150    
+   6     -0.7945105E-08 0.3720E-08 -0.4681065E-07 0.7488E-07  1.121    
+   
+   
+ Integral [real-dipole]:  -4.6810646365791881E-008 +-   7.4881594931208505E-008
+ with chisq    =   1.1213334568852287     
+  
+  
+  
+ For xq =         1000 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ For xq =         1100 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.1142906E-06 0.8051E-06 -0.1142906E-06 0.8051E-06  0.000    
+   2      0.3922540E-09 0.6082E-09 -0.4907468E-08 0.1224E-06 0.3871E-01
+   3     -0.9940383E-09 0.9545E-09 -0.2116461E-08 0.5351E-07 0.2958E-01
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1     -0.1324127E-09 0.1313E-09 -0.1324127E-09 0.1313E-09  0.000    
+   2      0.7119500E-10 0.1101E-09 -0.7310621E-10 0.8874E-10  1.087    
+   3     -0.7873856E-10 0.7532E-10 -0.7554106E-10 0.6163E-10 0.6406    
+   4     -0.1321666E-09 0.1410E-09 -0.9013906E-10 0.5828E-10 0.4147    
+   5     -0.5196070E-09 0.4141E-09 -0.2259110E-09 0.1127E-09 0.8418    
+   6      0.1368526E-08 0.2331E-08 -0.1226719E-09 0.2618E-09 0.5661    
+   
+   
+ Integral [real-dipole]:  -1.2267188393617051E-010 +-   2.6175206846548543E-010
+ with chisq    =  0.56614891120068056     
+  
+  
+  
+ For xq =         1200 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.1858971E-06 0.1859E-06 -0.1858971E-06 0.1859E-06  0.000    
+   2     -0.1860529E-10 0.5299E-10 -0.1654961E-06 0.1240E-06 0.2195    
+   3     -0.4134635E-10 0.3551E-10 -0.7500698E-07 0.6816E-07 0.8946    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1     -0.1113285E-07 0.1090E-07 -0.1113285E-07 0.1090E-07  0.000    
+   2     -0.2102605E-09 0.1327E-09 -0.3414544E-08 0.4176E-08  1.418    
+   3     -0.1173566E-08 0.8293E-09 -0.2606947E-08 0.2742E-08  1.129    
+   4     -0.4683809E-09 0.3964E-09 -0.2177427E-08 0.2125E-08  1.056    
+   5     -0.1003596E-07 0.9778E-08 -0.3211438E-08 0.2378E-08 0.8613    
+   6     -0.2450104E-08 0.2293E-08 -0.3116389E-08 0.2057E-08 0.8085    
+   
+   
+ Integral [real-dipole]:  -3.1163885185893802E-009 +-   2.0571792267144500E-009
+ with chisq    =  0.80849578869055205     
+  
+  
+  
+ For xq =         1300 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.2575144E-08 0.2575E-08 -0.2575144E-08 0.2575E-08  0.000    
+   2     -0.1878359E-13 0.1658E-13 -0.1127363E-08 0.1205E-08  1.124    
+   3     -0.3891114E-14 0.2894E-14 -0.6292465E-09 0.7349E-09  1.133    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1     -0.1282966E-09 0.1275E-09 -0.1282966E-09 0.1275E-09  0.000    
+   2     -0.2473074E-10 0.1790E-10 -0.6060066E-10 0.5405E-10 0.8312    
+   3     -0.1097274E-11 0.6889E-12 -0.3294622E-10 0.3229E-10  1.046    
+   4     -0.2547299E-10 0.2416E-10 -0.3168152E-10 0.2597E-10 0.8994    
+   5     -0.1775345E-08 0.1768E-08 -0.2636984E-09 0.2892E-09  1.053    
+   6     -0.2883713E-13 0.4522E-13 -0.2502703E-09 0.2572E-09  1.021    
+   
+   
+ Integral [real-dipole]:  -2.5027031851853564E-010 +-   2.5719265396310605E-010
+ with chisq    =   1.0211120506222817     
+  
+  
+  
+ For xq =         1400 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ For xq =         1500 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.1033554E-06 0.8962E-07 -0.1033554E-06 0.8962E-07  0.000    
+   2     -0.1105967E-10 0.8213E-11 -0.4373709E-07 0.4122E-07  1.534    
+   3     -0.3041547E-13 0.1971E-13 -0.2488181E-07 0.2538E-07  1.515    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1     -0.2021784E-10 0.1916E-10 -0.2021784E-10 0.1916E-10  0.000    
+   2     -0.8193504E-09 0.6424E-09 -0.4946971E-09 0.3501E-09  1.257    
+   3      0.8120219E-10 0.9970E-10 -0.3824600E-09 0.2577E-09  1.325    
+   4      0.1199189E-11 0.1642E-11 -0.3304569E-09 0.2075E-09  1.311    
+   5     -0.4886503E-10 0.4974E-10 -0.2750271E-09 0.1666E-09  1.338    
+   6     -0.6890607E-12 0.4653E-12 -0.1902456E-09 0.1265E-09  1.485    
+   
+   
+ Integral [real-dipole]:  -1.9024559518370985E-010 +-   1.2645574034812965E-010
+ with chisq    =   1.4853938664500177     
+  
+  
+  
+ For xq =         1600 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ For xq =         1700 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.4036649E-08 0.4036E-08 -0.4036649E-08 0.4036E-08  0.000    
+   2     -0.8158632E-13 0.8025E-13 -0.1985402E-08 0.2001E-08  1.017    
+   3     -0.6696730E-14 0.3763E-14 -0.7765465E-09 0.1022E-08  1.212    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1     -0.1050423E-12 0.7166E-13 -0.1050423E-12 0.7166E-13  0.000    
+   2     -0.4648064E-13 0.2015E-13 -0.6332753E-13 0.2972E-13 0.7956    
+   3     -0.6026593E-13 0.3859E-13 -0.6257391E-13 0.2379E-13 0.4694    
+   4     -0.2151259E-12 0.1534E-12 -0.8784569E-13 0.3645E-13 0.9182    
+   5     -0.1127537E-12 0.4830E-13 -0.9568120E-13 0.2959E-13 0.7547    
+   6      0.6035494E-12 0.7136E-12 -0.6795589E-13 0.6377E-13  1.041    
+   
+   
+ Integral [real-dipole]:  -6.7955893244817324E-014 +-   6.3766336840356893E-014
+ with chisq    =   1.0405615250033273     
+  
+  
+  
+ For xq =         1800 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ For xq =         1900 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ For xq =         2000 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=       8192.
+                              IT=    0  ITMX=    3
+                              MDS=  1   ND=  50
+   1     -0.3182852E-07 0.1821E-07 -0.3182852E-07 0.1821E-07  0.000    
+   2     -0.1827850E-09 0.1473E-09 -0.2121972E-07 0.1050E-07  2.025    
+   3     -0.4916057E-13 0.4827E-13 -0.1731167E-07 0.7743E-08  2.083    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=      93312.
+                              IT=    0  ITMX=    6
+                              MDS=  1   ND=  50
+   1      0.5879835E-13 0.7294E-13  0.5879835E-13 0.7294E-13  0.000    
+   2     -0.8276306E-13 0.7227E-13 -0.3585827E-13 0.5126E-13  1.690    
+   3     -0.1950832E-13 0.9708E-14 -0.2485311E-13 0.2437E-13  1.272    
+   4      0.2149751E-10 0.2152E-10  0.3045643E-11 0.4063E-11  1.144    
+   5     -0.1047608E-13 0.6743E-14  0.2261883E-11 0.3134E-11  1.118    
+   6     -0.2279602E-12 0.2411E-12  0.2045873E-11 0.2734E-11  1.086    
+   
+   
+ Integral [real-dipole]:   2.0458727896211133E-012 +-   2.7340991111831653E-012
+ with chisq    =   1.0859846936675734     
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+    100                        NaN                        NaN
+    200                        NaN                        NaN
+    300                        NaN                        NaN
+    400     -0.312582962026959E-06      0.163266001561715E-06
+    500      0.337540485445218E-07      0.503005241752887E-07
+    600     -0.218589297392210E-07      0.231967111664701E-07
+    700     -0.586845138067949E-08      0.430712546665833E-08
+    800     -0.894160411473656E-07      0.899918390957457E-07
+    900     -0.468106463657919E-07      0.748815949312085E-07
+   1000                        NaN                        NaN
+   1100     -0.122671883936171E-09      0.261752068465485E-09
+   1200     -0.311638851858938E-08      0.205717922671445E-08
+   1300     -0.250270318518536E-09      0.257192653963106E-09
+   1400                        NaN                        NaN
+   1500     -0.190245595183710E-09      0.126455740348130E-09
+   1600                        NaN                        NaN
+   1700     -0.679558932448173E-13      0.637663368403569E-13
+   1800                        NaN                        NaN
+   1900                        NaN                        NaN
+   2000      0.204587278962111E-11      0.273409911118317E-11
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   1.E+04
+         Iteration:                    3
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ File  already exist  ../summary/run_test3_04/real2.dat                                                                   
+ All previous data for this run will be lost. Overwrite ?     [y/n]
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

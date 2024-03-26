@@ -1,6 +1,4 @@
 #!/bin/bash
-cd ../
-# Modify the Fortran source file
 sed -i 's/nprn[[:space:]]*=[[:space:]]*1/nprn = 0/' "vsup.f"
 
 # Define the commands to run in parallel, and add a unique identifier to each command

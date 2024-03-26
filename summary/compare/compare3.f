@@ -138,7 +138,9 @@ c       write(*,*)achar(27)//'[1;32m'//"   xq         first / second",
      . [first-second]/first*100",
      . achar(27)//'[0m'
         do i=1,it_max
-       write(*,'(i7,f10.6)')int(xqLO_ch(i)),dabs(xintLO(i)-xintLO_ch(i))
+c      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),dabs(xintLO(i)-xintLO_ch(i))
+      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),
+     .          dabs(xintLO(i)-xintLO_ch(i))
      .     /xintLO_ch(i)*100d0
         enddo
       endif

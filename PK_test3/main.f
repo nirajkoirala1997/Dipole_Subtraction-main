@@ -56,33 +56,34 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
       Call initPDF(0)
        s=ecm*ecm
 
-        mode = "P and K terms"
-        call printframe0(mode)
-
+      mode = "P and K terms"
+      call printframe0(mode)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
 
-        mode = "[+] distribution "
-        call printframe0(mode)
-        call printframe1(pt1*100,its1)   ! Prints Vegas points
+      mode = "[+] distribution"
+      call printframe0(mode)
+      call printframe1(pt1*100,its1)   ! Prints Vegas points
 
         do j=1,it_max
 
-        call printframe2(xq)
+      call printframe2(xq)
 
-          call brm48i(40,0,0) ! initialize random number generator
-          call vsup_2(4,npt1/1000,its1,flo2_PK,ai_lo2,sd,chi2)
+c      -------------------------------------------------
+         call brm48i(40,0,0) 
+         call vsup_2(4,npt1,its1,flo2_PK,ai_lo2,sd,chi2)
+c      -------------------------------------------------
 
-          PKPlus(j)   = ai_lo2
-          err_plus(j) =sd
+         PKPlus(j)   = ai_lo2
+         err_plus(j) = sd
 
-         mode = "Plus"
-         call printframe3(mode,PKPlus(j),err_plus(j),chi2)   ! Prints Summary of integration
+      mode = "Plus"
+      call printframe3(mode,ai_lo2,sd,chi2)   ! Prints Summary of integration
 
-           xq=xq + xincr
+        xq=xq + xincr
         enddo
 
         xq = xq_initial
-        call printframe4(mode)
+      call printframe4(mode)
 
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
@@ -93,27 +94,28 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
         xq = xq_initial
 
-        mode = "Regular Terms "
-        call printframe0(mode)
-        call printframe1(pt1,its1)
+      mode = "Regular Terms "
+      call printframe0(mode)
+      call printframe1(pt1,its1)
 
         do j=1,it_max
 
-        call printframe2(xq)
-
-          call brm48i(40,0,0) ! initialize random number generator
-          call vsup(4,npt1,its1,flo2_PKReg,ai_lo2,sd,chi2)
+      call printframe2(xq)
+c     -------------------------------------------------
+      call brm48i(40,0,0) 
+      call vsup(4,npt1,its1,flo2_PKReg,ai_lo2,sd,chi2)
+c     -------------------------------------------------
 
           PKReg(j) = ai_lo2
           err_Reg(j)=sd
 
-         mode = "Regular"
+      mode = "Regular"
          call printframe3(mode,ai_lo2,sd,chi2)
 
            xq=xq + xincr
         enddo
         xq = xq_initial
-        call printframe4(mode)
+      call printframe4(mode)
 
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
@@ -124,28 +126,30 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ r
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ delta functions ]
         xq = xq_initial
 
-        mode = "Delta Functions"
-        call printframe0(mode)
-        call printframe1(pt1,its1)
+      mode = "Delta Functions"
+      call printframe0(mode)
+      call printframe1(pt1,its1)
 
         do j=1,it_max
 
-        call printframe2(xq)
+      call printframe2(xq)
 
-          call brm48i(40,0,0) ! initialize random number generator
-          call vsup(3,npt1,its1,flo2_PKDel,ai_lo2,sd,chi2)
+c     -------------------------------------------------
+        call brm48i(40,0,0) 
+        call vsup(3,npt1,its1,flo2_PKDel,ai_lo2,sd,chi2)
+c     -------------------------------------------------
 
           PKDel(j) = ai_lo2
           err_Del(j)=sd
 
-         mode = "Delta"
-         call printframe3(mode,ai_lo2,sd,chi2)
+      mode = "Delta"
+      call printframe3(mode,ai_lo2,sd,chi2)
 
            xq=xq + xincr
         enddo
         xq = xq_initial
 
-        call printframe4(mode)
+       call printframe4(mode)
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
      .             int(xq),PKDel(j),err_Del(j)
@@ -154,8 +158,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ d
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Combining All ]
         xq = xq_initial
-        mode = "Sigma NLO"
-        call printframe4(mode)
+      mode = "Sigma NLO"
+      call printframe4(mode)
 
         do j=1,it_max
         PK(j) = PKPlus(j) + PKReg(j) + PKDel(j)
@@ -165,6 +169,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ C
           xq = xq + xincr
         enddo
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[  * END * ]      
+
 
 c ~~~~~~~~~~~Writing in a file to compare~~~~~~~~~~~~c        
         if (iprint .ne. 1 ) goto 123
@@ -180,7 +185,6 @@ c     .   '/'//trim(filename),status='unknown', access='append')
 123        continue
        end
 c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
-
 
       double precision function dot(p1,p2)
       implicit none

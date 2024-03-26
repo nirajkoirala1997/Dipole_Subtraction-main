@@ -11,7 +11,7 @@
       common/set/set1
       common/countc/n4
       common/distribution/xq
-      character*50 name
+      character*50 name,mode
       character*100 run_tag,filename
       external fnlo3
       external dipole_uU_g
@@ -67,43 +67,29 @@ c        read*,i
           print*," "
           print*," "
           print*," "
-c          run_tag = 'run_008'
-c          filename = "kuchbhi"
+          call printframe1(pt1,its1)
 
 c  saves the data in output file           
-          iprint=1
           if(iprint .eq. 1) call output(run_tag,filename)
 
           xq = xq_initial
           do j = 1,it_max
             
-c            print*,"For xq=",xq ! base value
-c            write(*, '(A)') // green // "For xq = " // reset //
-          print*," "
-      write(*,*) achar(27)//'[1;32m' // "For xq = ",int(xq) ,achar(27) 
-     .   //'[0m'
-          print*," "
+          call printframe2(xq)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            call brm48i(40,0,0) ! initialize random number generator
+            call brm48i(40,0,0) 
             call vsup(6,npt1,its1,fnlo3,ans,sd,chi2)
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             ai_nlo3(j) = ans
                xerr(j) = sd
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-            print*,"  "
-            print*,"  "
-            write(*,*)achar(27)//'[1;32m'//"Integral[real-dipole] =", 
-     .  ai_nlo3(j),achar(27) //'[0m', "+-",xerr(j)
-            write(*,*)"with chisq    =",chi2
-            print*," "
-            print*," "
+            mode  = "[real-dipole]"
+            call printframe3(mode,ans,sd,chi2)
             xq = xq + step_size 
           enddo
           xq = xq_initial
 
-       write(*,*)achar(27)//'[1;92m'//"   xq"," ","           Integral",
-     .   "         error",
-     . achar(27)//'[0m'
+          call printframe4(mode)
           
           do j=1,it_max
           write(*,'(i7,3e27.15)')int(xq),ai_nlo3(j),xerr(j)

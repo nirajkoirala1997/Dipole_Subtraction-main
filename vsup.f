@@ -37,7 +37,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus specific vsup]
       common/chfile/fname8
       external fxn
       ndim=nd
-      ncall=npt*100
+      ncall=npt*10
       nprn = 1
       itmx=its
       plot=.false.

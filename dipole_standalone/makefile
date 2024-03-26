@@ -5,7 +5,7 @@ export LHFLAGS=$(shell lhapdf-config --ldflags)
 LIB = -lm 
 LIB = 
 #OBJECTS = Iterm.o matrixLO1.o couplings.o cmatrix.o PK.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
-OBJECTS = dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
+OBJECTS = printframe.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
 PROG = runDipole
 $(PROG): $(OBJECTS) main.f  
 	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS) $(LIB) $(LIBS) $(LHFLAGS) $(LDFLAGS) 
@@ -19,6 +19,8 @@ misc.o: ../misc.f
 	$(FC) $(FFLAGS) -c ../misc.f -o misc.o
 phasespace.o: ../phasespace.f
 	$(FC) $(FFLAGS) -c ../phasespace.f -o phasespace.o
+printframe.o: ../printframe.f
+	$(FC) $(FFLAGS) -c ../printframe.f -o printframe.o
 clean: 
 	rm -f *.o core *~ *.x $(PROG)
 $(PROG): 
