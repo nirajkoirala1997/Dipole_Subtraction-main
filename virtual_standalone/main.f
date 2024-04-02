@@ -57,32 +57,16 @@ c      am1 = 0.51099895000d-3
       ! energy
       s=ecm*ecm
 
-c      print*,'  '
-c      print*,"Press 1 to initialise VEGAS:"
-c      print*,"Press 2 to initialise CUBA-VEGAS:"
-c        read*,i
-c
-c        
-c        open(unit=17,file='Output.dat',status='unknown')
-c        do i=1,6
-c        read(17,*) y(i)
-c        enddo
-c        close(17)
-c        do i=1,6
-c        print*,x(i)/y(i)
-c        enddo
-c        stop
-
-        i=1
-        if (i .eq.  1) then
 
         mode = "virtual contribrtion"
         call printframe0(mode)
         xq = xq_initial
 
+
 c       writes data in output file
         if(iprint .eq. 1)  call output(run_tag,filename)
 
+        call printframe1(pt1,its1)
         do j=1,it_max
 
         call printframe2(xq)
@@ -120,8 +104,4 @@ c     .  //trim(filename),status='unknown', access='append')
          close(20)
 
 123     continue 
-c
-        elseif(I .eq. 2) THEN
-                CALL cubacheck
-        endif
        end

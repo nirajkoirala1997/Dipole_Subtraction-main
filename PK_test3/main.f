@@ -62,7 +62,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
 
       mode = "[+] distribution"
       call printframe0(mode)
-      call printframe1(pt1*100,its1)   ! Prints Vegas points
+      call printframe1(pt1*10,its1)   ! Prints Vegas points
 
         do j=1,it_max
 
@@ -158,17 +158,20 @@ c     -------------------------------------------------
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Combining All ]
         xq = xq_initial
-      mode = "Sigma NLO"
-      call printframe4(mode)
+      print*,"  "
+      write(*,*)achar(27)//'[1;32m'//
+     . "   xq              Plus                      regular     
+     .            delta                    combined PK     
+     .    error",achar(27) //'[0m'
 
         do j=1,it_max
         PK(j) = PKPlus(j) + PKReg(j) + PKDel(j)
         err(j) = err_Plus(j) + err_Reg(j) + err_Del(j)
-          write(*,'(i7,3e27.15,3e27.15)')
-     .             int(xq),PK(j),err(j)
+          write(*,'(i7,3e27.15,3e27.15,3e27.15,3e27.15,3e27.15)')
+     .    int(xq),PKPlus(j),PKReg(j),PKDel(j),PK(j),err(j)
           xq = xq + xincr
         enddo
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[  * END * ]      
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[  * END * ]      
 
 
 c ~~~~~~~~~~~Writing in a file to compare~~~~~~~~~~~~c        

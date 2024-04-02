@@ -16,7 +16,6 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plus Term
       xb     = yy(2)
       delta  = 1d-5
 
-
 c      xmin   = 0.0d0
 c      xmax   = 1.0d0 - delta
 c      xjac   = (xmax-xmin)

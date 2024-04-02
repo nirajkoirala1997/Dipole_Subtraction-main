@@ -1,7 +1,7 @@
       program handle_output
        implicit double precision (a-h,o-z)
        character*50 name,filename,run_tag,filename_tmp,mode,tag
-     .  ,filename1,filename2,filename3
+     .  ,filename1,filename2,filename3,filename4
 
        open(unit=15,file='../../run.machine.dat',status='unknown')
        read (15,*) mid           ! machine id Tevatron:0 LHC:1
@@ -22,11 +22,13 @@
        read (20,*) filename1
        read (20,*) filename2
        read (20,*) filename3
+       read (20,*) filename4
        close(20)
 
        if (tag .eq. 'dipole') filename = filename1
        if (tag .eq. 'virtual') filename = filename2
        if (tag .eq. 'PK') filename = filename3
+       if (tag .eq. 'LO') filename = filename4
        if (iprint .eq. 1 ) then
        call system("cd ../../ && cat "//trim(mode)// " >>
      .  summary/"//trim(run_tag)//"/"//trim(filename)//"
