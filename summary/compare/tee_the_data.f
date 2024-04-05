@@ -16,7 +16,6 @@
 
        call get_command_argument(1,mode)
        call get_command_argument(2,tag)
-c       call get_command_argument(3,run_tag)
  
 
        open(unit=20,file='../../output_files.dat',status='unknown')
@@ -31,8 +30,8 @@ c       call get_command_argument(3,run_tag)
        if (tag .eq. 'PK') filename = filename3
        if (tag .eq. 'LO') filename = filename4
        if (iprint .eq. 1 ) then
-       call system("cd ../../ && cat "//trim(mode)// " >>
-     .  summary/"//trim(run_tag)//"/"//trim(filename)//"
+       call system("cd ../../trash/broken && cat "//trim(mode)// " >>
+     .  ../../summary/"//trim(run_tag)//"/"//trim(filename)//"
      .   && rm "//trim(mode))
         filename_tmp = "../"//trim(run_tag)//"/"//trim(filename)
 

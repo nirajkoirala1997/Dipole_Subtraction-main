@@ -59,6 +59,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
       mode = "P and K terms"
       call printframe0(mode)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
+      goto 999
       mode1 = "[+] distribution"
       pt2 = pt1*10
       npt2 = pt2
@@ -73,7 +74,7 @@ c        if (j .eq. 1 .or. j .eq. 5 .or. j .eq. 10) then
 c                ai_lo2 = 0d0
 c                sd = 0d0
 c        else
-c      call printframe2(xq)
+      call printframe2(xq)
 
 c      -------------------------------------------------
          call brm48i(40,0,0) 
@@ -100,7 +101,7 @@ c        endif
           xq = xq + xincr
         enddo
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
-        goto 999
+999     continue        
         xq = xq_initial
 
       mode = "Regular Terms "
@@ -133,6 +134,7 @@ c     -------------------------------------------------
         enddo
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ delta functions ]
+        goto 888
         xq = xq_initial
 
       mode = "Delta Functions"
@@ -166,14 +168,14 @@ c     -------------------------------------------------
         enddo
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Combining All ]
-999     continue        
+888     continue
         do l = 1,it_max
-          PKReg(l)    = 0d0
-          err_Reg(j)  = 0d0 
+c          PKReg(l)    = 0d0
+c          err_Reg(j)  = 0d0 
           PKDel(l)    = 0d0
           err_Del(j)  = 0d0
-c          PKPlus(j)   = 0d0
-c          err_plus(j) = 0d0 
+          PKPlus(j)   = 0d0
+          err_plus(j) = 0d0 
         enddo
 
         xq = xq_initial

@@ -38,17 +38,19 @@ c checking file
 
 c Proceed with decision       
 
-       if (ierr2 .eq. 1) then
+      if (ierr2 .eq. 1) then
         print*,"File  already exist  "//filename
         print*,"All previous data for this run will be lost. Overwrite ?
      .     [y/n]"
         read*,decision
         if (decision .eq. 'y') then
-        print*,"Overwriting data in"// filename
+         print*,"Overwriting data in"// filename
         else
            stop
         endif
-        endif
+      else
+      print*,"Writing your data in "//trim(filename)
+      endif
         call sleep(1)
         end
 c ~~~~~~~~~~~  *********************     ~~~~~~~~~~~~c        

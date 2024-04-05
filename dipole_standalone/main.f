@@ -39,9 +39,12 @@
       close(15)
       
 
+c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
       open(unit=20,file='../output_files.dat',status='unknown')
       read (20,*) filename
       close(20)
+      if(iprint .eq. 1) call output(run_tag,filename)
+c ~~~~~~~~~~~~~~~~[--------------------------]~~~~~~~~~~~~~~~~~~~c        
 
         call initpdfsetbyname(name)
         Call initPDF(0)
@@ -69,8 +72,6 @@ c        read*,i
           print*," "
           call printframe1(pt1,its1)
 
-c  saves the data in output file           
-          if(iprint .eq. 1) call output(run_tag,filename)
 
           xq = xq_initial
           do j = 1,it_max

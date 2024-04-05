@@ -1,7 +1,15 @@
-cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/virtual_standalone/
-make
-./runVir | tee ../output6.vir
+#!/bin/bash
+sleep 2
+timestamp=$(date +"%Y%m%d%H%M%S")
 cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/summary/compare
-gfortran tee_the_data.f -o tee_the_data.o  
-./tee_the_data.o 'output6.vir' 'virtual' 'run_06'
-rm -f tee_the_data.o
+gfortran tee_the_data.f -o "tee_the_data_${timestamp}.o"
+
+cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/virtual_standalone/
+make clean && make
+./runVir | tee "../trash/broken/output_${timestamp}.virtual"
+
+
+cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/summary/compare
+./tee_the_data_${timestamp}.o "output_${timestamp}.virtual" 'virtual'
+
+rm -f "tee_the_data_${timestamp}.o"

@@ -22,7 +22,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plu
          SumDel = 0.0d0
 
         if ( iplus .eq. 1 ) then
-          Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12/x)
+          Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)
 c          write(*,*)'iplus, s12 =', iplus, s12
         SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
 

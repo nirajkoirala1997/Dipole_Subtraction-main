@@ -1,7 +1,15 @@
-cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/dipole_standalone
-make
-./runDipole | tee ../output6.dip
+#!/bin/bash
+sleep 1
+timestamp=$(date +"%Y%m%d%H%M%S")
 cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/summary/compare
-gfortran tee_the_data.f -o tee_the_data.o  
-./tee_the_data.o 'output6.dip' 'dipole' 'run_06'
-rm -f tee_the_data.o
+gfortran tee_the_data.f -o "tee_the_data_${timestamp}.o"
+
+cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/dipole_standalone/
+make clean && make
+./runDipole | tee "../trash/broken/output_${timestamp}.dipole"
+
+
+cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/summary/compare
+./tee_the_data_${timestamp}.o "output_${timestamp}.dipole" 'dipole'
+
+rm -f "tee_the_data_${timestamp}.o"
