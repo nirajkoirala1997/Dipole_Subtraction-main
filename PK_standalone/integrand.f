@@ -16,10 +16,22 @@
       xa     = yy(1)
       xb     = yy(2)
       xc     = yy(3)
-      xmin   = 0.0d0
-      xmax   = 1.0d0 - 1d-8
-      xjac4   = (xmax-xmin)
-      x      = xmin+ xjac4*yy(4)
+
+c      xmin   = 0.0d0
+c      xmax   = 1.0d0 - 1d-5
+c      xjac4   = (xmax-xmin)
+c      x      = xmin+ xjac4*yy(4)
+
+      delta  = 1d-5
+      almin = delta
+      almax = 1.0d0
+      al = almin*(almax/almin)**yy(4)
+      aljac = al*dlog(almax/almin)
+      xjac4 = aljac
+      x = 1.0d0-al
+
+c      x = delta + (1-2d0*delta)*yy(4)
+c      xjac4 = (1-2d0*delta)
 
       xjact = 2.0d0
       xjac = xjact*xjac4
@@ -71,7 +83,8 @@
              xmuf = scale
              xmur = xmuf
             xmuf2 = xmuf*xmuf 
-
+c               AL = alphasPDF(xmur) 
+c              ALP = AL/2d0/Pi
               ALP = 1.0d0
 
             azmth = 2.0d0*pi
@@ -103,7 +116,7 @@
 
          enddo
 
-        flo2_Plus = Alp * ( PK(1) + PK(2) )
+        flo2_Plus = ALP * ( PK(1) + PK(2) )
       return
       end
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular Terms]
@@ -154,9 +167,9 @@ c      rsp    = dsqrt(sp)
 
             xmuf = scalex
             xmur = scalex
-c            AL = alphasPDF(xmur)
+            AL = alphasPDF(xmur)
             AS = 1.0d0
-            ALP = AS
+            ALP = AL/2d0/Pi
 
             call getPKReg(x,xmuf,p1,p2,p3,p4,SumReg)
 
@@ -229,8 +242,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
             xmuf = scale
             xmur = scale
             AL = alphasPDF(xmur)
-            AS = 1.0d0
-            ALP = AS
+c            AS = 1.0d0
+            ALP = AL/2d0/Pi
 
             call getPKDel(1.0d0,xmuf,p,p1,p2,SumDel)
 

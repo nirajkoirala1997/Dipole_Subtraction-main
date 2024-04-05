@@ -1,6 +1,6 @@
 real.dat			! real- dipole output file
 virtual.dat 			! virtual contribution output file
-PK_new.dat			! For PK terms      
+PK.dat			! For PK terms      
 LO.dat				! Leading order
 LO2.dat				! reference filename
 

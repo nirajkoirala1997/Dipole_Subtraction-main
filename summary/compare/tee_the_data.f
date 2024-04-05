@@ -16,6 +16,7 @@
 
        call get_command_argument(1,mode)
        call get_command_argument(2,tag)
+c       call get_command_argument(3,run_tag)
  
 
        open(unit=20,file='../../output_files.dat',status='unknown')

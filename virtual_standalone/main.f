@@ -58,13 +58,14 @@ c      am1 = 0.51099895000d-3
       s=ecm*ecm
 
 
+c       writes data in output file
+        if(iprint .eq. 1)  call output(run_tag,filename)
+
         mode = "virtual contribrtion"
         call printframe0(mode)
         xq = xq_initial
 
 
-c       writes data in output file
-        if(iprint .eq. 1)  call output(run_tag,filename)
 
         call printframe1(pt1,its1)
         do j=1,it_max

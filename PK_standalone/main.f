@@ -69,13 +69,19 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
 
         do j=1,it_max
 
-      call printframe2(xq)
+c        if (j .eq. 1 .or. j .eq. 5 .or. j .eq. 10) then 
+c                ai_lo2 = 0d0
+c                sd = 0d0
+c        else
+c      call printframe2(xq)
 
 c      -------------------------------------------------
          call brm48i(40,0,0) 
          call vsup(4,npt2,its2,flo2_Plus,ai_lo2,sd,chi2)
 c      -------------------------------------------------
 
+
+c        endif
          PKPlus(j)   = ai_lo2
          err_plus(j) = sd
 
@@ -94,6 +100,7 @@ c      -------------------------------------------------
           xq = xq + xincr
         enddo
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
+        goto 999
         xq = xq_initial
 
       mode = "Regular Terms "
@@ -159,18 +166,28 @@ c     -------------------------------------------------
         enddo
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Combining All ]
+999     continue        
+        do l = 1,it_max
+          PKReg(l)    = 0d0
+          err_Reg(j)  = 0d0 
+          PKDel(l)    = 0d0
+          err_Del(j)  = 0d0
+c          PKPlus(j)   = 0d0
+c          err_plus(j) = 0d0 
+        enddo
+
         xq = xq_initial
-      print*,"  "
-      write(*,*)achar(27)//'[1;32m'//
-     . "   xq              Plus                      regular     
-     .            delta                    combined PK     
-     .    error",achar(27) //'[0m'
+c      print*,"  "
+c      write(*,*)achar(27)//'[1;32m'//
+c     . "   xq              Plus                      regular     
+c     .            delta                    combined PK     
+c     .    error",achar(27) //'[0m'
 
         do j=1,it_max
         PK(j) = PKPlus(j) + PKReg(j) + PKDel(j)
         err(j) = err_Plus(j) + err_Reg(j) + err_Del(j)
-          write(*,'(i7,3e27.15,3e27.15,3e27.15,3e27.15,3e27.15)')
-     .    int(xq),PKPlus(j),PKReg(j),PKDel(j),PK(j),err(j)
+c          write(*,'(i7,3e27.15,3e27.15,3e27.15,3e27.15,3e27.15)')
+c     .    int(xq),PKPlus(j),PKReg(j),PKDel(j),PK(j),err(j)
           xq = xq + xincr
         enddo
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[  * END * ]      

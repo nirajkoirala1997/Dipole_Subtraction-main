@@ -23,9 +23,11 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plu
 
         if ( iplus .eq. 1 ) then
           Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12/x)
+c          write(*,*)'iplus, s12 =', iplus, s12
         SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
 
         elseif( iplus .eq. 0 ) then
+c          write(*,*)'iplus, s12 =', iplus, s12
           Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
         SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
         endif

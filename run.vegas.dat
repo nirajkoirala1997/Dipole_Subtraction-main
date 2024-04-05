@@ -5,7 +5,7 @@
 10	 	! vegas iterations    For [ virtual+ eikonal ] only 
 
 1E+7    	! vegas points        For [ PK terms ] only 
-10	 	! vegas iterations    For [ PK terms ] only 
+5	 	! vegas iterations    For [ PK terms ] only 
 
 1E+6    	! vegas points        For [ LO  ] only 
 6	 	! vegas iterations    For [ LO  ] only 

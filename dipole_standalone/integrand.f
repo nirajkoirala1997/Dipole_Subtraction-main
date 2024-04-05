@@ -66,11 +66,10 @@ c           xmur=xq
           call pdf(xb,xmuf,f2)
           call setlum(f1,f2,xl)
 c          ALSZ = alphasPDF(xmz)
-c           AL = alphasPDF(xmur)
+           AL = alphasPDF(xmur)
 c           AL = 1d0
-c           Alp = Al/2d0/PI
-c           Alp = Al/2d0/PI
-           AL = 2d0*PI 
+c           ALP = Al/2d0/PI
+c           AL = 2d0*PI 
 
 
 c          write(*,*)'Alpha_s (Mz) =', ALSZ
