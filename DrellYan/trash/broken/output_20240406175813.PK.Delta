@@ -1,0 +1,45 @@
+ Directory not found ../summary/run_02                                                                                   
+ Making new directory..
+/home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DrellYan/summary/run_02
+ Directory constructed successfully🤩
+  
+ Writing your data in ../summary/run_02/PK_Delta.dat
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating Delta Functions
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+07
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =          100 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  3  NCALL=   19876750.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  43
+   1      0.1998149E-01 0.1500E-02  0.1998149E-01 0.1500E-02  0.000    
+   2      0.2132493E-01 0.3952E-03  0.2124771E-01 0.3718E-03 0.7073    
+   3      0.2051964E-01 0.2022E-03  0.2068760E-01 0.1782E-03  1.837    
+   4      0.2105637E-01 0.1331E-03  0.2092789E-01 0.1057E-03  2.132    
+   5      0.2098994E-01 0.1045E-03  0.2095965E-01 0.7405E-04  1.635    
+   6      0.2096393E-01 0.9401E-04  0.2096131E-01 0.5806E-04  1.304    
+   7      0.2075565E-01 0.8929E-04  0.2090042E-01 0.4869E-04  1.707    
+   8      0.2097112E-01 0.8750E-04  0.2091734E-01 0.4251E-04  1.532    
+   9      0.2093781E-01 0.8614E-04  0.2092138E-01 0.3810E-04  1.345    
+  10      0.2105309E-01 0.8557E-04  0.2094356E-01 0.3479E-04  1.416    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  3  NCALL=  194672000.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  46
+   1      0.2095224E-01 0.2192E-04  0.2095224E-01 0.2192E-04  0.000    

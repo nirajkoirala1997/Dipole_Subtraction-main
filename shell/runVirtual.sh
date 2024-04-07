@@ -1,8 +1,7 @@
 #!/bin/bash
-sleep 2
 timestamp=$(date +"%Y%m%d%H%M%S")
 cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/summary/compare
-gfortran tee_the_data.f -o "tee_the_data_${timestamp}.o"
+gfortran tee_the_data.f -o "tee_the_data_${timestamp}_virtual.o"
 
 cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/virtual_standalone/
 make clean && make
@@ -10,6 +9,6 @@ make clean && make
 
 
 cd /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/summary/compare
-./tee_the_data_${timestamp}.o "output_${timestamp}.virtual" 'virtual'
+./tee_the_data_${timestamp}_virtual.o "output_${timestamp}.virtual" 'virtual'
 
-rm -f "tee_the_data_${timestamp}.o"
+rm -f "tee_the_data_${timestamp}_virtual.o"

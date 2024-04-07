@@ -170,7 +170,8 @@ c      rsp    = dsqrt(sp)
             xmur = scalex
             AL = alphasPDF(xmur)
             AS = 1.0d0
-            ALP = AL/2d0/Pi
+c            ALP = AL/2d0/Pi
+            ALP = 1.0d0
 
             call getPKReg(x,xmuf,p1,p2,p3,p4,SumReg)
 

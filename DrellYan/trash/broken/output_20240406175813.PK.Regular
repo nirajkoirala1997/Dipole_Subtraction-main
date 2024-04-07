@@ -1,0 +1,47 @@
+ Directory not found ../summary/run_02                                                                                   
+ Making new directory..
+/home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DrellYan/summary/run_02
+ Directory constructed successfully🤩
+  
+ Writing your data in ../summary/run_02/PK_Regular.dat
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating Regular Terms
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+07
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =          100 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=   19668992.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  28
+   1      0.3281591E-01 0.4324E-02  0.3281591E-01 0.4324E-02  0.000    
+   2      0.3460837E-01 0.7646E-03  0.3455935E-01 0.7348E-03 0.1583    
+   3      0.3586080E-01 0.3960E-03  0.3559480E-01 0.3394E-03  1.272    
+   4      0.3520184E-01 0.2624E-03  0.3534493E-01 0.2059E-03  1.120    
+   5      0.3527967E-01 0.2137E-03  0.3531291E-01 0.1475E-03 0.8457    
+   6      0.3526288E-01 0.1960E-03  0.3529449E-01 0.1175E-03 0.6818    
+   7      0.3530890E-01 0.1893E-03  0.3529858E-01 0.9968E-04 0.5667    
+   8      0.3558221E-01 0.1884E-03  0.3536244E-01 0.8795E-04 0.7426    
+   9      0.3543749E-01 0.1874E-03  0.3537626E-01 0.7955E-04 0.6647    
+  10      0.3536749E-01 0.1874E-03  0.3537490E-01 0.7319E-04 0.5900    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=  192119202.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  33
+   1      0.3517389E-01 0.5731E-04  0.3517389E-01 0.5731E-04  0.000    
+   2      0.3528958E-01 0.5729E-04  0.3523195E-01 0.4052E-04  2.038    
+   3      0.3529716E-01 0.5726E-04  0.3525376E-01 0.3307E-04  1.451    
