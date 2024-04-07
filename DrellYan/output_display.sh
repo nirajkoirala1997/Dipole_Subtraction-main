@@ -1,11 +1,14 @@
 #!/bin/bash
 
+filename="compare6.f"
+
+
 home_path=$(dirname "$0")
 cd $home_path
 home_path=$(pwd)
 
 cd summary/compare
-gfortran compare2.f && ./a.out
+gfortran $filename && ./a.out
 rm a.out
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -25,9 +28,17 @@ rm a.out
 #      -----------------------------------------------------------------------------------------------
 
 #      -----------------------------------------------------------------------------------------------
-#	compare4.f 	is the older version of compare5.f enter three files manually Activity:        ‼️
+#	compare4.f 	is the older version of compare5.f enter three files manually                  ‼️
 #      -----------------------------------------------------------------------------------------------
 
 #      -----------------------------------------------------------------------------------------------
 #	compare5.f	this can combine plus regular and delta to userdefined output combined PK file ✅
 #      -----------------------------------------------------------------------------------------------
+
+#      -----------------------------------------------------------------------------------------------
+#	compare6.f	this is the combination of compare2.f and compare5.f                           ✅
+#      -----------------------------------------------------------------------------------------------
+
+
+#	✅ Working
+#	‼️  No Longer updating
