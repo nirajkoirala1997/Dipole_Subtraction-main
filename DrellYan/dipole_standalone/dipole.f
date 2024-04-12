@@ -49,6 +49,7 @@ c     Initial state dipole for the case of Drell- Yan gq channel
      .           p6(0:3),p7(0:3),p8(0:3),p9(0:3),p(0:3,1:5)
       common/usedalpha/AL,ge
       call p2dtop1d_5(p,p1,p2,p3,p4,p5)
+
       s12=2.d0*dot(p1,p2) 
       s13=2.d0*dot(p1,p3)
       s14=2.d0*dot(p1,p4)
@@ -65,17 +66,18 @@ c     Initial state dipole for the case of Drell- Yan gq channel
       if ( k .eq. 1 ) then ! Dipole leg 1 
         call reducemomenta2(1,p1,p2,p3,p4,p5,p6,p7,p8,p9)
         Born= born_uu2ee(1,p6,p7,p8,p9) 
-        dipole_uU_g=
-     -   (-8*Al*Born*Pi*(s12**2 - 2*s12*s15 + 2*s15**2 - 2*s12*s25 +
-     -      4*s15*s25 + 2*s25**2)*tr)/(s12*s15*(s12 - s15 - s25))
+
+        dipole_gq_q=
+     -   (-8.*Al*Born*Pi*(s12**2 - 2.*s12*s15 + 2.*s15**2 - 2.*s12*s25 +
+     -      4.*s15*s25 + 2.*s25**2)*Tr)/(s12*s15*(s12 - s15 - s25))
 
       else if ( k .eq. 2 ) then ! Diople leg 2
         call reducemomenta2(2,p1,p2,p3,p4,p5,p6,p7,p8,p9)
         Born= born_uu2ee(2,p6,p7,p8,p9) 
 
-        dipole_uU_g=
-     -   (-8*Al*Born*Pi*(s12**2 - 2*s12*s15 + 2*s15**2 - 2*s12*s25 +
-     -      4*s15*s25 + 2*s25**2)*tr)/(s12*(s12 - s15 - s25)*s25)
+        dipole_gq_q=
+     -   (-8.*Al*Born*Pi*(s12**2 - 2.*s12*s15 + 2.*s15**2 - 2.*s12*s25 +
+     -      4.*s15*s25 + 2.*s25**2)*Tr)/(s12*(s12 - s15 - s25)*s25)
 
       endif  
       return

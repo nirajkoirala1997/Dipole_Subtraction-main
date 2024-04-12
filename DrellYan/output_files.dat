@@ -1,6 +1,6 @@
 real.dat			! real- dipole output file
 virtual.dat 			! virtual contribution output file
-PK.dat				! For PK Plus_Distribution  this will be used to combine last three files.
+PK.dat			! For PK Plus_Distribution  this will be used to combine last three files.
 LO.dat				! Leading order
 LO2.dat				! reference filename
 PK_Plus.dat			! Plus data 
@@ -9,5 +9,5 @@ PK_Delta.dat			! PK delta files
 
 
 
-! These file-names are also used in reading files using compare2.f
+! These file-names are also used in reading files using compare#.f
 

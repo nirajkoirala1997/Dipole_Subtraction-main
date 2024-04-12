@@ -14,3 +14,4 @@ command5="(./shell/runVirtual.sh)"
 
 # Run the commands in parallel using GNU Parallel and capture the output
 parallel --line-buffer ::: "$command1" "$command2" "$command3" "$command4" "$command5" 
+#parallel --line-buffer ::: "$command2" "$command3" "$command4" "$command5" 

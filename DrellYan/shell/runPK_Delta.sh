@@ -13,6 +13,7 @@ home_path=$(pwd)
 # input file should also be secured for the tee_the_data.f code it needs after completion of the executable
 cd $home_path
 cp ../run.machine.dat ../trash/broken/input_${timestamp}_Delta.dat
+cp ../output_files.dat ../trash/broken/input2_${timestamp}_Delta.dat
 
 # Compile the file to update summary data
 cd ../summary/compare
@@ -27,10 +28,11 @@ make clean && make
 # Results are now ready we can combine the data of tee to the output files.
 cd $home_path
 cd ../summary/compare
-./tee_the_data_${timestamp}_PK.Delta.o "output_${timestamp}.PK.Delta" 'PK_Delta' "input_${timestamp}_Delta.dat"
+./tee_the_data_${timestamp}_PK.Delta.o "output_${timestamp}.PK.Delta" 'PK_Delta' "input_${timestamp}_Delta.dat" "input2_${timestamp}_Delta.dat"
 
 # This executable and input data is no more required
 rm -f "tee_the_data_${timestamp}_PK.Delta.o" 
 cd $home_path
 cd ../trash/broken
 rm -f input_${timestamp}_Delta.dat
+rm -f input2_${timestamp}_Delta.dat

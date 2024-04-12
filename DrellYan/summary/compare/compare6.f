@@ -285,6 +285,7 @@ c~~~~~~~~~~~~~~~~~[ ratio ]
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xq),
      .  xintch(i)/(xintPK(i)+xintvir(i)+xintreal(i))
+c     .  (xintPK(i)+xintvir(i)+xintreal(i))/xintch(i)
 c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
 c     .  xintvir(i)+xintreal(i)+xintLO(i)
         xq = xq + step_size

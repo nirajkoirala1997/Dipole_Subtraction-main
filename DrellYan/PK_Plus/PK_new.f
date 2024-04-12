@@ -22,14 +22,17 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plu
          SumDel = 0.0d0
 
         if ( iplus .eq. 1 ) then
-          Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)
-c          write(*,*)'iplus, s12 =', iplus, s12
-        SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
+
+        Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)
+        SumPlus = Pplus + AKtilP_qq(x) + AKbarP_qq(x)
+c        SumPlus = AKbarP_qq(x)
 
         elseif( iplus .eq. 0 ) then
-c          write(*,*)'iplus, s12 =', iplus, s12
-          Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
+
+        Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
         SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
+c        SumPlus = AKbarP_qq(x)
+
         endif
 
       return
@@ -133,10 +136,17 @@ c      PqqP=CF*CQQB1PLUS
 
       double precision function AKbarP_qq(x)
       implicit double precision (a-h,o-z)
-      
-      dlgx = dlog((1.0d0-x)/x)
       CF = 4.0d0/3.0d0
-      AKbarP_qq = CF*2.0d0/(1.0d0-x)*dlgx 
+      
+c      dlgx = dlog((1.0d0-x)/x)
+      dlgx1 = dlog((1.0d0-x))
+      dlgx2 = dlog(x)
+
+
+      AKbarP_qq =  2d0*CF*( dlgx1/(1d0-x)-dlgx2/(1-x) )
+
+c      AKbarP_qq = CF*2.0d0/(1.0d0-x)*(dlgx1 - dlgx2) 
+c      AKbarP_qq = CF*2.0d0/(1.0d0-x)*dlgx 
       return
       end
 
@@ -155,6 +165,7 @@ c      PqqP=CF*CQQB1PLUS
       
       CF = 4.0d0/3.0d0
       AKbarD_qq = -CF*(5.0d0-pi*pi)
+      AKbarD_qq = AKbarD_qq  - CF*Pi*Pi/3d0     ! extra part comming from [ln(1-x)/x]+ part while modifying expression
       return
       end
 

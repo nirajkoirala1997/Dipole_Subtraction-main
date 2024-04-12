@@ -3,10 +3,12 @@
        character*50 name,filename,run_tag,filename_tmp,mode,tag
      .  ,filename1,filename2,filename3,filename4
      .  ,filename5,filename6,filename7,filename8,input_machine
+     .  ,input_files
 
        call get_command_argument(1,mode)
        call get_command_argument(2,tag)
        call get_command_argument(3,input_machine)
+       call get_command_argument(4,input_files)
 
        open(unit=15,file='../../trash/broken/'//trim(input_machine)
      .     ,status='unknown')
@@ -20,7 +22,9 @@
        read (15,*) iprint        ! to print data in file
        close(15)
 
-       open(unit=20,file='../../output_files.dat',status='unknown')
+c       open(unit=20,file='../../output_files.dat',status='unknown')
+       open(unit=20,file='../../trash/broken/'//trim(input_files)
+     .     ,status='unknown')
        read (20,*) filename1
        read (20,*) filename2
        read (20,*) filename3

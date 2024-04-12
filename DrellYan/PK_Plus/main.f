@@ -15,8 +15,8 @@
 
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')
-      do i=1,6
-      read (10,*)
+      do i=1,12     
+        read (10,*)
       enddo
       read (10,*) pt1           ! vegas points     
       read (10,*) its1          ! vegas iterations 
@@ -59,13 +59,10 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 c      mode = "P and K terms"
 c      call printframe0(mode)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
-      mode1 = "[+] distribution with delta 1d-6 && ALP=Al/2/pi"
-      pt2 = pt1*10
-      npt2 = pt2
-      its2 = its1+5
+      mode1 = "[+] distribution with delta 1d-5"
 
       call printframe0(mode1)
-      call printframe1(pt2,its2)   ! Prints Vegas points
+      call printframe1(pt1,its1)   ! Prints Vegas points
 
         do j=1,it_max
 
@@ -73,7 +70,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
 
 c      -------------------------------------------------
          call brm48i(40,0,0) 
-         call vsup(4,npt2,its2,flo2_Plus,ai_lo2,sd,chi2)
+         call vsup(4,npt1,its1,flo2_Plus,ai_lo2,sd,chi2)
 c      -------------------------------------------------
 
          PKPlus(j)   = ai_lo2

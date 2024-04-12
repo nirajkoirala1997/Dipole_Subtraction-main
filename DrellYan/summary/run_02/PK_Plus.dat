@@ -16,9 +16,6 @@
    4600.0000000000000        8.6195572822032796E-011   6.0494783186536666E-013
    4900.0000000000000        4.3229870033561850E-011   2.8617382138551887E-013
 
-
-
-
  Writing your data in ../summary/run_02/PK_Plus.dat
 LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
 MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
