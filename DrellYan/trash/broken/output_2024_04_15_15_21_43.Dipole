@@ -1,0 +1,67 @@
+ Writing your data in ../summary/run_new_05/real.dat
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   5.E+07
+         Iteration:                   45
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =          100 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=   48275138.
+                              IT=    0  ITMX=   45
+                              MDS=  1   ND=  50
+   1      0.3135135     0.7287E-01  0.3135135     0.7287E-01  0.000    
+   2      0.3200172     0.1864      0.3144066     0.6838E-01 0.1071E-02
+   3      0.4081478     0.5367E-01  0.3827769     0.3930E-01 0.5621    
+   4      0.6020161     0.1055      0.4465713     0.4039E-01  2.278    
+   5      0.6713157     0.3402      0.4541337     0.4517E-01  1.521    
+   6      0.7691508     0.1003      0.5603080     0.4113E-01  3.594    
+   7       2.167378      1.319      0.5848024     0.7221E-01  2.196    
+   8      0.6752527     0.9660E-01  0.6043474     0.6188E-01  2.061    
+   9       1.076376     0.2713      0.6350721     0.6094E-01  2.195    
+  10       1.110164     0.2414      0.6732643     0.5952E-01  2.404    
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+  21                NaN        NaN            NaN        NaN        NaN
+  22                NaN        NaN            NaN        NaN        NaN
+  23                NaN        NaN            NaN        NaN        NaN
+  24                NaN        NaN            NaN        NaN        NaN
+  25                NaN        NaN            NaN        NaN        NaN
+  26                NaN        NaN            NaN        NaN        NaN
+  27                NaN        NaN            NaN        NaN        NaN
+  28                NaN        NaN            NaN        NaN        NaN
+  29                NaN        NaN            NaN        NaN        NaN
+  30                NaN        NaN            NaN        NaN        NaN
+  31                NaN        NaN            NaN        NaN        NaN
+  32                NaN        NaN            NaN        NaN        NaN
+  33                NaN        NaN            NaN        NaN        NaN
+  34                NaN        NaN            NaN        NaN        NaN
+  35                NaN        NaN            NaN        NaN        NaN
+  36                NaN        NaN            NaN        NaN        NaN
+  37                NaN        NaN            NaN        NaN        NaN
+  38                NaN        NaN            NaN        NaN        NaN
+  39                NaN        NaN            NaN        NaN        NaN
+  40                NaN        NaN            NaN        NaN        NaN
+  41                NaN        NaN            NaN        NaN        NaN
+  42                NaN        NaN            NaN        NaN        NaN
+  43                NaN        NaN            NaN        NaN        NaN

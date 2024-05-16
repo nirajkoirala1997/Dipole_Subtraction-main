@@ -67,6 +67,7 @@ c      am1 = 0.51099895000d-3
       leg=0
       ! energy
       s=ecm*ecm
+      print*,s
 
 c      print*,'  '
 c      print*,"Press 1 to initialise VEGAS:"

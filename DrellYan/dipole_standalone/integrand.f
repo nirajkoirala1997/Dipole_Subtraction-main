@@ -73,18 +73,24 @@ c           AL = 2d0*PI
           call p1dtop2d_5(p1,p2,p3,p4,p5,p)
 
           call  uu2ee_r(p,sig)
-c          SumD(1) = dipole_uU_g(1,p) + dipole_uU_g(2,p)
-c          SumD(2) = dipole_gq_q(1,p) + dipole_gq_q(2,p)
+          SumD(1) = dipole_uU_g(1,p) + dipole_uU_g(2,p)
+          SumD(2) = dipole_gq_q(1,p) + dipole_gq_q(2,p)
 
-           sig(2) = xl(7)*( sig(2) - dipole_gq_q(2,p )) 
-           sig(3) = xl(8)*( sig(3) - dipole_gq_q(1,p )) 
+c           sig(2) = xl(8)*( sig(2) - dipole_gq_q(2,p )) 
+c           sig(3) = xl(7)*( sig(3) - dipole_gq_q(1,p )) 
 
 
-c          sig(1) = xl(1)*(sig(1) - SumD(1))
+c         sig(1) = xl(1)*(sig(1) - SumD(1))
+
+c           sig(1) = SumD(1)
+
 c          sig(2) = xl(7)*(sig(2) - SumD(2))    ! for gq channel
+c          sig(3) = xl(7)*(sig(3) - SumD(3))    ! for gq channel
 
 
-          sigma = sig(2) + sig(3)
+c          sigma = sig(2) + sig(3)
+          sigma = xl(1)*(sig(1)-sumD(1))
+c          if (sigma .ne. sigma ) sigma =0d0 
 
           pi_1 = 0.5d0*rsp
           flux = 4d0*pi_1*rsp

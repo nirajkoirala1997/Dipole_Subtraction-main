@@ -1,0 +1,30 @@
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+ Writing your data in ../summary/run_new_05/virtual.dat
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating virtual contribrtion
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   5.E+07
+         Iteration:                   45
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =         1600 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  3  NCALL=   47775744.
+                              IT=    0  ITMX=   45
+                              MDS= -1   ND=  48
+   1      0.3043598E-05 0.5940E-07  0.3043598E-05 0.5940E-07  0.000    
+   2      0.2946217E-05 0.2647E-07  0.2963249E-05 0.2445E-07  2.289    
+   3      0.2952508E-05 0.2297E-07  0.2957621E-05 0.1679E-07  1.207    
+   4      0.2910079E-05 0.2200E-07  0.2940655E-05 0.1338E-07  1.779    
+   5      0.2963436E-05 0.2201E-07  0.2946806E-05 0.1144E-07  1.530    
+   6      0.2933527E-05 0.2171E-07  0.2943966E-05 0.1012E-07  1.286    
+   7      0.2937452E-05 0.2160E-07  0.2942806E-05 0.9168E-08  1.086    

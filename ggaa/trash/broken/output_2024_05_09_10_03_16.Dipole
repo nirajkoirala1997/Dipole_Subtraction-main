@@ -1,0 +1,25 @@
+ Writing your data in ../summary/run_trial/real_dip_2000.dat
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014lo68cl/MMHT2014lo68cl_0000.dat
+MMHT2014lo68cl PDF set, member #0, version 3; LHAPDF ID = 25000
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   5.E+07
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =         2000 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=   48275138.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1      0.4064414E-05 0.2847E-05  0.4064414E-05 0.2847E-05  0.000    
