@@ -1,14 +1,15 @@
 FC = gfortran
 FFLAGS   = -O
 LDFLAGS = -L./../ -lfile
+CUBAFLAGS = -L./.. -lcuba
 export LHFLAGS=$(shell lhapdf-config --ldflags)
 LIB = -lm 
 LIB = 
 #OBJECTS = Iterm.o matrixLO1.o couplings.o cmatrix.o PK.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
-OBJECTS = printframe.o cuts.nlo3.o cone.o diphoton7.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
+OBJECTS = cuba.o printframe.o cuts.nlo3.o cone.o diphoton7.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
 PROG = runDipole
 $(PROG): $(OBJECTS) main.f  
-	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS) $(LIB) $(LIBS) $(LHFLAGS) $(LDFLAGS) 
+	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS) $(LIB) $(LIBS) $(LHFLAGS) $(LDFLAGS) $(CUBAFLAGS) 
 lum.o: ../lum.f
 	$(FC) $(FFLAGS) -c ../lum.f -o lum.o
 vsup.o: ../vsup.f
@@ -23,6 +24,8 @@ phasespace.o: ../phasespace.f
 	$(FC) $(FFLAGS) -c ../phasespace.f -o phasespace.o
 printframe.o: ../printframe.f
 	$(FC) $(FFLAGS) -c ../printframe.f -o printframe.o
+cuba.o: ../cuba.f
+	$(FC) $(FFLAGS) -c ../cuba.f -o cuba.o
 clean: 
 	rm -f *.o core *~ *.x $(PROG)
 $(PROG): 

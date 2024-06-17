@@ -29,6 +29,7 @@ C -------------------------------------------------------------------- C
       common/distribution/xq
       common/countc/n4
       common/usedalpha/AL,ge
+      common/scales/xinvmass
       external dipole_gq_q
 
       xa = xx(1)
@@ -57,29 +58,18 @@ C -------------------------------------------------------------------- C
           call pdf(xa,xmuf,f1)
           call pdf(xb,xmuf,f2)
           call setlum(f1,f2,xl)
+
            AL = alphasPDF(xmur)
 
           call p1dtop2d_5(p1,p2,p3,p4,p5,p)
 
-          call  uu2ee_r(p,sig)
-          SumD(1) = dipole_uU_g(1,p) + dipole_uU_g(2,p)
-          SumD(2) = dipole_gq_q(1,p) + dipole_gq_q(2,p)
+          call  mat_amp_r(p,sig)
 
-c           sig(2) = xl(8)*( sig(2) - dipole_gq_q(2,p )) 
-c           sig(3) = xl(7)*( sig(3) - dipole_gq_q(1,p )) 
+          SumD(1) = dipole_gg_g(1,p) + dipole_gg_g(2,p)
 
-
-c         sig(1) = xl(1)*(sig(1) - SumD(1))
-
-c           sig(1) = SumD(1)
-
-c          sig(2) = xl(7)*(sig(2) - SumD(2))    ! for gq channel
-c          sig(3) = xl(7)*(sig(3) - SumD(3))    ! for gq channel
-
-
-c          sigma = sig(2) + sig(3)
-          sigma = xl(1)*(sig(1)-sumD(1))
-c          if (sigma .ne. sigma ) sigma =0d0 
+          sigma = xl(4)*(sig(1)-sumD(1))
+          print*,sig(1),SumD(1)
+          stop
 
           pi_1 = 0.5d0*rsp
           flux = 4d0*pi_1*rsp

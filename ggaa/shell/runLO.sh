@@ -15,13 +15,14 @@ cd $home_path
 cp ../run.machine.dat ../trash/broken/input_${timestamp}_LO.dat
 cp ../output_files.dat ../trash/broken/input2_${timestamp}_LO.dat
 
+
 # Compile the file to update summary data
 cd ../summary/compare
 gfortran tee_the_data.f -o "tee_the_data_${timestamp}_LO.o"
 
 #Everything is ready now start the Executable
 cd $home_path
-cd ../LO_check_DY
+cd ../LO_check_gg2aa
 make clean && make
 ./runLO | tee "../trash/broken/output_${timestamp}.LO"
 
@@ -36,4 +37,3 @@ cd $home_path
 cd ../trash/broken
 rm -f input_${timestamp}_LO.dat
 rm -f input2_${timestamp}_LO.dat
-

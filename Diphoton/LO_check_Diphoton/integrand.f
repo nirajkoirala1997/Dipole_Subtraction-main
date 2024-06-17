@@ -30,9 +30,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       external Born_uU2eE
        
       rs  = dsqrt(s)
-c      xa     = yy(1)
-c      xb     = yy(2)
-c      xc     = yy(3)
+      xa     = yy(1)
+      xb     = yy(2)
+      xc     = yy(3)
 
       rsp = dsqrt(xa*xb*s)
         
@@ -43,14 +43,14 @@ c      xc     = yy(3)
 
       xcut = xq - 10.0d0
 
-      tau = xq*xq/s
+c      tau = xq*xq/s
 
-      xamin = tau
-      xamax = 1.0d0
-      xajac = (xamax - xamin)
-      xa     = xamin+yy(1)*xajac
-      xb = tau/xa
-      xc = yy(2)
+c      xamin = tau
+c      xamax = 1.0d0
+c      xajac = (xamax - xamin)
+c      xa     = xamin+yy(1)*xajac
+c      xb = tau/xa
+c      xc = yy(2)
 
 c      if (rsp .gt. xcut) then
 
@@ -79,8 +79,8 @@ c              xmur=xq
 
               xnorm=hbarc2/16d0/pi/(xa*xb*s)
               wgt=xnorm*sig*vwgt
-c              flo2_LO=wgt/vwgt/2d0/eps
-              flo2_LO=wgt/vwgt*xajac*2d0*xq/s/xa
+              flo2_LO=wgt/vwgt/2d0/eps
+c              flo2_LO=wgt/vwgt*xajac*2d0*xq/s/xa
             return
        else                  
         flo2_LO=0d0

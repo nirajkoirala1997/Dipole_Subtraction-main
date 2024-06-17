@@ -57,7 +57,8 @@ c      end
 
       dlgx = dlog((1.0d0-x)/x)
       CF = 4.0d0/3.0d0
-      AKbarreg_qq = -CF*(1.0d0+x)*dlgx + (1-x)
+      AKbarreg_qq = -(1.0d0+x)*dlgx + (1-x)
+      AKbarreg_qq = Cf *AKbarreg_qq 
       return
       end
 

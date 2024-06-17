@@ -29,9 +29,21 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       common/usedalpha/AL,ge
       external Born_uU2eE
        
+c      yy(1) = 6.1844654984573387E-004 
+c      yy(2) = 2.1478460799030053E-003
+
+      tau = xq*xq/s
+
+      xamin = tau
+      xamax = 1.0d0
+      xajac = (xamax - xamin)
+      xa     = xamin+yy(1)*xajac
+      xb = tau/xa
+      xc = yy(2)
+
       rs  = dsqrt(s)
-      xa     = yy(1)
-      xb     = yy(2)
+c      xa     = yy(1)
+c      xb     = yy(2)
 
       rsp = dsqrt(xa*xb*s)
         
@@ -45,35 +57,43 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c      if (rsp .gt. xcut) then
 
 
+        yy(1) = xa
+        yy(2) = xb
+        yy(3) = xc
+        
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
+        call cuts0(p1,p2,p3,p4,ipass)
+
+c        print*,ipass
+
+        if (ipass .eq. 1) then 
         scale  = xinvmass
-c      if (scale .ge. 0d0) then
-        if ( scale .ge. xlow .and. scale .le. xhigh) then 
+
+         if ( scale .ge. xlow .and. scale .le. xhigh) then 
              
               xmuf=scale
               xmur=scale
               xmu2=xmuf**2
-c              xmuf=xq
-c              xmur=xq
 
               call pdf(xa,xmuf,f1)
               call pdf(xb,xmuf,f2)
               call setlum(f1,f2,xl)
               AL = alphasPDF(xmur)
 
-              sig= xl(1)*Born_uU2eE(0,p1,p2,p3,p4)
+              sig= xl(4)*Born_gg2aa(0,p1,p2,p3,p4)
 
               xnorm=hbarc2/16d0/pi/(xa*xb*s)
               wgt=xnorm*sig*vwgt
-              flo2_LO=wgt/vwgt/2d0/eps
-            return
+c              flo2_LO=wgt/vwgt/2d0/eps
+            flo2_LO=wgt/vwgt*xajac*2*xq/s/xa
+              
+          else
+              flo2_LO=0d0
+          endif
        else                  
         flo2_LO=0d0
-        return
        endif
-c       else
-c        flo2_LO=0d0
-c       endif
+      return
       end
 
 c---------------------------------------------------------------------

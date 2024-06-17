@@ -1,5 +1,6 @@
       program gg2aa_LO 
       implicit double precision (a-h,o-z)
+      double precision lambda
       dimension x(10),y(10),ai_lo2(1:50),err(0:50)
       parameter (pi=3.14159265358979d0)
 
@@ -7,6 +8,24 @@
       common/amass/am1,am2,am3,am4,am5
       common/usedalpha/AL,ge   
       common/distribution/xq
+
+c--------------------------------------------
+c     common blocks used in couplings.f  
+      common/add_par/xms,nd
+      common/add_par1/acut
+      common/rs_par/aam1,c0,aamh
+      common/unpar/xl3,xdu,xlamu
+      common/xmcoeff/xc1,xc2
+      common/cone/ET_iso,r0,rgg
+      common/nviso/niso
+      common/chfile/fname8
+      common/isub/io,is
+      common/max_order/iorder
+      common/param/aem,xmur,lambda
+
+c--------------------------------------------
+
+
       character*50 name,mode
       character*100 run_tag,filename
       external flo2_LO
@@ -36,13 +55,36 @@
       read (15,*) iprint            !save data in output file ../summary
       close(15)
 
+c ~~~~~~~~~~~~~~~~[files needed by couplings.f]~~~~~~~~~~~~~~~~~~~c        
 
-      open(unit=20,file='../output_files.dat',status='unknown')
-      read (20,*)
-      read (20,*)
-      read (20,*)
-      read (20,*) filename
+      open(unit=20,file='../slicing_files/run.param.dat',
+     .    status='unknown')
+      read (20,*) nf            ! No. of flavours
+      read (20,*) ipdfs1        ! LO pdf set
+      read (20,*) xlqcd1        ! LO L_QCD5
+      read (20,*) ipdfs2        ! NLO pdf set
+      read (20,*) xlqcd2        ! NLO L_QCD5
       close(20)
+
+      open(unit=30,file='../slicing_files/run.add.dat',status='unknown')
+      read (30,*) xms            ! M_s Fundamental Planck scale
+      read (30,*) nd             ! number of extra dimensions, 2<d<6
+      read (30,*) acut           ! \Lambda = acut*M_s
+      close (30)
+
+      aem=1.0D0/128.0D0
+      lambda = xlqcd1
+
+
+c      write (*,*) 'ADD model'
+c      write (*,*) 'M_s = ',xms,'GeV'
+c      write (*,*) 'ND=',nd
+c      write (*,*) 'acut=',acut
+
+c ~~~~~~~~~~~~~~~~~--------------------------~~~~~~~~~~~~~~~~~~~~c        
+
+
+
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
       open(unit=20,file='../output_files.dat',status='unknown')
@@ -67,7 +109,6 @@ c      am1 = 0.51099895000d-3
       leg=0
       ! energy
       s=ecm*ecm
-      print*,s
 
 c      print*,'  '
 c      print*,"Press 1 to initialise VEGAS:"
@@ -93,7 +134,7 @@ c        read*,i
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
          call brm48i(40,0,0) ! initialize random number generator
-         call vsup(3,npt1,its1,flo2_LO,ans,sd,chi2)
+         call vsup(2,npt1,its1,flo2_LO,ans,sd,chi2)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             ai_lo2(j) = ans
               err(j)  = sd

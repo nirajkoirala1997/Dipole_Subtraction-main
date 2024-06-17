@@ -9,7 +9,7 @@
       external fxn
       ndim=nd
       ncall=npt
-      nprn = -1
+      nprn = 1
       itmx=its
       plot=.false.
       call vegas_m(1,fxn,avgi,sd,chisq)

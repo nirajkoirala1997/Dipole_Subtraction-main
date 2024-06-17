@@ -81,16 +81,6 @@ c     ppt1 ppt2
       p1qb = dot(p1,qb)
 
       cststar = p1qa/p1qb
-      print*,xa
-      print*,xb
-      print*,v
-      print*,"momenta1:",p1
-      print*,"momenta2:",p2
-      print*,"momenta3:",p3
-      print*,"momenta4:",p4
-      stop
-
-
       return
       end
 c---------------------------------------------------------------------

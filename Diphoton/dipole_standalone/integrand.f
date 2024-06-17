@@ -5,9 +5,18 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
 c     cuba specific parameters
       integer n4,ndim,ncomp,nvec,core,iter,userdata 
       real*8 xx(ndim) ,f(ncomp),weight,fnlo3
-      common/countc/n4
+c      common/countc/n4
       external fnlo3
       f(1) = fnlo3(xx,weight)
+c       print*,"f(1) =",f(1),xx
+c       print*,"x(1) =",xx(1)
+c       print*,"x(2) =",xx(2)
+c       print*,"x(3) =",xx(3)
+c       print*,"x(4) =",xx(4)
+c       print*,"x(5) =",xx(5)
+c       print*,"x(6) =",xx(6)
+c       print*," "
+
       return
       end
 C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
@@ -38,7 +47,7 @@ C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C
 
       ipass1 = 0
 
-      eps = 5.5d0
+      eps = 40.5d0
       xlow = xq - eps
       xhigh = xq + eps
 
@@ -50,12 +59,12 @@ c      if (ipass1 .eq.1) then
        call kinvar3(xx,xxjac,xinvmass,p1,p2,p3,p4,p5,unphy)
        call cuts3(p1,p2,p3,p4,p5,icuts)
 c        icuts = 1
+        ipass = 0
+        fnlo3 = 0d0
        if (unphy .eq. 0 .and. icuts .eq. 1) then ! with zero unphysical PS points proceed
      
         scale = xinvmass
 
-        ipass = 0
-        fnlo3 = 0
 
         if ( scale .ge. xlow .and. scale .le. xhigh) then
 
@@ -97,6 +106,7 @@ c          sigma = sig(2) + sig(3)
           fnlo3=wgt/weight/2d0/eps
          endif
        endif
+ 
 151   return
       end
 c---------------------------------------------------------------------

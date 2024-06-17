@@ -15,6 +15,7 @@ cd $home_path
 cp ../run.machine.dat ../trash/broken/input_${timestamp}_Dipole.dat
 cp ../output_files.dat ../trash/broken/input2_${timestamp}_Dipole.dat
 
+
 # Compile the file to update summary data
 cd ../summary/compare
 gfortran tee_the_data.f -o "tee_the_data_${timestamp}_Dipole.o"

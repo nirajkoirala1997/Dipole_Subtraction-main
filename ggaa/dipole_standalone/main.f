@@ -1,4 +1,4 @@
-      program Drell_yan_dipoleSubtraction 
+      program gg2aa_dipoleSubtraction 
       implicit double precision (a-h,o-z)
       integer leg
       character*50 green

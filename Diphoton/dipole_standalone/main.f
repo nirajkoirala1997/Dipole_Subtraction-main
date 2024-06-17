@@ -64,10 +64,10 @@ c      am1 = 0.51099895000d-3
       ! energy
       s=ecm*ecm
       print*,'  '
-c      print*,"Press 1 to initialise VEGAS:"
-c      print*,"Press 2 to initialise CUBA-VEGAS:"
-c        read*,i
-        i=1
+      print*,"Press 1 to initialise VEGAS:"
+      print*,"Press 2 to initialise CUBA-VEGAS:"
+        read*,i
+c        i=1
         IF (I .EQ. 1) THEN
           print*,"  ----------------------------------"
           print*,"  |Initializing Dipole Subtraction  |"
@@ -102,6 +102,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           
           xq = xq + step_size 
           enddo
+
+        ELSEIF(I .eq. 2) THEN
+                CALL cubacheck
+        ENDIF
+
+
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         if (iprint .eq. 0) goto 123
         open(unit=20,file='../summary/'//trim(run_tag)//'/'
      .          //trim(filename),status='unknown')
@@ -112,9 +119,8 @@ c     .          //trim(filename),status='unknown', access='append')
           xq = xq + step_size 
          enddo
          close(20)
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 123         continue
-        elseif(I .eq. 2) THEN
-                CALL cubacheck
-        endif
        end
 

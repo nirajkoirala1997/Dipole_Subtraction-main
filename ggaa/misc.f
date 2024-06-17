@@ -7,7 +7,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Mis
       end
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Functions used in PK_Plus PK_Delta and PK_Regular]
 
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ For gg initiated process with gg splliting ]
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ For qq initiated process with qg splliting ]
       double precision function PqqP(x)
       implicit double precision (a-h,o-z)
       data PI/3.141592653589793238462643D0/
@@ -135,7 +135,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Fo
 
       CF = 4d0/3d0
       CA = 3d0
-      PggP = 2d0*CA*/(1.0d0-x)
+      PggP = 2d0*CA*1d0/(1.0d0-x)
 
       return
       end
@@ -154,14 +154,14 @@ c________________________________________________________________________c
       end
 c________________________________________________________________________c 
 
-      double precision function Pggdel(x)                    !              [--->P_gg_delta terms]
+      double precision function PggD(x)                    !              [--->P_gg_delta terms]
       implicit double precision (a-h,o-z)
 
       CA = 3d0
       TR = 0.5d0
       NF = 3d0
 
-      Pggdel = 11d0/6d0*CA - 2d0/3d0*NF*TR 
+      PggD = 11d0/6d0*CA - 2d0/3d0*NF*TR 
 
       return
       end
@@ -173,7 +173,7 @@ c________________________________________________________________________c
 
       dlgx = dlog((1.0d0-x)/x)
       CA = 3d0
-      AKbarP_qq = 2d0*CA*1d0/(1d0-x)*dlgx
+      AKbarP_gg = 2d0*CA*1d0/(1d0-x)*dlgx
 
       return
       end
@@ -184,19 +184,19 @@ c________________________________________________________________________c
 
       dlgx = dlog((1.0d0-x)/x)
       CA = 3d0
-      AKbarP_gg = 2d0*CA*((1d0-x)/x-1d0+x*(1d0-x))*dlgx
+      AKbarReg_gg = 2d0*CA*((1d0-x)/x-1d0+x*(1d0-x))*dlgx
       return
       end
 c________________________________________________________________________c 
 
-      double precision function AKbarDel_gg(x)            !               [----> K_Bar_Delta terms  for gg channel
+      double precision function AKbarD_gg(x)            !               [----> K_Bar_Delta terms  for gg channel
       implicit double precision (a-h,o-z)
 
       CA = 3d0
       TR = 0.5d0
       NF = 3d0
 
-      AKbarDel_gg = (50d0/9d0-Pi**2)*CA - 16d0/9d0*TR*NF
+      AKbarD_gg = (50d0/9d0-Pi**2)*CA - 16d0/9d0*TR*NF
 
       return
       end

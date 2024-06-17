@@ -80,6 +80,22 @@ c     -        6*(s12**2 + 6*s12*t + 6*t**2)*Log(xmu2/s12) -
 c     -        6*(s12**2 + 2*s12*t + 2*t**2)*(Log(xmu2/s12))**2)/
 c     -          (24*Pi**2*s12**2)
 c              VIR = VIR/36d0    ! spin and color avg
+
+
+         VIR=  (gs**2*8d0*e**4*qu2*
+     -    (5*(-6 + 11*Pi**2)*s12**2 + 2*(-48 + 55*Pi**2)*s12*t +
+     -      2*(-48 + 55*Pi**2)*t**2 -
+     -      6*(s12**2 + 6*s12*t + 6*t**2)*Log(xmu2/s12) -
+     - 6*(s12**2+2*s12*t+2*t**2)*Log(xmu2/s12)**2))/(24.*Pi**2*s12**2)
+c              VIR = VIR/36d0    ! spin and color avg
+
+
+c              (gs**2*NA*e**2*qu2*
+c     -    (5*(-6 + 11*Pi**2)*s**2 + 2*(-48 + 55*Pi**2)*s*t +
+c     -      2*(-48 + 55*Pi**2)*t**2 -
+c     -      6*(s**2 + 6*s*t + 6*t**2)*Log(mu2/s) -
+c     -      6*(s**2 + 2*s*t + 2*t**2)*Log(mu2/s)**2))/(24.*Pi**2*s**2)
+
 c
 c        VIR= (AL*CF*3*e**4*qu2*
 c     -    ((-30 + 7*Pi**2)*s12**2 + 2*(-48 + 7*Pi**2)*s12*t + 
@@ -91,13 +107,40 @@ c              VIR = 2.0d0*VIR/36d0    ! spin and color avg
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                
 
-c               gammaq = 3d0/2d0*Cf
-c               xkq     = Cf*(7d0/2d0-pi*pi/6d0)
-c           EulerGamma = 0.5772156649015328606065120d0
+               gammaq = 3d0/2d0*Cf
+               xkq     = Cf*(7d0/2d0-pi*pi/6d0)
+           EulerGamma = 0.5772156649015328606065120d0
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c            Eikonal part = SumI * Born * (colour factors)           
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c           SumI(1)=   (-8*Al*CF*e**4*qu2*
+
+
+         eikonal = (8*AL*e**4*qu2*(12d0*xkq*(s12**2+2*s12*t + 2*t**2)+
+     -      CF*(6d0*EulerGamma**2*(s12**2 + 2d0*s12*t + 2d0*t**2) - 
+     -         5d0*Pi**2*(s12**2 + 2d0*s12*t + 2d0*t**2) - 
+     -         6d0*EulerGamma*(s12**2*(1d0 + Log(16d0) + 2d0*Log(Pi)) + 
+     -            2d0*s12*t*(3d0 + Log(16d0) + 2d0*Log(Pi)) + 
+     -            2d0*t**2*(3d0 + Log(16d0) + 2d0*Log(Pi))) + 
+     -    6d0*(2d0*s12*t*(3d0 + 4d0*Log(2d0)**2+Log(64d0)+3d0*Log(Pi) + 
+     -               Log(16d0)*Log(Pi) + Log(Pi)**2) + 
+     -       2d0*t**2*(3d0 + 4d0*Log(2d0)**2 + Log(64d0)+3d0*Log(Pi) + 
+     -         Log(16d0)*Log(Pi) + Log(Pi)**2) + 
+     -       s12**2*(4d0*Log(2d0)**2 + Log(16d0)*Log(Pi) + Log(Pi)**2 + 
+     -               Log(4d0*Pi)))) - 
+     - 6d0*CF*(2d0*s12*t*(-3d0+2d0*EulerGamma-4d0*Log(2d0)-2d0*Log(Pi))+
+     - 2d0*t**2*(-3d0 + 2d0*EulerGamma - 4d0*Log(2d0) - 2d0*Log(Pi)) + 
+     -     s12**2*(-1d0+2d0*EulerGamma - 4d0*Log(2d0) - 2d0*Log(Pi)))*
+     -   Log(xmu2/s12) + 6d0*CF*(s12**2 + 2d0*s12*t + 
+     -  2d0*t**2)*Log(xmu2/s12)**2
+     -      ))/(3d0*Pi*s12**2)
+c          eikonal=eikonal/36d0
+c          SumI(1) = VIR + eikonal
+c          print*,SumI(1),"separated"
+c        SumI(1) = eikonal
+        SumI(1) = VIR
+
+
 c     -   (12*xkq*s12**2 -5*Pi**2*s12**2 + 24*gammaq*s12*t+24*xkq*s12*t- 
 c     -      10*Pi**2*s12*t + 24*gammaq*t**2 + 24*xkq*t**2 - 
 c     -      10*Pi**2*t**2 + 6*EulerGamma**2*(s12**2 + 2*s12*t+2*t**2) - 
@@ -112,10 +155,13 @@ c     -         2*t**2*(EulerGamma - gammaq - Log(4*Pi)) +
 c     -       s12**2*(1 + EulerGamma - gammaq - Log(4*Pi)))*Log(xmu2/s12)
 c     -  + 6*(s12**2 + 2*s12*t +2*t**2)*Log(xmu2/s12)**2))/(3.*Pi*s12**2)
 c
-           SumI(1) = 
+           SumI(2) = 
      .    (-4*Al*CF*3*e**4*qu2*(s12**2 + 2*s12*t + 2*t**2)*(-2d0 +
      .        0*Pi**2))/(Pi*s12**2)
-             SumI(1) = SumI(1)/36d0 ! colour average performed here
+             SumI(2) = SumI(2)/36d0 ! colour average performed here
+c          print*,SumI(2),"original "
+c          stop
+
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
