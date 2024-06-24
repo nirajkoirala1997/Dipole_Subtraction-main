@@ -37,6 +37,16 @@
       read (15,*) run_tag               ! name of run directory to save output
       read (15,*) iprint                ! to save data in output file         
       close(15)
+
+
+      open(unit=50,file='../slicing_files/run.cone.dat',
+     . status='unknown')
+      read (50,*) ET_iso       ! ET_iso in GeV
+      read (50,*) r0           ! r0
+      read (50,*) rgg          ! r_gamma_gamma
+      read (50,*) niso         ! n value in Frixione's algorithm
+      close (50)
+
       
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
