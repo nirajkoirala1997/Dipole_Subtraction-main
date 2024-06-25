@@ -1,7 +1,7 @@
 # Compiler and flags
 FC = gfortran
 FFLAGS = -O
-LDFLAGS = -lc -L./../ -lfile
+LDFLAGS = -lc #-L./../ -lfile
 export LHFLAGS = $(shell lhapdf-config --ldflags)
 
 # Program and object files

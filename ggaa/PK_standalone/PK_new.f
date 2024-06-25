@@ -58,7 +58,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Del
       dimension  p1(0:3),p2(0:3),p3(0:3),p4(0:3),p(0:3,1:4)
       dimension  xp1(0:3),xp2(0:3)
 c      common /usedalpha/ AL,ge 
-      external Born_uU2eE
+      external Born_gg2aa
 
       external PggPlus,PggReg,PggDel
       external AKbarP_gg,AKbarReg_gg,AKbarD_gg
@@ -83,7 +83,7 @@ c        Alp = Al/2.0d0/pi
 
       do k = 1,2
 
-        Born = Born_uU2eE(0,p1,p2,p3,p4)
+        Born = Born_gg2aa(0,p1,p2,p3,p4)
         coef = Born
 
 

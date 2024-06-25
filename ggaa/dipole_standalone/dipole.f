@@ -131,6 +131,7 @@ c     Initial state dipole for the case of Drell- Yan gg type of channel
      -      (s15 + s25)**4))/(s12*(s12 - s15 - s25)**2*s25*(s15 + s25))
 
       endif  
+c      print*,"Born",Born
       return
       end 
 c---------------------------------------------------------------------

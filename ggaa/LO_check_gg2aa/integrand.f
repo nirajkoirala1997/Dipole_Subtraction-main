@@ -66,6 +66,8 @@ c      if (rsp .gt. xcut) then
 
 c        print*,ipass
 
+c	  ipass = 1
+
         if (ipass .eq. 1) then 
         scale  = xinvmass
 
@@ -78,14 +80,14 @@ c        print*,ipass
               call pdf(xa,xmuf,f1)
               call pdf(xb,xmuf,f2)
               call setlum(f1,f2,xl)
-              AL = alphasPDF(xmur)
 
+               AL = alphasPDF(xmur)
               sig= xl(4)*Born_gg2aa(0,p1,p2,p3,p4)
 
               xnorm=hbarc2/16d0/pi/(xa*xb*s)
               wgt=xnorm*sig*vwgt
 c              flo2_LO=wgt/vwgt/2d0/eps
-            flo2_LO=wgt/vwgt*xajac*2*xq/s/xa
+              flo2_LO=wgt/vwgt*xajac*2*xq/s/xa
               
           else
               flo2_LO=0d0

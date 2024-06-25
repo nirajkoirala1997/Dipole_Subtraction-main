@@ -37,6 +37,3 @@ c     ppt1 ppt2
       ENDIF
       
       end
-      
-      
-

@@ -61,7 +61,7 @@ c      x = xjac4*yy(4) + xmin
 
         if ( scale .ge. xlow .and. scale .le. xhigh) then
 
-        coef = Born_uU2eE(0,p1,p2,p3,p4)
+        coef = Born_gg2aa(0,p1,p2,p3,p4)
 
         sp   =  2.0d0*dot(p1,p2)
         rsp  = dsqrt(sp)
@@ -86,7 +86,7 @@ c              ALP = 1.0d0
 
             call getPKPlus(1,x,xmuf,p1,p2,p3,p4,SumPlus)
            
-           sig = xl(1)*SumPlus*coef
+            sig = xl(4)*SumPlus*coef
   
             wgt = sig/flux*ps2*xjac*vwgt
             PKplus_x = xnorm*wgt/vwgt
@@ -95,7 +95,7 @@ c              ALP = 1.0d0
             endif
             enddo
 
-        flo2_PlusA = ALP * (PK(1) + PK(2))
+        flo2_PlusA = ALP * (PK(1) + PK(2))    ! ALP overall factor taken here
       return
       end
 
@@ -155,7 +155,7 @@ c      x = xjac4*yy(4) + xmin
 
         if ( scale .ge. xlow .and. scale .le. xhigh) then
 
-        coef = Born_uU2eE(0,p1,p2,p3,p4)
+        coef = Born_gg2aa(0,p1,p2,p3,p4)
 
         sp   =  2.0d0*dot(p1,p2)
         rsp  = dsqrt(sp)
@@ -180,7 +180,7 @@ c              ALP = 1.0d0
 
             call getPKPlus(0,x,xmuf,p1,p2,p3,p4,SumPlus)
            
-           sig = xl(1)*SumPlus*coef
+             sig = xl(4)*SumPlus*coef
   
             wgt = sig/flux*ps2*xjac*vwgt
             PKplus_x = xnorm*wgt/vwgt
@@ -344,28 +344,4 @@ c            write(*,*)'check =', sig1,flux1,ps2,xjac
       return
       end
 
-c---------------------------------------------------------------------
-
-c---------------------------------------------------------------------
-c     [u U -> e E]  Born 
-c--------------------------------------------------------------------o
-       function Born_uU2eE(k,p1,p2,p3,p4)
-       implicit double precision (a-h,o-z)
-       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
-       parameter(PI=3.141592653589793238D0)
-       common/usedalpha/AL,ge
-c       ge=1d0/128d0
-       e= DSQRT(ge*4.d0*PI)
-      IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0
-      IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
-      IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2
-      s13 =  2.0d0*dot(p1,p3) ! t
-      s23 =  2.0d0*dot(p1,p4) ! u
-      s12 =  2.0d0*dot(p1,p2) ! s
-      qu2 = 1d0!4d0/9d0
-
-      Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
-     .            s23)))/(3d0*s12**2)
-       return
-       end
 c---------------------------------------------------------------------

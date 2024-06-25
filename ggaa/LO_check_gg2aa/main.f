@@ -86,15 +86,15 @@ c ~~~~~~~~~~~~~~~~~--------------------------~~~~~~~~~~~~~~~~~~~~c
 
 
 
-c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
-      open(unit=20,file='../output_files.dat',status='unknown')
-      read (20,*) 
-      read (20,*) 
-      read (20,*) 
-      read (20,*) filename
-      close(20)
-      if(iprint .eq. 1) call output(run_tag,filename)
-c ~~~~~~~~~~~~~~~~[--------------------------]~~~~~~~~~~~~~~~~~~~c        
+cc ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
+c      open(unit=20,file='../output_files.dat',status='unknown')
+c      read (20,*) 
+c      read (20,*) 
+c      read (20,*) 
+c      read (20,*) filename
+c      close(20)
+c      if(iprint .eq. 1) call output(run_tag,filename)
+cc ~~~~~~~~~~~~~~~~[--------------------------]~~~~~~~~~~~~~~~~~~~c        
 
 
         call initpdfsetbyname(name)
@@ -153,17 +153,17 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           xq = xq + step_size
         enddo
 
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        if (iprint .eq. 0) goto 123
-        open(unit=20,file='../summary/'//trim(run_tag)//'/'
-     .  //trim(filename),status='unknown')
-         xq = xq_initial
-         do i=1,it_max
-          write(20,*)xq,ai_lo2(i),err(i)
-          xq = xq + step_size
-         enddo
-         close(20)
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cc~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c        if (iprint .eq. 0) goto 123
+c        open(unit=20,file='../summary/'//trim(run_tag)//'/'
+c     .  //trim(filename),status='unknown')
+c         xq = xq_initial
+c         do i=1,it_max
+c          write(20,*)xq,ai_lo2(i),err(i)
+c          xq = xq + step_size
+c         enddo
+c         close(20)
+cc~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 123         continue
 c

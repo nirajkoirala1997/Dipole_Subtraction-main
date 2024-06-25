@@ -46,7 +46,8 @@ c________________________________________________________________________c
 
       dlgx = dlog((1.0d0-x)/x)
       CF = 4.0d0/3.0d0
-      AKbarreg_qq = -CF*(1.0d0+x)*dlgx + (1-x)
+      AKbarreg_qq = -(1.0d0+x)*dlgx + (1-x)
+      AKbarreg_qq = CF*AKbarreg_qq
       return
       end
 c________________________________________________________________________c 
@@ -129,11 +130,10 @@ c________________________________________________________________________c
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ For gg initiated process with gg splliting ]
 
-      double precision function PggP(x)                            !        [---> P_gg_Plus]
+      double precision function PggP(x)                            !      [---> P_gg_Plus]
       implicit double precision (a-h,o-z)
       data PI/3.141592653589793238462643D0/
 
-      CF = 4d0/3d0
       CA = 3d0
       PggP = 2d0*CA*1d0/(1.0d0-x)
 
@@ -141,7 +141,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Fo
       end
 c________________________________________________________________________c 
 
-      double precision function Pggreg(x)                    !              [--->P_gg_Regular terms]
+      double precision function PggReg(x)                    !            [--->P_gg_Regular terms]
       implicit double precision (a-h,o-z)
 
       CF = 4.0d0/3.0d0
@@ -162,7 +162,7 @@ c________________________________________________________________________c
       NF = 3d0
 
       PggD = 11d0/6d0*CA - 2d0/3d0*NF*TR 
-
+      PggD = 2d0*CA*PggD 
       return
       end
 c________________________________________________________________________c 
@@ -189,7 +189,7 @@ c________________________________________________________________________c
       end
 c________________________________________________________________________c 
 
-      double precision function AKbarD_gg(x)            !               [----> K_Bar_Delta terms  for gg channel
+      double precision function AKbarD_gg(x)            !                 [----> K_Bar_Delta terms  for gg channel
       implicit double precision (a-h,o-z)
 
       CA = 3d0
@@ -237,19 +237,6 @@ c________________________________________________________________________c
 
       return
       end
-c________________________________________________________________________c 
-
-
-
-
-
-
-
-
-
-
-
-
 c________________________________________________________________________c 
 
 

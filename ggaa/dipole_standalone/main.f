@@ -11,6 +11,28 @@
       common/set/set1
       common/countc/n4
       common/distribution/xq
+
+c--------------------------------------------
+c     common blocks used in couplings.f  
+      common/add_par/xms,nd
+      common/add_par1/acut
+      common/rs_par/aam1,c0,aamh
+      common/unpar/xl3,xdu,xlamu
+      common/xmcoeff/xc1,xc2
+c      common/cone/ET_iso,r0,rgg
+      common/nviso/niso
+      common/chfile/fname8
+      common/isub/io,is
+      common/max_order/iorder
+      common/param/aem,xmur,lambda
+
+      common/cone/ET_iso,r0,rgg  ! this is for the cone part.
+      common/counter/ifilter,itot_ev,iselect_scale
+      common/counter_diff/diff,eps
+
+c--------------------------------------------
+
+
       character*50 name,mode
       character*100 run_tag,filename
       external fnlo3
@@ -23,9 +45,16 @@
       npt1 = pt1
       close(10)
 
-      open(unit=10,file='../param_card.dat',status='unknown')    
-      read (10,*) ge      ! [ 1/Alpha_ew ]
-      close(10)
+c      open(unit=10,file='../param_card.dat',status='unknown')    
+c      read (10,*) ge      ! [ 1/Alpha_ew ]
+c      close(10)
+       ge = 7.8125000000000000E-003
+
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[counter]
+        ifilter=0
+        itot_ev=0
+        iselect_scale=0
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[counter reset]
 
       open(unit=15,file='../run.machine.dat',status='unknown')
       read (15,*) mid                   ! machine id Tevatron:0 LHC:1
@@ -36,8 +65,27 @@
       read (15,*) step_size             ! size in the multiplle of loop variable 
       read (15,*) run_tag               ! name of run directory to save output
       read (15,*) iprint                ! to save data in output file         
+      read (15,*) eps                   ! epsilon for bin width
+      read (15,*) diff                  ! epsilon for bin width
+
       close(15)
 
+c ~~~~~~~~~~~~~~~~[files needed by couplings.f]~~~~~~~~~~~~~~~~~~~c        
+
+      open(unit=20,file='../slicing_files/run.param.dat',
+     .    status='unknown')
+      read (20,*) nf            ! No. of flavours
+      read (20,*) ipdfs1        ! LO pdf set
+      read (20,*) xlqcd1        ! LO L_QCD5
+      read (20,*) ipdfs2        ! NLO pdf set
+      read (20,*) xlqcd2        ! NLO L_QCD5
+      close(20)
+
+      open(unit=30,file='../slicing_files/run.add.dat',status='unknown')
+      read (30,*) xms            ! M_s Fundamental Planck scale
+      read (30,*) nd             ! number of extra dimensions, 2<d<6
+      read (30,*) acut           ! \Lambda = acut*M_s
+      close (30)
 
       open(unit=50,file='../slicing_files/run.cone.dat',
      . status='unknown')
@@ -46,6 +94,11 @@
       read (50,*) rgg          ! r_gamma_gamma
       read (50,*) niso         ! n value in Frixione's algorithm
       close (50)
+
+
+
+      aem=1.0D0/128.0D0
+      lambda = xlqcd1
 
       
 
@@ -72,6 +125,7 @@ c      am1 = 0.51099895000d-3
 c      print*,"Press 1 to initialise VEGAS:"
 c      print*,"Press 2 to initialise CUBA-VEGAS:"
 c        read*,i
+
         i=1
         IF (I .EQ. 1) THEN
           print*,"  ----------------------------------"
@@ -81,6 +135,7 @@ c        read*,i
           print*," "
           print*," "
           call printframe1(pt1,its1)
+
 
 
           xq = xq_initial
@@ -100,8 +155,22 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           enddo
           xq = xq_initial
 
-          call printframe4(mode)
+
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Counting events]
+          print*," "
+          print*,"    Bin eps value:",int(eps)
+          print*,"     Total Events:",itot_ev
+          print*,"Events within bin:",iselect_scale
+          print*,"  Rejected events:",ifilter
+          print*,"  Selected events:",iselect_scale - ifilter
+          print*," "
+          print*,"Cutoff used of event selection"
+          write(*, '(A, ES25.00,A)')"      If (sig - SumD) .ge. :",diff
+          print*," "
+          stop
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Counting events end]
           
+          call printframe4(mode)
           do j=1,it_max
           write(*,'(i7,3e27.15)')int(xq),ai_nlo3(j),xerr(j)
           

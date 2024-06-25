@@ -1,12 +1,11 @@
-FC = gfortran#g77
-#FC = f77#gfortran#g77
+FC = gfortran
 FFLAGS   = -O 
-LDFLAGS = -lc -L./../ -lfile
+LDFLAGS = -lc 
 MYFLAG = #-L./home/niraj/1TB-Disc/Workspace-IITG/Packages/Source/mylibrary -lfile
 #export LHFLAGS = $(shell lhapdf-config --ldflags)
 LHFLAGS = $(shell lhapdf-config --ldflags)
 PROG    = runPK
-OBJECTS4  =phasespace.o misc.o printframe.o PK_new.o pdf_lha.o lum.o integrand.o phasespacePK.o vsup.o
+OBJECTS4  = cuts.lo2.o mat.amp.o phasespace.o misc.o printframe.o PK_new.o pdf_lha.o lum.o integrand.o vsup.o filehandle.o cone.o couplings.o cuts.nlo3.o
 	
 $(PROG): $(OBJECTS4) main.f
 	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS4) $(LDFLAGS) $(LHFLAGS) $(MYFLAG) 
@@ -22,10 +21,23 @@ cuba.o: ../cuba.f
 	$(FC) $(FFLAGS) -c ../cuba.f -o cuba.o
 phasespace.o: ../phasespace.f
 	$(FC) $(FFLAGS) -c ../phasespace.f -o phasespace.o
-misc.o: ../misc.f
-	$(FC) $(FFLAGS) -c ../misc.f -o misc.o
 printframe.o: ../printframe.f
 	$(FC) $(FFLAGS) -c ../printframe.f -o printframe.o
+filehandle.o: ../filehandle.f
+	$(FC) $(FFLAGS) -c ../filehandle.f -o filehandle.o
+mat.amp.o: ../mat.amp.f
+	$(FC) $(FFLAGS) -c ../mat.amp.f -o mat.amp.o
+
+
+couplings.o: ../slicing_files/couplings.f
+	$(FC) $(FFLAGS) -c ../slicing_files/couplings.f -o couplings.o
+cuts.nlo3.o: ../slicing_files/cuts.nlo3.f
+	$(FC) $(FFLAGS) -c ../slicing_files/cuts.nlo3.f -o cuts.nlo3.o
+cone.o: ../slicing_files/cone.f
+	$(FC) $(FFLAGS) -c ../slicing_files/cone.f -o cone.o
+cuts.lo2.o: ../slicing_files/cuts.lo2.f
+	$(FC) $(FFLAGS) -c ../slicing_files/cuts.lo2.f -o cuts.lo2.o
+
 	
 #	rm -f *.o
 clean:

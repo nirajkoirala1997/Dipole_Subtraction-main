@@ -46,6 +46,8 @@ c      x      = xmin+ xjac4*yy(4)
         PKplus_1 = 0.0d0
         PKReg    = 0.0d0
         PKDel    = 0.0d0
+        PK(1) = 0d0
+        PK(2) = 0d0
 
         sig1 = 0.0d0
         sig2 = 0.0d0
@@ -64,13 +66,21 @@ c      x      = xmin+ xjac4*yy(4)
         elseif (iplus .eq. 0) then
         call kinvar2_PK(xa,xb,xc,Qmass,p1,p2,p3,p4)
         endif
+      call cuts0(p1,p2,p3,p4,ipass)
 
          scale = Qmass
 
-        if (scale .ge. xlow .and. scale .le. xhigh)  then
+        if (scale .ge. xlow .and. scale .le. xhigh .and. 
+     .      ipass .eq. 1)  then
 
 
-         coef = Born_uU2eE(0,p1,p2,p3,p4)
+         coef = Born_gg2aa(0,p1,p2,p3,p4)
+
+c         print*,"coef",coef
+c         print*,"p",p1
+c         print*,"p",p2
+c         print*,"p",p3
+c         print*,"p",p4
 
          sp   = 2.0d0*dot(p1,p2)
          rsp  = dsqrt(sp) 
@@ -105,12 +115,12 @@ c               ALP = 1.0d0
             wgt3 = sig3/flux*ps2*xjac*vwgt
             PKplus_1= xnorm*wgt3/vwgt/2d0/eps
 
-          endif
+           endif
 
            endif                ! bin choice
            enddo
 
-         PK(k) = PKplus_x - PKplus_1
+            PK(k) = PKplus_x - PKplus_1
 
          enddo
 

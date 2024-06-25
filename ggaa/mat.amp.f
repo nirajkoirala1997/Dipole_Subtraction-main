@@ -26,24 +26,26 @@ c         common/energy/s12
          s =  2d0*dot(p1,p2)
          t = -2d0*dot(p1,p3)
          u = -2d0*dot(p1,p4)
-         u = -(s+t)
+c         u = -(s+t)
+c Reduced born used different kinematics, Colour factor multiply here.
+         IF(k .eq. 0)  CF =  1d0               !Leading Order k=0
+         IF(k .eq. 1)  CF = -1d0               !leg 1 reduced born k=1 
+         IF(k .eq. 2)  CF = -1d0               !Leg 2 reduced born k=2
 
-         IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0
-         IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
-         IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2
+         Born_gg2aa= CF*(u**4 + t**4)*AK2D**2/16.d0/8d0
 
-         Born_gg2aa= (u**4 + t**4)*AK2D**2/16.d0/8d0
        return
        end
 c---------------------------------------------------------------------
 
-       subroutine mat_amp_r(p,msq)
+       subroutine amp_mat_r(p,msq)
        implicit double precision (a-h,o-z)
        dimension p(0:3,1:5),p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3)
        parameter(Pi=3.141592653589793238D0)
-       double precision msq(1:5),msq1,msq2,lambda
+       double precision msq(5),msq1,msq2,lambda
        common/usedalpha/AL,ge
        common/scales/xinvmass
+
        call p2dtop1d_5(p,p1,p2,p3,p4,p5)
 
 c       s12=2.d0*dot(p1,p2)
@@ -62,14 +64,22 @@ c       s45=2.d0*dot(p4,p5)
        P14=-2d0*dot(p1,p4)
        P23=-2d0*dot(p2,p3)
        P24=-2d0*dot(p2,p4)
-       P35=s12+t14+t24
-       P45=s12+t13+t23
-       P34=s12-s35-s45
-       P15=t23+t24+s34
-       P25=t13+t14+s34
+
+       P34=2d0*dot(p3,p4)
+       P35=2d0*dot(p3,p5)
+       P45=2d0*dot(p4,p5)
+       P15=-2d0*dot(p1,p5)
+       P25=-2d0*dot(p2,p5)
+
+c       P35=P12+P14+P24
+c       P45=P12+P13+P23
+c       P34=P12-P35-P45
+c       P15=P23+P24+P34
+c       P25=P13+P14+P34
+
 
        qe=DSQRT(ge*4.d0*PI)
-       gs=DSQRT(AL*4.d0*PI)
+c      gs=DSQRT(AL*4.d0*PI)
        qu =1d0! 2d0/3d0
 
        aem = ge
@@ -77,6 +87,7 @@ c       s45=2.d0*dot(p4,p5)
        lambda = 0.226d0 
        rp34  = dsqrt(P34)
        call coupfact(model,rp34,AK2D,AK2DINTF)
+
 c________________________________________________________________________c 
        N=3
        Cf=(N*N-1.0D0)/2.D0/N
@@ -87,8 +98,8 @@ c________________________________________________________________________c
        nf = 5
        xnf=nf
        xmur = xinvmass
-       alps=alfas2(xmur,lambda,xnf)
-       as=alps/4.0D0/PI
+
+       as = AL/4.0D0/PI
 
       SGRgg =
      &   N*Pi**2*as/N2m1*ak2D**2 * ( 4.D0*P12**(-2)*P34**5 - 4.D0
@@ -357,8 +368,17 @@ c________________________________________________________________________c
      &    P15**(-1)*P24*P34 + 72.D0*P13**2*P24*P25**(-1)*P34 + 32.D0*
      &    P13**2*P14*P15**(-1)*P24*P25**(-1)*P34 )
 c________________________________________________________________________c 
+       msq(4) = SGRgg
 
-      msq(1) = SGRgg
+c       if (dabs(p15) .le. 1d-8) then
+cc       write(*,*) 'p15 ',p15,p25,SGRgg
+c       endif
+c
+c       if (dabs(p25) .le. 1d-8) then
+cc       write(*,*) 'p25 ',p15,p25,SGRgg
+c       endif
+
+
       return
       end
 c---------------------------------------------------------------------

@@ -7,6 +7,25 @@
       external flo2_Plus,flo2_PKDel,flo2_PKReg
       common/usedalpha/AL,ge   
       common/distribution/xq
+
+c--------------------------------------------
+c     common blocks used in couplings.f  
+      common/add_par/xms,nd
+      common/add_par1/acut
+      common/rs_par/aam1,c0,aamh
+      common/unpar/xl3,xdu,xlamu
+      common/xmcoeff/xc1,xc2
+      common/cone/ET_iso,r0,rgg
+      common/nviso/niso
+      common/chfile/fname8
+      common/isub/io,is
+      common/max_order/iorder
+      common/param/aem,xmur,lambda
+
+c--------------------------------------------
+
+
+
       dimension PKPlus(1:50),err_Plus(1:50)
       dimension PKReg(1:50),err_Reg(1:50)
       dimension PKDel(1:50),err_Del(1:50)
@@ -39,6 +58,39 @@
       read (15,*) iprint        ! to print data in file
       close(15)
 
+
+c ~~~~~~~~~~~~~~~~[files needed by couplings.f]~~~~~~~~~~~~~~~~~~~c        
+
+      open(unit=20,file='../slicing_files/run.param.dat',
+     .    status='unknown')
+      read (20,*) nf            ! No. of flavours
+      read (20,*) ipdfs1        ! LO pdf set
+      read (20,*) xlqcd1        ! LO L_QCD5
+      read (20,*) ipdfs2        ! NLO pdf set
+      read (20,*) xlqcd2        ! NLO L_QCD5
+      close(20)
+
+      open(unit=30,file='../slicing_files/run.add.dat',status='unknown')
+      read (30,*) xms            ! M_s Fundamental Planck scale
+      read (30,*) nd             ! number of extra dimensions, 2<d<6
+      read (30,*) acut           ! \Lambda = acut*M_s
+      close (30)
+
+      aem=1.0D0/128.0D0
+      lambda = xlqcd1
+
+
+c      write (*,*) 'ADD model'
+c      write (*,*) 'M_s = ',xms,'GeV'
+c      write (*,*) 'ND=',nd
+c      write (*,*) 'acut=',acut
+
+c ~~~~~~~~~~~~~~~~~--------------------------~~~~~~~~~~~~~~~~~~~~c        
+
+
+
+
+
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
       open(unit=20,file='../output_files.dat',status='unknown')
@@ -56,10 +108,10 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
       Call initPDF(0)
        s=ecm*ecm
 
-c      mode = "P and K terms"
-c      call printframe0(mode)
+      mode = "P and K terms"
+      call printframe0(mode)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
-      mode1 = "[+] distribution with delta 1d-5 usual Kbar"
+      mode1 = "[+] distribution with delta 1d-5"
 
       call printframe0(mode1)
       call printframe1(pt1,its1)   ! Prints Vegas points
