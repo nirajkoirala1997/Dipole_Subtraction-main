@@ -45,12 +45,12 @@ c      common/momenta5/p1,p2,p3,p4,p5
       xmz = 91.1876d0
 
       ipass1 = 0
+       fnlo3 = 0
 
 c      eps = 2.0d0
       xlow = xq - eps
       xhigh = xq + eps
 
-        fnlo3 = 0
 
 c------------------------------------------------------------------------
 c      call kinvar3_slicing(xx,xxjac,xinvmass,y1,y2,Y,cst1,cst2,pt1,pt2, !
@@ -59,7 +59,6 @@ c------------------------------------------------------------------------
 c      call cuts3(xinvmass,y1,y2,Y,cst1,cst2,pt1,pt2,                    !
 c     &     r34,r35,r45,Et5,QT,ipass)                                    ! 
 c------------------------------------------------------------------------
-c        stop
 
         call kinvar3(xx,xxjac,xinvmass,p1,p2,p3,p4,p5,unphy)
         call cuts3(p1,p2,p3,p4,p5,icuts)
@@ -70,6 +69,29 @@ c        stop
 
         scale = xinvmass
         if ( scale .ge. xlow .and. scale .le. xhigh) then
+
+c       Technical cut off to avoid extreme singular phase space points
+
+         e1 = p1(0)
+         e2 = p2(0)
+         e5 = p5(0)
+
+         e5f = e5/rsp
+
+         p1m = p1(1)**2.0d0 + p1(2)**2.0d0 + p1(3)**2.0d0
+         p2m = p2(1)**2.0d0 + p2(2)**2.0d0 + p2(3)**2.0d0
+         p5m = p5(1)**2.0d0 + p5(2)**2.0d0 + p5(3)**2.0d0
+
+         ctheta15 = (e1*e5 - dot(p1,p5))/p1m/p5m
+         ctheta25 = (e2*e5 - dot(p2,p5))/p1m/p5m
+
+         cut1 = 1.d-3
+         cut2 = 1.0d0 - 1.d-3
+
+          if (e5f .le. cut1) goto 151
+          if (ctheta15 .ge. cut2) goto 151
+          if (ctheta25 .ge. cut2) goto 151
+
 
         iselect_scale = iselect_scale + 1 
 
@@ -90,10 +112,10 @@ c        stop
 
           sigma = xl(4)*( sig(4)-SumD(1) )
 
-          if (sig(4) - SumD(1) .ge. diff) then
-                  ifilter = ifilter + 1 
-           goto 151
-          endif
+c          if (sig(4) - SumD(1) .ge. diff) then
+c                  ifilter = ifilter + 1 
+c           goto 151
+c          endif
 c          if (sig(4) .ge. 100d0) print*,"|M^2|:",sig(4),"SumD:",SumD(1) 
 c
  
@@ -114,10 +136,14 @@ c          sigma = xl(4)*sum_dipole
           xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
           wgt=xxjac*xnorm*sigma*weight
           fnlo3=wgt/weight/2d0/eps
-c          if (fnlo3 .ne. fnlo3) fnlo3 = 0d0
-          return
-         endif
-       endif
+          endif
+c        print*,sigma,sig(4),dipole_gg_g(1,p),dipole_gg_g(2,p),weight
+          endif
+
+c        if (fnlo3 .ne. fnlo3) then
+c        print*,sigma,sig(4),dipole_gg_g(1,p),dipole_gg_g(2,p),weight
+c        stop
+c        endif
 
 151   return
       end

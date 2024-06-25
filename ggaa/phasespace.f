@@ -131,18 +131,27 @@ c     outgoing parton 4-vectors
       w=xx(4)
       !N:  Mass of each particles taking part in interaction
       unphy = 0
-      if (s12 .lt. (am3 + am4)**2 - am5**2)  unphy = 1
+
+c      if (s12 .lt. (am3 + am4)**2 - am5**2)  unphy = 1
+      if (rsp .lt. 40.0d0)  unphy = 1
 
 c-------------------------------------------------------
 c 2 --> 3 body massive phase space parametrization based 
 c on the algorithm given in FormCalc version 4.1
 c-------------------------------------------------------
-      ct    = -1d0+2d0*v
       xjac3 = 2d0
-      st   = dsqrt(1d0-ct*ct)
+      ct    = -1d0+xjac3*v
+c      st   = dsqrt(1d0-ct*ct)
+      theta = dacos(ct)
+      st   = dsin(theta)
 
-      phi   = 2d0*pi*w
+      if( theta .ge. pi) then
+      write(*,*)'theta =' ,theta
+      endif
+
+c      phi   = 2d0*pi*w
       xjac4 = 2d0*pi
+      phi   = xjac4*w + 0.0d0
       cphi  = dcos(phi)
       sphi  = dsin(phi)
 
@@ -177,8 +186,15 @@ c-------------------------------------------------------
 c    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c      will check unphysical ps points
       if (czeta .ge. 1.0d0) then
-        unphy = unphy+1 
-        goto 151
+      unphy = unphy+1 
+      endif
+c    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      if (dabs(cphi) .ge. 1.0d0) then
+      unphy = unphy+1 
+      endif
+c    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      if (dabs(sphi) .ge. 1.0d0) then
+      unphy = unphy+1 
       endif
 c    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

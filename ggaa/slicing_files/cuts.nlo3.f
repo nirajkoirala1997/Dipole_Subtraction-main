@@ -67,6 +67,7 @@ c      end
 
       subroutine cuts3(p1,p2,p3,p4,p5,ipass)
       implicit double precision (a-h,o-z)
+      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3)
 
       common/machine/mid
       common/cone/ET_iso,r0,rgg
@@ -121,9 +122,20 @@ c         r0=0.4d0
 c         rgg=0.4d0
 c         ET_iso=15d0
 
-         if( (abs(y1).ge.2.50d0 .or. abs(y2).ge.2.50d0) ) return
-         if( (pt1.lt.40d0 .or. pt2.lt.25d0)
-     &        .and. (pt1.lt.25d0 .or. pt2.lt.40d0) )return
+c         if( (abs(y1).ge.2.50d0 .or. abs(y2).ge.2.50d0) ) return
+c         if( (pt1.lt.40d0 .or. pt2.lt.25d0)
+c     &        .and. (pt1.lt.25d0 .or. pt2.lt.40d0) )return
+
+         pt_hard = max(pt1,pt2)
+         pt_soft = min(pt1,pt2)
+
+
+         if (dabs(y1) .ge. 2.50d0) return
+         if (dabs(y2) .ge. 2.50d0) return
+
+         if (pt_hard .le. 40.0d0) return
+         if (pt_soft .le. 25.0d0) return
+
 
 c         if(r34.lt.rgg)return
 c         if(r35.gt.r0 .and. r45.gt.r0)then
