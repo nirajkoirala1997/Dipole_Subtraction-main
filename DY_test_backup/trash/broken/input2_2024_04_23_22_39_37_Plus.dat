@@ -1,0 +1,10 @@
+real.dat			! real- dipole output file
+virtual.dat 			! virtual contribution output file
+PKplus.dat			! For PK terms      
+LO.dat				! Leading order
+LO2.dat				! reference filename
+
+
+
+! These file-names are also used in reading files using compare2.f
+
