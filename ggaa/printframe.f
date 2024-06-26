@@ -19,8 +19,8 @@ c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c
        subroutine printframe1(pt1,its1)
        implicit double precision(a-h,o-z)
           print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          write(*,'(A,ES25.0)')"Using Vegas points:",pt1
-          write(*,*)"        Iteration:         ",its1
+          write(*,'(a,es25.0)')"using vegas points:",pt1
+          write(*,*)"        iteration:         ",its1
           print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
        return
        end
@@ -55,5 +55,15 @@ c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c
      .  //trim(name),
      .  "                 error",
      . achar(27)//'[0m'
+       end
+cc ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
+       subroutine printframe5(e_cut,t_cut)
+       implicit double precision(a-h,o-z)
+          print*,"                                        "
+          print*,"~~~~~~~~~~~~~[Technical Cuts Used]~~~~~~~~~~~"
+          write(*,'(a,es25.0)')"  Cut for Energy e5 :",e_cut
+          write(*,'(a,es25.0)')"  Collinear cut sij :",t_cut
+          print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+       return
        end
 c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        

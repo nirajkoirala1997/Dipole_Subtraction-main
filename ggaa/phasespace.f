@@ -146,7 +146,8 @@ c      st   = dsqrt(1d0-ct*ct)
       st   = dsin(theta)
 
       if( theta .ge. pi) then
-      write(*,*)'theta =' ,theta
+c      write(*,*)'theta =' ,theta
+      unphy = unphy + 1
       endif
 
 c      phi   = 2d0*pi*w

@@ -32,6 +32,7 @@ C -------------------------------------------------------------------- C
       common/scales/xinvmass
       common/counter/ifilter,itot_ev,iselect_scale
       common/counter_diff/diff,eps
+      common/t_cuts/e_cut,t_cut
 c      common/momenta5/p1,p2,p3,p4,p5
       external dipole_gq_q
 
@@ -52,48 +53,60 @@ c      eps = 2.0d0
       xhigh = xq + eps
 
 
-c------------------------------------------------------------------------
-c      call kinvar3_slicing(xx,xxjac,xinvmass,y1,y2,Y,cst1,cst2,pt1,pt2, !
-c     &     r34,r35,r45,Et5,QT)                                          ! 
-c------------------------------------------------------------------------
-c      call cuts3(xinvmass,y1,y2,Y,cst1,cst2,pt1,pt2,                    !
-c     &     r34,r35,r45,Et5,QT,ipass)                                    ! 
-c------------------------------------------------------------------------
+
 
         call kinvar3(xx,xxjac,xinvmass,p1,p2,p3,p4,p5,unphy)
-        call cuts3(p1,p2,p3,p4,p5,icuts)
+        call cuts3(p1,p2,p3,p4,p5,rsp,icuts,inf_PS)
 
-        if (unphy .eq. 0 .and. icuts .eq. 1) then ! with zero unphysical PS points proceed
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c     Technical Cut
+
+       soft  = e_cut
+       coll1 = t_cut
+       coll2 = t_cut 
+ 
+       i15=0d0
+       i25=0d0
+       is5=0d0
+       itest=0d0
+
+        s15 = 2d0*dot(p1,p5)
+        s25 = 2d0*dot(p2,p5)
+        s12=am1**2 + am2**2 + 2d0*dot(p1,p2)
+        s35=am3**2 + am5**2 + 2d0*dot(p3,p5)
+        s45=am4**2 + am5**2 + 2d0*dot(p4,p5)
+        s34=am3**2 + am4**2 + 2d0*dot(p3,p4)
+
+
+
+c     collinear
+       if (dabs(s15) .lt. coll1) i15=1
+       if (dabs(s25) .lt. coll2) i25=1
+
+c      soft
+       e5=0.5d0*(s12-s34)/rsp
+ 
+       if(e5 .le. soft) is5=1
+        itest=is5+i15+i25
+c        unphy = unphy + itest
+
+
+
+c        print*,s15,s25,e5
+c        print*,coll1,coll2,soft
+c        print*," "
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+c        if (unphy .eq. 0 .and. icuts .eq. 1 .and. itest=0) then ! with zero unphysical PS points proceed
+        if (unphy .eq. 0 .and. icuts .eq. 1 ) then ! with zero unphysical PS points proceed
      
-        itot_ev = itot_ev + 1
+c        itot_ev = itot_ev + 1
 
         scale = xinvmass
         if ( scale .ge. xlow .and. scale .le. xhigh) then
+c         if (inf_PS .eq. 1 ) goto 151
 
-c       Technical cut off to avoid extreme singular phase space points
-
-         e1 = p1(0)
-         e2 = p2(0)
-         e5 = p5(0)
-
-         e5f = e5/rsp
-
-         p1m = p1(1)**2.0d0 + p1(2)**2.0d0 + p1(3)**2.0d0
-         p2m = p2(1)**2.0d0 + p2(2)**2.0d0 + p2(3)**2.0d0
-         p5m = p5(1)**2.0d0 + p5(2)**2.0d0 + p5(3)**2.0d0
-
-         ctheta15 = (e1*e5 - dot(p1,p5))/p1m/p5m
-         ctheta25 = (e2*e5 - dot(p2,p5))/p1m/p5m
-
-         cut1 = 1.d-3
-         cut2 = 1.0d0 - 1.d-3
-
-          if (e5f .le. cut1) goto 151
-          if (ctheta15 .ge. cut2) goto 151
-          if (ctheta25 .ge. cut2) goto 151
-
-
-        iselect_scale = iselect_scale + 1 
+c         iselect_scale = iselect_scale + 1 
 
           xmuf=scale
           xmur=scale
@@ -142,7 +155,7 @@ c        print*,sigma,sig(4),dipole_gg_g(1,p),dipole_gg_g(2,p),weight
 
 c        if (fnlo3 .ne. fnlo3) then
 c        print*,sigma,sig(4),dipole_gg_g(1,p),dipole_gg_g(2,p),weight
-c        stop
+cc        stop
 c        endif
 
 151   return

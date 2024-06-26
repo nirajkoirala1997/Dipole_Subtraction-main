@@ -10,7 +10,8 @@
       common/usedalpha/AL,ge
       common/set/set1
       common/countc/n4
-      common/distribution/xq
+      common/distribution/xq      
+      common/t_cuts/e_cut,t_cut
 
 c--------------------------------------------
 c     common blocks used in couplings.f  
@@ -66,7 +67,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[counter reset]
       read (15,*) run_tag               ! name of run directory to save output
       read (15,*) iprint                ! to save data in output file         
       read (15,*) eps                   ! epsilon for bin width
-      read (15,*) diff                  ! epsilon for bin width
+      read (15,*) e_cut                 ! cut used for small e5 Technical_cut 
+      read (15,*) t_cut                 ! for cos(t)ij close to 1 Technical_cut
 
       close(15)
 
@@ -134,7 +136,9 @@ c        read*,i
           print*," "
           print*," "
           print*," "
+
           call printframe1(pt1,its1)
+          call printframe5(e_cut,t_cut)
 
 
 
@@ -154,22 +158,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             xq = xq + step_size 
           enddo
           xq = xq_initial
-
-
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Counting events]
-          print*," "
-          print*,"    Bin eps value:",int(eps)
-          print*,"     Total Events:",itot_ev
-          print*,"Events within bin:",iselect_scale
-          print*,"  Rejected events:",ifilter
-          print*,"  Selected events:",iselect_scale - ifilter
-          print*," "
-          print*,"Cutoff used of event selection"
-          write(*, '(A, ES25.00,A)')"      If (sig - SumD) .ge. :",diff
-          print*," "
-          stop
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Counting events end]
-          
+         
           call printframe4(mode)
           do j=1,it_max
           write(*,'(i7,3e27.15)')int(xq),ai_nlo3(j),xerr(j)
