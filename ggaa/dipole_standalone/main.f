@@ -167,8 +167,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           enddo
         if (iprint .eq. 0) goto 123
         open(unit=20,file='../summary/'//trim(run_tag)//'/'
-     .          //trim(filename),status='unknown')
-c     .          //trim(filename),status='unknown', access='append')
+c     .          //trim(filename),status='unknown')
+     .          //trim(filename),status='unknown', access='append')
          xq = xq_initial
          do i=1,it_max
           write(20,*)xq,ai_nlo3(i),xerr(i)

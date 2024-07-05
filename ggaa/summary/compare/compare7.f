@@ -74,6 +74,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       read (15,*) step_size             ! size in the multiplle of loop variable
       read (15,*) run_tag               ! name of run directory to save output
       read (15,*) iprint
+      read (15,*) 
+      read (15,*) 
+      read (15,*) 
       read (15, '(A)', iostat=ierr) message  ! this identifies the message for the process
       close(15)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -4,7 +4,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plu
       parameter (pi=3.14159265358979d0)
       dimension  p1(0:3),p2(0:3),p3(0:3),p4(0:3)
       common /usedalpha/ AL,ge 
-      external PggP,PggReg,PggDel
+      external PggP,PggReg,PggDel,PqqP
       external AKbarP_gg,AKbarreg_gg,AKbarD_gg
       external AKtilP_gg,AKtilreg_gg,AKtilD_gg
 c      external aKbar_gq,aKtil_gq,Pgq_reg 
@@ -25,13 +25,13 @@ c      external aKbar_gq,aKtil_gq,Pgq_reg
 
           Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)
         SumPlus = Pplus + AKtilP_gg(x) + AKbarP_gg(x)
-c        SumPlus = AKbarP_gg(x)
+        SumPlus = PqqP(x) 
 
         elseif( iplus .eq. 0 ) then
 
           Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
         SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
-c        SumPlus = AKbarP_gg(x)
+        SumPlus = PqqP(x) 
 
         endif
 

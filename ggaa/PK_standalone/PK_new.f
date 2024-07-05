@@ -5,7 +5,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plu
       dimension  p1(0:3),p2(0:3),p3(0:3),p4(0:3)
       common /usedalpha/ AL,ge 
 
-      external PggPlus,PggReg,PggDel
+      external PggP,PggReg,PggDel
       external AKbarP_gg,AKbarReg_gg,AKbarD_gg
       external AKtilP_gg,AKtilreg_gg,AKtilD_gg
       external aKbar_gq,aKtil_gq,Pgq_reg
@@ -20,8 +20,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plu
           Pplus = 0.0d0
        SumPlus  = 0.0d0
 
-          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! kinematics depends on the PS generation 
-        SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
+c          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! kinematics depends on the PS generation 
+c        SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
+	SumPlus = PqqP(x)
 
       return
       end

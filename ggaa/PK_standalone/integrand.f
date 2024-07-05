@@ -57,10 +57,11 @@ c      x = xjac4*yy(4) + xmin
         call kinvar2_PK(x1,x*x2,xt,Qmass,p1,p2,p3,p4)
         scale = Qmass
         endif
+        call cuts0(p1,p2,p3,p4,ipass)
 
-
-        if ( scale .ge. xlow .and. scale .le. xhigh) then
-
+        if ( scale .ge. xlow .and. scale .le. xhigh
+     .     .and.   ipass .eq. 1)  then
+c     .       ) then
         coef = Born_gg2aa(0,p1,p2,p3,p4)
 
         sp   =  2.0d0*dot(p1,p2)
