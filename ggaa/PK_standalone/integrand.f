@@ -87,7 +87,8 @@ c              ALP = 1.0d0
 
             call getPKPlus(1,x,xmuf,p1,p2,p3,p4,SumPlus)
            
-            sig = xl(4)*SumPlus*coef
+c            sig = xl(4)*SumPlus*coef
+	sig = SumPlus
   
             wgt = sig/flux*ps2*xjac*vwgt
             PKplus_x = xnorm*wgt/vwgt
@@ -151,10 +152,13 @@ c      x = xjac4*yy(4) + xmin
         do k = 1,2
 
         call kinvar2_PK(x1,x2,xt,Qmass,p1,p2,p3,p4)
+        call cuts0(p1,p2,p3,p4,ipass)
 
         scale = Qmass
 
-        if ( scale .ge. xlow .and. scale .le. xhigh) then
+        if ( scale .ge. xlow .and. scale .le. xhigh
+     .     .and.   ipass .eq. 1)  then
+c     .       ) then
 
         coef = Born_gg2aa(0,p1,p2,p3,p4)
 
@@ -181,7 +185,8 @@ c              ALP = 1.0d0
 
             call getPKPlus(0,x,xmuf,p1,p2,p3,p4,SumPlus)
            
-             sig = xl(4)*SumPlus*coef
+             sig = SumPlus
+c             sig = xl(4)*SumPlus*coef
   
             wgt = sig/flux*ps2*xjac*vwgt
             PKplus_x = xnorm*wgt/vwgt

@@ -1,0 +1,17 @@
+=================================> [9 July] :
+
+ PK_Plus and PK_standalone both with
+
+	sig = SumPlus ! xx(4)*coef
+
+Is giving same result(first digit only) for 5d+7 vegas points.
+Now i am saving data in the summary run2_00 under ggaa Directory.
+
+Using the cuts also there is no problem now in the code, Now we can use the actual Plus distribution and give it a run. Without the 
+
+
+	sig = SumPlus ! xx(4)*coef
+
+same configuration but actual Plus distribution. 
+
+=================================> 

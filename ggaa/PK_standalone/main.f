@@ -138,6 +138,8 @@ c      -------------------------------------------------
 c      -------------------------------------------------
 
          ai_lo2 = ai_lo2A - ai_lo2B
+	print*,"Integral:",ai_lo2
+	stop
 
          PKPlus(j)   = ai_lo2
          err_plus(j) = sdA + sdB

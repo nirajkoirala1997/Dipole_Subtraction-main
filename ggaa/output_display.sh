@@ -1,6 +1,6 @@
 #!/bin/bash
 
-filename="compare7.f"
+filename="compare3.f"
 
 
 home_path=$(dirname "$0")
@@ -24,7 +24,7 @@ rm a.out
 #      -----------------------------------------------------------------------------------------------
 
 #      -----------------------------------------------------------------------------------------------
-#	compare3.f 	can combine two files or by editing one can take ratio, difference and so on   ‼️
+#	compare3.f 	can combine two files or by editing one can take ratio, difference and so on   ✅
 #      -----------------------------------------------------------------------------------------------
 
 #      -----------------------------------------------------------------------------------------------

@@ -76,12 +76,10 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
        print*,"Available files in "//trim(run_tag)//"  are"
        call system ("cd ../"//trim(run_tag)//" && ls -ltr")
-       firstfile = 'LO.dat'
-       secondfile = 'LO2.dat'
-c       print*,"Enter the first file name"
-c       read*,firstfile
-c       print*,"Enter the second file name"
-c       read*,secondfile
+       print*,"Enter the first file name"
+       read*,firstfile
+       print*,"Enter the second file name"
+       read*,secondfile
 
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        
@@ -135,17 +133,16 @@ c~~~~~~~~~~~~~~~~~[ ratio ]
 
        if(ierr1 + ierr2 .eq. 2) then
         print*,"/"//trim(firstfile)//" and  /"//trim(secondfile)
-       write(*,*)achar(27)//'[1;32m'//"   xq         first / second"
-c       write(*,*)achar(27)//'[1;32m'//"   xq
-c     . [first-second]/first*100",
-     .   ,achar(27)//'[0m'
+c       write(*,*)achar(27)//'[1;32m'//"   xq         first / second",
+       write(*,*)achar(27)//'[1;32m'//"   xq
+     . [first-second]/first*100",
+     . achar(27)//'[0m'
         do i=1,it_max
-c      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),dabs(xintLO(i)-xintLO_ch(i))
+c      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),xintLO(i)+xintLO_ch(i)
+      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
 c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),
 c     .          dabs(xintLO(i)-xintLO_ch(i))
 c     .     /xintLO_ch(i)*100d0
-c      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),dabs(xintLO(i)/xintLO_ch(i))
-      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
         enddo
       endif
         stop

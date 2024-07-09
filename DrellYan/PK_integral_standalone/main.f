@@ -60,6 +60,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
 
       mode = "P and K terms"
       call printframe0(mode)
+	goto 888
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
       mode1 = "[+] distribution"
       mode2 = "PlusA distribution"
@@ -109,7 +110,7 @@ c        endif
      .             int(xq),PKPlus(j),err_plus(j)
           xq = xq + xincr
         enddo
-        goto 999
+888        continue
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
         xq = xq_initial
 
@@ -141,7 +142,7 @@ c     -------------------------------------------------
      .             int(xq),PKReg(j),err_Reg(j)
           xq = xq + xincr
         enddo
-
+		goto 999
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ delta functions ]
         xq = xq_initial
 
@@ -175,17 +176,17 @@ c     -------------------------------------------------
           xq = xq + xincr
         enddo
 
+999     continue
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Combining All ]
         do l = 1,it_max
-          PKReg(l)    = 0d0
-          err_Reg(j)  = 0d0 
+c          PKReg(l)    = 0d0
+c          err_Reg(j)  = 0d0 
           PKDel(l)    = 0d0
           err_Del(j)  = 0d0
-c          PKPlus(j)   = 0d0
-c          err_plus(j) = 0d0 
+          PKPlus(j)   = 0d0
+          err_plus(j) = 0d0 
         enddo
 
-999     continue        
         xq = xq_initial
 c      print*,"  "
 c      write(*,*)achar(27)//'[1;32m'//
