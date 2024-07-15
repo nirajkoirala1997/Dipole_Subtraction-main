@@ -25,13 +25,13 @@ c      external aKbar_gq,aKtil_gq,Pgq_reg
 
           Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)
         SumPlus = Pplus + AKtilP_gg(x) + AKbarP_gg(x)
-        SumPlus = PqqP(x) 
+c        SumPlus = PqqP(x) 
 
         elseif( iplus .eq. 0 ) then
 
           Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
         SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
-        SumPlus = PqqP(x) 
+c        SumPlus = PqqP(x) 
 
         endif
 

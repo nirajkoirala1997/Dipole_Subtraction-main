@@ -20,9 +20,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plu
           Pplus = 0.0d0
        SumPlus  = 0.0d0
 
-c          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! kinematics depends on the PS generation 
-c        SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
-	SumPlus = PqqP(x)
+          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! kinematics depends on the PS generation 
+        SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
+c	SumPlus = PqqP(x)
 
       return
       end

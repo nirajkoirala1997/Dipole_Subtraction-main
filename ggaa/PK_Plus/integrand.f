@@ -66,13 +66,13 @@ c      x      = xmin+ xjac4*yy(4)
         elseif (iplus .eq. 0) then
         call kinvar2_PK(xa,xb,xc,Qmass,p1,p2,p3,p4)
         endif
-c      call cuts0(p1,p2,p3,p4,ipass)
 
          scale = Qmass
 
+        call cuts0(p1,p2,p3,p4,ipass)
         if (scale .ge. xlow .and. scale .le. xhigh  
-c     .   .and.   ipass .eq. 1)  then
-     .    ) then
+     .   .and.   ipass .eq. 1)  then
+c     .    ) then
 
          coef = Born_gg2aa(0,p1,p2,p3,p4)
 c	coef = 1
