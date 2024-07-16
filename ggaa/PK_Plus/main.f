@@ -99,6 +99,7 @@ c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c
       enddo
       read (20,*) filename
       close(20)
+	filename = 'PK_Plus.dat'
       if (iprint .eq. 1) call output(run_tag,filename)            
 c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c        
 

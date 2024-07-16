@@ -43,7 +43,7 @@ c Proceed with decision
         print*,"All previous data for this run will be lost. Overwrite ?
      .     [y/n]"
         read*,decision
-        if (decision .eq. 'y') then
+        if (decision .eq. 'y' .or. decision .eq. 'Y') then
         print*,"Overwriting data in"// filename
         else
            stop

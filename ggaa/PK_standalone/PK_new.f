@@ -20,8 +20,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plu
           Pplus = 0.0d0
        SumPlus  = 0.0d0
 
-c          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! kinematics depends on the PS generation 
-c        SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
+          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! kinematics depends on the PS generation 
+        SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
 	SumPlus = PqqP(x)
 
       return
@@ -77,8 +77,6 @@ c      common /usedalpha/ AL,ge
         s12 = 2d0*dot(p1,p2)
         Cf = 4d0/3d0
         Tr = 0.5d0
-c        Alp = Al/2.0d0/pi
-        Alp = 1.0d0
         xmuf2 = xmuf*xmuf
         
 

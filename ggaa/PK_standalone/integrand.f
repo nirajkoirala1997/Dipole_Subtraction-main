@@ -13,10 +13,10 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusA ter
       common/factscale/xmuf
       common/usedalpha/AL,ge
       common/distribution/xq
+      common/bin_size/eps
 
-      xeps = 0.5d0
-      xlow = xq - xeps
-      xhigh = xq + xeps
+      xlow = xq - eps
+      xhigh = xq + eps
 
         x1 = yy(1)
         x2 = yy(2)
@@ -75,7 +75,6 @@ c     .       ) then
             xmuf2 = xmuf*xmuf 
                AL = alphasPDF(xmur) 
               ALP = AL/2d0/Pi
-c              ALP = 1.0d0
 
             azmth = 2.0d0*pi
             ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
@@ -87,8 +86,8 @@ c              ALP = 1.0d0
 
             call getPKPlus(1,x,xmuf,p1,p2,p3,p4,SumPlus)
            
-c            sig = xl(4)*SumPlus*coef
-	sig = SumPlus
+            sig =1d0! xl(4)*SumPlus*coef
+            sig =SumPlus
   
             wgt = sig/flux*ps2*xjac*vwgt
             PKplus_x = xnorm*wgt/vwgt
@@ -116,10 +115,10 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB ter
       common/factscale/xmuf
       common/usedalpha/AL,ge
       common/distribution/xq
+      common/bin_size/eps
 
-      xeps = 0.5d0
-      xlow = xq - xeps
-      xhigh = xq + xeps
+      xlow = xq - eps
+      xhigh = xq + eps
 
         x1 = yy(1)
         x2 = yy(2)
@@ -186,7 +185,7 @@ c              ALP = 1.0d0
             call getPKPlus(0,x,xmuf,p1,p2,p3,p4,SumPlus)
            
              sig = SumPlus
-c             sig = xl(4)*SumPlus*coef
+c             sig = 1d0!xl(4)*SumPlus*coef
   
             wgt = sig/flux*ps2*xjac*vwgt
             PKplus_x = xnorm*wgt/vwgt
@@ -213,6 +212,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
       common/factscale/xmuf
       common/usedalpha/AL,ge
       common/distribution/xq
+      common/bin_size/eps
 
       xa     = yy(1)
       xb     = yy(2)
@@ -222,7 +222,6 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
       xjac   = 2d0
       xnorm=hbarc2
 
-      eps = 0.5d0
       xlow = xq - eps
       xhigh = xq + eps
 
@@ -246,20 +245,20 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
 
             xmuf = scalex
             xmur = scalex
+
             AL = alphasPDF(xmur)
-            AS = 1.0d0
-c            ALP = AL/2d0/Pi
-            ALP = 1.0d0
+            ALP = AL/2d0/Pi
 
             call getPKReg(x,xmuf,p1,p2,p3,p4,SumReg)
+            coef = Born_gg2aa(0,p1,p2,p3,p4)
 
             call pdf(xa,xmuf,f1)
             call pdf(xb,xmuf,f2)
             call setlum(f1,f2,xl)
 
-            sig1 = xl(1)* SumReg  !  [qq lum]
+            sig1 = xl(4)* SumReg  !  [qq lum]
 
-            sig = Alp*sig1
+            sig = Alp*sig1*coef
 
             azmth = 2.0d0*pi
             pf = 0.5d0*rsp
@@ -269,7 +268,6 @@ c            ALP = AL/2d0/Pi
            AllReg(k) = xnorm*wgt_x/vwgt/2d0/eps
 
          endif
-
          enddo
 
          flo2_PKReg = AllReg(1) + AllReg(2)
@@ -290,6 +288,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
       common/factscale/xmuf
       common/usedalpha/AL,ge
       common/distribution/xq
+      common/bin_size/eps
 
 c      xa     = yy(1)
 c      xb     = yy(2)
@@ -323,9 +322,7 @@ c      xb = (1D0-TAUH/xa)*yy(2) + TAUH/xa
             xmuf = scale
             xmur = scale
             AL = alphasPDF(xmur)
-c            AS = 1.0d0
             ALP = AL/2d0/Pi
-c            ALP = 1.0d0
 
             call getPKDel(1.0d0,xmuf,p,p1,p2,SumDel)
 
@@ -333,7 +330,7 @@ c            ALP = 1.0d0
             call pdf(xb,xmuf,f2)
             call setlum(f1,f2,xl)
 
-            sig1 = xl(1)* SumDel  !  [qq lum]
+            sig1 = xl(4)* SumDel  !  [qq lum]
 
             sig1 = Alp*sig1
 
@@ -349,5 +346,4 @@ c            write(*,*)'check =', sig1,flux1,ps2,xjac
 
       return
       end
-
 c---------------------------------------------------------------------

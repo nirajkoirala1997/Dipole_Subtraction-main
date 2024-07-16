@@ -1,11 +1,11 @@
 FC = gfortran
 FFLAGS   = -O 
-LDFLAGS = -lc 
+LDFLAGS = -lc #-fopenmp 
 MYFLAG = #-L./home/niraj/1TB-Disc/Workspace-IITG/Packages/Source/mylibrary -lfile
 #export LHFLAGS = $(shell lhapdf-config --ldflags)
 LHFLAGS = $(shell lhapdf-config --ldflags)
 PROG    = runPK
-OBJECTS4  = cuts.lo2.o mat.amp.o phasespace.o misc.o printframe.o PK_new.o pdf_lha.o lum.o integrand.o vsup.o filehandle.o cone.o couplings.o cuts.nlo3.o
+OBJECTS4  = cuts.lo2.o mat.amp.o phasespace.o misc.o printframe.o PK_new.o pdf_lha.o lum.o integrand.o vsup.o filehandle.o cone.o couplings.o 
 	
 $(PROG): $(OBJECTS4) main.f
 	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS4) $(LDFLAGS) $(LHFLAGS) $(MYFLAG) 
@@ -31,8 +31,8 @@ mat.amp.o: ../mat.amp.f
 
 couplings.o: ../slicing_files/couplings.f
 	$(FC) $(FFLAGS) -c ../slicing_files/couplings.f -o couplings.o
-cuts.nlo3.o: ../slicing_files/cuts.nlo3.f
-	$(FC) $(FFLAGS) -c ../slicing_files/cuts.nlo3.f -o cuts.nlo3.o
+#cuts.nlo3.o: ../slicing_files/cuts.nlo3.f
+#	$(FC) $(FFLAGS) -c ../slicing_files/cuts.nlo3.f -o cuts.nlo3.o
 cone.o: ../slicing_files/cone.f
 	$(FC) $(FFLAGS) -c ../slicing_files/cone.f -o cone.o
 cuts.lo2.o: ../slicing_files/cuts.lo2.f
@@ -42,7 +42,7 @@ cuts.lo2.o: ../slicing_files/cuts.lo2.f
 #	rm -f *.o
 clean:
 	rm -f $(OBJECTS4)
-	rm -f $(PROG).o $(PROG) 
+	rm -f $(PROG).o $(PROG) *.o 
 
 distclean:
 	make clean

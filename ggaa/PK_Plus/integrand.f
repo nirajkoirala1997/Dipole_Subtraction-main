@@ -36,7 +36,7 @@ c      x      = xmin+ xjac4*yy(4)
 
       xnorm=hbarc2
 
-      eps = 0.5d0
+      eps = 1.0d0
       xlow = xq - eps
       xhigh = xq + eps
 
@@ -93,7 +93,6 @@ c         print*,"p",p4
             xmuf2 = xmuf*xmuf 
                AL = alphasPDF(xmur) 
               ALP = AL/2d0/Pi
-c	ALP = 1.0d0
 
             azmth = 2.0d0*pi
               ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth

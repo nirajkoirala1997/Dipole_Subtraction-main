@@ -12,8 +12,6 @@ c      external aKbar_gq,aKtil_gq,Pgq_reg
         s12 = 2d0*dot(p1,p2)
         Cf = 4d0/3d0                      
         Tr = 0.5d0
-        Alp = Al/2.0d0/pi
-        Alp = 1.0d0
         xmuf2 = xmuf*xmuf
 
           Pplus = 0.0d0
@@ -23,14 +21,14 @@ c      external aKbar_gq,aKtil_gq,Pgq_reg
 
         if ( iplus .eq. 1 ) then
 
-c          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)
-c        SumPlus = Pplus + AKtilP_gg(x) + AKbarP_gg(x)
+          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)
+        SumPlus = Pplus + AKtilP_gg(x) + AKbarP_gg(x)
         SumPlus = PqqP(x) 
 
         elseif( iplus .eq. 0 ) then
 
-c          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
-c        SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
+          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
+        SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
         SumPlus = PqqP(x) 
 
         endif

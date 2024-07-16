@@ -14,4 +14,32 @@ Using the cuts also there is no problem now in the code, Now we can use the actu
 
 same configuration but actual Plus distribution. 
 
-=================================> 
+git commit ID : d2a0cc8f5237159d72cdf6e120785c01dcbcfcc5
+message     Plus distribution with dummy expression with coef and xl removed
+
+
+
+
+=================================> [15 July]
+
+PK_standalone is giving double the value in PK_Plus. However in the Dummy Plus it was giving same values.
+-Today I want to check the difference also, 
+-I have to run the Regular as well as Delta for the completeness of the code. 
+-[18:30] Regular and Delta are also runing as per the expecttion. I am still figuring out the [+] part.
+-[+] expression will be sorted today only.
+
+
+
+=================================> [16 July]
+
+- I have constructed a new branch "Working_Plus" where [+] expression is matching with both the implementation.
+- In the same branch I want to use the virtual expression from slicing 
+
+- Reference code for the comparison of NLO correction is to be proporly calculated. [todo] 
+
+
+
+
+=================================> [  July]
+
+ 

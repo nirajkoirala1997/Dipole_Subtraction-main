@@ -22,6 +22,7 @@ c     common blocks used in couplings.f
       common/isub/io,is
       common/max_order/iorder
       common/param/aem,xmur,lambda
+      common/bin_size/eps
 
 c--------------------------------------------
 
@@ -58,6 +59,7 @@ c--------------------------------------------
       read (15,*) xincr         ! increment in Gev from xq 
       read (15,*) run_tag
       read (15,*) iprint        ! to print data in file
+      read (15,*) eps                   ! epsilon for bin width
       close(15)
 
 c ~~~~~~~~~~~~~~~~[files needed by couplings.f]~~~~~~~~~~~~~~~~~~~c        
@@ -87,10 +89,10 @@ c      write (*,*) 'ND=',nd
 c      write (*,*) 'acut=',acut
 
 c ~~~~~~~~~~~~~~~~~--------------------------~~~~~~~~~~~~~~~~~~~~c        
-
-
-
-
+! [ SWITCH ON(1) OFF (0) ]	
+	iselect_plus=1
+	iselect_Regu=0
+	iselect_Delt=0
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
@@ -112,7 +114,19 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
 
       mode = "P and K terms"
       call printframe0(mode)
+
+        ! HERE RESET ALL THE VALUES TO INITIALISE
+        do l = 1,it_max
+          PKReg(l)    = 0d0
+          err_Reg(j)  = 0d0 
+          PKDel(l)    = 0d0
+          err_Del(j)  = 0d0
+          PKPlus(j)   = 0d0
+          err_plus(j) = 0d0 
+        enddo
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
+	if (iselect_Plus .eq. 1) then
+
       mode1 = "[+] distribution"
       mode2 = "PlusA distribution"
       mode3 = "PlusB distribution"
@@ -127,6 +141,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
 
          call printframe2(xq)
 
+
 c      -------------------------------------------------
          call printframe0(mode2)
          call brm48i(40,0,0) 
@@ -136,10 +151,7 @@ c      -------------------------------------------------
          call brm48i(40,0,0) 
          call vsup(4,npt2,its2,flo2_PlusB,ai_lo2B,sdB,chi2)
 c      -------------------------------------------------
-
          ai_lo2 = ai_lo2A - ai_lo2B
-	print*,"Integral:",ai_lo2
-	stop
 
          PKPlus(j)   = ai_lo2
          err_plus(j) = sdA + sdB
@@ -158,8 +170,12 @@ c      -------------------------------------------------
      .             int(xq),PKPlus(j),err_plus(j)
           xq = xq + xincr
         enddo
-        goto 999
+
+
+	endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
+	if (iselect_Regu .eq. 1) then
+
       !input data card for vegas on regular and delta functions
       open(unit=10,file='../run.vegas.dat',status='unknown')
       do i=1,6
@@ -170,9 +186,6 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ r
       npt1 = pt1
       close(10)
  
-
-
-
         xq = xq_initial
 
       mode = "Regular Terms "
@@ -204,7 +217,10 @@ c     -------------------------------------------------
           xq = xq + xincr
         enddo
 
+	endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ delta functions ]
+	if (iselect_Delt .eq. 1 ) then
+
         xq = xq_initial
 
       mode = "Delta Functions"
@@ -237,18 +253,8 @@ c     -------------------------------------------------
           xq = xq + xincr
         enddo
 
+	endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Combining All ]
-        ! HERE RESET ALL OTHERS JUST COMMENT THE ONE YOU NEED
-        do l = 1,it_max
-          PKReg(l)    = 0d0
-          err_Reg(j)  = 0d0 
-          PKDel(l)    = 0d0
-          err_Del(j)  = 0d0
-c          PKPlus(j)   = 0d0
-c          err_plus(j) = 0d0 
-        enddo
-
-999     continue        
         xq = xq_initial
 c      print*,"  "
 c      write(*,*)achar(27)//'[1;32m'//

@@ -1,4 +1,3 @@
-   100.00000000000000       -3.1197517104229189E-003   4.7082522153451737E-005
  File  already exist  ../summary/run2_01/PK_Dummy_st.dat                                                                  
  All previous data for this run will be lost. Overwrite ?     [y/n]
  Overwriting data in../summary/run2_01/PK_Dummy_st.dat                                                                  
@@ -21,7 +20,7 @@ using vegas points:                   5.E+07
          iteration:                   10
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
- For xq =          100 
+ [1;32mFor xq =          100 [0m
   
    
    
@@ -123,12 +122,12 @@ using vegas points:                   5.E+07
   20     -0.1276827     0.1050E-03 -0.1276507     0.2344E-04 0.7326    
    
    
- Integral Plus:  -3.1197517104229189E-003 +-   0.0000000000000000     
+ [1;32mIntegral Plus:  -3.1197517104229189E-003 [0m+-   0.0000000000000000     
  with chisq    =  0.73261038699964098     
   
   
   
-    xq         Integral Plus                 error
+ [1;32m   xq         Integral Plus                 error[0m
     100     -0.311975171042292E-02      0.470825221534517E-04
 Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
   Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

@@ -74,13 +74,15 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     Ready to start comparing files    
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       print*,"Available files in "//trim(run_tag)//"  are"
+c       print*,"Available files in "//trim(run_tag)//"  are"
        call system ("cd ../"//trim(run_tag)//" && ls -ltr")
-       print*,"Enter the first file name"
-       read*,firstfile
-       print*,"Enter the second file name"
-       read*,secondfile
+c       print*,"Enter the first file name"
+c       read*,firstfile
+c       print*,"Enter the second file name"
+c       read*,secondfile
 
+	firstfile = 'PK_Plus.dat'
+	secondfile = 'PK_st.dat'
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        
 
@@ -140,6 +142,7 @@ c       write(*,*)achar(27)//'[1;32m'//"   xq         first / second",
         do i=1,it_max
 c      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),xintLO(i)+xintLO_ch(i)
       write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
+      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO_ch(i)/xintLO(i)
 c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),
 c     .          dabs(xintLO(i)-xintLO_ch(i))
 c     .     /xintLO_ch(i)*100d0
