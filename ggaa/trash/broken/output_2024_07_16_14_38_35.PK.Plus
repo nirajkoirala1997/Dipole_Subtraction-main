@@ -1,0 +1,62 @@
+ Directory not found ../summary/run2_03                                                                                  
+ Making new directory..
+/home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/ggaa/summary/run2_03
+ Directory constructed successfully🤩
+  
+  
+ Writing data in the file  ../summary/run2_03/PK_Plus0.dat                                                                     
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating P and K terms
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating [+] distribution
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+using vegas points:                   8.E+07
+         iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =          100 [0m
+  
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating PlusA distribution
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=   74030112.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  39
+   1     -0.3212954E-04 0.2865E-05 -0.3212954E-04 0.2865E-05  0.000    
+   2     -0.3239022E-04 0.1308E-06 -0.3238968E-04 0.1301E-06 0.8195E-02
+   3     -0.3204282E-04 0.7576E-07 -0.3213153E-04 0.6566E-07  2.660    
+   4     -0.3207851E-04 0.7021E-07 -0.3210688E-04 0.4799E-07  1.878    
+   5     -0.3210239E-04 0.6610E-07 -0.3210534E-04 0.3884E-07  1.410    
+   6     -0.3205331E-04 0.6832E-07 -0.3209269E-04 0.3378E-07  1.217    
+   7     -0.3221219E-04 0.6857E-07 -0.3211611E-04 0.3030E-07  1.422    
+   8     -0.3201824E-04 0.6613E-07 -0.3209924E-04 0.2755E-07  1.477    
+   9     -0.3225384E-04 0.6531E-07 -0.3212275E-04 0.2538E-07  1.889    
+  10     -0.3218314E-04 0.6682E-07 -0.3213038E-04 0.2372E-07  1.758    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=  790508322.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  47
+   1     -0.3215963E-04 0.1885E-07 -0.3215963E-04 0.1885E-07  0.000    
+   2     -0.3214118E-04 0.1885E-07 -0.3215041E-04 0.1333E-07 0.4790    
+   3     -0.3214668E-04 0.1883E-07 -0.3214917E-04 0.1088E-07 0.2526    
+   4     -0.3215746E-04 0.1887E-07 -0.3215123E-04 0.9425E-08 0.2167    

@@ -1,0 +1,133 @@
+  
+ Writing data in the file  ../summary/run2_03/PK_Plus8.dat                                                                     
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating P and K terms
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating [+] distribution
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+using vegas points:                   2.E+04
+         iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =         2500 [0m
+  
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating PlusA distribution
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=      20000.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1     -0.6103102E-01 0.4619E-01 -0.6103102E-01 0.4619E-01  0.000    
+   2     -0.2852947E-04 0.1509E-04 -0.2004373E-01 0.1871E-01  2.344    
+   3     -0.3142379E-04 0.1068E-04 -0.7646390E-02 0.9423E-02  2.289    
+   4     -0.4298338E-03 0.2069E-03 -0.5944313E-02 0.7134E-02  2.096    
+   5     -0.5588076E-03 0.2278E-03 -0.4611726E-02 0.5535E-02  2.009    
+   6     -0.1076700E-03 0.2043E-04 -0.2209901E-02 0.3452E-02  2.014    
+   7     -0.2504155E-03 0.4877E-04 -0.1551411E-02 0.2604E-02  1.979    
+   8     -0.2686107E-03 0.6566E-04 -0.1325898E-02 0.2212E-02  1.945    
+   9     -0.8438370E-03 0.5242E-03 -0.1313123E-02 0.2058E-02  1.915    
+  10     -0.3190049E-03 0.9151E-04 -0.1203234E-02 0.1841E-02  1.894    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=     167042.
+                              IT=    0  ITMX=   20
+                              MDS=  1   ND=  50
+   1     -0.2524138E-02 0.2032E-02 -0.2524138E-02 0.2032E-02  0.000    
+   2     -0.1328049E-02 0.8046E-03 -0.1760645E-02 0.9762E-03 0.3466    
+   3     -0.4965067E-03 0.6475E-04 -0.5820597E-03 0.2105E-03  1.390    
+   4     -0.1525877E-02 0.6332E-03 -0.6616433E-03 0.1972E-03  1.557    
+   5     -0.9740283E-03 0.2425E-03 -0.7209404E-03 0.1656E-03  1.478    
+   6     -0.6778050E-03 0.1371E-03 -0.7113111E-03 0.1358E-03  1.368    
+   7     -0.4677903E-03 0.6968E-04 -0.6402817E-03 0.1068E-03  1.486    
+   8     -0.7656113E-03 0.1267E-03 -0.6642485E-03 0.9195E-04  1.430    
+   9     -0.1090440E-02 0.3986E-03 -0.6803118E-03 0.8887E-04  1.394    
+  10     -0.1009545E-02 0.3240E-03 -0.6956594E-03 0.8524E-04  1.357    
+  11     -0.6822375E-03 0.1598E-03 -0.6945795E-03 0.7913E-04  1.304    
+  12     -0.2587717E-02 0.1417E-02 -0.7220475E-03 0.8992E-04  1.481    
+  13     -0.6714923E-03 0.1127E-03 -0.7152771E-03 0.8120E-04  1.445    
+  14     -0.5992255E-03 0.8915E-04 -0.6983900E-03 0.7290E-04  1.439    
+  15     -0.8870735E-03 0.1628E-03 -0.7148580E-03 0.6842E-04  1.427    
+  16     -0.6006077E-03 0.1048E-03 -0.7047934E-03 0.6374E-04  1.417    
+  17     -0.6990024E-03 0.1593E-03 -0.7045093E-03 0.6091E-04  1.384    
+  18     -0.5557260E-03 0.8533E-04 -0.6899918E-03 0.5658E-04  1.398    
+  19     -0.9790449E-03 0.2447E-03 -0.7002583E-03 0.5511E-04  1.394    
+  20     -0.4590504E-03 0.5795E-04 -0.6707770E-03 0.5053E-04  1.508    
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating PlusB distribution
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=      20000.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=     167042.
+                              IT=    0  ITMX=   20
+                              MDS=  1   ND=  50
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+   
+   
+ [1;32mIntegral Plus:                       NaN [0m+-   0.0000000000000000     
+ with chisq    =                       NaN
+  
+  
+  
+ [1;32m   xq         Integral Plus                 error[0m
+   2500                        NaN                        NaN
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

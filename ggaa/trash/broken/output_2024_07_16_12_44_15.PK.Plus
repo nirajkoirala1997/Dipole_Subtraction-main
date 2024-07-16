@@ -1,0 +1,112 @@
+ Directory not found ../summary/run2_02                                                                                  
+ Making new directory..
+/home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/ggaa/summary/run2_02
+ Directory constructed successfully🤩
+  
+  
+ Writing data in the file  ../summary/run2_02/PK_Plus0.dat                                                                     
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating P and K terms
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating [+] distribution with delta 1d-5
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+using vegas points:                   1.E+06
+         iteration:                    6
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =            2 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=     913952.
+                              IT=    0  ITMX=    6
+                              MDS= -1   ND=  26
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=    9759362.
+                              IT=    0  ITMX=   12
+                              MDS= -1   ND=  47
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+   
+   
+ [1;32mIntegral Plus:                       NaN [0m+-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ [1;32mFor xq =          302 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=     913952.
+                              IT=    0  ITMX=    6
+                              MDS= -1   ND=  26
+   1     -0.1419129E-03 0.2576E-03 -0.1419129E-03 0.2576E-03  0.000    
+   2     -0.1131018E-04 0.5668E-04 -0.1267692E-03 0.1718E-03 0.5925E-01
+   3      0.2213947E-04 0.3311E-04 -0.4254569E-04 0.9356E-04 0.3546    
+   4     -0.8411402E-05 0.2987E-04 -0.3943337E-04 0.7737E-04 0.3195    
+   5      0.4130014E-04 0.3080E-04  0.1497533E-04 0.4110E-04 0.4888    
+   6     -0.4383952E-04 0.4522E-04 -0.3506685E-06 0.3361E-04 0.5504    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=    9759362.
+                              IT=    0  ITMX=   12
+                              MDS= -1   ND=  47
+   1      0.2741607E-04 0.1091E-04  0.2741607E-04 0.1091E-04  0.000    
+   2      0.3820580E-05 0.1070E-04  0.2694982E-04 0.7709E-05 0.1815    
+   3      0.1913870E-04 0.1005E-04  0.2413860E-04 0.6122E-05 0.2796    
+   4     -0.1750407E-05 0.1075E-04  0.2407065E-04 0.5302E-05 0.2686    
+   5      0.3809205E-06 0.1069E-04  0.2406767E-04 0.4742E-05 0.2526    
+   6      0.4463490E-05 0.1077E-04  0.2373971E-04 0.4330E-05 0.3057    
+   7      0.2351749E-05 0.9940E-05  0.2362379E-04 0.4008E-05 0.3214    
+   8      0.1461749E-04 0.1243E-04  0.2255989E-04 0.3831E-05 0.3482    
+   9      0.2140894E-04 0.1123E-04  0.2228746E-04 0.3644E-05 0.2593    
+  10      0.1472003E-04 0.1054E-04  0.2143328E-04 0.3443E-05 0.2828    
+  11      0.1238018E-04 0.1069E-04  0.2078184E-04 0.3278E-05 0.3114    
+  12      0.2146856E-04 0.1105E-04  0.2089750E-04 0.3148E-05 0.2560    
+   
+   
+ [1;32mIntegral Plus:   2.0897495085726532E-005 [0m+-   3.1475279219782353E-006
+ with chisq    =  0.25600797658474223     
+  
+  
+  
+ [1;32m   xq         Integral Plus                 error[0m
+      2                        NaN                        NaN
+    302      0.208974950857265E-04      0.314752792197824E-05
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

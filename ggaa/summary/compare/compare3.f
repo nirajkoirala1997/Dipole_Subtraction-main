@@ -76,8 +76,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
        print*,"Available files in "//trim(run_tag)//"  are"
        call system ("cd ../"//trim(run_tag)//" && ls -ltr")
-       firstfile = 'LO.dat'
-       secondfile = 'LO2.dat'
+       firstfile = 'all_combine.dat'
+       secondfile = 'Plus_all.dat'
 c       print*,"Enter the first file name"
 c       read*,firstfile
 c       print*,"Enter the second file name"
