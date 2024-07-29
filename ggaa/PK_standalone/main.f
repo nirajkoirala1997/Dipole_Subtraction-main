@@ -91,8 +91,8 @@ c      write (*,*) 'acut=',acut
 c ~~~~~~~~~~~~~~~~~--------------------------~~~~~~~~~~~~~~~~~~~~c        
 ! [ SWITCH ON(1) OFF (0) ]	
 	iselect_plus=1
-	iselect_Regu=0
-	iselect_Delt=0
+	iselect_Regu=1
+	iselect_Delt=1
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
@@ -256,17 +256,17 @@ c     -------------------------------------------------
 	endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Combining All ]
         xq = xq_initial
-c      print*,"  "
-c      write(*,*)achar(27)//'[1;32m'//
-c     . "   xq              Plus                      regular     
-c     .            delta                    combined PK     
-c     .    error",achar(27) //'[0m'
+      print*,"  "
+      write(*,*)achar(27)//'[1;32m'//
+     . "   xq              Plus                      regular     
+     .            delta                    combined PK     
+     .    error",achar(27) //'[0m'
 
         do j=1,it_max
         PK(j) = PKPlus(j) + PKReg(j) + PKDel(j)
         err(j) = err_Plus(j) + err_Reg(j) + err_Del(j)
-c          write(*,'(i7,3e27.15,3e27.15,3e27.15,3e27.15,3e27.15)')
-c     .    int(xq),PKPlus(j),PKReg(j),PKDel(j),PK(j),err(j)
+          write(*,'(i7,3e27.15,3e27.15,3e27.15,3e27.15,3e27.15)')
+     .    int(xq),PKPlus(j),PKReg(j),PKDel(j),PK(j),err(j)
           xq = xq + xincr
         enddo
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[  * END * ]      

@@ -57,14 +57,12 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Reg
         s12 = 2d0*dot(p1,p2)
         Cf = 4d0/3d0
         Tr = 0.5d0
-c        Alp = Al/2.0d0/pi
-        Alp = 1.0d0
         xmuf2 = xmuf*xmuf
 
         Born = Born_uU2eE(0,p1,p2,p3,p4)
         coef = Born
 
-       Areg = Alp*(AKbarreg_qq(x)+AKtilreg_qq(x))*coef
+       Areg = (AKbarreg_qq(x)+AKtilreg_qq(x))*coef
 
        SumReg = Areg
       return
@@ -92,8 +90,6 @@ c      common /usedalpha/ AL,ge
         s12 = 2d0*dot(p1,p2)
         Cf = 4d0/3d0
         Tr = 0.5d0
-c        Alp = Al/2.0d0/pi
-        Alp = 1.0d0
         xmuf2 = xmuf*xmuf
 
       do k = 1,2
@@ -105,7 +101,6 @@ c        Alp = Al/2.0d0/pi
       enddo
 
        SumDel = AllP(1)+AllP(2)
-c       SumDel = Born
 
       return
       end

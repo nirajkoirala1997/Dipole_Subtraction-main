@@ -1,4 +1,3 @@
-
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular Terms]
       function flo2_PKReg(yy,vwgt)
       implicit double precision (a-h,o-z)
@@ -47,9 +46,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
             xmuf = scalex
             xmur = scalex
              AL = alphasPDF(xmur)
-c             AS = 1.0d0
             ALP = AL/2d0/Pi
-c            ALP = 1.0d0
 
             call getPKReg(x,xmuf,p1,p2,p3,p4,SumReg)
 
@@ -57,7 +54,7 @@ c            ALP = 1.0d0
             call pdf(xb,xmuf,f2)
             call setlum(f1,f2,xl)
 
-            sig1 = xl(1)* SumReg  !  [qq lum]
+            sig1 = xl(4)* SumReg  !  [qq lum]
 
             sig = Alp*sig1
 

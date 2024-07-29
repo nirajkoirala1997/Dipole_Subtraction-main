@@ -68,7 +68,6 @@ c      end
 
       CF = 4.0d0/3.0d0
       AKbarD_qq = -CF*(5.0d0-pi*pi)
-c      AKbarD_qq = AKbarD_qq  - CF*Pi*Pi/3d0     ! extra part comming from [ln(1-x)/x]+ part while modifying expression
       return
       end
 

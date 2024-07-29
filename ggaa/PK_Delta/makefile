@@ -1,10 +1,9 @@
-FC = gfortran#g77
-#FC = f77#gfortran#g77
+FC = gfortran
 FFLAGS   = -O 
-LDFLAGS = -lc -L./../ -lfile
+LDFLAGS = -lc 
 LHFLAGS = $(shell lhapdf-config --ldflags)
 PROG    = runPK
-OBJECTS4  =mat.amp.o phasespace.o misc.o printframe.o PK_new.o pdf_lha.o lum.o integrand.o phasespacePK.o vsup.o
+OBJECTS4  = couplings.o cone.o cuts.lo2.o filehandle.o mat.amp.o phasespace.o misc.o printframe.o PK_new.o pdf_lha.o lum.o integrand.o vsup.o
 	
 $(PROG): $(OBJECTS4) main.f
 	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS4) $(LDFLAGS) $(LHFLAGS) $(MYFLAG) 
@@ -22,6 +21,19 @@ printframe.o: ../printframe.f
 	$(FC) $(FFLAGS) -c ../printframe.f -o printframe.o
 mat.amp.o: ../mat.amp.f
 	$(FC) $(FFLAGS) -c ../mat.amp.f -o mat.amp.o
+filehandle.o: ../filehandle.f
+	$(FC) $(FFLAGS) -c ../filehandle.f -o filehandle.o
+
+
+
+couplings.o: ../slicing_files/couplings.f
+	$(FC) $(FFLAGS) -c ../slicing_files/couplings.f -o couplings.o
+cone.o: ../slicing_files/cone.f
+	$(FC) $(FFLAGS) -c ../slicing_files/cone.f -o cone.o
+cuts.lo2.o: ../slicing_files/cuts.lo2.f
+	$(FC) $(FFLAGS) -c ../slicing_files/cuts.lo2.f -o cuts.lo2.o
+
+
 	
 #	rm -f *.o
 clean:

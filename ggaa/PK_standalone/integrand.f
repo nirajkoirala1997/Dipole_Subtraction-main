@@ -86,8 +86,8 @@ c     .       ) then
 
             call getPKPlus(1,x,xmuf,p1,p2,p3,p4,SumPlus)
            
-            sig =1d0! xl(4)*SumPlus*coef
-            sig =SumPlus
+            sig = xl(4)*SumPlus*coef
+c            sig =SumPlus
   
             wgt = sig/flux*ps2*xjac*vwgt
             PKplus_x = xnorm*wgt/vwgt
@@ -184,8 +184,8 @@ c              ALP = 1.0d0
 
             call getPKPlus(0,x,xmuf,p1,p2,p3,p4,SumPlus)
            
-             sig = SumPlus
-c             sig = 1d0!xl(4)*SumPlus*coef
+c             sig = SumPlus
+            sig = xl(4)*SumPlus*coef
   
             wgt = sig/flux*ps2*xjac*vwgt
             PKplus_x = xnorm*wgt/vwgt

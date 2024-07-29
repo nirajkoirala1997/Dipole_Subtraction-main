@@ -242,8 +242,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
             xmur = scalex
             AL = alphasPDF(xmur)
             AS = 1.0d0
-c            ALP = AL/2d0/Pi
-            ALP = 1.0d0
+            ALP = AL/2d0/Pi
+c            ALP = 1.0d0
 
             call getPKReg(x,xmuf,p1,p2,p3,p4,SumReg)
 
@@ -317,9 +317,7 @@ c      xb = (1D0-TAUH/xa)*yy(2) + TAUH/xa
             xmuf = scale
             xmur = scale
             AL = alphasPDF(xmur)
-c            AS = 1.0d0
             ALP = AL/2d0/Pi
-c            ALP = 1.0d0
 
             call getPKDel(1.0d0,xmuf,p,p1,p2,SumDel)
 
@@ -327,9 +325,8 @@ c            ALP = 1.0d0
             call pdf(xb,xmuf,f2)
             call setlum(f1,f2,xl)
 
-            sig1 = xl(1)* SumDel  !  [qq lum]
+            sig1 = ALP * xl(1) * SumDel  !  [qq lum]
 
-            sig1 = Alp*sig1
 
             azmth = 2.0d0*pi
             pf = 0.5d0*rsp
@@ -337,7 +334,6 @@ c            ALP = 1.0d0
 
             wgt1 = sig1/flux_1*ps2*xjac*vwgt
             PKDel = xnorm*wgt1/vwgt
-c            write(*,*)'check =', sig1,flux1,ps2,xjac 
 
          flo2_PKDel = PKDel
 

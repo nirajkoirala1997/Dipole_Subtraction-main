@@ -22,7 +22,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plu
 
           Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! kinematics depends on the PS generation 
         SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
-	SumPlus = PqqP(x)
+c	SumPlus = PqqP(x)
 
       return
       end

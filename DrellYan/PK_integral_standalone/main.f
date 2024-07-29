@@ -16,7 +16,7 @@
 
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')
-      do i=1,6
+      do i=1,12
       read (10,*)
       enddo
       read (10,*) pt1           ! vegas points     
@@ -43,13 +43,27 @@
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
       open(unit=20,file='../output_files.dat',status='unknown')
-      do i=1,5   
+      do i=1,2   
       read (20,*) 
       enddo
       read (20,*) filename
       close(20)
       if (iprint .eq. 1) call output(run_tag,filename)            
 c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c        
+
+        iplus   =1
+        idelta  =1
+        iregular=1
+
+       do l = 1,it_max
+          PKReg(l)    = 0d0
+          err_Reg(j)  = 0d0 
+          PKDel(l)    = 0d0
+          err_Del(j)  = 0d0
+          PKPlus(j)   = 0d0
+          err_plus(j) = 0d0 
+        enddo
+
 
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P and K terms from Here ] 
@@ -60,8 +74,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
 
       mode = "P and K terms"
       call printframe0(mode)
-	goto 888
+
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
+      if (iplus .eq. 1) then
       mode1 = "[+] distribution"
       mode2 = "PlusA distribution"
       mode3 = "PlusB distribution"
@@ -110,8 +125,22 @@ c        endif
      .             int(xq),PKPlus(j),err_plus(j)
           xq = xq + xincr
         enddo
-888        continue
+
+        endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
+        if( iregular .eq. 1) then
+
+
+      open(unit=10,file='../run.vegas.dat',status='unknown')
+      do i=1,6
+      read (10,*)
+      enddo
+      read (10,*) pt1           ! vegas points     
+      read (10,*) its1          ! vegas iterations 
+      npt1 = pt1
+      close(10)
+ 
+
         xq = xq_initial
 
       mode = "Regular Terms "
@@ -142,8 +171,20 @@ c     -------------------------------------------------
      .             int(xq),PKReg(j),err_Reg(j)
           xq = xq + xincr
         enddo
-		goto 999
+
+       endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ delta functions ]
+       if( idelta .eq. 1) then
+
+      open(unit=10,file='../run.vegas.dat',status='unknown')
+      do i=1,6
+      read (10,*)
+      enddo
+      read (10,*) pt1           ! vegas points     
+      read (10,*) its1          ! vegas iterations 
+      npt1 = pt1
+      close(10)
+ 
         xq = xq_initial
 
       mode = "Delta Functions"
@@ -176,29 +217,25 @@ c     -------------------------------------------------
           xq = xq + xincr
         enddo
 
-999     continue
+       endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Combining All ]
-        do l = 1,it_max
-c          PKReg(l)    = 0d0
-c          err_Reg(j)  = 0d0 
-          PKDel(l)    = 0d0
-          err_Del(j)  = 0d0
-          PKPlus(j)   = 0d0
-          err_plus(j) = 0d0 
-        enddo
-
         xq = xq_initial
-c      print*,"  "
-c      write(*,*)achar(27)//'[1;32m'//
-c     . "   xq              Plus                      regular     
-c     .            delta                    combined PK     
-c     .    error",achar(27) //'[0m'
+       if (iplus+iregular+idelta .eq. 3) then
+      print*,"  "
+      write(*,*)achar(27)//'[1;32m'//
+     . "   xq              Plus                      regular     
+     .            delta                    combined PK     
+     .    error",achar(27) //'[0m'
+      endif
 
         do j=1,it_max
         PK(j) = PKPlus(j) + PKReg(j) + PKDel(j)
         err(j) = err_Plus(j) + err_Reg(j) + err_Del(j)
-c          write(*,'(i7,3e27.15,3e27.15,3e27.15,3e27.15,3e27.15)')
-c     .    int(xq),PKPlus(j),PKReg(j),PKDel(j),PK(j),err(j)
+
+       if (iplus+iregular+idelta .eq. 3) then
+          write(*,'(i7,3e27.15,3e27.15,3e27.15,3e27.15,3e27.15)')
+     .    int(xq),PKPlus(j),PKReg(j),PKDel(j),PK(j),err(j)
+       endif
           xq = xq + xincr
         enddo
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[  * END * ]      

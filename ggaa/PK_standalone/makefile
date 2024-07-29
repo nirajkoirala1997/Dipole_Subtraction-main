@@ -31,8 +31,6 @@ mat.amp.o: ../mat.amp.f
 
 couplings.o: ../slicing_files/couplings.f
 	$(FC) $(FFLAGS) -c ../slicing_files/couplings.f -o couplings.o
-#cuts.nlo3.o: ../slicing_files/cuts.nlo3.f
-#	$(FC) $(FFLAGS) -c ../slicing_files/cuts.nlo3.f -o cuts.nlo3.o
 cone.o: ../slicing_files/cone.f
 	$(FC) $(FFLAGS) -c ../slicing_files/cone.f -o cone.o
 cuts.lo2.o: ../slicing_files/cuts.lo2.f

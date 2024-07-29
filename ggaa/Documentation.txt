@@ -40,6 +40,10 @@ PK_standalone is giving double the value in PK_Plus. However in the Dummy Plus i
 
 
 
-=================================> [  July]
+=================================> [26 July]
 
+- I have compared the total NLO cross-section to the ref, the issue I am facig is that the contribution from virtual is very high almost 2 order greater than other contributions. 
+- Also the stability of dipole subtraction is also not good. When I used the CF value as -4/3 in to the mat-anp reduced born, the centeral value is quite stable compared to the previous value i.e -1. But this is not the correct value I have to check again properly.
  
+
+=================================> [   July]

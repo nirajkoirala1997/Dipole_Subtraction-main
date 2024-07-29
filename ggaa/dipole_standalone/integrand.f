@@ -34,7 +34,7 @@ C -------------------------------------------------------------------- C
       common/counter_diff/diff,eps
       common/t_cuts/e_cut,t_cut
 c      common/momenta5/p1,p2,p3,p4,p5
-      external dipole_gq_q
+      external dipole_gg_g
 
 
 C        xx(1) =  0.16521047042068998     
@@ -116,6 +116,8 @@ c         if (inf_PS .eq. 1 ) goto 151
           SumD(1) = dipole_gg_g(1,p) + dipole_gg_g(2,p)
 
           sigma = xl(4)*( sig(4)-SumD(1) )
+
+c	print*,sig(4),SumD(1)
 
           pi_1 = 0.5d0*rsp
           flux = 4d0*pi_1*rsp

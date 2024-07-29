@@ -167,7 +167,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 c              sig= xl(1)*(Vir + 1d0*SumI(1))    ! factor of 2 for two leg contribution in eikonal
-              sig= xl(1)*SumI(1)    ! factor of 2 for two leg contribution in eikonal
+              sig= xl(1)*SumI(2)    ! factor of 2 for two leg contribution in eikonal
 c              sig= xl(1)*Vir
 
               xnorm=hbarc2/16d0/pi/(xa*xb*s)
