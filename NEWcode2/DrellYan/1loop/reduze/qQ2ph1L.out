@@ -1,0 +1,18 @@
+#procedure dots
+id k1.k1 = SP(k1,k1);
+id k1.p1 = SP(p1,k1);
+id k1.p2 = SP(p2,k1);
+id k1.p3 = SP(p3,k1);
+#endprocedure dots
+#procedure spidsF1
+id SP(p1,k1)=-1/2*Prop(p1-k1,0)^(-1)+1/2*Prop(k1,0)^(-1);
+id SP(k1,k1)=Prop(k1,0)^(-1);
+id SP(p2,k1)=1/2*s-1/2*Prop(p2+p1-k1,0)^(-1)+1/2*Prop(p1-k1,0)^(-1);
+#endprocedure spidsF1
+
+#procedure DiaMatch1 
+ multiply F1; multiply replace_(k1, p1-k1) ;
+#call dots
+#call spidsF1
+#endprocedure DiaMatch1
+

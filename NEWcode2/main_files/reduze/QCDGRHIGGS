@@ -1,0 +1,59 @@
+*****************************************
+******         Gravity+Scalar      ******
+******         IMSc, 20Nov15       ******
+*****************************************
+
+* QCDGRHIGGS
+* U = ubar, u = u, g = gluon,
+* gh = Ghost, GH = anti-ghost, gr = Graviton
+* No t quark.
+
+**************************
+* Propagators
+* QCD, Graviton and Higgs
+*-------------------------
+[u, U, - ; pfunct= 'QQ', m= mu ]
+*[c, C, - ; pfunct= 'QQ', m= mc ]
+[e, E, - ; pfunct= 'EE', m= me ]
+[t, T, - ; pfunct= 'TT', m= mt ]
+[g, g, + ; pfunct= 'GG', m= 0 ]
+[ph, ph, + ; pfunct= 'AA', m= 0 ]
+[gh, GH, - ; pfunct= 'CC', m= 0 ]
+[H, H, + ;pfunct= 'HH', m=xmH]
+[z,z, + ;pfunct='zz', m=mz ]
+
+*********************************************************
+* Vertices
+* [antiparticle, particle, gauge boson; coupling const]
+* all momenta go inside the vertex
+* QCD Vertices
+*------------------
+
+[U,u,g; gs=1, kap=0, CH=0 ,ew=0]
+[E,e,ph; gs=0, kap=1, CH=0 ,ew=0]
+[U,u,ph; gs=0, kap=1, CH=0 ,ew=0]
+[T,t,g; gs=1, kap=0, CH=0 ,ew=0]
+[g,g,g; gs=1, kap=0, CH=0,ew=0]
+[g,g,g,g; gs=2, kap=0, CH=0,ew=0]
+[GH,gh,g; gs=1, kap=0, CH=0,ew=0]
+[E,e,z; gs=0,kap=0, CH=0, ew=1]
+[U,u,z; gs=0,kap=0, CH=0, ew=1]
+*[C,c,g; gs=1, kap=0, CH=0 ,ew=0]
+*[C,c,ph; gs=0, kap=1, CH=0 ,ew=0]
+
+
+*---------------------------
+* QCD Higgs effective vertex
+*---------------------------
+
+** for tTH coupling close this off as it does genetate additional ggH vertex
+[g,g,H; gs=0, kap=0, CH=1,ew=0]
+[g,g,g,H; gs=1, kap=0, CH=1,ew=0]
+[g,g,g,g,H; gs=2, kap=0, CH=1,ew=0]
+
+*---------------------------
+* top antitop Higgs  vertex
+*---------------------------
+
+*[T,t,H; gs=0, kap=0, CH=1,ew=0]
+****************************************************************************

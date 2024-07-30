@@ -1,0 +1,50 @@
+
+Date: Fri May 17 15:22:07 2024
+
+Setting up job queue from jobs_1_sector_mappings.yaml
+Updating job queue dependencies
+Processing jobs in serial mode (non-MPI build)
+Inserted new job in queue: job(1): setup sector mappings
+Updating job queue dependencies
+Loading uncrossed integral families from file ./config/integralfamilies.yaml
+Initialize integral family 'F1'
+Loaded integral family F1
+Loaded 1 (uncrossed) integral families
+Done loading uncrossed integral families
+Created auxiliary job setup_crossings
+Created auxiliary job verify_permutation_symmetries for family: F1
+Inserted new job in queue: job(2): verify permutation symmetries of family 'F1'
+Inserted new job in queue: job(3): setup crossings
+Updated job queue:
+  [p] job(3): setup crossings  [dep: ]
+  [p] job(2): verify permutation symmetries of family 'F1'  [dep: 3]
+  [p] job(1): setup sector mappings  [dep: 2,3]
+
+
+Date: Fri May 17 15:22:07 2024
+
+Run ID: f3cbede6
+
+Starting job(3): setup crossings
+Completed Job(3) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:22:07 2024
+
+Run ID: f3cbede6
+
+Starting job(2): verify permutation symmetries of family 'F1'
+Completed Job(2) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:22:07 2024
+
+Run ID: f3cbede6
+
+Starting job(1): setup sector mappings
+Completed Job(1) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+Completed jobs in jobqueue
+
+Completed all jobs
+Total run time: 0 s

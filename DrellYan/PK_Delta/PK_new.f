@@ -92,7 +92,6 @@ c      common /usedalpha/ AL,ge
         Cf = 4d0/3d0
         Tr = 0.5d0
 c        Alp = Al/2.0d0/pi
-        Alp = 1.0d0
         xmuf2 = xmuf*xmuf
 
       do k = 1,2

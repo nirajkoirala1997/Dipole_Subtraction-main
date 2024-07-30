@@ -1,0 +1,21 @@
+sectormappings:
+  name: F1
+  zero_sectors:
+    t=0: [0]
+    t=1: [1, 2, 4]
+    t=2: [3, 6]
+  sectors_without_graph:
+    {}
+  sector_relations:
+    2: [[F1, 1], [[k1, p1+k1]]]
+    4: [[F1, 1], [[k1, p2+p1+k1]]]
+    6: [[F1x12, 3], [[k1, p2+p1-k1]]]
+  crossed_sector_relations:
+    {}
+  sector_symmetries:
+    3:
+      - [[k1, p1-k1]]
+    5:
+      - [[k1, p2+p1-k1]]
+    7:
+      - [[p2, p1], [p1, p2], [k1, p2+p1-k1]]

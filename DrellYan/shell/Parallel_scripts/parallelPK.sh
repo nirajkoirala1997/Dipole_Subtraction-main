@@ -7,15 +7,15 @@ cd ../../
 
 # Define the commands to run in parallel, and add a unique identifier to each command
 commands=(
-    "(./shell/runPK_Plus.sh)"
-    "(./shell/runPK_Plus.sh)"
-    "(./shell/runPK_Plus.sh)"
-    "(./shell/runPK_Plus.sh)"
-    "(./shell/runPK_Plus.sh)"
-    "(./shell/runPK_Plus.sh)"
-    "(./shell/runPK_Plus.sh)"
-    "(./shell/runPK_Plus.sh)"
-    "(./shell/runPK_Plus.sh)"
+    "(./shell/runPK.sh)"
+    "(./shell/runPK.sh)"
+    "(./shell/runPK.sh)"
+    "(./shell/runPK.sh)"
+    "(./shell/runPK.sh)"
+    "(./shell/runPK.sh)"
+    "(./shell/runPK.sh)"
+    "(./shell/runPK.sh)"
+    "(./shell/runPK.sh)"
 )
 
 # Define the new values for the "max # of distribution increment step_size from xq"
@@ -92,6 +92,7 @@ for i in ${!distribution_steps[@]}; do
         echo $first_line | awk -v q_value=$q_value '{printf "%10d %25.15e %25.15e\n", q_value, $2, $3}' >> $temp_file
         # Append the rest of the file's content to the output summary file
         tail -n +2 $file >> $output_summary_file
+	mkdir -p summary/${output_dir}/trash  && mv $file summary/${output_dir}/trash
     else
         echo "Warning: File $file not found."
     fi

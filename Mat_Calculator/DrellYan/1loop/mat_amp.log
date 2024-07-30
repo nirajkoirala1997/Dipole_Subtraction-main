@@ -1,0 +1,24 @@
+TFORM 4.2.1 (Nov 21 2018, v4.2.1) 64-bits 10 workers  Run: Fri May 17 15:20:29 2024
+    #-
+  0.53 sec + 0.03 sec: 0.56 sec out of 0.57 sec
+
+   mat =
+       + 2/9*Tr(ci2,ci2)*INT(F1,0,0,1)*i_*qu^2*gs^2
+          - 1/9*Tr(ci2,ci2)*INT(F1,0,0,1)*i_*n*qu^2*gs^2
+          - 2/9*Tr(ci2,ci2)*INT(F1,0,1,0)*i_*qu^2*gs^2
+          + 1/9*Tr(ci2,ci2)*INT(F1,0,1,0)*i_*n*qu^2*gs^2
+          + 2/9*Tr(ci2,ci2)*INT(F1,0,1,1)*i_*s*qu^2*gs^2
+          - 1/9*Tr(ci2,ci2)*INT(F1,0,1,1)*i_*n*s*qu^2*gs^2
+          - 2/9*Tr(ci2,ci2)*INT(F1,1,-1,1)*i_*qu^2*gs^2
+          + 1/9*Tr(ci2,ci2)*INT(F1,1,-1,1)*i_*n*qu^2*gs^2
+          + 2/9*Tr(ci2,ci2)*INT(F1,1,0,0)*i_*qu^2*gs^2
+          - 1/9*Tr(ci2,ci2)*INT(F1,1,0,0)*i_*n*qu^2*gs^2
+          - 8/9*Tr(ci2,ci2)*INT(F1,1,0,1)*i_*s*qu^2*gs^2
+          + 5/9*Tr(ci2,ci2)*INT(F1,1,0,1)*i_*n*s*qu^2*gs^2
+          - 1/18*Tr(ci2,ci2)*INT(F1,1,0,1)*i_*n^2*s*qu^2*gs^2
+          + 2/9*Tr(ci2,ci2)*INT(F1,1,1,0)*i_*s*qu^2*gs^2
+          - 1/9*Tr(ci2,ci2)*INT(F1,1,1,0)*i_*n*s*qu^2*gs^2
+          - 2/9*Tr(ci2,ci2)*INT(F1,1,1,1)*i_*s^2*qu^2*gs^2
+          + 1/9*Tr(ci2,ci2)*INT(F1,1,1,1)*i_*n*s^2*qu^2*gs^2
+         ;
+

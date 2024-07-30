@@ -1,0 +1,6 @@
+jobs:
+#    - setup_sector_mappings: {}
+    - find_diagram_shifts_alt:
+        qgraf_file: "qgraf/qQ2ph1l.qgraf.yaml"
+        output_file: "qQ2ph1L.yaml"
+        info_file_form: "qQ2ph1L.inf.inc"

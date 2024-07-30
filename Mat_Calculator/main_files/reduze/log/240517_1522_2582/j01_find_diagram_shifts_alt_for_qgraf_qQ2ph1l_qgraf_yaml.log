@@ -1,0 +1,55 @@
+
+Date: Fri May 17 15:22:25 2024
+
+
+conditional: false
+qgraf_file: qgraf/qQ2ph1l.qgraf.yaml
+output_file: qQ2ph1L.yaml
+info_file_form: qQ2ph1L.inf.inc
+names:
+  []
+
+Reading diagrams from file: qgraf/qQ2ph1l.qgraf.yaml
+rename negative field indices
+Loaded diagram 1
+Diagrams loaded. Time: 0.000550032s
+
+Analyzing topologies of 1 diagrams:
+Analyzing diagram 1
+
+  => matched diagram 1 to (F1:3:7)
+     via shift: {k1==p1-k1}
+read key 'sectormappings' in file './sectormappings/sectormappings_F1.yaml'
+Found valid sector mappings for F1
+     target sector equivalent to (F1:3:7)
+
+X
+
+Writing new diagram file: qQ2ph1L.yaml
+
+Matched diagrams: 1
+
+Unmatched diagrams: 0
+
+Sectors: 1
+family F1:
+t = 3: 7 
+
+This selection of sectors should be reduced for the matched diagrams:
+sector_selection:
+  select_all: false
+  select:
+    []
+  select_recursively:
+    - [F1, 7]
+  deselect:
+    []
+  deselect_recursively:
+    []
+  deselect_independents:
+    []
+  deselect_graphless: false
+  deselect_graphs: false
+  t_restriction: [-1, -1]
+
+Job done (total time: 0 s)

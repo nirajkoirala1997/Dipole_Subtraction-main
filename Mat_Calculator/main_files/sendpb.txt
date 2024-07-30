@@ -1,0 +1,30 @@
+*****************************************************************************
+*LARIN
+
+#procedure larin
+
+#message larin scheme
+
+#do i=1,6
+
+id,once G(?a,li2?,g5,?b)=(1/6)*eps(li2,gg`i',hh`i',jj`i')*G(?a,gg`i',hh`i',jj`i',?b);
+repeat,id eps(?a)= e_(?a);
+repeat,contract;
+
+#enddo
+
+#do i=1,10;
+id,once G(six1?,six1?,?a)=g_(`i',?a) ;
+#enddo
+
+repeat,id eps(?a)= e_(?a);
+repeat,contract;
+
+#do i=1,20;
+tracen `i';
+#enddo
+
+#endprocedure
+
+******************************************************************************
+

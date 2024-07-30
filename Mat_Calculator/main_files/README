@@ -1,0 +1,44 @@
+* WORKING WITH CODE *
+
+
+1> paste the qgraf output into the folder and rename it to "amp.qgraf".
+
+2> Same for complex conjugate of amplitude , name of the file will be ampc.qgraf .
+
+3> In input file write the initial state and final state vector for the particle in following form.
+
+   Incoming fermion -> U(index in qgraf, momenta, mass)
+   Incoming anti-fermion -> VB(index in qgraf, momenta, mass)
+   Outgoing fermion -> UB(index in qgraf, momenta, mass)
+   Outgoing anti-fermion -> V(index in qgraf, momenta, mass)
+    
+   Incoming Boson -> e(li<qgraf index (without minus sign)>,momenta,mass)
+   Outgoing Boson -> e(li<qgraf index (without minus sign)>,momenta,mass)
+
+3a>In input file mention the number of diagrams for both amplitude and amplitudeC.
+
+   #$dia = "# of diagrams for amplitude";
+   #$diaC = "# of diagrams for amplitudeC";
+
+
+4> Check all the feynman rules are there for the substitution from the qgraf file.
+
+5> Define mandelsterm variable according to the process.
+
+6> In mat_amp.frm give the polarization sum for the external bosons.
+
+     id e(l11?,p1?,m?)*e(li2?,p1?,m?)="pol";
+
+7> give spin and color avg in lines and uncomment ;
+
+   *multiply ("spin avg");
+   *multiply ("color avg");
+
+
+8> If no gamma 5 is present uncomment  "#call larin(mat)"  only
+
+9> If gamma 5 is present choose the scheme you want to work in for gamma5.
+
+
+For further queries and comments in order to make code much better please contact vphiitg@iitg.ac.in 
+

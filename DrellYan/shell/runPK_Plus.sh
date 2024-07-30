@@ -22,14 +22,14 @@ gfortran tee_the_data.f -o "tee_the_data_${timestamp}_PK.Plus.o"
 
 #Everything is ready now start the Executable
 cd $home_path
-cd ../PK_integral_standalone
+cd ../PK_Plus
 make
 ./runPK | tee "../trash/broken/output_${timestamp}.PK.Plus"
 
 # Results are now ready we can combine the data of tee to the output files.
 cd $home_path
 cd ../summary/compare
-./tee_the_data_${timestamp}_PK.Plus.o "output_${timestamp}.PK.Plus" 'PK' "input_${timestamp}_Plus.dat" "input2_${timestamp}_Plus.dat"
+./tee_the_data_${timestamp}_PK.Plus.o "output_${timestamp}.PK.Plus" 'PK_Plus' "input_${timestamp}_Plus.dat" "input2_${timestamp}_Plus.dat"
 
 # This executable and input data is no more required
 rm -f "tee_the_data_${timestamp}_PK.Plus.o" 

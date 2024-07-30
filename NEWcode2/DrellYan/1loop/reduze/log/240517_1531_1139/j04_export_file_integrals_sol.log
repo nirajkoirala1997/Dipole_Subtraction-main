@@ -1,0 +1,28 @@
+
+Date: Fri May 17 15:31:11 2024
+
+
+conditional: false
+input_file: integrals.sol
+output_file: int_reduced.m
+output_format: form
+preferred_masters_file: ""
+new_parameters: []
+reparametrization_rules: []
+toggle_metric_convention: false
+series_expansion: []
+
+Checking type of input file "integrals.sol"
+  file contains equations
+Exporting contents of file 'integrals.sol'
+  processing 203 bytes
+  ..................................................  *******No symbol found which was set to one and needs reconstruction
+*******No symbol found which was set to one and needs reconstruction
+*******No symbol found which was set to one and needs reconstruction
+*******No symbol found which was set to one and needs reconstruction
+***************No symbol found which was set to one and needs reconstruction
+*******No symbol found which was set to one and needs reconstruction
+
+Exported to file 'int_reduced.m'
+
+Job done (total time: 0 s)

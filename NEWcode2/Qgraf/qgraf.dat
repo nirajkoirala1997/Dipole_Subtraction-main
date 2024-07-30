@@ -1,0 +1,17 @@
+output= 'test1.qgraf';
+style= 'form_v1.sty';
+model= 'QCDGRHIGGS';
+in= glu[p1], glu[p2];
+out= ph[p3],ph[p4];
+loops= 0;
+loop_momentum=k;
+options= notadpole, nosnail, onshell;
+*true = vsum[gs, 1, 2];
+*false = vsum[kap,2,2];
+*false = vsum[ew, 1, 2];
+*true = vsum[kap, 1, 2];
+*true = vsum[kq, 1, 2];
+
+* To remove qcd vertex only at oneloop
+*true = vsum[gs, 1, 1];
+* To keep qcd vertex only at oneloop

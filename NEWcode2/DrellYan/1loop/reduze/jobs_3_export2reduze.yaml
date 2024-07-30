@@ -1,0 +1,14 @@
+
+--- 
+  jobs:
+    - export:
+        conditional: false
+        input_file: "./../integralsto.reduze"
+        output_file: "integrals.reduze"
+        output_format: "reduze"
+#        preferred_masters_file: "HHMI1L.m"
+        new_parameters: []
+        reparametrization_rules: []
+        toggle_metric_convention: false
+        series_expansion: []
+  

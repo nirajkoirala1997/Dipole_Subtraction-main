@@ -1,0 +1,46 @@
+* output= 'gq2eEq.qgraf';
+* style= 'form_v1.sty';
+* model= 'QCDGRHIGGS';
+* in= u[p2], g[p1];
+* out= e[p3], E[p4], u[p5];
+* loops= 0;
+* loop_momentum=k;
+* options= notadpole, nosnail, onshell;
+* true = vsum[kap, 1, 2];
+*
+*
+* Diagrams
+*
+*--#[ d1:
+*
+
+l Rq =
+*    in(u(-1,p2))*in(g(-3,p1))*
+*    ou(e(-2,p3))*ou(E(-4,p4))*ou(u(-6,p5))*
+     1*
+    QQ(1,2,p2+p1,mu)*
+    AA(3,4,p3+p4,0)*
+    Vx(1,3,Uug,2,-1,-3,-p2-p1,p2,p1)*
+    Vx(2,3,Eeph,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,Uuph,-6,1,4,-p5,p2+p1,-p3-p4);
+
+*
+*--#] d1:
+*
+* Diagrams
+*
+*--#[ d2:
+*
+
+l Rq =
+*    in(u(-1,p2))*in(g(-3,p1))*
+*    ou(e(-2,p3))*ou(E(-4,p4))*ou(u(-6,p5))*
+     1*
+    QQ(1,2,-p1+p5,mu)*
+    AA(3,4,p3+p4,0)*
+    Vx(1,3,Uug,-6,1,-3,-p5,-p1+p5,p1)*
+    Vx(2,3,Eeph,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,Uuph,2,-1,4,p1-p5,p2,-p3-p4);
+
+*
+*--#] d2:

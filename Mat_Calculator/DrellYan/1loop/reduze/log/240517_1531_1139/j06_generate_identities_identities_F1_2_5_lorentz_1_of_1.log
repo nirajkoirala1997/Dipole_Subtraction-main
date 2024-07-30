@@ -1,0 +1,25 @@
+
+Date: Fri May 17 15:31:11 2024
+
+
+conditional: false
+input_file: ./tmp/F1_2_5/seeds/seeds_F1_2_5_lorentz
+output_file: ./tmp/F1_2_5/identities/identities_F1_2_5_lorentz_1_of_1
+type: lorentz
+options:
+  transform_integrals_to_equivalent: true
+  solve_equations: true
+  set_subsectors_to_zero: false
+  eliminate_subsectors_by_shift: true
+  map_on_coeff: []
+from: 1
+to: 1000
+
+  Adjusting last integral 1000 to 4
+  Generating identities of type lorentz: identities_F1_2_5_lorentz_1_of_1
+  identities from 4 seeds, range: [1, 4]
+  ..................................................  **************************************************
+  Identities generated: 4 (time: 0.0 s)
+  Average number of integrals per equation: 3
+
+Job done (total time: 0 s)

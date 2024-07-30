@@ -1,0 +1,17 @@
+output= 'qQ2ph1l.qgraf.yaml' ;
+style= 'reduze.sty' ;
+model= 'QCDQEDGRA';
+
+in=  u[p1], U[p2];
+out= ph[p3];
+
+loops= 1;
+loop_momentum= k;
+options= notadpole, nosnail, onshell;
+true = vsum[gs, 1, 2];
+*true = vsum[gs,2,2];
+*true = iprop[h,0,0];
+*true = vsum[kap,1,1];
+*true = vsum[em,0,0];
+*true = vsum[CH,0,0];
+

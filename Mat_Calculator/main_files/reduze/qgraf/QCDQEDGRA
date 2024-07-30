@@ -1,0 +1,63 @@
+*****************************************
+******         Pseudo Scalar       ******
+******         IMSc, 07Mar18       ******
+*****************************************
+
+
+* Vertex defined for QGraf
+* U = ubar, u = u, g = gluon,
+* gh = Ghost, GH = anti-ghost, gr = Graviton
+* A = Pseudo scalar, yu = Yukawa Coupling
+* QCD, QED and Graviton propagators
+* momentum goes from U to u
+  [u, U, - ;  mass= 0 ]
+  [t, T, - ;  mass= mt]
+  [g, g, + ;  mass= 0 ]
+  [gh, GH, -;  mass= 0 ]
+  [ph,ph, + ; mass= 0]
+*  [gr,gr, + ; mass=xmh]
+  [h,h, + ; mass=xmh]
+*  [A,A, + ; mass=xmA]
+
+
+* QCD vertex
+* anti-particle --  particle --  gauge boson
+* all momenta go inside the vertex
+  [U,u,g; gs=1, kap=0, em=0, CH=0 ]
+  [T,t,g; gs=1, kap=0, em=0, CH=0 ]
+  [g,g,g; gs=1, kap=0, em=0, CH=0]
+  [g,g,g,g; gs=2, kap=0, em=0, CH=0]
+  [GH,gh,g; gs=1, kap=0, em=0, CH=0]
+
+** QED vertex
+  [U,u,ph; gs=0, kap=0, em=1, CH=0]
+*
+** QCD Gravity vertex
+*  [U,u,gr; gs=0, kap=1, em=0, CH=0]
+*  [g,g,gr; gs=0, kap=1, em=0, CH=0]
+*  [GH,gh,gr; gs=0, kap=1, em=0, CH=0]
+*  [GH,gh,g,gr; gs=1, kap=1, em=0, CH=0]
+*  [g,g,g,gr; gs=1, kap=1, em=0, CH=0]
+*  [U,u,g,gr; gs=1, kap=1, em=0, CH=0]
+*  [g,g,g,g,gr; gs=2, kap=1, em=0, CH=0]
+*
+** QED Gravity vertex
+*  [ph,ph,gr;  gs=0, kap=1, em=0, CH=0]
+*  [U,u,ph,gr; gs=0, kap=1, em=1, CH=0]
+
+
+** QCD Higgs vertex
+*  [g,g,h; gs=0, kap=0, em=0, CH=1]
+  [T,t,h; gs=0, kap=1, em=0, CH=0]
+*  [g,g,g,h; gs=1, kap=0, em=0, CH=1]
+*  [g,g,g,g,h; gs=2, kap=0, em=0, CH=1]
+
+*** Trilinear- Higgs  vertex
+*  [h,h,h; gs=0,kap=1,em=0,CH=0]
+
+* QCD Pseudo Scalar Higgs effective vertex
+*[g,g,A; gs=0, kap=0, em=0, CH=1]
+*[g,g,g,A; gs=1, kap=0, em=0, CH=1]
+*[g,g,g,g,A; gs=2, kap=0, em=0, CH=1]
+
+

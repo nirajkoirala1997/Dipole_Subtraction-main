@@ -1,0 +1,141 @@
+
+Date: Fri May 17 15:31:11 2024
+
+Setting up job queue from jobs_4_reduce_sectors.yaml
+Updating job queue dependencies
+Processing jobs in serial mode (non-MPI build)
+Loading uncrossed integral families from file ./config/integralfamilies.yaml
+Initialize integral family 'F1'
+Loaded integral family F1
+Loaded 1 (uncrossed) integral families
+Done loading uncrossed integral families
+Using integral family F1 (id reset to 1)
+Loading crossings from file ./sectormappings/crossings.yaml
+Crossing equivalence: '' -> ''
+using crossing x12 (invs: {}, mom: {p1==p2,p2==p1})
+Crossing equivalence: 'x12' -> ''
+Crossing equivalence: '' -> ''
+Loaded crossings for kinematics ''
+Loaded crossings for 1 kinematics
+Done loading crossings
+  generated crossed integral family F1x12 (id set to 2)
+Done loading integral families
+Inserted new job in queue: job(1): reduce sectors
+Inserted new job in queue: job(2): select reductions: integrals.reduze
+Inserted new job in queue: job(3): reduce files ./integrals.tmp
+Inserted new job in queue: job(4): export file integrals.sol
+Updating job queue dependencies
+Determining sectors in selection
+  normalizing user input
+read key 'sectormappings' in file './sectormappings/sectormappings_F1.yaml'
+Found valid sector mappings for F1
+  selecting explicit sectors
+  selecting recursively
+  deselecting explicit sectors
+  deselecting recursively
+  deselecting sectors by t restriction
+Resume reduction:       false for sector (F1:2:5)
+Output file readable:   false for sector (F1:2:5)
+Create identities jobs: true for sector (F1:2:5)
+Inserted new job in queue: job(5): run reduction for sector (F1:2:5)
+Inserted new job in queue: job(6): generate identities: identities_F1_2_5_lorentz_1_of_1
+Inserted new job in queue: job(7): generate seeds: seeds_F1_2_5_lorentz
+Inserted new job in queue: job(8): generate identities: identities_F1_2_5_ibp_1_of_1
+Inserted new job in queue: job(9): generate seeds: seeds_F1_2_5_ibp
+Inserted new job in queue: job(10): run reduction of files ./integrals.tmp + ...
+Updated job queue:
+  [p] job(9):  generate seeds: seeds_F1_2_5_ibp  [dep: ]
+  [p] job(8):  generate identities: identities_F1_2_5_ibp_1_of_1  [dep: 9]
+  [p] job(7):  generate seeds: seeds_F1_2_5_lorentz  [dep: ]
+  [p] job(6):  generate identities: identities_F1_2_5_lorentz_1_of_1  [dep: 7]
+  [p] job(5):  run reduction for sector (F1:2:5)  [dep: 6,8]
+  [p] job(1):  reduce sectors  [dep: 5]
+  [p] job(2):  select reductions: integrals.reduze  [dep: 5]
+  [p] job(10): run reduction of files ./integrals.tmp + ...  [dep: 2]
+  [p] job(3):  reduce files ./integrals.tmp  [dep: 2,5,10]
+  [p] job(4):  export file integrals.sol  [dep: 3]
+
+
+Date: Fri May 17 15:31:11 2024
+
+Run ID: f3ccc263
+
+Starting job(9):  generate seeds: seeds_F1_2_5_ibp
+Completed Job(9) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:31:11 2024
+
+Run ID: f3ccc263
+
+Starting job(8):  generate identities: identities_F1_2_5_ibp_1_of_1
+Completed Job(8) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:31:11 2024
+
+Run ID: f3ccc263
+
+Starting job(7):  generate seeds: seeds_F1_2_5_lorentz
+Completed Job(7) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:31:11 2024
+
+Run ID: f3ccc263
+
+Starting job(6):  generate identities: identities_F1_2_5_lorentz_1_of_1
+Completed Job(6) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:31:11 2024
+
+Run ID: f3ccc263
+
+Starting job(5):  run reduction for sector (F1:2:5)
+Completed Job(5) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:31:11 2024
+
+Run ID: f3ccc263
+
+Starting job(2):  select reductions: integrals.reduze
+Completed Job(2) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:31:11 2024
+
+Run ID: f3ccc263
+
+Starting job(10): run reduction of files ./integrals.tmp + ...
+Completed Job(10) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:31:11 2024
+
+Run ID: f3ccc263
+
+Starting job(3):  reduce files ./integrals.tmp
+Completed Job(3) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:31:11 2024
+
+Run ID: f3ccc263
+
+Starting job(1):  reduce sectors
+Completed Job(1) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+
+Date: Fri May 17 15:31:11 2024
+
+Run ID: f3ccc263
+
+Starting job(4):  export file integrals.sol
+Completed Job(4) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+Completed jobs in jobqueue
+
+Completed all jobs
+Total run time: 0 s

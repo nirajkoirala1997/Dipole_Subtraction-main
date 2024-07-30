@@ -20,6 +20,7 @@ c~~~~~~~[	NIRAJ FILES WRITE HERE	   ]~~~~~~~~~~~~~~~O
 
        write(851,108)xq, model, norder, deltas, deltac,
      &  tot_qqb, tot_qg, tot_gg, tot_nlo
+
 	endif
 
 

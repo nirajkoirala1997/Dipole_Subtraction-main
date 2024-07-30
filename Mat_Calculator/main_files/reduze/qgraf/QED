@@ -1,0 +1,34 @@
+* Vertex defined for QGraf
+* U = ubar, u = u, g = gluon,
+* gh = Ghost, GH = anti-ghost, gr = Graviton
+
+
+* QCD, QED 
+* momentum goes from U to u
+  [e, E, - ;  mass= '0']
+  [mu, Mu, - ;  mass= '0' ]
+*  [e, E, - ;  mass= me ]
+*  [mu, Mu, - ;  mass= mM ]
+  [ph,ph, + ; mass= '0']
+*  [Z,Z, + ; mass=xmZ]
+*  [lm,lm, - ; mass='0']
+
+* QCD vertex
+* anti-particle --  particle --  gauge boson
+* all momenta go inside the vertex
+
+* QED vertex
+*  [e,ph,E]
+*  [mu,ph,Mu]
+
+  [E,e,ph; gs=0, ew=0, em=1,GF=0]
+  [Mu,mu,ph;  gs=0, ew=0, em=1,GF=0]
+  
+
+*---------
+*EW vertex
+*---------
+
+
+
+****************************************************************************

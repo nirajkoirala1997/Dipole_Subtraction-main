@@ -1,0 +1,90 @@
+=================================> [9 July] :
+
+ PK_Plus and PK_standalone both with
+
+	sig = SumPlus ! xx(4)*coef
+
+Is giving same result(first digit only) for 5d+7 vegas points.
+Now i am saving data in the summary run2_00 under ggaa Directory.
+
+Using the cuts also there is no problem now in the code, Now we can use the actual Plus distribution and give it a run. Without the 
+
+
+	sig = SumPlus ! xx(4)*coef
+
+same configuration but actual Plus distribution. 
+
+git commit ID : d2a0cc8f5237159d72cdf6e120785c01dcbcfcc5
+message     Plus distribution with dummy expression with coef and xl removed
+
+
+
+
+=================================> [15 July]
+
+PK_standalone is giving double the value in PK_Plus. However in the Dummy Plus it was giving same values.
+-Today I want to check the difference also, 
+-I have to run the Regular as well as Delta for the completeness of the code. 
+-[18:30] Regular and Delta are also runing as per the expecttion. I am still figuring out the [+] part.
+-[+] expression will be sorted today only.
+
+
+
+=================================> [16 July]
+
+- I have constructed a new branch "Working_Plus" where [+] expression is matching with both the implementation.
+- In the same branch I want to use the virtual expression from slicing 
+
+- Reference code for the comparison of NLO correction is to be proporly calculated. [todo] 
+
+
+
+
+=================================> [26 July]
+
+- I have compared the total NLO cross-section to the ref, the issue I am facig is that the contribution from virtual is very high almost 2 order greater than other contributions. 
+- Also the stability of dipole subtraction is also not good. When I used the CF value as -4/3 in to the mat-anp reduced born, the centeral value is quite stable compared to the previous value i.e -1. But this is not the correct value I have to check again properly.
+ 
+
+=================================> [29 July]
+
+- I was checking with the modofied code of Kbar regular in DrellYan case. Now I on today's commit I have working code of Drellyan which matched with the reference data at once.
+- The work on gg2aa is still going on. It's been more then a month i was engaged in this job. I will try to finish this week
+-
+
+
+=================================> [29 July]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------        IMPORTANT COMMANDS IN LINUX           ---------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## To open Jupyter notebook remotely ##
+jupyter notebook --no-browser --port=8888
+ssh -N -f -L localhost:8888:localhost:8888 your-username@remote-server-ip
+http://localhost:8888
+jupyter server list
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------        IMPORTANT COMMANDS END HERE           ---------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+

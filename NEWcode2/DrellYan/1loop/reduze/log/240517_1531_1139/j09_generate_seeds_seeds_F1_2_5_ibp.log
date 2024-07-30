@@ -1,0 +1,16 @@
+
+Date: Fri May 17 15:31:11 2024
+
+
+conditional: false
+ranges:
+  - {r: [t, 3], s: [0, 5]}
+options:
+  reduce_to_equivalent: true
+output_file: ./tmp/F1_2_5/seeds/seeds_F1_2_5_ibp
+sector: [F1, 5]
+
+Generating seed integrals
+Seed integrals generated: 18 (time: 0.0 s)
+
+Job done (total time: 0 s)

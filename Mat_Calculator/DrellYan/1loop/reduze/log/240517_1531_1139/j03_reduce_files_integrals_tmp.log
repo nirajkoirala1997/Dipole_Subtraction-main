@@ -1,0 +1,18 @@
+
+Date: Fri May 17 15:31:11 2024
+
+
+conditional: false
+equation_files:
+  - ./integrals.tmp
+substitution_files:
+  []
+preferred_masters_file: ""
+output_file: ./integrals.sol
+reduzer_options:
+  num_equations_per_subjob: 1
+  num_blocks_per_subjob: 1
+  only_substitute: false
+
+
+Job done (total time: 0 s)

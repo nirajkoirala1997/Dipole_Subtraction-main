@@ -1,0 +1,19 @@
+--- 
+  jobs:
+
+    - setup_sector_mappings:
+        conditional: false
+        find_sector_relations: true
+        find_sector_symmetries: true
+        examine_twists_for_symmetries: true
+        find_zero_sectors: true
+        find_graphless_zero_sectors: true
+        minimize_graphs_by_twists: true
+        construct_minimal_graphs: true
+        setup_crossings: true
+        minimize_target_crossings: true
+        allow_general_crossings: true
+        verify_permutation_symmetries: true
+## For step 1
+# close the second and third to save time
+# do the zero sectors first: switch on from the twist for symmetries step

@@ -1,0 +1,47 @@
+
+Date: Fri May 17 15:31:11 2024
+
+
+conditional: false
+input_file: integrals.reduze
+output_file: integrals.tmp
+notfound_file: int_not_reducedsecror5
+preferred_masters_file: ""
+generate_crossed: false
+
+Finding selected integrals
+Reading integrals from file "integrals.reduze"
+Solutions for 8 different integrals requested
+Finding crossing equivalences
+Opening output file 'integrals.tmp'
+Writing shift identities
+Search shift for F1 1 1  1 0  1 0 0 => found shift, select red for rhs
+Search shift for F1 1 2  1 0  0 1 0 => found shift, select red for rhs
+Search shift for F1 1 4  1 0  0 0 1 => found shift, select red for rhs
+Search shift for F1 2 3  2 0  1 1 0 => found shift, select red for rhs
+Search shift for F1 2 5  2 0  1 0 1 => none
+Search shift for F1 2 5  2 1  1 -1 1 => none
+Search shift for F1 2 6  2 0  0 1 1 => found shift, select red for rhs
+Search shift for F1 3 7  3 0  1 1 1 => none
+Selecting: F1 2 5  2 0  1 0 1
+Selecting: F1 2 5  2 1  1 -1 1
+Selecting: F1 3 7  3 0  1 1 1
+Need reductions for 2 different sectors
+Searching integrals from sector (F1:2:5)
+Reading ./reductions/reduction_F1_2_5
+F1 2 5  2 1  1 -1 1: found reduction
+  time to read reductions:   9e-05 s
+  time to search reductions: 5e-05 s
+F1 2 5  2 0  1 0 1: no reduction
+Searching integrals from sector (F1:3:7)
+File ./reductions/reduction_F1_3_7 is not readable
+F1 3 7  3 0  1 1 1: no reduction
+Output written to file "integrals.tmp"
+Couldn't find solutions for 2 (selected) integral(s)
+  writing these integrals to file 'int_not_reducedsecror5'
+
+Some solutions were constructed on the fly via a shift symmetry
+or a crossing. It is recommended to run the job reduce_files on
+the output file to ensure fully reduced solutions.
+
+Job done (total time: 0 s)

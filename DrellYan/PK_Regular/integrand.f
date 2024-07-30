@@ -47,9 +47,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
             xmuf = scalex
             xmur = scalex
              AL = alphasPDF(xmur)
-c             AS = 1.0d0
             ALP = AL/2d0/Pi
-c            ALP = 1.0d0
 
             call getPKReg(x,xmuf,p1,p2,p3,p4,SumReg)
 

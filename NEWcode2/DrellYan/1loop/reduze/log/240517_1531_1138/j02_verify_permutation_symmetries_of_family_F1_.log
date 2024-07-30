@@ -1,0 +1,15 @@
+
+Date: Fri May 17 15:31:11 2024
+
+
+conditional: false
+integralfamily: F1
+abort_on_first_error: true
+dummy_output_file: ./tmp/permutation_symmetries_verified_for_F1
+
+Verifying permutation symmetries of integral family 'F1'
+All permutation symmetries verified
+
+Complete permutation symmetries of integral family 'F1'
+
+Job done (total time: 0 s)

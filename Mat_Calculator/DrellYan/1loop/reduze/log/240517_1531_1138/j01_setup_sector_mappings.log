@@ -1,0 +1,194 @@
+
+Date: Fri May 17 15:31:11 2024
+
+
+conditional: false
+find_sector_relations: true
+find_sector_symmetries: true
+examine_twists_for_symmetries: true
+find_zero_sectors: true
+find_graphless_zero_sectors: true
+minimize_graphs_by_twists: true
+construct_minimal_graphs: true
+setup_crossings: true
+minimize_target_crossings: true
+allow_general_crossings: true
+verify_permutation_symmetries: true
+
+Using integral family F1 (id reset to 1)
+  generated crossed integral family F1x12 (id set to 2)
+Done loading integral families
+Setup sector mappings for the following integral families requested:
+  1-loop:
+    F1
+
+Clear sector mappings and crossed mappings of family 'F1'
+read key 'sectormappings' in file './sectormappings/sectormappings_F1.yaml'
+Found valid sector mappings for F1
+Setup sector mappings for F1
+
+Kinematics '':
+Rules scalar products to invariants:
+  {SP(p1,p1)==0,SP(p2,p2)==0,SP(p2,p1)==1/2*s}
+Rules invariants to scalar products:
+  {s==2*SP(p2,p1)}
+
+Crossings for kinematics '':
+  permutation: [[1, 2]]  # name: x12
+                       # rules_momenta: {p2==p1,p1==p2}
+                       # rules_invariants: {}
+is equivalent to ''
+
+Integral family 'F1':
+name: F1
+loop_momenta: [k1]
+propagators:
+  - {standard: [k1, 0]}
+  - {standard: [-p1+k1, 0]}
+  - {standard: [-p2-p1+k1, 0]}
+cut_propagators: []
+permutation_symmetries:
+  []
+kinematics: ""
+
+Cut propagators form sector with id 0
+
+Rules scalar products to propagators:
+{SP(p2,k1)==1/2*Prop(p1-k1,0)^(-1)+1/2*s-1/2*Prop(p2+p1-k1,0)^(-1),SP(k1,k1)==Prop(k1,0)^(-1),SP(p1,k1)==-1/2*Prop(p1-k1,0)^(-1)+1/2*Prop(k1,0)^(-1)}
+
+Maximal sector id is 7.
+8 sectors occur in total
+Finding non-equivalent sectors using permutation symmetries:
+
+Non-equivalent sectors:
+t = 0:
+0
+t = 1:
+1, 2, 4
+t = 2:
+3, 5, 6
+t = 3:
+7
+
+8 non-equivalent sectors were found
+Finding representing graphs of sectors (twists on / construct minimal on):
+  finding graphs
+  ..................................................  **************************************************
+Found 7 graphs
+Printing all graphs from sectors in ./graphs/F1/all/:
+
+Sectors without a graph:
+
+Finding canonical labels:
+  canonical labels:
+  ..................................................  **************************************************
+Finding sector shifts:
+  sector shifts:
+  ..................................................
+  *******
+Finding shift for sector (F1:1:1)
+No shift found for sector (F1:1:1)
+*******
+Finding shift for sector (F1:1:2)
+Found shift from (F1:1:2) to (F1:1:1)
+*******
+Finding shift for sector (F1:1:4)
+Found shift from (F1:1:4) to (F1:1:1)
+********
+Finding shift for sector (F1:2:3)
+No shift found for sector (F1:2:3)
+*******
+Finding shift for sector (F1:2:5)
+No shift found for sector (F1:2:5)
+*******
+Finding shift for sector (F1:2:6)
+Found shift from (F1:2:6) to (F1x12:2:3)
+*******
+Finding shift for sector (F1:3:7)
+No shift found for sector (F1:3:7)
+
+Found 3 new shifts to lower sectors
+Found 4 shift target sectors.
+  shift targets contain 4 different graph(s)
+Finding zero sectors of sectors with a graph:
+Loaded only default generic IBP and LI identities
+   t = 1:	0
+   t = 2:	0x
+   t = 3:	x
+Found 6 zero sectors (isomorphics included).
+Finding zero sectors for sectors without a graph:
+
+Found additional 0 zero sectors.
+
+Non-vanishing shift targets:
+t = 2:
+5
+t = 3:
+7
+
+Found 2 non-vanishing shift target sectors
+  non-vanishing shift targets contain 2 different graph(s)
+Finding symmetry shift relations:
+  finding symmetry shifts
+  ..................................................
+Finding symmetry shifts for sector (F1:1:1) (examine twists: on)
+Finding non-isomorphic twists of graph F1_1_1:
+Found 1 non-isomorphic twists
+Finding symmetry shifts of graph F1_1_1_twisted1:
+  Found 1 symmetries (from node permutations) in the graph
+  performing permutations of multi edges
+  found 1 permutations of fundamental cycles
+  omitting empty shift (identity)
+  Found 0 symmetry shifts (permutations of multi-edges performed)
+Found 0 symmetry shifts
+Found 0 symmetry shifts for sector (F1:1:1)
+  *************
+Finding symmetry shifts for sector (F1:2:3) (examine twists: on)
+Finding non-isomorphic twists of graph F1_2_3:
+Found 1 non-isomorphic twists
+Finding symmetry shifts of graph F1_2_3_twisted1:
+  Found 1 symmetries (from node permutations) in the graph
+  performing permutations of multi edges
+  found 2 permutations of fundamental cycles
+  omitting empty shift (identity)
+  Found 1 symmetry shifts (permutations of multi-edges performed)
+Found 1 symmetry shifts
+Found 1 symmetry shifts for sector (F1:2:3)
+************
+Finding symmetry shifts for sector (F1:2:5) (examine twists: on)
+Finding non-isomorphic twists of graph F1_2_5:
+Found 1 non-isomorphic twists
+Finding symmetry shifts of graph F1_2_5_twisted1:
+  Found 1 symmetries (from node permutations) in the graph
+  performing permutations of multi edges
+  found 2 permutations of fundamental cycles
+  omitting empty shift (identity)
+  Found 1 symmetry shifts (permutations of multi-edges performed)
+Found 1 symmetry shifts
+Found 1 symmetry shifts for sector (F1:2:5)
+*************
+Finding symmetry shifts for sector (F1:3:7) (examine twists: on)
+Finding non-isomorphic twists of graph F1_3_7:
+Found 1 non-isomorphic twists
+Finding symmetry shifts of graph F1_3_7_twisted1:
+  Found 2 symmetries (from node permutations) in the graph
+  performing permutations of multi edges
+  found 2 permutations of fundamental cycles
+  omitting empty shift (identity)
+  Found 1 symmetry shifts (permutations of multi-edges performed)
+Found 1 symmetry shifts
+Found 1 symmetry shifts for sector (F1:3:7)
+************
+Finding crossed sector relations for non-zero shift targets
+  crossed relations:
+  ..................................................  **************************************************
+Printing graphs of shift targets in ./graphs/F1/shift_targets/:
+To generate a postscript file from the graphs in the dot format type e.g.
+  dot -Tps -o F1.ps ./graphs/F1/all/F1_*.dot
+  neato -Tps -o F1_shift_targets.ps ./graphs/F1/shift_targets/F1_*.dot
+Printing graphs in mma format to ./graphs/F1/shift_targets.m
+Done setup sector mappings for F1
+Saving sector mappings for F1
+
+
+Job done (total time: 0 s)

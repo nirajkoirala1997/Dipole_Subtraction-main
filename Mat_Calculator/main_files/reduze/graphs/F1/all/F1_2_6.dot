@@ -1,0 +1,19 @@
+digraph F1_2_6 {
+  label="F1_2_6";
+  rankdir="LR";
+  subgraph edges {
+    -1 -> 2 [label="(p1,0;1)"];
+    -2 -> 1 [label="(p2,0;2)"];
+    2 -> -3 [label="(p2+p1,s;3)"];
+    1 -> 2 [label="(-p1+k1,0;5)"];
+    2 -> 1 [label="(-p2-p1+k1,0;6)"];
+  }
+  subgraph incoming { rank="source"; -1; -2; }
+  subgraph outgoing { rank="sink"; -3; }
+-3 [shape=point];
+-2 [shape=point];
+-1 [shape=point];
+1 [shape=point];
+2 [shape=point];
+}
+

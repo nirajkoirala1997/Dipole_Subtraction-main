@@ -1,0 +1,39 @@
+
+Date: Fri May 17 15:22:25 2024
+
+Setting up job queue from jobs_2_find_diagram_shifts_alt.yaml
+Updating job queue dependencies
+Processing jobs in serial mode (non-MPI build)
+Inserted new job in queue: job(1): find diagram shifts (alt) for qgraf/qQ2ph1l.qgraf.yaml
+Updating job queue dependencies
+Loading uncrossed integral families from file ./config/integralfamilies.yaml
+Initialize integral family 'F1'
+Loaded integral family F1
+Loaded 1 (uncrossed) integral families
+Done loading uncrossed integral families
+Using integral family F1 (id reset to 1)
+Loading crossings from file ./sectormappings/crossings.yaml
+Crossing equivalence: '' -> ''
+using crossing x12 (invs: {}, mom: {p2==p1,p1==p2})
+Crossing equivalence: 'x12' -> ''
+Crossing equivalence: '' -> ''
+Loaded crossings for kinematics ''
+Loaded crossings for 1 kinematics
+Done loading crossings
+  generated crossed integral family F1x12 (id set to 2)
+Done loading integral families
+Updated job queue:
+  [p] job(1): find diagram shifts (alt) for qgraf/qQ2ph1l.qgraf.yaml  [dep: ]
+
+
+Date: Fri May 17 15:22:25 2024
+
+Run ID: f3cbf516
+
+Starting job(1): find diagram shifts (alt) for qgraf/qQ2ph1l.qgraf.yaml
+Completed Job(1) [Time: 0s, CPU: 0s]
+Updating job queue dependencies
+Completed jobs in jobqueue
+
+Completed all jobs
+Total run time: 0 s

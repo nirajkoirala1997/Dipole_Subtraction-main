@@ -1,12 +1,12 @@
 FC = gfortran#g77
 #FC = f77#gfortran#g77
 FFLAGS   = -O 
-LDFLAGS = -lc -L./../ -lfile
+LDFLAGS = -lc 
 MYFLAG = #-L./home/niraj/1TB-Disc/Workspace-IITG/Packages/Source/mylibrary -lfile
 #export LHFLAGS = $(shell lhapdf-config --ldflags)
 LHFLAGS = $(shell lhapdf-config --ldflags)
 PROG    = runPK
-OBJECTS4  =misc.o phasespace.o printframe.o PK_new.o pdf_lha.o lum.o integrand.o phasespacePK.o vsup.o
+OBJECTS4  =filehandle.o misc.o phasespace.o printframe.o PK_new.o pdf_lha.o lum.o integrand.o phasespacePK.o vsup.o
 	
 $(PROG): $(OBJECTS4) main.f
 	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS4) $(LDFLAGS) $(LHFLAGS) $(MYFLAG) 
@@ -26,6 +26,8 @@ misc.o: ../misc.f
 	$(FC) $(FFLAGS) -c ../misc.f -o misc.o
 printframe.o: ../printframe.f
 	$(FC) $(FFLAGS) -c ../printframe.f -o printframe.o
+filehandle.o: ../filehandle.f
+	$(FC) $(FFLAGS) -c ../filehandle.f -o filehandle.o
 	
 #	rm -f *.o
 clean:

@@ -1,0 +1,58 @@
+
+Date: Fri May 17 15:31:11 2024
+
+
+conditional: false
+sector_selection:
+  select_all: false
+  select:
+    []
+  select_recursively:
+    - [F1, 5]
+  deselect:
+    []
+  deselect_recursively:
+    []
+  deselect_independents:
+    []
+  deselect_graphless: false
+  deselect_graphs: false
+  t_restriction: [-1, -1]
+alternative_input_directory: ""
+shared_equation_files:
+  []
+shared_substitution_files:
+  []
+preferred_masters_file: ""
+identities:
+  ibp:
+    - {r: [t, 3], s: [0, 5]}
+  ibp_dim:
+    []
+  ibp_dim_free:
+    []
+  ibp_lee:
+    []
+  lorentz:
+    - {r: [t, t], s: [0, 3]}
+  sector_relations:
+    []
+  sector_symmetries:
+    []
+solutions:
+  requested_solutions:
+    - {r: [0, -1], s: [0, -1]}
+  set_subsectors_to_zero: false
+  map_on_coeff: []
+  discard_new_subsector_identities: false
+reduzer_options:
+  num_equations_per_subjob: 1
+  num_blocks_per_subjob: 1
+  only_substitute: false
+num_seeds_for_identities_auxjobs: 1000
+perform_reductions: true
+delete_temporary_files: true
+run_distribute_external: false
+
+
+Job done (total time: 0 s)
