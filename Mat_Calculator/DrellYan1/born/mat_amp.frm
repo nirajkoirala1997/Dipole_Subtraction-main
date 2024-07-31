@@ -3,11 +3,10 @@ off statistics,finalstats,allwarnings;
 nwrite statistics;
 
 
-
-#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/def.h
 #include input.h
-#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/feyn.h
 #include mandelsterm.h
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/def.h
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/feyn.h
 #include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/SOn.prc
 #include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/SUn.prc
 #include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/color.h
@@ -16,8 +15,6 @@ nwrite statistics;
 #include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/amplitude.h
 .sort
 
-print amp,ampc;
-.end
 
 l mat  = amp*ampc;
 .sort

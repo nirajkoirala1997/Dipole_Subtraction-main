@@ -17,7 +17,7 @@ l Rq =
     in(glu(-1,p1))*in(glu(-3,p2))*
     ou(ph(-2,p3))*ou(ph(-4,p4))*
      1*
-    gr(1,2,-p1-p2,mgr)*
+    GR(1,2,-p1-p2,mgr)*
     Vx(1,3,gluglugr,-1,-3,1,p1,p2,-p1-p2)*
     Vx(2,3,phphgr,-2,-4,2,-p3,-p4,p1+p2);
 

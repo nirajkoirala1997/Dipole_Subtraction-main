@@ -1,6 +1,5 @@
 
 
-* External Particles *
 
 *number of diagrams for M
 #$diaS = 1;
@@ -10,9 +9,12 @@
 #$diaCS = 1;
 #$diaC = 1;
 
-L massofelectron = 0;
-.sort
-L massofup = 0;
-.sort
+
+#procedure mass
+id me = 0 ;    *mass of electron
+id mu = 0 ;   *mass of up quark
+#endprocedure
+
+
 
 

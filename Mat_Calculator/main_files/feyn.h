@@ -1,8 +1,8 @@
 #procedure feynrules(amp)
 
 #do i=1,10
-id in(upq(-`i',p1?)) = U(six`i',p1,mu)*df(cifx`i',p1);
-id in(UPQ(-`i',p1?)) = VB(six`i',p1,mu)*df(cifx`i',p1);
+id in(upq(-`i',p1?)) = U(six`i',p1,li1)*df(cifx`i',p1);
+id in(UPQ(-`i',p1?)) = VB(six`i',p1,li1)*df(cifx`i',p1);
 id in(glu(-`i',p1?)) = epolglu(lix`i',p1,0)*db(cix`i',p1);
 #enddo
 
@@ -12,6 +12,7 @@ id ou(ELT(-`i',p1?)) = V(six`i',p1,me)*1/2;
 id ou(glu(-`i',p1?)) = epolglu(lix`i',p1,0)*db(cix`i',p1);
 id ou(ph(-`i',p1?)) = epolph(lix`i',p1,0);
 #enddo
+
 **************************
 * Electron-Photon Vertex *
 **************************
@@ -38,6 +39,41 @@ id Vx(x1?,x2?,ELTeltph,-`i',-`j',-`k',p1?,p2?,p3?) = (i_)*qe*G(six`i',six`j',lix
 #enddo
 #enddo
 #enddo
+
+
+**********************************
+** Graviton-SM_Particles Vertex  *
+**********************************
+*#do i=1,10
+*#do j=1,10
+*#do k=1,10
+**
+**----------------------------
+** 1. Graviton-Gluon Vertex
+**----------------------------
+*
+*id Vx(x1?, x2?, gluglugr, `i', `j', `k', p1?, p2?, p3?) = 
+*    (i_)*kg*(C(`i', `j', `k', li3, li4)*p1.p2
+*             + D(`i', `j', `k', li3, li4, p1, p2)
+*             + E(`i', `j', `k', li3, li4, p1, p2));
+*
+*
+**----------------------------
+** 2. Graviton-Photon Vertex
+**----------------------------
+*id Vx(x1?,x2?,ELTeltph,`i',`j',-`k',p1?,p2?,p3?) = (i_)*qe*G(si`i',si`j',lix`k');
+*
+*id Vx(x1?, x2?, phphgr, `i', `j', `k', p1?, p2?, p3?) = 
+*    (i_)*kg*(C(`i', `j', `k', li3, li4)*(p1 + p2).(p1 + p2)
+*             + D(`i', `j', `k', li3, li4, p1 + p2, p1 + p2)
+*             + E(`i', `j', `k', li3, li4, p1 + p2, p1 + p2));
+*
+*#enddo
+*#enddo
+*#enddo
+*
+
+
 
 ***************************
 * Electron-Z boson Vertex *
@@ -315,6 +351,41 @@ id EE(`i',`j',p1?,x3?)=i_*(G(si`i',si`j',p1)+x3*G(si`i',si`j'))*fprop(p1);
 #enddo
 #enddo
 
+***********************
+* Graviton Propagator *
+***********************
+#do i=1,10
+#do j=1,10
+
+id GR(`i',`j',p1?,x1?)= (i_)*
+                        Bgr(li`i',ji`i',li`j',ji`j',p1);
+
+#enddo
+#enddo
+
+id Bgr(li1?,li2?,li3?,li4?,k1?)=
+                        (d_(li1,li3)-flag*k1(li1)*k1(li3)/k1.k1)*
+                        (d_(li2,li4)-flag*k1(li2)*k1(li4)/k1.k1)
+                       +(d_(li1,li4)-flag*k1(li1)*k1(li4)/k1.k1)*
+                        (d_(li2,li3)-flag*k1(li2)*k1(li3)/k1.k1)
+                   -2/3*(d_(li1,li2) -flag*k1(li1)*k1(li2)/k1.k1)*
+                        (d_(li3,li4)-flag*k1(li3)*k1(li4)/k1.k1);
+*
+*id E(li1?,li2?,li3?,li4?,k1?,k2?)=
+*                d_(li1,li2)*(k1(li3)*k1(li4)
+*               +k2(li3)*k2(li4)+k1(li3)*k2(li4))
+*               -(d_(li2,li4)*k1(li1)*k1(li3)+d_(li2,li3)*k2(li1)*k2(li4)
+*               +d_(li1,li4)*k1(li2)*k1(li3)+d_(li1,li3)*k2(li2)*k2(li4));
+*
+*id F(li1?,li2?,li3?,li4?,lam?,k1?,k2?,k3?) =
+*                  d_(li1,li3)*d_(li4,lam)*(k2(li2)-k3(li2))
+*                 +d_(li1,li4)*d_(li3,lam)*(k3(li2)-k1(li2))
+*                 +d_(li1,lam)*d_(li3,li4)*(k1(li2)-k2(li2))
+*                 +d_(li2,li3)*d_(li4,lam)*(k2(li1)-k3(li1))
+*                 +d_(li2,li4)*d_(li3,lam)*(k3(li1)-k1(li1))
+*                 +d_(li2,lam)*d_(li3,li4)*(k1(li1)-k2(li1));
+*
+*
 
 * LINEARIZE 
 id G(?a,aa?)=G(?a,aa);

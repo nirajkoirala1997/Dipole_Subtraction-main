@@ -24,6 +24,11 @@ multiply replace_(<li1,li101>,...,<li10,li110>);
 
 multiply replace_(<lix1,lix101>,...,<lix10,lix110>);
 
+multiply replace_(<ji1,ji101>,...,<ji10,ji110>);
+
+multiply replace_(<jix1,jix101>,...,<jix10,jix110>);
+
+
 multiply replace_(<si1,si101>,...,<si10,si110>);
 
 multiply replace_(<six1,six101>,...,<six10,six110>);

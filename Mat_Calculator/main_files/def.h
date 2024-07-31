@@ -29,6 +29,13 @@ Index
 #enddo
       ;
 
+Index
+#do ii=1,200;
+ ji`ii'=n,jix`ii'=n,
+#enddo
+      ;
+
+
 **************
 * SPIN INDEX *
 **************
@@ -80,6 +87,7 @@ Cfunction phprop,zprop,fprop,gprop,Prop,Iprop,grprop;
 CFunction G,eps,G1,G2,G3,T;
 CFunction db,df;
 CFunction SP,J,INT,Den;
+CFunction GR, Bgr, Cgr, Dgr, Egr, Fgr;
 
 *
 *
@@ -115,3 +123,4 @@ AutoDeclare Symbol s,t,u;
 Symbol propA,propB,propC,propD;
 Symbol k11,k12;
 AutoDeclare Symbol F1,F1x12,F1x123,F1x124,F2,F3,F1x132,F1;
+Symbol flag,flag1;

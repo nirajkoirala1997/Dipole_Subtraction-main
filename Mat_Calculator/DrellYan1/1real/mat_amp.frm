@@ -3,11 +3,10 @@ off statistics,finalstats,allwarnings;
 nwrite statistics;
 
 
-
-#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/def.h
 #include input.h
-#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/feyn.h
 #include mandelsterm.h
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/def.h
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/feyn.h
 #include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/SOn.prc
 #include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/SUn.prc
 #include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/color.h
@@ -16,8 +15,6 @@ nwrite statistics;
 #include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/amplitude.h
 .sort
 
-print amp,ampc;
-.end
 
 l mat  = amp*ampc;
 .sort
@@ -48,7 +45,7 @@ tracen `i';
 *************************
 * MOMENTUM CONSERVATION *
 *************************
-multiply replace_(p4,p1+p2-p3);
+multiply replace_(p4,p1+p2-p3-p5);
 
 ***************
 * COLOR TRACE *
@@ -66,7 +63,7 @@ id nv.nv=0;
 
 *id n = 4 ;
 
-#call mandelsterm
+#call mandelsterm2
 id phprop(- p1 -p2) = 1/s;
 .sort
 ************************
