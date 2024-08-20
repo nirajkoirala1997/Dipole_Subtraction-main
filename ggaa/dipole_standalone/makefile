@@ -1,11 +1,12 @@
 FC = gfortran
 FFLAGS   = -O
-LDFLAGS = #-L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/autodipole/AutoDipole_V1.2.3/process/Proc_gg_uuxg -ldipole -ldhelas3 -lg2c
+#LDFLAGS = #-L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/autodipole/AutoDipole_V1.2.3/process/Proc_gg_uuxg -ldipole -ldhelas3 -lg2c
+LDFLAGS = -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/Cuba-4.2.2 -lcuba
 export LHFLAGS=$(shell lhapdf-config --ldflags)
 LIB = -lm 
 
 #OBJECTS = Iterm.o matrixLO1.o couplings.o cmatrix.o PK.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
-OBJECTS = printframe.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
+OBJECTS = cuba.o printframe.o dipole.o lum.o pdf_lha.o vsup.o mat.amp.o integrand.o misc.o phasespace.o
 
 # objects from slicing files
 OBJECTS2 = filehandle.o cone.o couplings.o cuts.nlo3.o

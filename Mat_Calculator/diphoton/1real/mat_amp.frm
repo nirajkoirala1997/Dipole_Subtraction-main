@@ -20,6 +20,7 @@ l mat  = amp*ampc;
 
 id U(si1?,p1?,x2?)*UB(si2?,p1?,x2?)=G(si1,si2,p1)+x2*G(si1,si2);
 id V(si1?,p1?,x2?)*VB(si2?,p1?,x2?)=G(si1,si2,p1)-x2*G(si1,si2);
+id V(six1?,p1?,x2?)*VB(six2?,p1?,x2?)=G(six1,sxi2,p1)-x2*G(six1,six2);
 repeat,id G(si1?,si2?,?a)*G(si2?,si3?,?b)=G(si1,si3,?a,?b);
 .sort
 

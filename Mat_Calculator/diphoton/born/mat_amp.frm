@@ -2,16 +2,16 @@
 off statistics,finalstats,allwarnings;
 nwrite statistics;
 
-#include /home/vaibhav/work/matrix_amp/NEWcode2/main_files/def.h
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/def.h
 #include input.h
-#include /home/vaibhav/work/matrix_amp/NEWcode2/main_files/feyn.h
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/feyn.h
 #include mandelsterm.h
-#include /home/vaibhav/work/matrix_amp/NEWcode2/main_files/SOn.prc
-#include /home/vaibhav/work/matrix_amp/NEWcode2/main_files/SUn.prc
-#include /home/vaibhav/work/matrix_amp/NEWcode2/main_files/color.h
-#include /home/vaibhav/work/matrix_amp/NEWcode2/main_files/gamma5.h
-#include /home/vaibhav/work/matrix_amp/NEWcode2/main_files/Camplitude.h
-#include /home/vaibhav/work/matrix_amp/NEWcode2/main_files/amplitude.h
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/SOn.prc
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/SUn.prc
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/color.h
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/gamma5.h
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/Camplitude.h
+#include /home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/Mat_Calculator/main_files/amplitude.h
 .sort
 
 

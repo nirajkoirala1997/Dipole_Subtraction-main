@@ -37,7 +37,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       rsp = dsqrt(xa*xb*s)
         
       ipass = 0
-      eps = 2.5d0
+      eps = 0.5d0
       xlow = xq - eps
       xhigh = xq + eps
 
@@ -57,6 +57,7 @@ c      if (rsp .gt. xcut) then
 
       call kinvar2(xa,xb,xc,xinvmass,p1,p2,p3,p4)
       call cuts0(p1,p2,p3,p4,ipass)
+c	ipass = 1
 
       IF(ipass .eq. 1) then
         scale  = xinvmass

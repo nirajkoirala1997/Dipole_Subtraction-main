@@ -28,7 +28,6 @@ multiply replace_(<ji1,ji101>,...,<ji10,ji110>);
 
 multiply replace_(<jix1,jix101>,...,<jix10,jix110>);
 
-
 multiply replace_(<si1,si101>,...,<si10,si110>);
 
 multiply replace_(<six1,six101>,...,<six10,six110>);
@@ -44,4 +43,9 @@ multiply replace_(<cifx1,cifx101>,...,<cifx10,cifx110>);
 repeat,id G(si1?,si2?,?a)*G(si2?,si3?,?b)=G(si1,si3,?a,?b);
 
 *repeat,id T(cif1?,cif2?,?a)*T(cif2?,cif3?,?b)=T(cif1,cif3,?a,?b);
+
+id Bgr(li1?,li2?,li3?,li4?)         = Bgr(li1,li2,li3,li4) ;
+id Cgr(li1?,li2?,li3?,li4?)         = Cgr(li1,li2,li3,li4) ;
+id Dgr(li1?,li2?,li3?,li4?,k1?,k2?) = Dgr(li1,li2,li3,li4,k1,k2) ;
+id Egr(li1?,li2?,li3?,li4?,k1?,k2?) = Egr(li1,li2,li3,li4,k1,k2) ;
 .sort

@@ -14,5 +14,7 @@ L massofelectron = 0;
 .sort
 L massofup = 0;
 .sort
+L massofgraviton = 0;
+.sort
 
 

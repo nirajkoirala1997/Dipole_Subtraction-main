@@ -1,22 +1,9 @@
-C Cuba Specific function.      
-C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
-      integer function integrand(ndim,xx,ncomp,f,userdata,nvec ,core
-     .                            ,weight,iter)
-      implicit none 
-c     cuba specific parameters
-      integer n4,ndim,ncomp,nvec,core,iter,userdata 
-      real*8 xx(ndim) ,f(ncomp),weight,fnlo3
-      common/countc/n4
-      external fnlo3
-      f(1) = fnlo3(xx,weight)
-      return
-      end
-C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
-c      Our vegas specific
+C -------------------------------------------------------------------- C        
+c                        Our vegas specific
+C -------------------------------------------------------------------- C        
       double precision function fnlo3(xx,weight)
       implicit double precision(a-h,o-z) 
-C -------------------------------------------------------------------- C        
-      dimension  xx(10),p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),q(0:3)
+      dimension  xx(6),p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),q(0:3)
      .             ,p(0:3,1:5),dip(27),B1(1:2),xl(15),f1(-6:6),f2(-6:6)
      .             , sig(1:5),SumD(1:2)
       integer i35,i45,is5,itest
@@ -36,17 +23,13 @@ C -------------------------------------------------------------------- C
 c      common/momenta5/p1,p2,p3,p4,p5
       external dipole_gg_g
 
-
-C        xx(1) =  0.16521047042068998     
-C        xx(2) =  1.5507229342594448E-002
-C        xx(3) =  0.99999999999999989     
-C        xx(4) =  0.25303325869880411     
-C        xx(5) =  0.42984731785052360     
-C        xx(6) =  0.43915480835700699     
-
       xa = xx(1)
       xb = xx(2)
       rsp = dsqrt(xa*xb*s)
+c	print*,"fnlo3 "
+c	print*,xx
+c	print*," "
+c	stop
 
       xmz = 91.1876d0
 
@@ -56,9 +39,6 @@ C        xx(6) =  0.43915480835700699
 c      eps = 2.0d0
       xlow = xq - eps
       xhigh = xq + eps
-
-
-
 
         call kinvar3(xx,xxjac,xinvmass,p1,p2,p3,p4,p5,unphy)
         call cuts3(p1,p2,p3,p4,p5,rsp,icuts,inf_PS)
@@ -115,7 +95,9 @@ c         if (inf_PS .eq. 1 ) goto 151
 
           SumD(1) = dipole_gg_g(1,p) + dipole_gg_g(2,p)
 
-          sigma = xl(4)*( sig(4)-SumD(1) )
+c          sigma = xl(4)*( sig(4)-SumD(1) )
+c          sigma = xx(1)*xx(2)*xx(3)*xx(4)*xx(5)*xx(6)
+
 
 c	print*,sig(4),SumD(1)
 
@@ -126,6 +108,7 @@ c	print*,sig(4),SumD(1)
           fnlo3=wgt/weight/2d0/eps
           endif
           endif
+c	fnlo3 = 
 
 151   return
       end

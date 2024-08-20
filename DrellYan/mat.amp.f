@@ -142,8 +142,21 @@ c       ge=1d0/128d0
       s12 =  2.0d0*dot(p1,p2) ! s
       qu2 = 1d0!4d0/9d0
 
-      Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
-     .            s23)))/(3d0*s12**2)
+      t =  -2.0d0*dot(p1,p3) ! t
+      u =  -2.0d0*dot(p1,p4) ! u
+      s =  2.0d0*dot(p1,p2) ! s
+
+c	s = 1000d0
+c	t = -10000d0
+c	u = -15000d0
+
+
+
+c      Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
+c     .            s23)))/(3d0*s12**2)
+	Born_uU2eE =1* e**4*qu2*(t*t + u*u)/s/s/3d0
+c	write(*,*)'sig = ',Born_uU2eE
+c	stop
        return
        end
 c---------------------------------------------------------------------

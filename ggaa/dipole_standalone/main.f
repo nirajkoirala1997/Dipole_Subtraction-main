@@ -124,12 +124,11 @@ c      am1 = 0.51099895000d-3
       ! energy
       s=ecm*ecm
       print*,'  '
-c      print*,"Press 1 to initialise VEGAS:"
-c      print*,"Press 2 to initialise CUBA-VEGAS:"
-c        read*,i
+      print*,"Press 1 to initialise VEGAS:"
+      print*,"Press 2 to initialise CUBA-VEGAS:"
+        read*,i
 
-        i=1
-        IF (I .EQ. 1) THEN
+c        i=2
           print*,"  ----------------------------------"
           print*,"  |Initializing Dipole Subtraction  |"
           print*,"  ----------------------------------"
@@ -147,8 +146,15 @@ c        read*,i
             
           call printframe2(xq)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        if (I .eq. 1 ) then
             call brm48i(40,0,0) 
             call vsup(6,npt1,its1,fnlo3,ans,sd,chi2)
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        elseif(I .eq. 2) THEN
+                CALL cubacheck(ans,sd)
+        else
+            print*,"Invalid Input"
+        endif
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             ai_nlo3(j) = ans
                xerr(j) = sd
@@ -177,8 +183,5 @@ c     .          //trim(filename),status='unknown', access='append')
          enddo
          close(20)
 123         continue
-        elseif(I .eq. 2) THEN
-                CALL cubacheck
-        endif
        end
 

@@ -1,8 +1,8 @@
 #procedure feynrules(amp)
 
 #do i=1,10
-id in(upq(-`i',p1?)) = U(six`i',p1,li1)*df(cifx`i',p1);
-id in(UPQ(-`i',p1?)) = VB(six`i',p1,li1)*df(cifx`i',p1);
+id in(upq(-`i',p1?)) =  U(six`i',p1,mu)*df(cifx`i',p1);
+id in(UPQ(-`i',p1?)) = VB(six`i',p1,mu)*df(cifx`i',p1);
 id in(glu(-`i',p1?)) = epolglu(lix`i',p1,0)*db(cix`i',p1);
 #enddo
 
@@ -44,35 +44,47 @@ id Vx(x1?,x2?,ELTeltph,-`i',-`j',-`k',p1?,p2?,p3?) = (i_)*qe*G(six`i',six`j',lix
 **********************************
 ** Graviton-SM_Particles Vertex  *
 **********************************
-*#do i=1,10
-*#do j=1,10
-*#do k=1,10
-**
-**----------------------------
-** 1. Graviton-Gluon Vertex
-**----------------------------
+#do i=1,10
+#do j=1,10
+#do k=1,10
 *
-*id Vx(x1?, x2?, gluglugr, `i', `j', `k', p1?, p2?, p3?) = 
-*    (i_)*kg*(C(`i', `j', `k', li3, li4)*p1.p2
-*             + D(`i', `j', `k', li3, li4, p1, p2)
-*             + E(`i', `j', `k', li3, li4, p1, p2));
-*
+*----------------------------
+* 1. Graviton-Gluon Vertex
+*----------------------------
+
+id Vx(x1?, x2?, gluglugr, `i', `j', `k', p1?, p2?, p3?) = 
+    (i_)*kg*(-1/2)* (Cgr( li`i',li`j',li`k',ji`k')*p1.p2
+              +Dgr( li`i',li`j',li`k',ji`k',p1,p2)
+              +Egr( li`i',li`j',li`k',ji`k',p1,p2) )*d_(ci`i',ci`j') ;
+
+id Vx(x1?, x2?, gluglugr,-`i',-`j', `k', p1?, p2?, p3?) = 
+    (i_)*kg*(-1/2)* (Cgr( lix`i',lix`j',li`k',ji`k')*p1.p2
+              +Dgr( lix`i',lix`j',li`k',ji`k',p1,p2)
+              +Egr( lix`i',lix`j',li`k',ji`k',p1,p2) )*d_(cix`i',cix`j');
+#enddo
+#enddo
+#enddo
 *
 **----------------------------
 ** 2. Graviton-Photon Vertex
 **----------------------------
-*id Vx(x1?,x2?,ELTeltph,`i',`j',-`k',p1?,p2?,p3?) = (i_)*qe*G(si`i',si`j',lix`k');
 *
-*id Vx(x1?, x2?, phphgr, `i', `j', `k', p1?, p2?, p3?) = 
-*    (i_)*kg*(C(`i', `j', `k', li3, li4)*(p1 + p2).(p1 + p2)
-*             + D(`i', `j', `k', li3, li4, p1 + p2, p1 + p2)
-*             + E(`i', `j', `k', li3, li4, p1 + p2, p1 + p2));
-*
-*#enddo
-*#enddo
-*#enddo
-*
+#do i=1,10
+#do j=1,10
+#do k=1,10
 
+id Vx(x1?, x2?, phphgr, `i', `j', `k', p1?, p2?, p3?) = 
+    (i_)*kg*(-1/2)* (Cgr( li`i',li`j',li`k',ji`k')*p1.p2
+              +Dgr( li`i',li`j',li`k',ji`k',p1,p2)
+              +Egr( li`i',li`j',li`k',ji`k',p1,p2) );
+
+id Vx(x1?, x2?, phphgr,-`i',-`j', `k', p1?, p2?, p3?) = 
+    (i_)*kg*(-1/2)* (Cgr( lix`i',lix`j',li`k',ji`k')*p1.p2
+              +Dgr( lix`i',lix`j',li`k',ji`k',p1,p2)
+              +Egr( lix`i',lix`j',li`k',ji`k',p1,p2) );
+#enddo
+#enddo
+#enddo
 
 
 ***************************
@@ -357,36 +369,15 @@ id EE(`i',`j',p1?,x3?)=i_*(G(si`i',si`j',p1)+x3*G(si`i',si`j'))*fprop(p1);
 #do i=1,10
 #do j=1,10
 
-id GR(`i',`j',p1?,x1?)= (i_)*
-                        Bgr(li`i',ji`i',li`j',ji`j',p1);
+id GR(`i',`j',p1?,x1?)= (i_)*(1/2)*Bgr(li`i',ji`i',li`j',ji`j',p1)*grprop(p1);
 
 #enddo
 #enddo
-
-id Bgr(li1?,li2?,li3?,li4?,k1?)=
-                        (d_(li1,li3)-flag*k1(li1)*k1(li3)/k1.k1)*
-                        (d_(li2,li4)-flag*k1(li2)*k1(li4)/k1.k1)
-                       +(d_(li1,li4)-flag*k1(li1)*k1(li4)/k1.k1)*
-                        (d_(li2,li3)-flag*k1(li2)*k1(li3)/k1.k1)
-                   -2/3*(d_(li1,li2) -flag*k1(li1)*k1(li2)/k1.k1)*
-                        (d_(li3,li4)-flag*k1(li3)*k1(li4)/k1.k1);
-*
-*id E(li1?,li2?,li3?,li4?,k1?,k2?)=
-*                d_(li1,li2)*(k1(li3)*k1(li4)
-*               +k2(li3)*k2(li4)+k1(li3)*k2(li4))
-*               -(d_(li2,li4)*k1(li1)*k1(li3)+d_(li2,li3)*k2(li1)*k2(li4)
-*               +d_(li1,li4)*k1(li2)*k1(li3)+d_(li1,li3)*k2(li2)*k2(li4));
-*
-*id F(li1?,li2?,li3?,li4?,lam?,k1?,k2?,k3?) =
-*                  d_(li1,li3)*d_(li4,lam)*(k2(li2)-k3(li2))
-*                 +d_(li1,li4)*d_(li3,lam)*(k3(li2)-k1(li2))
-*                 +d_(li1,lam)*d_(li3,li4)*(k1(li2)-k2(li2))
-*                 +d_(li2,li3)*d_(li4,lam)*(k2(li1)-k3(li1))
-*                 +d_(li2,li4)*d_(li3,lam)*(k3(li1)-k1(li1))
-*                 +d_(li2,lam)*d_(li3,li4)*(k1(li1)-k2(li1));
-*
-*
+.sort
 
 * LINEARIZE 
 id G(?a,aa?)=G(?a,aa);
+id Bgr(?a,aa?)=Bgr(?a,aa);
+id Dgr(?a,aa?)=Dgr(?a,aa);
+id Egr(?a,aa?)=Egr(?a,aa);
 #endprocedure

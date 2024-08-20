@@ -2,12 +2,12 @@
 
 
 *number of diagrams for M
-#$diaS = 1;
-#$dia = 2;
+#$diaS =1;
+#$dia = 1;
 
 *number of diagrams for C_M
 #$diaCS = 1;
-#$diaC = 2;
+#$diaC = 1;
 
 
 #procedure mass

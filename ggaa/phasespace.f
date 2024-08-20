@@ -1,6 +1,6 @@
       subroutine kinvar2(xx,xxinvmass,p1,p2,p3,p4)
       implicit double precision (a-h,o-z)
-      dimension xx(10)
+      dimension xx(6)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3)
       dimension qa(0:3),qb(0:3)
       common/energy/s
@@ -94,7 +94,7 @@ c---------------------------------------------------------------------
       implicit double precision (a-h,o-z)
       integer n4,unphy
       parameter (pi=3.14159265358979d0)
-      dimension xx(10)
+      dimension xx(6)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),q(0:3)
       dimension qa(0:3),qb(0:3)
       dimension p4p(0:3),diff(0:3)

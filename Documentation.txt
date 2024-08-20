@@ -74,11 +74,30 @@ PK_standalone is giving double the value in PK_Plus. However in the Dummy Plus i
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ------------------        IMPORTANT COMMANDS IN LINUX           ---------------------
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+-----------------------------[ PYTHON ]----------------------------------------------
 ## To open Jupyter notebook remotely ##
 jupyter notebook --no-browser --port=8888
 ssh -N -f -L localhost:8888:localhost:8888 your-username@remote-server-ip
 http://localhost:8888
 jupyter server list
+
+----------------------------[ SSH -COMMANDS ]----------------------------------------
+## If you want to add a key of a remote ssh server you can use the following command.
+
+ssh-keygen -t rsa -b 4096
+ssh-copy-id user@remotePC-ip
+
+#THEN LOGIN USING COMMAND
+
+ssh 'user@remotePC-ip'
+
+-t rsa: The -t option specifies the type of key to create. In this case, rsa is the type, which stands for Rivest–Shamir–Adleman. RSA is a widely used encryption algorithm.
+-b 4096: The -b option specifies the number of bits in the key. Here, 4096 bits is the key length, which is considered very secure. The larger the number of bits, the stronger the encryption (but also the longer the key generation time).
+-------------------------------------------------------------------------------------
+
 
 
 

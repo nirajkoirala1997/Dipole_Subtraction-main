@@ -1,0 +1,28 @@
+This is the inclusive threshold resummation code written by V. Ravindran (ravindra@imsc.res.in).
+Modified by Goutam Das (gkdgoutam@gmail.com)
+
+Run information: make && ./run.x
+Output file name is adjusted in input.input
+
+ 
+Makefile       :: is the makefile to compile
+GRinc.f        :: is the main file
+FunGRinc.f     :: Mellin inversion is done here. See arXiv:0202251 appendix for more.
+born.f         :: contains the born factors for processes. (currently Higgs, DY, GR)
+bornaddon.f    :: contains some extra subroutines for born DY in particular
+constants.h    :: All the anomalous dimensions and constants are collected here
+partonLHAPDF.f :: contains subroutine to get PDF from lhapdf
+vsup.f         :: is the vegas integrator. (In principle we can use Cuba. I have to check the speed test later. GD)
+
+vegas.input    :: contains vegas input parameters
+input.input    :: is the file for general inputs
+in_add.input   :: is the file for ADD parameters
+in_rs.input    :: is the file for RS parameters
+
+
+resum_dy.h     :: contains the resum exponent, SV and Delta(resum) for DY
+resum_grqqb.h  :: contains the resum exponent, SV and Delta(resum) for qqbar channel through GR production 
+resum_grgg.h   :: contains the resum exponent, SV and Delta(resum) for gg channel through GR production 
+
+
+Typical runtime for 1lac vegas point to get 3rd decimal accuracy ~ 5 mins in Apple Mac OSX with GNU Fortran (GCC) 6.3.0 compiler

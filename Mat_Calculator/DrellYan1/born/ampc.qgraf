@@ -1,4 +1,4 @@
-* output= 'test1.qgraf';
+* output= 'DY_LO.qgraf';
 * style= 'form_v1.sty';
 * model= 'QCDGRHIGGS';
 * in= UPQ[p1], upq[p2];
