@@ -110,12 +110,6 @@ c      am1 = 0.51099895000d-3
       ! energy
       s=ecm*ecm
 
-c      print*,'  '
-c      print*,"Press 1 to initialise VEGAS:"
-c      print*,"Press 2 to initialise CUBA-VEGAS:"
-c        read*,i
-        i=1
-        if (i .eq. 1 ) then
         print*," "
         print*," "
         print*,"____________________________________"
@@ -127,15 +121,23 @@ c        read*,i
 
       call printframe1(pt1,its1)   ! vegas points print 
 
+      print*,'  '
+      print*,"Press 1 to initialise VEGAS:"
+      print*,"Press 2 to initialise CUBA-VEGAS:"
+      read*,int_choice
         xq = xq_initial
         do j=1,it_max
 
         call printframe2(xq)
 
+	if (int_choice .eq. 1 ) then
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
          call brm48i(40,0,0) ! initialize random number generator
          call vsup(2,npt1,its1,flo2_LO,ans,sd,chi2)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	elseif( int_choice .eq. 2 ) then
+	call cubacheck(ans,sd)
+	endif
             ai_lo2(j) = ans
               err(j)  = sd
 
@@ -167,6 +169,4 @@ cc~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 123         continue
 c
-        elseif(I .eq. 2) THEN
-        endif
        end

@@ -1,16 +1,21 @@
-cC ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
-c      integer function integrand(ndim,xx,ncomp,f,userdata,nvec ,core
-c     .                            ,weight,iter)
-c      implicit none 
-cc     cuba specific parameters
-c      integer n4,ndim,ncomp,nvec,core,iter,userdata 
-c      real*8 xx(ndim) ,f(ncomp),weight,flo2_Vir
-c      common/countc/n4
-c      external flo2_LO
-c      f(1) = flo2_LO(xx,weight)
-c      return
-c      end
-cC ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
+cC ~~~~~~~~~~~~~~~~~~~C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
+      integer function integrand(ndim,yy,ncomp,f,userdata,nvec ,core
+     .                            ,weight,iter)
+      implicit none 
+c     cuba specific parameters
+      integer ndim,ncomp,nvec,core,iter,userdata 
+c      real*8 xx(ndim) ,f(ncomp),weight,fnlo3,yy(10)
+      real*8 yy(2) ,f(ncomp),weight,flo2_LO,xx(10)
+      external flo2_LO
+       xx(1) = yy(1)
+       xx(2) = yy(2)
+      f(1)=flo2_LO(xx,weight)
+c	print*,"Fun "
+c	print*,xx
+c      f= xx(1)*xx(2)*xx(3)*xx(4)*xx(5)*xx(6)
+      return
+      end
+C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       function flo2_LO(yy,vwgt)
       implicit double precision (a-h,o-z)

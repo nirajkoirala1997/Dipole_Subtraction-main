@@ -29,6 +29,9 @@ c      parameter (hbarc2=0.3894d9)  ! in pb
       common/renor_scale/scale
       common/usedalpha/AL,ge
       external Born_uU2eE
+      yy(1) = 0.0013883493976128746
+      yy(2) = 0.0048216952814149191
+      yy(3) = 0.0072466443443286671
        
       rs  = dsqrt(s)
       xa     = yy(1)
@@ -47,6 +50,12 @@ c      if (rsp .gt. xcut) then
 
 
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
+	print*,"p1",p1
+	print*,"p2",p2
+	print*,"p3",p3
+	print*,"p4",p4
+	print*,"xinvmass=",xinvmass
+	stop
         scale  = xinvmass
 c      if (scale .ge. 0d0) then
         if ( scale .ge. xlow .and. scale .le. xhigh) then 

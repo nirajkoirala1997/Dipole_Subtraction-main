@@ -1,12 +1,12 @@
 # Compiler and flags
 FC = gfortran
 FFLAGS = -O
-LDFLAGS = -lc #-L./../ -lfile
+LDFLAGS = -lc -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/Cuba-4.2.2 -lcuba
 export LHFLAGS = $(shell lhapdf-config --ldflags)
 
 # Program and object files
 PROG = runLO
-OBJECTS = mat.amp.o cuts.lo2.o cone.o printframe.o misc.o lum.o pdf_lha.o vsup.o integrand.o phasespace.o couplings.o
+OBJECTS = cuba.o mat.amp.o cuts.lo2.o cone.o printframe.o misc.o lum.o pdf_lha.o vsup.o integrand.o phasespace.o couplings.o
 
 # Main target
 $(PROG): $(OBJECTS) main.f
