@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Run FORM script
-tform -w5 mat_amp.frm
-#form mat_amp.frm
+#tform -w5 mat_amp.frm
+form mat_amp.frm
 
 # Execute any other necessary shell scripts
 bash removenn.sh

@@ -22,8 +22,8 @@ gfortran tee_the_data.f -o "tee_the_data_${timestamp}_LO.o"
 
 #Everything is ready now start the Executable
 cd $home_path
-cd ../LO_check_gg2aa
-make clean && make
+cd ../LO_gg2H
+make
 ./runLO | tee "../trash/broken/output_${timestamp}.LO"
 
 # Results are now ready we can combine the data of tee to the output files.

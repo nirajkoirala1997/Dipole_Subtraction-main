@@ -12,6 +12,8 @@ Local Ac= -ch*db(cal,p)*db(cbt,q)*(d_(al,bt)*mh^2/2 - p(bt)*q(al))*epol(al,p)*ep
 .sort
 Local A2 = Ac*A;
 .sort
+print,A2;
+.sort
 id epol(mu?,p?)*epol(b?,p?) = - d_(mu,b)+(p(mu)*nv(b)+nv(b)*p(mu))/p.nv;
 .sort
 print,A2;

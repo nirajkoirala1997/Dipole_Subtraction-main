@@ -30,7 +30,8 @@ l mat  = amp*ampc;
 *.sort
 
 *id epolph(lix1?,p3?,0)*epolph(lix101?,p3?,0) = - d_(lix1,lix101);
-id epolglu(lix1?,p1?,0)*epolglu(lix101?,p1?,0) = - d_(lix1,lix101)+(p1(lix1)*nv(lix101)+nv(lix101)*p1(lix1))/p1.nv;
+*id epolglu(lix1?,p1?,0)*epolglu(lix101?,p1?,0) = - d_(lix1,lix101)+(p1(lix1)*nv(lix101)+p1(lix101)*nv(lix1))/p1.nv;
+id epolglu(lix1?,p1?,0)*epolglu(lix101?,p1?,0) = - d_(lix1,lix101)+(p1(lix1)*nv(lix101)+nv(lix1)*p1(lix101))/p1.nv;
 .sort
 
 *#do i=1,10;
@@ -66,16 +67,20 @@ id nv.nv=0;
 
 id n = 4 ;
 
-#call mandelsterm2
+#call mandelsterm
 .sort
-print, mat;
-.end
+*print, mat;
+*.end
 *id flag1  = 1;
+id gprop(-p1 + p3) = 1/(mH^2+t);
+id gprop( p2 - p3) = 1/(mH^2+u);
+id gprop(-p1 - p2) = 1/(s);
 .sort
+*id u= -s -t + mH^2;
 *.sort
 *Format mathematica;
 *B kg,p1.nv,p2.nv,p3.nv;
-**print +s mat;
+print +s mat;
 *#write <out.m> "%O"
 *#write <out.m> "      mat = %e",mat
 #printtimes;

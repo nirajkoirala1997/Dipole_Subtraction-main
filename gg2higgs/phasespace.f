@@ -1,59 +1,103 @@
-c      subroutine kinvar1(xx,p1,p2,p3)
       subroutine kinvar1(xa,xb,p1,p2,p3)
       implicit double precision (a-h,o-z)
-      dimension xx(2)
       dimension p1(0:3),p2(0:3),p3(0:3)
       common/energy/s
       common/mass/amh
 
-c       xa=xx(1)
-c      xb=xx(2)
-c      v=xx(3)
-c      omv=1d0-v
-c      amh2 = amh*amh
-c        sp = amh2
-
-c      sp = xa*xb*s
-c       xb = sp/xa/s 
-c       sp=s*xa*xb 
-c	print*,"xa",xa
-c	print*,"xb",xb
-      srs2=0.5*dsqrt(s)
+      srs2 = 0.5 * dsqrt(s)
 
 c     incoming parton 4-vectors
-      p1(0)=srs2*xa
-      p1(1)=0d0
-      p1(2)=0d0
-      p1(3)=p1(0)
+      p1(0) = srs2 * xa
+      p1(1) = 0d0
+      p1(2) = 0d0
+      p1(3) = p1(0)
 
-      p2(0)=srs2*xb
-      p2(1)=0d0
-      p2(2)=0d0
-      p2(3)=-p2(0)
+      p2(0) = srs2 * xb
+      p2(1) = 0d0
+      p2(2) = 0d0
+      p2(3) = -p2(0)
 
-c     outgoing parton 4-vectors
-c      e3=srs2
-c      px=0d0
-c      py=0d0
-c      pz=0d0
+c     total 4-momentum of the system
+      e_total  = p1(0) + p2(0)
+      px_total = p1(1) + p2(1)
+      py_total = p1(2) + p2(2)
+      pz_total = p1(3) + p2(3)
 
-      e3 = p1(0)+p2(0)
-      px = p1(1)+p2(1)
-      py = p1(2)+p2(2)
-      pz = p1(3)+p2(3)
+c     calculate the boost in lab frame 
+      beta = 0d0
+c      beta = (xa - xb) / (xa + xb)
+      gama = 1d0 / sqrt(1d0 - beta**2)
 
-c calculate the boost in lab frame 
+c     calculate momentum of the Higgs boson
+      p_h = sqrt(px_total**2 + py_total**2 + pz_total**2)
 
-      beta = (xa-xb)/(xa+xb)
-      beta = 0d0 
-      gama = 1d0/sqrt(1d0-beta**2)
+c     Energy of the Higgs boson with mass
+      e_higgs = sqrt(p_h**2 + amh**2)
 
-      p3(0)= gama*(e3 - beta*pz)
-      p3(1)= px
-      p3(2)= py
-      p3(3)= gama*(pz - beta*e3)
-      
+c     Set the 4-vector for the outgoing Higgs boson
+      p3(0) = gama * (e_higgs + beta * pz_total)
+      p3(1) = px_total
+      p3(2) = py_total
+      p3(3) = gama * (pz_total + beta * e_higgs)
+
       end
+
+cc      subroutine kinvar1(xx,p1,p2,p3)
+c      subroutine kinvar1(xa,xb,p1,p2,p3)
+c      implicit double precision (a-h,o-z)
+c      dimension xx(2)
+c      dimension p1(0:3),p2(0:3),p3(0:3)
+c      common/energy/s
+c      common/mass/amh
+c
+cc       xa=xx(1)
+cc      xb=xx(2)
+cc      v=xx(3)
+cc      omv=1d0-v
+cc      amh2 = amh*amh
+cc        sp = amh2
+c
+cc      sp = xa*xb*s
+cc       xb = sp/xa/s 
+cc       sp=s*xa*xb 
+cc	print*,"xa",xa
+cc	print*,"xb",xb
+c      srs2=0.5*dsqrt(s)
+c
+cc     incoming parton 4-vectors
+c      p1(0)=srs2*xa
+c      p1(1)=0d0
+c      p1(2)=0d0
+c      p1(3)=p1(0)
+c
+c      p2(0)=srs2*xb
+c      p2(1)=0d0
+c      p2(2)=0d0
+c      p2(3)=-p2(0)
+c
+cc     outgoing parton 4-vectors
+cc      e3=srs2
+cc      px=0d0
+cc      py=0d0
+cc      pz=0d0
+c
+c      e3 = p1(0)+p2(0)
+c      px = p1(1)+p2(1)
+c      py = p1(2)+p2(2)
+c      pz = p1(3)+p2(3)
+c
+cc calculate the boost in lab frame 
+c
+c      beta = (xa-xb)/(xa+xb)
+cc      beta = 0d0 
+c      gama = 1d0/sqrt(1d0-beta**2)
+c
+c      p3(0)= gama*(e3 + beta*pz)
+c      p3(1)= px
+c      p3(2)= py
+c      p3(3)= gama*(pz + beta*e3)
+c      
+c      end
 c---------------------------------------------------------------o
       subroutine kinvar2(xx,xxinvmass,p1,p2,p3,p4)
       implicit double precision (a-h,o-z)
@@ -290,10 +334,10 @@ c      p4(1)=p4x
 c      p4(2)=p4y
 c      p4(3)=gamma*(p4z + beta*p4t)
 
-      p5(0)=gamma*(p5t + beta*p5z)
+      p5(0)=gamma*(p5t - beta*p5z)
       p5(1)=p5x
       p5(2)=p5y
-      p5(3)=gamma*(p5z + beta*p5t)
+      p5(3)=gamma*(p5z - beta*p5t)
 
 
       p4(0)=p1(0)+p2(0)-p3(0)-p5(0)

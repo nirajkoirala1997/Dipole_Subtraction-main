@@ -63,7 +63,11 @@ PK_standalone is giving double the value in PK_Plus. However in the Dummy Plus i
 - The LO cross-section at different CoM energy has been checked, it is giving kinematic dependent values for different S.
 
 
-=================================> [31 August]
+=================================> [5 Sept]
+|
+!-> I am still struggling with the kinematic dependence in the LO higgs case. The Integration has to be done in only one dimesion. 
+
+=================================> [5 Sept]
 
 
 

@@ -154,7 +154,7 @@ c        i=2
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         if (I .eq. 1 ) then
             call brm48i(40,0,0) 
-            call vsup(6,npt1,its1,fnlo3,ans,sd,chi2)
+c            call vsup(6,npt1,its1,fnlo3,ans,sd,chi2)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         elseif(I .eq. 2) THEN
                 CALL cubacheck(ans,sd)

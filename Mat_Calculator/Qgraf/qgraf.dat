@@ -1,8 +1,9 @@
-output= 'gg_h_LO.qgraf';
+output= 'gg2uU_LO.qgraf';
 style= 'form_v1.sty';
+*style= 'xmldraw.sty';
 model= 'QCDGRHIGGS';
 in= glu[p1], glu[p2];
-out= Hig[p3],glu[p4];
+out= upq[p3],UPQ[p4];
 loops= 0;
 loop_momentum=k;
 options= notadpole, nosnail, onshell;

@@ -1,0 +1,29 @@
+# Compiler and flags
+FC = gfortran
+FFLAGS = -O
+
+# Directories
+OBJDIR = objects
+SRCDIR = .
+BINDIR = .
+
+# Program and object files
+PROG = $(BINDIR)/runLO
+OBJECTS = $(OBJDIR)/vsup.o
+
+# Create object directory if it doesn't exist
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+# Main target
+$(PROG): $(OBJECTS) $(SRCDIR)/main.f | $(OBJDIR)
+	$(FC) $(SRCDIR)/main.f $(FFLAGS) -o $(PROG) $(OBJECTS)
+
+# Rule for compiling .o files
+$(OBJDIR)/%.o: $(SRCDIR)/%.f | $(OBJDIR)
+	$(FC) -c $(FFLAGS) $< -o $@
+
+# Clean target
+clean:
+	rm -f $(OBJDIR)/*.o core *~ $(PROG)
+

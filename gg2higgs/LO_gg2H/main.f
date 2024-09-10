@@ -28,7 +28,7 @@ c      common/param/aem,xmur,lambda
 c--------------------------------------------
 
 
-      character*50 name,mode
+      character*50 pdf_name,mode
       character*100 run_tag,filename
       external flo1_LO
 
@@ -49,7 +49,7 @@ c--------------------------------------------
       open(unit=15,file='../run.machine.dat',status='unknown')
       read (15,*) mid           ! machine id Tevatron:0 LHC:1
       read (15,*) ecm           ! ecm
-      read (15,*) name          !lhapdf set
+      read (15,*) pdf_name          !lhapdf set
       read (15,*) it_max        !lhapdf set
       read (15,*) xq_initial
       read (15,*) step_size         !step
@@ -87,7 +87,7 @@ c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c
       if(iprint .eq. 1) call output(run_tag,filename)
 c ~~~~~~~~~~~~~~~~[--------------------------]~~~~~~~~~~~~~~~~~~~c        
 
-        call initpdfsetbyname(name)
+        call initpdfsetbyname(pdf_name)
         Call initPDF(0)
       
 c      am1 = 0.51099895000d-3
@@ -111,7 +111,8 @@ c      am1 = 0.51099895000d-3
         print*," "
 
       call printframe1(pt1,its1)   ! vegas points print 
-      call printframe6(ecm,xmur,xmur)
+	xmur = 125d0/2d0
+      call printframe6(ecm,xmur,xmur,pdf_name)
 
 c      print*,'  '
 c      print*,"Press 1 to initialise VEGAS:"

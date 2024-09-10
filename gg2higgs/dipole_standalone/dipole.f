@@ -113,7 +113,7 @@ c     Initial state dipole for the case of Drell- Yan gg type of channel
 
       if ( k .eq. 1 ) then ! Dipole leg 1 
         call reducemomenta2(1,p1,p2,p3,p4,p5,p6,p7,p8,p9)  ! reduce momenta2 is for initial splitting 
-        Born= Born_gg2aa(1,p6,p7,p8,p9) 
+        Born= Born_gg2h(1,p6,p7,p8,p9) 
 
         dipole_gg_g=
      -          (-16*AL*Born*CA*Pi*(s12**4 - 2*s12**3*(s15 + s25) + 
@@ -123,7 +123,7 @@ c     Initial state dipole for the case of Drell- Yan gg type of channel
 
       else if ( k .eq. 2 ) then ! Diople leg 2
         call reducemomenta2(2,p1,p2,p3,p4,p5,p6,p7,p8,p9)
-        Born= born_gg2aa(2,p6,p7,p8,p9) 
+        Born= born_gg2h(2,p6,p7,p8,p9) 
 
         dipole_gg_g=
      -          (-16*AL*Born*CA*Pi*(s12**4 - 2*s12**3*(s15 + s25) + 

@@ -9,7 +9,7 @@ nwrite statistics;
 #include ../../main_files/grfunc.h
 #include ../../main_files/SOn.prc
 #include ../../main_files/SUn.prc
-#include ../../main_files/color.h
+*#include ../../main_files/color.h
 #include ../../main_files/gamma5.h
 #include ../../main_files/Camplitude.h
 #include ../../main_files/amplitude.h
@@ -30,7 +30,7 @@ print,amp,ampc,mat;
 *#call grfunc
 .sort
 *id epolph(lix1?,p3?,0)*epolph(lix101?,p3?,0) = - d_(lix1,lix101);
-id epolglu(lix1?,p1?,0)*epolglu(lix101?,p1?,0) = - d_(lix1,lix101)+(p1(lix1)*nv(lix101)+nv(lix101)*p1(lix1))/p1.nv;
+id epolglu(lix1?,p1?,0)*epolglu(lix101?,p1?,0) = - d_(lix1,lix101)+(p1(lix1)*nv(lix101)+p1(lix101)*nv(lix1))/p1.nv;
 .sort
 *print,mat;
 
@@ -56,6 +56,7 @@ multiply replace_(p3,p1+p2);
 ***************
 .sort
 print,mat;
+.sort
 id df(cifx1?,p1?)*df(cifx101?,p1?)=d_(cifx1,cifx101);
 id db(cix1?,p1?)*db(cix101?,p1?)=d_(cix1,cix101);
 repeat, id T(cifx1?,cifx2?,?a)*T(cifx2?,cifx3?,?b)=T(cifx1,cifx3,?a,?b);
@@ -66,8 +67,6 @@ id T(cifx1?,cifx1?,?a)=Tr(?a);
 ************************
 id nv.nv=0;
 .sort
-print,mat;
-.end
 
 id n = 4 ;
 

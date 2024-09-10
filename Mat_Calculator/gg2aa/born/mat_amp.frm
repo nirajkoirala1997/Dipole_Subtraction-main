@@ -30,11 +30,11 @@ id mgr = massofgraviton;
 
 #call grfunc
 .sort
-print,mat;
-.end
+*print,mat;
+*.end
 
 id epolph(lix1?,p3?,0)*epolph(lix101?,p3?,0) = - d_(lix1,lix101);
-id epolglu(lix1?,p1?,0)*epolglu(lix101?,p1?,0) = - d_(lix1,lix101)+(p1(lix1)*nv(lix101)+nv(lix101)*p1(lix1))/p1.nv;
+id epolglu(lix1?,p1?,0)*epolglu(lix101?,p1?,0) = - d_(lix1,lix101)+flag1*(p1(lix1)*nv(lix101)+p1(lix101)*nv(lix1))/p1.nv;
 .sort
 
 #do i=1,10;
@@ -72,12 +72,14 @@ id n = 4 ;
 
 #call mandelsterm
 id phprop(- p1 -p2) = 1/s;
+*id grprop(- p1 -p2)
+id grprop( - p1 - p2) = 1/(s-mH^2);
 .sort
 ************************
 id flag  = 1;
 .sort
-print, mat;
-.end
+*print, mat;
+*.end
 *id flag1  = 1;
 .sort
 id u = -s-t;

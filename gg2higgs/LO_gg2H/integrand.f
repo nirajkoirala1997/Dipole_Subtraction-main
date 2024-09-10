@@ -6,7 +6,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
      .          ,p(0:3,1:4),c(1:2),Born(1:2),coef(2,-2:0),SumI(-2:0)
       parameter (pi=3.14159265358979d0)
-      parameter (hbarc2=0.3894d9)    ! in Pb
+      parameter (hbarc2=0.3894d9)      ! in Pb
 c      parameter (hbarc2=0.3894d12)    ! in Fb
       common/leg_choice/leg
       common/energy/s
@@ -17,41 +17,41 @@ c      parameter (hbarc2=0.3894d12)    ! in Fb
       common/param2/xmur
       external Born_gg2H
        
-c      tau = amh**2/S
-c       sp = amh*amh 
-c        z = amh**2/sp
-c       sp = xa*xb*S
-c        z = amh**2/sp
-
-
-        sp = amh*amh 
-       rsp = dsqrt(sp)
         xa = yy(1)
-        xb = amh**2d0/xa/S
+c        xb = yy(2) 
+        xb = amh**2d0/xa/s
+        sp = xa*xb*S
+       rsp = dsqrt(sp)
 
       call kinvar1(xa,xb,p1,p2,p3)
 
-      scale = rsp
-             
-      xmuf=scale/2d0
-      xmur=scale/2d0  
+      scale = 2d0 * dot(p1,p2) 
+	eps = 0.05d0
+	Q2 = dsqrt(scale)
+	Qmin = amh - eps
+	Qmax = amh + eps
+
+c	if(Q2 .ge. Qmin .and. Q2 .le. Qmax) then
+c      xmuf=scale / 2d0
+      xmuf= 62.5d0
+      xmur=scale / 2d0
       xmu2=xmuf**2
 
       call pdf(xa,xmuf,f1)
       call pdf(xb,xmuf,f2)
       call setlum(f1,f2,xl)
 
-      sig=xl(2)* Born_gg2H(0,p1,p2,p3)
-
-c      xnorm=hbarc2/16d0/pi/(xa*xb*s)
-c      wgt=xnorm*sig*vwgt
-c      flo1_LO=wgt/vwgt
+      sig= xl(2)*Born_gg2H(0,p1,p2,p3)
 
        pi_1 = 0.5d0*rsp
        flux = 4d0*pi_1*rsp
        xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
+c       xnorm=hbarc2/8d0/(2d0*Pi)**4/flux/2d0/eps
 
         flo1_LO  = xnorm*sig
+c      else
+c        flo1_LO= 0d0
+c      endif
 
       return
       end
@@ -75,4 +75,3 @@ c      f= xx(1)*xx(2)*xx(3)*xx(4)*xx(5)*xx(6)
       return
       end
 C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
-

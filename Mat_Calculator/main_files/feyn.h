@@ -5,10 +5,14 @@ id in(upq(-`i',p1?)) =  U(six`i',p1,mu)*df(cifx`i',p1);
 id in(UPQ(-`i',p1?)) = VB(six`i',p1,mu)*df(cifx`i',p1);
 id in(glu(-`i',p1?)) = epolglu(lix`i',p1,0)*db(cix`i',p1);
 #enddo
+*id in(glu(-1,p1)) = epolglu(lix1,p1,0)*db(cix1,p1);
+*id in(glu(-3,p2)) = epolglu(lix3,p2,0)*db(cix3,p2);
 
 #do i=1,10
 id ou(elt(-`i',p1?)) = UB(six`i',p1,me)*1/2;
 id ou(ELT(-`i',p1?)) = V(six`i',p1,me)*1/2;
+id ou(upq(-`i',p1?)) = UB(six`i',p1,mu)*df(cifx`i',p1);
+id ou(UPQ(-`i',p1?)) = V(six`i',p1,mu)*df(cifx`i',p1);
 id ou(glu(-`i',p1?)) = epolglu(lix`i',p1,0)*db(cix`i',p1);
 id ou(ph(-`i',p1?)) = epolph(lix`i',p1,0);
 id ou(Hig(-`i',p1?)) = 1; 
@@ -375,7 +379,8 @@ id EE(`i',`j',p1?,x3?)=i_*(G(si`i',si`j',p1)+x3*G(si`i',si`j'))*fprop(p1);
 #do i=1,10
 #do j=1,10
 
-id GR(`i',`j',p1?,x1?)= (i_)*(1/2)*Bgr(li`i',ji`i',li`j',ji`j',p1)*grprop(p1);
+*id GR(`i',`j',p1?,x1?)= (i_)*(1/2)*Bgr(li`i',ji`i',li`j',ji`j',p1)*grprop(p1);
+id GR(`i',`j',p1?,x1?)= Bgr(li`i',ji`i',li`j',ji`j',p1)*grprop(p1);
 
 #enddo
 #enddo

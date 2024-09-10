@@ -68,13 +68,16 @@ cc ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c
        end
 c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
 cc ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
-       subroutine printframe6(ecm,mur,muf)
+       subroutine printframe6(ecm,xmur,xmuf,pdf_name)
        implicit double precision(a-h,o-z)
+c       character*50 pdf_name
+       character(len=*) pdf_name
           print*,"                                        "
           print*,"~~~~~~~~~~~~~[Parameters  Used]~~~~~~~~~~~"
           write(*,*)"Centre of Mass Energy: ",int(ecm)
-          write(*,*)"                  mur: ",mur
-          write(*,*)"                  muf: ",muf
+          write(*,*)"                  mur: ",xmur
+          write(*,*)"                  muf: ",xmuf
+          write(*,*)"          LHAPDF used: ",pdf_name
           print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
        return
        end

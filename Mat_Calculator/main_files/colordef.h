@@ -17,10 +17,10 @@ Autodeclare Index cif=NF,cifx=NF;
 
 Symbols n,a,nf,NF,NA,[cF-cA/6];
 Symbol s,t,u;
-Symbol m,mz,me,mu;
+Symbol m,mz,me,mu,mH;   
 Symbol Eez,Uuz,Eeph,Uuph,Uug;
 Symbol s,t,u;
-Symbol qe,qu,gew,sw,cw,gs;
+Symbol qe,qu,gew,sw,cw,gs,ch;
 Symbol cF,cA;
 Symbol s12,s13,s14,s15;
 Symbol s21,s23,s24,s25;
