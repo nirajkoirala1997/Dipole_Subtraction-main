@@ -41,4 +41,4 @@ AutoDeclare Symbol s,t,u;
 Symbol d;
 
 Dimension NF;
-vector p1,p2,p3,p4,p5,p6,q,nn,nv,k1,k2;
+vector p1,p2,p3,p4,p5,p6,q,nn,nv,k1,k2,n1,n2,n3;

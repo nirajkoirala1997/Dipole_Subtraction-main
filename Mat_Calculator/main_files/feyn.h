@@ -1,4 +1,4 @@
-#procedure feynrules(amp)
+#procedure feynrules
 
 #do i=1,10
 id in(upq(-`i',p1?)) =  U(six`i',p1,mu)*df(cifx`i',p1);
@@ -154,20 +154,13 @@ id Vx(x1?,x2?,UPQupqph,-`i',-`j',-`k',p1?,p2?,p3?) = (i_)*qu*G(six`i',six`j',lix
 #do j=1,10
 #do k=1,10
 
-id Vx(x1?,x2?,UPQupqglu,`i',`j',`k',p1?,p2?,p3?) = (i_)*gs*G(si`i',si`j',li`k')*T(cif`i',cif`j',ci`k');
-
-id Vx(x1?,x2?,UPQupqglu,`i',`j',-`k',p1?,p2?,p3?) = (i_)*gs*G(si`i',si`j',lix`k')*T(cif`i',cif`j',cix`k');
-
-id Vx(x1?,x2?,UPQupqglu,`i',-`j',`k',p1?,p2?,p3?) = (i_)*gs*G(si`i',six`j',li`k')*T(cif`i',cifx`j',ci`k');
-
-id Vx(x1?,x2?,UPQupqglu,`i',-`j',-`k',p1?,p2?,p3?) = (i_)*gs*G(si`i',six`j',lix`k')*T(cif`i',cifx`j',cix`k');
-
-id Vx(x1?,x2?,UPQupqglu,-`i',`j',`k',p1?,p2?,p3?) = (i_)*gs*G(six`i',si`j',li`k')*T(cifx`i',cif`j',ci`k');
-
-id Vx(x1?,x2?,UPQupqglu,-`i',`j',-`k',p1?,p2?,p3?) = (i_)*gs*G(six`i',si`j',lix`k')*T(cifx`i',cif`j',cix`k');
-
-id Vx(x1?,x2?,UPQupqglu,-`i',-`j',`k',p1?,p2?,p3?) = (i_)*gs*G(six`i',six`j',li`k')*T(cifx`i',cifx`j',ci`k');
-
+id Vx(x1?,x2?,UPQupqglu, `i', `j', `k',p1?,p2?,p3?) = (i_)*gs*G( si`i', si`j', li`k')*T( cif`i', cif`j', ci`k');
+id Vx(x1?,x2?,UPQupqglu, `i', `j',-`k',p1?,p2?,p3?) = (i_)*gs*G( si`i', si`j',lix`k')*T( cif`i', cif`j',cix`k');
+id Vx(x1?,x2?,UPQupqglu, `i',-`j', `k',p1?,p2?,p3?) = (i_)*gs*G( si`i',six`j', li`k')*T( cif`i',cifx`j', ci`k');
+id Vx(x1?,x2?,UPQupqglu, `i',-`j',-`k',p1?,p2?,p3?) = (i_)*gs*G( si`i',six`j',lix`k')*T( cif`i',cifx`j',cix`k');
+id Vx(x1?,x2?,UPQupqglu,-`i', `j', `k',p1?,p2?,p3?) = (i_)*gs*G(six`i', si`j', li`k')*T(cifx`i', cif`j', ci`k');
+id Vx(x1?,x2?,UPQupqglu,-`i', `j',-`k',p1?,p2?,p3?) = (i_)*gs*G(six`i', si`j',lix`k')*T(cifx`i', cif`j',cix`k');
+id Vx(x1?,x2?,UPQupqglu,-`i',-`j', `k',p1?,p2?,p3?) = (i_)*gs*G(six`i',six`j', li`k')*T(cifx`i',cifx`j', ci`k');
 id Vx(x1?,x2?,UPQupqglu,-`i',-`j',-`k',p1?,p2?,p3?) = (i_)*gs*G(six`i',six`j',lix`k')*T(cifx`i',cifx`j',cix`k');
 
 #enddo

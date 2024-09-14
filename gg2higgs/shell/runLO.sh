@@ -14,6 +14,7 @@ home_path=$(pwd)
 cd $home_path
 cp ../run.machine.dat ../trash/broken/input_${timestamp}_LO.dat
 cp ../output_files.dat ../trash/broken/input2_${timestamp}_LO.dat
+cp ../param_card.dat ../trash/broken/input3_${timestamp}_LO.dat
 
 
 # Compile the file to update summary data
@@ -29,7 +30,7 @@ make
 # Results are now ready we can combine the data of tee to the output files.
 cd $home_path
 cd ../summary/compare
-./tee_the_data_${timestamp}_LO.o "output_${timestamp}.LO" 'LO' "input_${timestamp}_LO.dat" "input2_${timestamp}_LO.dat"
+./tee_the_data_${timestamp}_LO.o "output_${timestamp}.LO" 'LO' "input_${timestamp}_LO.dat" "input2_${timestamp}_LO.dat" "input3_${timestamp}_LO.dat"
 
 # This executable and input data is no more required
 rm -f "tee_the_data_${timestamp}_LO.o" 

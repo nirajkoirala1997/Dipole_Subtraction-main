@@ -1,0 +1,20 @@
+output= 'uU2uU_LO.dat';
+style= 'form_v1.sty';
+
+model= 'QCDGRHIGGS';
+in= upq[p1], UPQ[p2];
+out= upq[p3], UPQ[p4];
+loops= 0;
+loop_momentum=k;
+options= notadpole, nosnail, onshell;
+*true = vsum[gs, 1, 2];
+*false = vsum[kap,2,2];
+*false = vsum[ew, 1, 2];
+*true = vsum[ew, 1, 2];
+*true = vsum[kap, 1, 2];
+*true = vsum[kq, 1, 2];
+
+* To remove qcd vertex only at oneloop
+*true = vsum[gs, 1, 1];
+* To keep qcd vertex only at oneloop
+*style= 'xmldraw.sty';

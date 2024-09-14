@@ -4,7 +4,7 @@ id Bgr(li1?,li2?,li3?,li4?,k1?)=
                         (d_(li2,li4)-flag*k1(li2)*k1(li4)/s)
                        +(d_(li1,li4)-flag*k1(li1)*k1(li4)/s)*
                         (d_(li2,li3)-flag*k1(li2)*k1(li3)/s)
-                   -2/3*(d_(li1,li2) -flag*k1(li1)*k1(li2)/s)*
+                   -2/3*(d_(li1,li2)-flag*k1(li1)*k1(li2)/s)*
                         (d_(li3,li4)-flag*k1(li3)*k1(li4)/s);
 .sort
 id Cgr(li1?,li2?,li3?,li4?)=

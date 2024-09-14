@@ -1,0 +1,27 @@
+#
+# style file for FORM manipulation v1
+# 
+# K. Hasegawa, 6 May 2010
+#
+<prologue>
+<command_loop><command_line_loop>* <command_data><end><end>*
+<diagram>
+*
+* Diagrams
+*
+*--#[[ d<diagram_index>:
+*
+
+l Rq =
+    <in_loop>in(<field>(<field_index>,<momentum>))*<end>
+    <out_loop>ou(<field>(<field_index>,<momentum>))*<end>
+     <minus><symmetry_factor>*
+<propagator_loop>    [pfunct](<field_index>,<dual-field_index>,<momentum>,[m])*
+<end><vertex_loop>    Vx(<vertex_index>,<vertex_degree>,<ray_loop><field><end>,
+<back><ray_loop><field_index>,<end><back>,<ray_loop><momentum>,<end><back>)*
+<end><back><back>;
+
+*
+*--#]] d<diagram_index>:
+<epilogue>
+<exit>

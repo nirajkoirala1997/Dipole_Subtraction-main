@@ -82,7 +82,7 @@ c       print*,"Enter the second file name"
 c       read*,secondfile
 
 	firstfile = 'LO.dat'
-	secondfile = 'LO2.dat'
+	secondfile = '2LO.dat'
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        
 

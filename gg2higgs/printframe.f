@@ -68,7 +68,7 @@ cc ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c
        end
 c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
 cc ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
-       subroutine printframe6(ecm,xmur,xmuf,pdf_name)
+       subroutine printframe6(ecm,xmur,xmuf,pdf_name,amH)
        implicit double precision(a-h,o-z)
 c       character*50 pdf_name
        character(len=*) pdf_name
@@ -78,6 +78,7 @@ c       character*50 pdf_name
           write(*,*)"                  mur: ",xmur
           write(*,*)"                  muf: ",xmuf
           write(*,*)"          LHAPDF used: ",pdf_name
+          write(*,*)"           Higgs mass: ",amH
           print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
        return
        end

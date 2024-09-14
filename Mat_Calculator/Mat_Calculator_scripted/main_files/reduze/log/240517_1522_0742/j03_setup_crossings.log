@@ -1,0 +1,38 @@
+
+Date: Fri May 17 15:22:07 2024
+
+
+conditional: false
+
+
+Setting up crossings for kinematics ''
+Crossing equivalence: '' -> ''
+External legs:
+  external leg 1 is incoming, has momenta p1 and mass 0
+  external leg 2 is incoming, has momenta p2 and mass 0
+  external leg 3 is outgoing, has momenta p2+p1 and mass s
+Rules to replace scalar products by kinematic invariants:
+  SP(p1,p1) -> 0
+  SP(p2,p2) -> 0
+  SP(p2,p1) -> 1/2*s
+Permutations of external legs (before completing):
+[]
+[[1, 2]]
+Discarding invalid crossings due to numeric kinematic invariants:
+discarded 0 crossings
+Completing the permutations:
+Permutations of external legs:
+[]
+[[1, 2]]
+Generating crossings:
+  generated crossing [[1, 2]]
+Number of crossings (identity included): 2
+Crossing equivalence: 'x12' -> ''
+Crossing equivalence: '' -> ''
+No crossings file defined
+Crossing equivalence: '' -> ''
+Created default crossings for kinematics ''
+
+Saving crossings.
+
+Job done (total time: 0 s)

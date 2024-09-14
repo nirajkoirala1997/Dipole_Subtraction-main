@@ -1,0 +1,23 @@
+
+---
+  jobs:
+    - reduce_sectors:
+        sector_selection:
+          select_recursively: [[F1,15]]
+        identities:
+          ibp:
+            - { r: [t, 4], s: [0, 2] }       ## keep it to max s for full reduction
+          lorentz:
+            - { r: [t, t], s: [0, 3] }
+    - select_reductions:
+        input_file: "integrals.reduze"
+        output_file: "integrals.tmp"
+        notfound_file: "int_not_reducedsecror5"
+    - reduce_files: # just for final clean up
+        equation_files: ["integrals.tmp"]
+        output_file: "integrals.sol"
+    - export:
+        input_file: "integrals.sol"
+        output_file: "sector5rules.m"   
+        output_format: "form"
+

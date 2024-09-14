@@ -18,7 +18,7 @@ Vector p1,p2,p3,p4,p5,p6,p7,p8,p45,p35,l1,l2,q;
 ***************
 * GAUGE CHECK *
 ***************
-Vector nn,nv,nm;
+Vector nn,nv,nm,n1,n2,n3;
 
 *****************
 * LORENTZ INDEX *
@@ -123,4 +123,4 @@ AutoDeclare Symbol s,t,u;
 Symbol propA,propB,propC,propD;
 Symbol k11,k12;
 AutoDeclare Symbol F1,F1x12,F1x123,F1x124,F2,F3,F1x132,F1;
-Symbol flag,flag1;
+Symbol flag,flag1,flag2;

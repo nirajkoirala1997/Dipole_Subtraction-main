@@ -1,0 +1,12 @@
+output= 'uUtTH4.qgraf' ;
+style= 'form_v1.sty' ;
+model= 'QCDGRHIGGS';
+in= u[p1], U[p2];
+out= t[p3], T[p4], H[q];
+loops= 6;
+loop_momentum= k;
+options=  notadpole, nosnail, onshell;
+true = iprop[H, 0, 0];
+true = vsum[gs, 9, 9];
+true = vsum[kap, 0, 0];
+true = vsum[CH, 1, 1];

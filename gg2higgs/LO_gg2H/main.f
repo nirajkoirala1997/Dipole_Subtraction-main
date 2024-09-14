@@ -44,6 +44,7 @@ c--------------------------------------------
 
       open(unit=10,file='../param_card.dat',status='unknown')    
       read (10,*) ge       ! [ 1/Alpha_ew ]
+      read (10,*) amh      ! Higgs mass  
       close(10)
 
       open(unit=15,file='../run.machine.dat',status='unknown')
@@ -96,7 +97,7 @@ c      am1 = 0.51099895000d-3
       am3=0d0
       am4=0d0
       am5=0d0
-      amh = 125.0d0
+c      amh = 125.0d0
       leg=0
       ! energy
       s=ecm*ecm
@@ -112,7 +113,7 @@ c      am1 = 0.51099895000d-3
 
       call printframe1(pt1,its1)   ! vegas points print 
 	xmur = 125d0/2d0
-      call printframe6(ecm,xmur,xmur,pdf_name)
+      call printframe6(ecm,xmur,xmur,pdf_name,amH)
 
 c      print*,'  '
 c      print*,"Press 1 to initialise VEGAS:"

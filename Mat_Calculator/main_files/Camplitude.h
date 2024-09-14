@@ -13,7 +13,7 @@ Local ampc=
 +ampc`i'
 #enddo
 ;
-#call feynrules(ampc)
+#call feynrules
 .sort
 id i_=-i_;
 id G(si1?,si2?,?a)=G(si2,si1,?a);

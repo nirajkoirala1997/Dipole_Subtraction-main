@@ -18,23 +18,23 @@ c      parameter (hbarc2=0.3894d12)    ! in Fb
       external Born_gg2H
        
         xa = yy(1)
-c        xb = yy(2) 
+c       xb = yy(2) 
         xb = amh**2d0/xa/s
         sp = xa*xb*S
        rsp = dsqrt(sp)
 
       call kinvar1(xa,xb,p1,p2,p3)
-
       scale = 2d0 * dot(p1,p2) 
-	eps = 0.05d0
-	Q2 = dsqrt(scale)
-	Qmin = amh - eps
-	Qmax = amh + eps
+
+c	eps = 0.05d0
+c	Q2 = dsqrt(scale)
+c	Qmin = amh - eps
+c	Qmax = amh + eps
 
 c	if(Q2 .ge. Qmin .and. Q2 .le. Qmax) then
-c      xmuf=scale / 2d0
-      xmuf= 62.5d0
-      xmur=scale / 2d0
+      xmuf=dsqrt(scale) / 2d0
+      xmur= xmuf
+
       xmu2=xmuf**2
 
       call pdf(xa,xmuf,f1)
@@ -43,12 +43,12 @@ c      xmuf=scale / 2d0
 
       sig= xl(2)*Born_gg2H(0,p1,p2,p3)
 
-       pi_1 = 0.5d0*rsp
-       flux = 4d0*pi_1*rsp
-       xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
-c       xnorm=hbarc2/8d0/(2d0*Pi)**4/flux/2d0/eps
+      pi_1 = 0.5d0*rsp
+      flux = 4d0*pi_1*rsp
+      xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
 
-        flo1_LO  = xnorm*sig
+      flo1_LO  = xnorm*sig
+
 c      else
 c        flo1_LO= 0d0
 c      endif

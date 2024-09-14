@@ -1,13 +1,11 @@
-#procedure mandelsterm(mat)
+#procedure mandelsterm
 
 id p1.p2 =  s/2;
-id p3.p4 =  s/2 - mH^2/2;
-id p1.p3 = -t/2 + mH^2/2;
-id p2.p4 = -t/2 + mH^2/2;
-id p1.p4 = -u/2 + mH^2/2;
-id p2.p3 = -u/2 + mH^2/2;
-*id p1.p5 = s15/2;
-
+id p3.p4 =  s/2;
+id p1.p3 = -t/2;
+id p2.p4 = -t/2;
+id p1.p4 = -u/2;
+id p2.p3 = -u/2;
 
 #endprocedure
 

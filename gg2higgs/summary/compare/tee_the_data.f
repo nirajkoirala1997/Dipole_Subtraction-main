@@ -3,12 +3,13 @@
        character*50 name,filename,run_tag,filename_tmp,mode,tag
      .  ,filename1,filename2,filename3,filename4
      .  ,filename5,filename6,filename7,filename8,input_machine
-     .  ,input_files
+     .  ,input_files,input_param
 
        call get_command_argument(1,mode)
        call get_command_argument(2,tag)
        call get_command_argument(3,input_machine)
        call get_command_argument(4,input_files)
+       call get_command_argument(5,input_param)
 
        open(unit=15,file='../../trash/broken/'//trim(input_machine)
      .     ,status='unknown')
@@ -22,6 +23,12 @@
        read (15,*) iprint        ! to print data in file
        close(15)
 
+       open(unit=16,file='../../trash/broken/'//trim(input_param)
+     .     ,status='unknown')
+       read (16,*) ge           ! machine id Tevatron:0 LHC:1
+       read (16,*) amh          ! ecm
+       close(16)
+ 
 c       open(unit=20,file='../../output_files.dat',status='unknown')
        open(unit=20,file='../../trash/broken/'//trim(input_files)
      .     ,status='unknown')

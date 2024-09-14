@@ -1,0 +1,105 @@
+* output= 'uU2uU_LO.dat';
+* style= 'form_v1.sty';
+* model= 'QCDGRHIGGS';
+* in= upq[p1], UPQ[p2];
+* out= upq[p3], UPQ[p4];
+* loops= 0;
+* loop_momentum=k;
+* options= notadpole, nosnail, onshell;
+*
+*
+* Diagrams
+*
+*--#[ d1:
+*
+
+l Rq =
+    in(upq(-1,p1))*in(UPQ(-3,p2))*
+    ou(upq(-2,p3))*ou(UPQ(-4,p4))*
+     1*
+    GG(1,2,-p1-p2,0)*
+    Vx(1,3,UPQupqglu,-3,-1,1,p2,p1,-p1-p2)*
+    Vx(2,3,UPQupqglu,-2,-4,2,-p3,-p4,p1+p2);
+
+*
+*--#] d1:
+*
+* Diagrams
+*
+*--#[ d2:
+*
+
+l Rq =
+    in(upq(-1,p1))*in(UPQ(-3,p2))*
+    ou(upq(-2,p3))*ou(UPQ(-4,p4))*
+     1*
+    AA(1,2,-p1-p2,0)*
+    Vx(1,3,UPQupqph,-3,-1,1,p2,p1,-p1-p2)*
+    Vx(2,3,UPQupqph,-2,-4,2,-p3,-p4,p1+p2);
+
+*
+*--#] d2:
+*
+* Diagrams
+*
+*--#[ d3:
+*
+
+l Rq =
+    in(upq(-1,p1))*in(UPQ(-3,p2))*
+    ou(upq(-2,p3))*ou(UPQ(-4,p4))*
+     1*
+    zz(1,2,-p1-p2,mz)*
+    Vx(1,3,UPQupqzbos,-3,-1,1,p2,p1,-p1-p2)*
+    Vx(2,3,UPQupqzbos,-2,-4,2,-p3,-p4,p1+p2);
+
+*
+*--#] d3:
+*
+* Diagrams
+*
+*--#[ d4:
+*
+
+l Rq =
+    in(upq(-1,p1))*in(UPQ(-3,p2))*
+    ou(upq(-2,p3))*ou(UPQ(-4,p4))*
+     -1*
+    GG(1,2,-p1+p3,0)*
+    Vx(1,3,UPQupqglu,-2,-1,1,-p3,p1,-p1+p3)*
+    Vx(2,3,UPQupqglu,-3,-4,2,p2,-p4,p1-p3);
+
+*
+*--#] d4:
+*
+* Diagrams
+*
+*--#[ d5:
+*
+
+l Rq =
+    in(upq(-1,p1))*in(UPQ(-3,p2))*
+    ou(upq(-2,p3))*ou(UPQ(-4,p4))*
+     -1*
+    AA(1,2,-p1+p3,0)*
+    Vx(1,3,UPQupqph,-2,-1,1,-p3,p1,-p1+p3)*
+    Vx(2,3,UPQupqph,-3,-4,2,p2,-p4,p1-p3);
+
+*
+*--#] d5:
+*
+* Diagrams
+*
+*--#[ d6:
+*
+
+l Rq =
+    in(upq(-1,p1))*in(UPQ(-3,p2))*
+    ou(upq(-2,p3))*ou(UPQ(-4,p4))*
+     -1*
+    zz(1,2,-p1+p3,mz)*
+    Vx(1,3,UPQupqzbos,-2,-1,1,-p3,p1,-p1+p3)*
+    Vx(2,3,UPQupqzbos,-3,-4,2,p2,-p4,p1-p3);
+
+*
+*--#] d6:

@@ -1,6 +1,6 @@
 # Compiler and flags
 FC = gfortran
-FFLAGS = -O -w
+FFLAGS = -O -w 
 LDFLAGS = -lc -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/Cuba-4.2.2 -lcuba
 export LHFLAGS = $(shell lhapdf-config --ldflags)
 
@@ -38,7 +38,7 @@ $(OBJDIR):
 $(OBJDIR)/%.o: $(SRCDIR)/%.f $(LOCALSRCDIR)/%.f| $(OBJDIR)
 	$(FC) $(FFLAGS) -c $< -o $@
 
-# Pattern rule for all Fortran files in $(SRCDIR) and $(SRCDIR)/slicing_files
+# Pattern rule for all Fortran files in $(SRCDIR)
 $(OBJDIR)/%.o: $(SRCDIR)/%.f | $(OBJDIR)
 	$(FC) $(FFLAGS) -c $< -o $@
 
@@ -53,4 +53,3 @@ $(OBJDIR)/%.o: %.f | $(OBJDIR)
 # Clean target
 clean:
 	rm -f $(OBJDIR)/*.o core *~ $(PROG)
-

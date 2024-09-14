@@ -1,0 +1,9 @@
+     
+      ! gg->gamma+gamma   BSM
+
+      sigma(4)=u**4 + t**4
+      sigma(4)=sigma(4)*ak2D**2/16.d0/(n*n-1.0d0) 
+                                ! symm. factor 1/2 due to 2 identical 
+                                ! photons is included here
+c
+       sigma = (u**4 + t**4)*ak2D**2/128d0

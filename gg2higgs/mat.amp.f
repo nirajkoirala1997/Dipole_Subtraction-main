@@ -32,25 +32,20 @@ c         IF(k .eq. 1)  CF = -1d0               !leg 1 reduced born k=1
 c         IF(k .eq. 2)  CF = -1d0               !Leg 2 reduced born k=2
 
           NA = 8
-          AL = alphasPDF(xmur)
+c          AL = alphasPDF(xmur)
+          AL = alphasPDF(amh/2d0)
           AS = AL/4d0/PI
 
-           v = 246d0
+            v = 246d0
            ch = -4d0*AS/3d0/v 
-c           ch = AL/3d0/Pi/v*(1d0+11d0*AL/4d0/PI)
           ch2 = ch * ch
-c         Born_gg2h= 1d0/2d0*ch**2d0*s12**2d0  ! I have removed negative sign from here
-c         Born_gg2h= 7d0/4d0*ch**2d0*amh**4d0  ! I have removed negative sign from here
 c          Born_gg2h= 16d0*AL**2*amh**4d0/(3d0*PI*v)**2/NA
-c          Born_gg2h= - 1d0/6d0*NA*As**2d0*s12**2d0/PI**2d0/v**2d0/NA/NA
-c          Born_gg2h= - 3d0/2d0*CH2*s12**2d0/NA 
-c         Born_gg2h=-1d0/2d0*NA*ch**2d0*amh**4 
-           Born_gg2h= AL**2/72d0/PI/v**2/8d0
-c           Born_gg2h= AL
+c           Born_gg2h= AS**2/72d0/PI/v**2/8d0
+
 c 3manually.frm :amp=  1/36*PI^-4*v^-2*s12^2*AL^2    .or.  amp= 1d0/2d0*s12**2*ch2
-c          Born_gg2H =  1d0/36d0*s12**2*AL**2/PI**4*v**2
 c          Born_gg2H =  1d0/2d0*s12**2*ch2
-c          Born_gg2H =  1d0/2d0*amh**4*ch2
+          Born_gg2H =  1d0/2d0*amh**4*ch2
+
        return
        end
 c---------------------------------------------------------------------
