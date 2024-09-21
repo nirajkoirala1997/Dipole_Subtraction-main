@@ -35,6 +35,8 @@ c      call mrseb(y,scale1,mode,upv,dnv,usea,dsea,str,chm,bot,glu)
       df(0)=glu
 c      endif
 
+	call evolvePDF(x,scale,df)
+
 c. Ctq3Pds returns (momentum distribution) = x*(probability distribution)
 c. so divide by x to get PROBABILITY distribution
       do 10 i=-6,6

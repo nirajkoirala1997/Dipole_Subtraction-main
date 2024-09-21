@@ -30,7 +30,8 @@ C     --------------------------------------------------------
       e=DSQRT(4.0D0*PI*aem)
       
       xnf=nf
-      alps=alfas2(xmur,lambda,xnf)
+c      alps=alfas2(xmur,lambda,xnf)
+      alps=0.118d0
       as=alps/4.0D0/PI
 
       rp34=DSQRT(P34)  

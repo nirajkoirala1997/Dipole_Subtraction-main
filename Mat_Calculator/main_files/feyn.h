@@ -241,8 +241,53 @@ id Vx(x1?,x2?,glugluglu,-`i',-`j',-`k',p1?,p2?,p3?) = gs*f(cix`i',cix`j',cix`k')
 ***********************
 * FOUR Gluon Vertex *
 ***********************
+#do i=1,10
+#do j=1,10
+#do k=1,10
+#do l=1,10
 
+id Vx(x1?,x2?,gluglugluglu,`i',`j',`k',`l',p1?,p2?,p3?,p4?) =
+ -gs^2*(f(ci`i',ci`j',ci`k')*f(ci`i',ci`k',ci`l')*(d_(li`j',li`k')*d_(li`i',li`l')-d_(li`j',li`l')*d_(li`k',li`i'))
+      + f(ci`j',ci`k',ci`l')*f(ci`i',ci`j',ci`l')*(d_(li`i',li`j')*d_(li`k',li`l')-d_(li`i',li`l')*d_(li`j',li`k'))                
+      + f(ci`k',ci`l',ci`i')*f(ci`j',ci`k',ci`l')*(d_(li`i',li`k')*d_(li`j',li`l')-d_(li`k',li`i')*d_(li`l',li`j')));
 
+id Vx(x1?,x2?,gluglugluglu,-`i',-`j',-`k',-`l', p1?, p2?, p3?, p4?) = 
+ -gs^2*(f(cix`i',cix`j',cix`k')*f(cix`i',cix`k',cix`l')*(d_(lix`j',lix`k')*d_(lix`i',lix`l')-d_(lix`j',lix`l')*d_(lix`k',lix`i'))
+      + f(cix`j',cix`k',cix`l')*f(cix`i',cix`j',cix`l')*(d_(lix`i',lix`j')*d_(lix`k',lix`l')-d_(lix`i',lix`l')*d_(lix`j',lix`k'))
+      + f(cix`k',cix`l',cix`i')*f(cix`i',cix`k',cix`l')*(d_(lix`i',lix`k')*d_(lix`j',lix`l')-d_(lix`k',lix`i')*d_(lix`l',lix`j')));
+
+#enddo
+#enddo
+#enddo
+#enddo
+
+*
+************************
+** FOUR Gluon Vertex *
+************************
+**Vx(1,4,gluglugluglu,-1,-3,-2,-4,p1,p2,-p3,-p4)
+*
+*#do i = 1,10
+*#do j = 1,10
+*#do k = 1,10
+*#do l = 1,10
+*id Vx(x1?,x2?,gluglugluglu,`i',`j',`k',`l',p1?,p2?,p3?,p4?) = 
+*                     -i_*gs^2*(f(ci`i',ci`k',cii`i')*f(ci`j',ci`l',cii`i')*(d_(li`i',li`j')*d_(li`k',li`l')-d_(li`i',li`l')*d_(li`k',li`j')) 
+*               	            + f(ci`i',ci`j',cii`i')*f(ci`k',ci`l',cii`i')*(d_(li`i',li`k')*d_(li`j',li`l')-d_(li`i',li`j')*d_(li`k',li`l'))
+*                            + f(ci`i',ci`l',cii`i')*f(ci`k',ci`j',cii`i')*(d_(li`i',li`l')*d_(li`j',li`k')-d_(li`i',li`j')*d_(li`l',li`k'))) ;
+*
+*id Vx(x1?,x2?,gluglugluglu,-`i',-`j',-`k',-`l',p1?,p2?,p3?,p4?) = 
+*                     -i_*gs^2*(f(cix`i',cix`k',cixi`i')*f(cix`j',cix`l',cixi`i')*(d_(lix`i',lix`j')*d_(lix`k',lix`l')-d_(lix`i',lix`l')*d_(lix`k',lix`j')) 
+*               	            + f(cix`i',cix`j',cixi`i')*f(cix`k',cix`l',cixi`i')*(d_(lix`i',lix`k')*d_(lix`j',lix`l')-d_(lix`i',lix`j')*d_(lix`k',lix`l'))
+*                            + f(cix`i',cix`l',cixi`i')*f(cix`k',cix`j',cixi`i')*(d_(lix`i',lix`l')*d_(lix`j',lix`k')-d_(lix`i',lix`j')*d_(lix`l',lix`k'))) ;
+*
+*#enddo
+*#enddo
+*#enddo
+*#enddo
+*
+*
+*
 
 **************************
 * g g H effective vertex *

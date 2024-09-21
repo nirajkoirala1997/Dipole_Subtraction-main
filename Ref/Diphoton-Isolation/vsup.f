@@ -347,7 +347,7 @@ C          always come here to initialize
       L = MOD(KL, 169)
       WRITE(6,'(A,I10,2X,2I10)') ' RM48 INITIALIZED:',IJKL,NTOT,NTOT2
 c      WRITE(ilabel,'(A,I10,2X,2I10)') ' RM48 INITIALIZED:',
-     &      IJKL,NTOT,NTOT2
+c     &      IJKL,NTOT,NTOT2
 CCC      PRINT '(A,4I10)', '   I,J,K,L= ',I,J,K,L
       ONE = 1.
       HALF = 0.5

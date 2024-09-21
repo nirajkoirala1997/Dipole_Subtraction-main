@@ -18,7 +18,7 @@ C----------------------------------------------------------------------C
       double precision lambda
 
       parameter (pi=3.14159265358979d0)
-      character * 25 machine
+      character * 25 machine,pdf_name
       character * 25 pref,pref1,pref2,pref3,pref4
       character * 25 prefa,prefb,prefc,prefd 
       character * 25 fname,fname1,fname2,fname3,fname4,fname5 
@@ -118,7 +118,8 @@ C----------------------------------------------------------------------C
 
       !input data card
       open(unit=10,file='run.vegas.dat',status='unknown')    
-      read (10,*) npt1          ! vegas points     LO 2 body
+      read (10,*) pt1          ! vegas points     LO 2 body
+	npt1 = pt1
       read (10,*) its1          ! vegas iterations LO 2 body
       read (10,*) npt2          ! vegas points     NLO 2 body
       read (10,*) its2          ! vegas iterations NLO 2 body
@@ -294,6 +295,10 @@ c      write (*,*) 'M1 = ',aam1,'GeV'
       write (*,*) 'lam_T     = ',xl3
       endif
 
+      pdf_name = 'MMHT2014nlo68cl'
+      call initpdfsetbyname(pdf_name)
+      Call initPDF(0)
+
         do mq = mqmin, mqmax
 
       ! energy
@@ -342,11 +347,14 @@ c     show what alphas this lambda gives at the Z mass
       write (*,*)'two loop :',alphas2
       write (*,*) '___________________'
 
+        do i = imin, imax
+
         if(norder.eq.0)then
-        i=imin
+c        i=imin
         write(*,*)'LO'
         elseif (norder.eq.1) then
-        i=imin
+c        i=imin
+
                 if(id.eq.0)then
                 deltas=(1.0d-6)*(10**i)
                 deltac=1d-05
@@ -400,11 +408,12 @@ c    ----------------------SM------------------------
 
 c        call class(iirank, io_min, io_max, is_min, is_max)
 
-        io_min = 1
-        io_max = 1
+        io_min = 2
+        io_max = 2
 
-        is_min = 1
-        is_max = 2
+        is_min = 3
+        is_max = 3
+c        is_max = 2
 
         do io = io_min,io_max
 
@@ -488,6 +497,7 @@ c================================================================
  111    continue
 
 
+        enddo           ! i variation
         enddo           ! is variation
         enddo           ! io variation
 
@@ -564,7 +574,21 @@ c================================================================
 
 
        mf = mfmin
-       i=imin
+       do i=imin,imax
+
+        if(id.eq.0)then
+                deltas=(1.0d-6)*(10**i)
+                deltac=1d-05
+        elseif(id.eq.1)then
+                deltas=1d-03
+                deltac=(1d-6)*(5**i)
+        elseif(id.eq.2)then
+                deltas = (1.0d-5)*(10**i)
+                deltac = deltas/afac
+        else
+        write(*,*) 'unknown id: ',id
+        stop
+        endif
 
        do mq=mqmin,mqmax
 
@@ -630,6 +654,7 @@ C Total contribution at NLO
 
         endif           ! 'norder' endif
         enddo           !  'mq' enddo 
+        enddo           !  'i' enddo 
         enddo           !  io variation for model
 
  106   format((f8.2),2(i2),4(g15.4))

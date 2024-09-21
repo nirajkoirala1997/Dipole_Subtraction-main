@@ -4,13 +4,18 @@
 echo "Particle identities:"
 echo "  UPQ  = upbar"
 echo "  upq  = up"
+echo "  elt  = electron"
+echo "  ELT  = positron"
 echo "  glu  = gluon"
 echo "  gh   = Ghost"
 echo "  GH   = anti-ghost"
+echo "  ph   = photon"
+echo "  muo  = muon"
+echo "  MUO  = anti-muon"
 echo ""
 
 # Define valid particles
-VALID_PARTICLES=("glu" "upq" "UPQ" "gh" "GH")
+VALID_PARTICLES=("glu" "upq" "UPQ" "gh" "GH" "ph" "elt" "ELT" "muo" "MUO")
 
 # Function to check if a particle is valid
 is_valid_particle() {
@@ -58,6 +63,17 @@ if ! validate_process "$process"; then
     echo "Please correct the errors and try again."
     exit 1
 fi
+
+# Ask the user if they want to modify the model
+read -p "Do you want to review or modify the model QCDGRHIGGS file? (yes/no): " modify_model_choice
+
+while [[ "$modify_model_choice" == "yes" ]]; do
+    # Open the model file in vi editor for modification
+    vi Qgraf/QCDGRHIGGS
+
+    # Ask the user if they want to review it again
+    read -p "Do you want to review or modify the model QCDGRHIGGS file again? (yes/no): " modify_model_choice
+done
 
 
 # Ask the user what kind of process to generate: Born, 1-real, or 1-loop
@@ -121,7 +137,7 @@ case $process_choice in
 esac
 
 # Create the process directory name (e.g., gg2uU)
-process_dir=$(echo $process | sed 's/\bglu\b/g/g' | sed 's/\bupq\b/u/g' | sed 's/\bUPQ\b/U/g' | sed 's/>/2/g' | tr -d ' ')
+process_dir=$(echo $process | sed 's/\bmuo\b/m/g' | sed 's/\bMUO\b/M/g' | sed 's/\bELT\b/E/g' | sed 's/\belt\b/e/g' | sed 's/\bglu\b/g/g' | sed 's/\bupq\b/u/g' | sed 's/\bUPQ\b/U/g' | sed 's/>/2/g' | tr -d ' ')
 
 # Generate output file name based on the process and suffix
 output_filename="$process_dir$suffix"

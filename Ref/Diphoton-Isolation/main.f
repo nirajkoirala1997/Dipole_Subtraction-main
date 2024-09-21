@@ -443,7 +443,7 @@ c-------No qg contribution at LO --------------------------------
         sub_lo(mq,mf,i,io,is) = 0d0
         else
         call brm48i(40,0,0) ! initialize random number generator
-c        call vsup(3,npt1,its1,flo2,ai_lo,sd,chi2)
+        call vsup(3,npt1,its1,flo2,ai_lo,sd,chi2)
         sub_lo(mq,mf,i,io,is) = ai_lo
         endif
 c----------------------------------------------------------------
@@ -461,7 +461,7 @@ c-------No qg contribution at LO --------------------------------
         sub_lo2(mq,mf,i,io,is) = 0d0
         else
         call brm48i(40,0,0) ! initialize random number generator
-c        call vsup(3,npt1,its1,flo2,ai_lo2,sd,chi2)
+        call vsup(3,npt1,its1,flo2,ai_lo2,sd,chi2)
         sub_lo2(mq,mf,i,io,is) = ai_lo2
         endif
 c----------------------------------------------------------------

@@ -10,8 +10,8 @@ c     Common Parameters
       parameter (ncomp = 1)
       parameter (userdata = 0)
       parameter (nvec = 1)
-      parameter (epsrel = 1D-1)
-      parameter (epsabs = 1D-18)
+      parameter (epsrel = 1D-5)
+      parameter (epsabs = 0d0)
       parameter (last = 4)
       parameter (flags = 1)
       parameter (seed = 0)
@@ -24,7 +24,7 @@ c     Suave Specific Parameters
       integer*8 spin
       character*(*) statefile 
       parameter (nstart = 1000)
-      parameter (nincrease = 1000)
+      parameter (nincrease = 100000)
       parameter (nbatch = 1000)
       parameter (gridno = 0)
       parameter (statefile = " ")

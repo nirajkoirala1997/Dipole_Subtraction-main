@@ -60,11 +60,12 @@ c     soft
 
 c           write(*,*)'Input parameters',io,is,tot
 c           itest=i15+i25+is5
-           itest=i15+i25+is5
+           itest=i15+i25
            if(itest.eq.0)then         
            call SMQQB(s12,t13,t14,t15,t23,t24,t25,s34,s35,s45,SSMQQB)
            qqb_sm=SSMQQB
-           tot=tot+xl(1)*qqb_sm
+c           tot=tot+xl(1)*qqb_sm
+           tot=16d0/81d0*qqb_sm
            endif
 
         elseif (is.eq.2) then           ! qg NLO3

@@ -155,6 +155,7 @@ c	u = -15000d0
 c      Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
 c     .            s23)))/(3d0*s12**2)
 	Born_uU2eE =1* e**4*qu2*(t*t + u*u)/s/s/3d0
+c	Born_uU2eE = e**4*qu2*(t/u + u/t)/3d0
 c	write(*,*)'sig = ',Born_uU2eE
 c	stop
        return

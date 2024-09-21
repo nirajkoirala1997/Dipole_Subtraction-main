@@ -20,6 +20,7 @@
 
       call kinvar2(yy,xinvmass,y1,y2,Y,cst1,cst2,pt1,pt2)
       call cuts0(xinvmass,y1,y2,Y,cst1,cst2,pt1,pt2,ipass)
+c	ipass = 1
 
       xa     = yy(1)
       xb     = yy(2)
@@ -38,7 +39,6 @@ c     &  .and. pobl.ge.clow .and. pobl.le.chigh
 c           write(*,*)scale, pobl, cf
             xmuf=xc1*scale
             xmur=xc2*scale
-
             call pdf(xa,xmuf,f1)
             call pdf(xb,xmuf,f2)
             call sig_lo2(f1,f2,p1,p2,p3,p4,sig)

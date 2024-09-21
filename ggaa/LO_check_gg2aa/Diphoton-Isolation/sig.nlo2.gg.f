@@ -56,5 +56,3 @@ c      tot=(xl1(4)+xl2(4))*sig(4) ! for testing compton diagrams
 
       return
       end
-
-

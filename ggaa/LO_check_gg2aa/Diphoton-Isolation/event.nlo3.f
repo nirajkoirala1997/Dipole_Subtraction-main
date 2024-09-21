@@ -1,10 +1,17 @@
       function fnlo3(yy,vwgt)
       implicit double precision (a-h,o-z)
+      REAL*8 INTIME,OUTTIME
       dimension yy(10)
       dimension f1(-6:6),f2(-6:6)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),q(0:3)
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=0.3894d9)
+
+c      data p1/ 0.5000000D+03, 0d0, 0d0, 0.5000000D+03/
+c      data p2/ 0.5000000D+03, 0d0, 0d0,-0.5000000D+03/
+c      data p3/0.4585788D+03,0.1694532D+03,0.3796537D+03,-0.1935025D+03/
+c      data p4/0.3640666D+03,-0.1832987D+02,-0.3477043D+03,0.1063496D+03/
+c      data p5/0.1773546D+03,-0.1511234D+03,-0.3194936D+02,0.8715287D+02/
 
       common/energy/s
       common/momenta5/p1,p2,p3,p4,p5
@@ -48,7 +55,17 @@ c            write(*,*)'Q =', xinvmass
 
             call pdf(xa,xmuf,f1)
             call pdf(xb,xmuf,f2)
+            CALL CPU_TIME(INTIME)
             call sig_nlo3(f1,f2,p1,p2,p3,p4,p5,sig)
+            CALL CPU_TIME(OUTTIME)
+c            write(*,*)'TIME = ',OUTTIME-INTIME
+
+c            write(*,*)'p1 = ',p1
+c            write(*,*)'p2 = ',p2
+c            write(*,*)'p3 = ',p3
+c            write(*,*)'p4 = ',p4
+c            write(*,*)'p5 = ',p5
+c            write(*,*)'sig = ',sig
 
             xnorm=hbarc2*v/64/4/4/(pi**4)
 c            vwgt=1.0d0

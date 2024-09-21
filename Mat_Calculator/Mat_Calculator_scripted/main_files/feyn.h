@@ -1,14 +1,33 @@
 #procedure feynrules
 
 #do i=1,10
+
+*******************************************
+** Rules For Quarks  in the external leg **
+*******************************************
+
 id in(upq(-`i',p1?)) =  U(six`i',p1,mu)*df(cifx`i',p1);
 id in(UPQ(-`i',p1?)) = VB(six`i',p1,mu)*df(cifx`i',p1);
+
+****************************************
+** Rule For Gluon in the external leg **
+****************************************
+
 id in(glu(-`i',p1?)) = epolglu(lix`i',p1,0)*db(cix`i',p1);
+
+*******************************************
+** Rules For leptons in the external leg **
+*******************************************
+
+id in(elt(-`i',p1?)) =  U(six`i',p1,me);
+id in(ELT(-`i',p1?)) = VB(six`i',p1,me);
+id in(MUO(-`i',p1?)) = VB(six`i',p1,mm);
+id in(muo(-`i',p1?)) =  U(six`i',p1,mm);
+
 #enddo
-*id in(glu(-1,p1)) = epolglu(lix1,p1,0)*db(cix1,p1);
-*id in(glu(-3,p2)) = epolglu(lix3,p2,0)*db(cix3,p2);
 
 #do i=1,10
+id ou(muo(-`i',p1?)) = UB(six`i',p1,mm)*1/2;
 id ou(elt(-`i',p1?)) = UB(six`i',p1,me)*1/2;
 id ou(ELT(-`i',p1?)) = V(six`i',p1,me)*1/2;
 id ou(upq(-`i',p1?)) = UB(six`i',p1,mu)*df(cifx`i',p1);
@@ -25,25 +44,42 @@ id ou(Hig(-`i',p1?)) = 1;
 #do j=1,10
 #do k=1,10
 
-id Vx(x1?,x2?,ELTeltph,`i',`j',`k',p1?,p2?,p3?) = (i_)*qe*G(si`i',si`j',li`k');
+id Vx(x1?,x2?,ELTeltph,  `i' ,  `j' ,  `k' , p1?,p2?,p3?) = (i_)*qe*G( si`i' ,  si`j' ,  li`k');
+id Vx(x1?,x2?,ELTeltph,  `i' ,  `j' , -`k' , p1?,p2?,p3?) = (i_)*qe*G( si`i' ,  si`j' , lix`k');
+id Vx(x1?,x2?,ELTeltph,  `i' , -`j' ,  `k' , p1?,p2?,p3?) = (i_)*qe*G( si`i' , six`j' ,  li`k');
+id Vx(x1?,x2?,ELTeltph,  `i' , -`j' , -`k' , p1?,p2?,p3?) = (i_)*qe*G( si`i' , six`j' , lix`k');
+id Vx(x1?,x2?,ELTeltph, -`i' ,  `j' ,  `k' , p1?,p2?,p3?) = (i_)*qe*G(six`i' ,  si`j' ,  li`k');
+id Vx(x1?,x2?,ELTeltph, -`i' ,  `j' , -`k' , p1?,p2?,p3?) = (i_)*qe*G(six`i' ,  si`j' , lix`k');
+id Vx(x1?,x2?,ELTeltph, -`i' , -`j' ,  `k' , p1?,p2?,p3?) = (i_)*qe*G(six`i' , six`j' ,  li`k');
+id Vx(x1?,x2?,ELTeltph, -`i' , -`j' , -`k' , p1?,p2?,p3?) = (i_)*qe*G(six`i' , six`j' , lix`k');
 
-id Vx(x1?,x2?,ELTeltph,`i',`j',-`k',p1?,p2?,p3?) = (i_)*qe*G(si`i',si`j',lix`k');
-
-id Vx(x1?,x2?,ELTeltph,`i',-`j',`k',p1?,p2?,p3?) = (i_)*qe*G(si`i',six`j',li`k');
-
-id Vx(x1?,x2?,ELTeltph,`i',-`j',-`k',p1?,p2?,p3?) = (i_)*qe*G(si`i',six`j',lix`k');
-
-id Vx(x1?,x2?,ELTeltph,-`i',`j',`k',p1?,p2?,p3?) = (i_)*qe*G(six`i',si`j',li`k');
-
-id Vx(x1?,x2?,ELTeltph,-`i',`j',-`k',p1?,p2?,p3?) = (i_)*qe*G(six`i',si`j',lix`k');
-
-id Vx(x1?,x2?,ELTeltph,-`i',-`j',`k',p1?,p2?,p3?) = (i_)*qe*G(six`i',six`j',li`k');
-
-id Vx(x1?,x2?,ELTeltph,-`i',-`j',-`k',p1?,p2?,p3?) = (i_)*qe*G(six`i',six`j',lix`k');
 
 #enddo
 #enddo
 #enddo
+
+
+**************************
+* Muon-Photon Vertex *
+**************************
+#do i=1,10
+#do j=1,10
+#do k=1,10
+
+id Vx(x1?,x2?,MUOmuoph, `i' ,`j', `k',p1?,p2?,p3?) = (i_)*qe*G( si`i', si`j', li`k');
+id Vx(x1?,x2?,MUOmuoph, `i' ,`j',-`k',p1?,p2?,p3?) = (i_)*qe*G( si`i', si`j',lix`k');
+id Vx(x1?,x2?,MUOmuoph, `i',-`j', `k',p1?,p2?,p3?) = (i_)*qe*G( si`i',six`j', li`k');
+id Vx(x1?,x2?,MUOmuoph, `i',-`j',-`k',p1?,p2?,p3?) = (i_)*qe*G( si`i',six`j',lix`k');
+id Vx(x1?,x2?,MUOmuoph,-`i', `j', `k',p1?,p2?,p3?) = (i_)*qe*G(six`i', si`j', li`k');
+id Vx(x1?,x2?,MUOmuoph,-`i', `j',-`k',p1?,p2?,p3?) = (i_)*qe*G(six`i', si`j',lix`k');
+id Vx(x1?,x2?,MUOmuoph,-`i',-`j', `k',p1?,p2?,p3?) = (i_)*qe*G(six`i',six`j', li`k');
+id Vx(x1?,x2?,MUOmuoph,-`i',-`j',-`k',p1?,p2?,p3?) = (i_)*qe*G(six`i',six`j',lix`k');
+
+
+#enddo
+#enddo
+#enddo
+
 
 
 **********************************

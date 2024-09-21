@@ -17,6 +17,7 @@
 [upq, UPQ, - ; pfunct= 'QQ', m= mu ]
 *[c, C, - ; pfunct= 'QQ', m= mc ]
 [elt, ELT, - ; pfunct= 'EE', m= me ]
+[muo, MUO, - ; pfunct= 'MU', m= muo_m ]
 [top, TOP, - ; pfunct= 'TT', m= mt ]
 [glu, glu, + ; pfunct= 'GG', m= 0 ]
 [ph, ph, + ; pfunct= 'AA', m= 0 ]
@@ -34,14 +35,15 @@
 
 [UPQ,upq,glu; gs=1, kap=0, CH=0 ,ew=0,kg = 0]
 [ELT,elt,ph; gs=0, kap=1, CH=0 ,ew=0,kg = 0]
+[MUO,muo,ph; gs=0, kap=1, CH=0 ,ew=0,kg = 0]
 [UPQ,upq,ph; gs=0, kap=1, CH=0 ,ew=0,kg = 0]
 [TOP,top,glu; gs=1, kap=0, CH=0 ,ew=0,kg = 0]
 [glu,glu,glu; gs=1, kap=0, CH=0,ew=0,kg = 0]
 [glu,glu,glu,glu; gs=2, kap=0, CH=0,ew=0,kg = 0]
 [GH,gh,glu; gs=1, kap=0, CH=0,ew=0,kg = 0]
-[ELT,elt,zbos; gs=0,kap=0, CH=0, ew=1,kg = 0]
+*[ELT,elt,zbos; gs=0,kap=0, CH=0, ew=1,kg = 0]
 [UPQ,upq,zbos; gs=0,kap=0, CH=0, ew=1,kg = 0]
-[glu,glu,gr; gs=0,kap=0,CH=0, ew = 0, kg=1]
+*[glu,glu,gr; gs=0,kap=0,CH=0, ew = 0, kg=1]
 [ph,ph,gr; gs=0,kap=0,CH=0, ew = 0, kg=1]
 
 *[C,c,g; gs=1, kap=0, CH=0 ,ew=0,kg = 0]
@@ -54,7 +56,7 @@
 **---------------------------
 *
 *** for tTH coupling close this off as it does genetate additional ggH vertex
-[glu,glu,Hig; gs=0, kap=0, CH=1, ew=0,kg=0]
+*[glu,glu,Hig; gs=0, kap=0, CH=1, ew=0,kg=0]
 *[g,g,g,H; gs=1, kap=0, CH=1,ew=0]
 *[g,g,g,g,H; gs=2, kap=0, CH=1,ew=0]
 *

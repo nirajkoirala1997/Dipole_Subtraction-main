@@ -15,7 +15,7 @@ Autodeclare Index cif=NF,cifx=NF;
 
 
 
-Symbols n,a,nf,NF,NA,[cF-cA/6];
+Symbols n,a,nf,NF,NA,[cF-cA/6],flag1,flag;
 Symbol s,t,u;
 Symbol m,mz,me,mu,mH;   
 Symbol Eez,Uuz,Eeph,Uuph,Uug;
@@ -42,3 +42,4 @@ Symbol d;
 
 Dimension NF;
 vector p1,p2,p3,p4,p5,p6,q,nn,nv,k1,k2,n1,n2,n3;
+Symbol p1nv,p2nv,p3nv,p4nv;

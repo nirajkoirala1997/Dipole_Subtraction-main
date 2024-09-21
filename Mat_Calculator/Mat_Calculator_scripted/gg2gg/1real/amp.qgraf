@@ -1,0 +1,979 @@
+* output= 'gg2gg_1R.dat';
+* style= 'form_v1.sty';
+* model= 'QCDGRHIGGS';
+* in= glu[p1], glu[p2];
+* out= glu[p3], glu[p4], glu[p5];
+* loops= 0;
+* loop_momentum=k;
+* options= notadpole, nosnail, onshell;
+*
+*
+* Diagrams
+*
+*--#[ d1:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1-p2,0)*
+    Vx(1,3,glugluglu,-1,-3,1,p1,p2,-p1-p2)*
+    Vx(2,4,gluglugluglu,-2,-4,-6,2,-p3,-p4,-p5,p1+p2);
+
+*
+*--#] d1:
+*
+* Diagrams
+*
+*--#[ d2:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p3,0)*
+    Vx(1,3,glugluglu,-1,-2,1,p1,-p3,-p1+p3)*
+    Vx(2,4,gluglugluglu,-3,-4,-6,2,p2,-p4,-p5,p1-p3);
+
+*
+*--#] d2:
+*
+* Diagrams
+*
+*--#[ d3:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p4,0)*
+    Vx(1,3,glugluglu,-1,-4,1,p1,-p4,-p1+p4)*
+    Vx(2,4,gluglugluglu,-3,-2,-6,2,p2,-p3,-p5,p1-p4);
+
+*
+*--#] d3:
+*
+* Diagrams
+*
+*--#[ d4:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p5,0)*
+    Vx(1,3,glugluglu,-1,-6,1,p1,-p5,-p1+p5)*
+    Vx(2,4,gluglugluglu,-3,-2,-4,2,p2,-p3,-p4,p1-p5);
+
+*
+*--#] d4:
+*
+* Diagrams
+*
+*--#[ d5:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p2+p3,0)*
+    Vx(1,3,glugluglu,-3,-2,1,p2,-p3,-p2+p3)*
+    Vx(2,4,gluglugluglu,-1,-4,-6,2,p1,-p4,-p5,p2-p3);
+
+*
+*--#] d5:
+*
+* Diagrams
+*
+*--#[ d6:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p2+p4,0)*
+    Vx(1,3,glugluglu,-3,-4,1,p2,-p4,-p2+p4)*
+    Vx(2,4,gluglugluglu,-1,-2,-6,2,p1,-p3,-p5,p2-p4);
+
+*
+*--#] d6:
+*
+* Diagrams
+*
+*--#[ d7:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p2+p5,0)*
+    Vx(1,3,glugluglu,-3,-6,1,p2,-p5,-p2+p5)*
+    Vx(2,4,gluglugluglu,-1,-2,-4,2,p1,-p3,-p4,p2-p5);
+
+*
+*--#] d7:
+*
+* Diagrams
+*
+*--#[ d8:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,p3+p4,0)*
+    Vx(1,3,glugluglu,-2,-4,1,-p3,-p4,p3+p4)*
+    Vx(2,4,gluglugluglu,-1,-3,-6,2,p1,p2,-p5,-p3-p4);
+
+*
+*--#] d8:
+*
+* Diagrams
+*
+*--#[ d9:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,p3+p5,0)*
+    Vx(1,3,glugluglu,-2,-6,1,-p3,-p5,p3+p5)*
+    Vx(2,4,gluglugluglu,-1,-3,-4,2,p1,p2,-p4,-p3-p5);
+
+*
+*--#] d9:
+*
+* Diagrams
+*
+*--#[ d10:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,p4+p5,0)*
+    Vx(1,3,glugluglu,-4,-6,1,-p4,-p5,p4+p5)*
+    Vx(2,4,gluglugluglu,-1,-3,-2,2,p1,p2,-p3,-p4-p5);
+
+*
+*--#] d10:
+*
+* Diagrams
+*
+*--#[ d11:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1-p2,0)*
+    GG(3,4,p3+p4,0)*
+    Vx(1,3,glugluglu,-1,-3,1,p1,p2,-p1-p2)*
+    Vx(2,3,glugluglu,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,glugluglu,-6,2,4,-p5,p1+p2,-p3-p4);
+
+*
+*--#] d11:
+*
+* Diagrams
+*
+*--#[ d12:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1-p2,0)*
+    gr(3,4,p3+p4,mgr)*
+    Vx(1,3,glugluglu,-1,-3,1,p1,p2,-p1-p2)*
+    Vx(2,3,gluglugr,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,gluglugr,-6,2,4,-p5,p1+p2,-p3-p4);
+
+*
+*--#] d12:
+*
+* Diagrams
+*
+*--#[ d13:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1-p2,mgr)*
+    GG(3,4,p3+p4,0)*
+    Vx(1,3,gluglugr,-1,-3,1,p1,p2,-p1-p2)*
+    Vx(2,3,glugluglu,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,gluglugr,-6,4,2,-p5,-p3-p4,p1+p2);
+
+*
+*--#] d13:
+*
+* Diagrams
+*
+*--#[ d14:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1-p2,0)*
+    GG(3,4,p3+p5,0)*
+    Vx(1,3,glugluglu,-1,-3,1,p1,p2,-p1-p2)*
+    Vx(2,3,glugluglu,-2,-6,3,-p3,-p5,p3+p5)*
+    Vx(3,3,glugluglu,-4,2,4,-p4,p1+p2,-p3-p5);
+
+*
+*--#] d14:
+*
+* Diagrams
+*
+*--#[ d15:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1-p2,0)*
+    gr(3,4,p3+p5,mgr)*
+    Vx(1,3,glugluglu,-1,-3,1,p1,p2,-p1-p2)*
+    Vx(2,3,gluglugr,-2,-6,3,-p3,-p5,p3+p5)*
+    Vx(3,3,gluglugr,-4,2,4,-p4,p1+p2,-p3-p5);
+
+*
+*--#] d15:
+*
+* Diagrams
+*
+*--#[ d16:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1-p2,mgr)*
+    GG(3,4,p3+p5,0)*
+    Vx(1,3,gluglugr,-1,-3,1,p1,p2,-p1-p2)*
+    Vx(2,3,glugluglu,-2,-6,3,-p3,-p5,p3+p5)*
+    Vx(3,3,gluglugr,-4,4,2,-p4,-p3-p5,p1+p2);
+
+*
+*--#] d16:
+*
+* Diagrams
+*
+*--#[ d17:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1-p2,0)*
+    GG(3,4,p4+p5,0)*
+    Vx(1,3,glugluglu,-1,-3,1,p1,p2,-p1-p2)*
+    Vx(2,3,glugluglu,-4,-6,3,-p4,-p5,p4+p5)*
+    Vx(3,3,glugluglu,-2,2,4,-p3,p1+p2,-p4-p5);
+
+*
+*--#] d17:
+*
+* Diagrams
+*
+*--#[ d18:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1-p2,0)*
+    gr(3,4,p4+p5,mgr)*
+    Vx(1,3,glugluglu,-1,-3,1,p1,p2,-p1-p2)*
+    Vx(2,3,gluglugr,-4,-6,3,-p4,-p5,p4+p5)*
+    Vx(3,3,gluglugr,-2,2,4,-p3,p1+p2,-p4-p5);
+
+*
+*--#] d18:
+*
+* Diagrams
+*
+*--#[ d19:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1-p2,mgr)*
+    GG(3,4,p4+p5,0)*
+    Vx(1,3,gluglugr,-1,-3,1,p1,p2,-p1-p2)*
+    Vx(2,3,glugluglu,-4,-6,3,-p4,-p5,p4+p5)*
+    Vx(3,3,gluglugr,-2,4,2,-p3,-p4-p5,p1+p2);
+
+*
+*--#] d19:
+*
+* Diagrams
+*
+*--#[ d20:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p3,0)*
+    GG(3,4,-p2+p4,0)*
+    Vx(1,3,glugluglu,-1,-2,1,p1,-p3,-p1+p3)*
+    Vx(2,3,glugluglu,-3,-4,3,p2,-p4,-p2+p4)*
+    Vx(3,3,glugluglu,-6,2,4,-p5,p1-p3,p2-p4);
+
+*
+*--#] d20:
+*
+* Diagrams
+*
+*--#[ d21:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p3,0)*
+    gr(3,4,-p2+p4,mgr)*
+    Vx(1,3,glugluglu,-1,-2,1,p1,-p3,-p1+p3)*
+    Vx(2,3,gluglugr,-3,-4,3,p2,-p4,-p2+p4)*
+    Vx(3,3,gluglugr,-6,2,4,-p5,p1-p3,p2-p4);
+
+*
+*--#] d21:
+*
+* Diagrams
+*
+*--#[ d22:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1+p3,mgr)*
+    GG(3,4,-p2+p4,0)*
+    Vx(1,3,gluglugr,-1,-2,1,p1,-p3,-p1+p3)*
+    Vx(2,3,glugluglu,-3,-4,3,p2,-p4,-p2+p4)*
+    Vx(3,3,gluglugr,-6,4,2,-p5,p2-p4,p1-p3);
+
+*
+*--#] d22:
+*
+* Diagrams
+*
+*--#[ d23:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p3,0)*
+    GG(3,4,-p2+p5,0)*
+    Vx(1,3,glugluglu,-1,-2,1,p1,-p3,-p1+p3)*
+    Vx(2,3,glugluglu,-3,-6,3,p2,-p5,-p2+p5)*
+    Vx(3,3,glugluglu,-4,2,4,-p4,p1-p3,p2-p5);
+
+*
+*--#] d23:
+*
+* Diagrams
+*
+*--#[ d24:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p3,0)*
+    gr(3,4,-p2+p5,mgr)*
+    Vx(1,3,glugluglu,-1,-2,1,p1,-p3,-p1+p3)*
+    Vx(2,3,gluglugr,-3,-6,3,p2,-p5,-p2+p5)*
+    Vx(3,3,gluglugr,-4,2,4,-p4,p1-p3,p2-p5);
+
+*
+*--#] d24:
+*
+* Diagrams
+*
+*--#[ d25:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1+p3,mgr)*
+    GG(3,4,-p2+p5,0)*
+    Vx(1,3,gluglugr,-1,-2,1,p1,-p3,-p1+p3)*
+    Vx(2,3,glugluglu,-3,-6,3,p2,-p5,-p2+p5)*
+    Vx(3,3,gluglugr,-4,4,2,-p4,p2-p5,p1-p3);
+
+*
+*--#] d25:
+*
+* Diagrams
+*
+*--#[ d26:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p3,0)*
+    GG(3,4,p4+p5,0)*
+    Vx(1,3,glugluglu,-1,-2,1,p1,-p3,-p1+p3)*
+    Vx(2,3,glugluglu,-4,-6,3,-p4,-p5,p4+p5)*
+    Vx(3,3,glugluglu,-3,2,4,p2,p1-p3,-p4-p5);
+
+*
+*--#] d26:
+*
+* Diagrams
+*
+*--#[ d27:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p3,0)*
+    gr(3,4,p4+p5,mgr)*
+    Vx(1,3,glugluglu,-1,-2,1,p1,-p3,-p1+p3)*
+    Vx(2,3,gluglugr,-4,-6,3,-p4,-p5,p4+p5)*
+    Vx(3,3,gluglugr,-3,2,4,p2,p1-p3,-p4-p5);
+
+*
+*--#] d27:
+*
+* Diagrams
+*
+*--#[ d28:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1+p3,mgr)*
+    GG(3,4,p4+p5,0)*
+    Vx(1,3,gluglugr,-1,-2,1,p1,-p3,-p1+p3)*
+    Vx(2,3,glugluglu,-4,-6,3,-p4,-p5,p4+p5)*
+    Vx(3,3,gluglugr,-3,4,2,p2,-p4-p5,p1-p3);
+
+*
+*--#] d28:
+*
+* Diagrams
+*
+*--#[ d29:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p4,0)*
+    GG(3,4,-p2+p3,0)*
+    Vx(1,3,glugluglu,-1,-4,1,p1,-p4,-p1+p4)*
+    Vx(2,3,glugluglu,-3,-2,3,p2,-p3,-p2+p3)*
+    Vx(3,3,glugluglu,-6,2,4,-p5,p1-p4,p2-p3);
+
+*
+*--#] d29:
+*
+* Diagrams
+*
+*--#[ d30:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p4,0)*
+    gr(3,4,-p2+p3,mgr)*
+    Vx(1,3,glugluglu,-1,-4,1,p1,-p4,-p1+p4)*
+    Vx(2,3,gluglugr,-3,-2,3,p2,-p3,-p2+p3)*
+    Vx(3,3,gluglugr,-6,2,4,-p5,p1-p4,p2-p3);
+
+*
+*--#] d30:
+*
+* Diagrams
+*
+*--#[ d31:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1+p4,mgr)*
+    GG(3,4,-p2+p3,0)*
+    Vx(1,3,gluglugr,-1,-4,1,p1,-p4,-p1+p4)*
+    Vx(2,3,glugluglu,-3,-2,3,p2,-p3,-p2+p3)*
+    Vx(3,3,gluglugr,-6,4,2,-p5,p2-p3,p1-p4);
+
+*
+*--#] d31:
+*
+* Diagrams
+*
+*--#[ d32:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p4,0)*
+    GG(3,4,-p2+p5,0)*
+    Vx(1,3,glugluglu,-1,-4,1,p1,-p4,-p1+p4)*
+    Vx(2,3,glugluglu,-3,-6,3,p2,-p5,-p2+p5)*
+    Vx(3,3,glugluglu,-2,2,4,-p3,p1-p4,p2-p5);
+
+*
+*--#] d32:
+*
+* Diagrams
+*
+*--#[ d33:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p4,0)*
+    gr(3,4,-p2+p5,mgr)*
+    Vx(1,3,glugluglu,-1,-4,1,p1,-p4,-p1+p4)*
+    Vx(2,3,gluglugr,-3,-6,3,p2,-p5,-p2+p5)*
+    Vx(3,3,gluglugr,-2,2,4,-p3,p1-p4,p2-p5);
+
+*
+*--#] d33:
+*
+* Diagrams
+*
+*--#[ d34:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1+p4,mgr)*
+    GG(3,4,-p2+p5,0)*
+    Vx(1,3,gluglugr,-1,-4,1,p1,-p4,-p1+p4)*
+    Vx(2,3,glugluglu,-3,-6,3,p2,-p5,-p2+p5)*
+    Vx(3,3,gluglugr,-2,4,2,-p3,p2-p5,p1-p4);
+
+*
+*--#] d34:
+*
+* Diagrams
+*
+*--#[ d35:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p4,0)*
+    GG(3,4,p3+p5,0)*
+    Vx(1,3,glugluglu,-1,-4,1,p1,-p4,-p1+p4)*
+    Vx(2,3,glugluglu,-2,-6,3,-p3,-p5,p3+p5)*
+    Vx(3,3,glugluglu,-3,2,4,p2,p1-p4,-p3-p5);
+
+*
+*--#] d35:
+*
+* Diagrams
+*
+*--#[ d36:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p4,0)*
+    gr(3,4,p3+p5,mgr)*
+    Vx(1,3,glugluglu,-1,-4,1,p1,-p4,-p1+p4)*
+    Vx(2,3,gluglugr,-2,-6,3,-p3,-p5,p3+p5)*
+    Vx(3,3,gluglugr,-3,2,4,p2,p1-p4,-p3-p5);
+
+*
+*--#] d36:
+*
+* Diagrams
+*
+*--#[ d37:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1+p4,mgr)*
+    GG(3,4,p3+p5,0)*
+    Vx(1,3,gluglugr,-1,-4,1,p1,-p4,-p1+p4)*
+    Vx(2,3,glugluglu,-2,-6,3,-p3,-p5,p3+p5)*
+    Vx(3,3,gluglugr,-3,4,2,p2,-p3-p5,p1-p4);
+
+*
+*--#] d37:
+*
+* Diagrams
+*
+*--#[ d38:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p5,0)*
+    GG(3,4,-p2+p3,0)*
+    Vx(1,3,glugluglu,-1,-6,1,p1,-p5,-p1+p5)*
+    Vx(2,3,glugluglu,-3,-2,3,p2,-p3,-p2+p3)*
+    Vx(3,3,glugluglu,-4,2,4,-p4,p1-p5,p2-p3);
+
+*
+*--#] d38:
+*
+* Diagrams
+*
+*--#[ d39:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p5,0)*
+    gr(3,4,-p2+p3,mgr)*
+    Vx(1,3,glugluglu,-1,-6,1,p1,-p5,-p1+p5)*
+    Vx(2,3,gluglugr,-3,-2,3,p2,-p3,-p2+p3)*
+    Vx(3,3,gluglugr,-4,2,4,-p4,p1-p5,p2-p3);
+
+*
+*--#] d39:
+*
+* Diagrams
+*
+*--#[ d40:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1+p5,mgr)*
+    GG(3,4,-p2+p3,0)*
+    Vx(1,3,gluglugr,-1,-6,1,p1,-p5,-p1+p5)*
+    Vx(2,3,glugluglu,-3,-2,3,p2,-p3,-p2+p3)*
+    Vx(3,3,gluglugr,-4,4,2,-p4,p2-p3,p1-p5);
+
+*
+*--#] d40:
+*
+* Diagrams
+*
+*--#[ d41:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p5,0)*
+    GG(3,4,-p2+p4,0)*
+    Vx(1,3,glugluglu,-1,-6,1,p1,-p5,-p1+p5)*
+    Vx(2,3,glugluglu,-3,-4,3,p2,-p4,-p2+p4)*
+    Vx(3,3,glugluglu,-2,2,4,-p3,p1-p5,p2-p4);
+
+*
+*--#] d41:
+*
+* Diagrams
+*
+*--#[ d42:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p5,0)*
+    gr(3,4,-p2+p4,mgr)*
+    Vx(1,3,glugluglu,-1,-6,1,p1,-p5,-p1+p5)*
+    Vx(2,3,gluglugr,-3,-4,3,p2,-p4,-p2+p4)*
+    Vx(3,3,gluglugr,-2,2,4,-p3,p1-p5,p2-p4);
+
+*
+*--#] d42:
+*
+* Diagrams
+*
+*--#[ d43:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1+p5,mgr)*
+    GG(3,4,-p2+p4,0)*
+    Vx(1,3,gluglugr,-1,-6,1,p1,-p5,-p1+p5)*
+    Vx(2,3,glugluglu,-3,-4,3,p2,-p4,-p2+p4)*
+    Vx(3,3,gluglugr,-2,4,2,-p3,p2-p4,p1-p5);
+
+*
+*--#] d43:
+*
+* Diagrams
+*
+*--#[ d44:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p5,0)*
+    GG(3,4,p3+p4,0)*
+    Vx(1,3,glugluglu,-1,-6,1,p1,-p5,-p1+p5)*
+    Vx(2,3,glugluglu,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,glugluglu,-3,2,4,p2,p1-p5,-p3-p4);
+
+*
+*--#] d44:
+*
+* Diagrams
+*
+*--#[ d45:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p1+p5,0)*
+    gr(3,4,p3+p4,mgr)*
+    Vx(1,3,glugluglu,-1,-6,1,p1,-p5,-p1+p5)*
+    Vx(2,3,gluglugr,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,gluglugr,-3,2,4,p2,p1-p5,-p3-p4);
+
+*
+*--#] d45:
+*
+* Diagrams
+*
+*--#[ d46:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p1+p5,mgr)*
+    GG(3,4,p3+p4,0)*
+    Vx(1,3,gluglugr,-1,-6,1,p1,-p5,-p1+p5)*
+    Vx(2,3,glugluglu,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,gluglugr,-3,4,2,p2,-p3-p4,p1-p5);
+
+*
+*--#] d46:
+*
+* Diagrams
+*
+*--#[ d47:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p2+p3,0)*
+    GG(3,4,p4+p5,0)*
+    Vx(1,3,glugluglu,-3,-2,1,p2,-p3,-p2+p3)*
+    Vx(2,3,glugluglu,-4,-6,3,-p4,-p5,p4+p5)*
+    Vx(3,3,glugluglu,-1,2,4,p1,p2-p3,-p4-p5);
+
+*
+*--#] d47:
+*
+* Diagrams
+*
+*--#[ d48:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p2+p3,0)*
+    gr(3,4,p4+p5,mgr)*
+    Vx(1,3,glugluglu,-3,-2,1,p2,-p3,-p2+p3)*
+    Vx(2,3,gluglugr,-4,-6,3,-p4,-p5,p4+p5)*
+    Vx(3,3,gluglugr,-1,2,4,p1,p2-p3,-p4-p5);
+
+*
+*--#] d48:
+*
+* Diagrams
+*
+*--#[ d49:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p2+p3,mgr)*
+    GG(3,4,p4+p5,0)*
+    Vx(1,3,gluglugr,-3,-2,1,p2,-p3,-p2+p3)*
+    Vx(2,3,glugluglu,-4,-6,3,-p4,-p5,p4+p5)*
+    Vx(3,3,gluglugr,-1,4,2,p1,-p4-p5,p2-p3);
+
+*
+*--#] d49:
+*
+* Diagrams
+*
+*--#[ d50:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p2+p4,0)*
+    GG(3,4,p3+p5,0)*
+    Vx(1,3,glugluglu,-3,-4,1,p2,-p4,-p2+p4)*
+    Vx(2,3,glugluglu,-2,-6,3,-p3,-p5,p3+p5)*
+    Vx(3,3,glugluglu,-1,2,4,p1,p2-p4,-p3-p5);
+
+*
+*--#] d50:
+*
+* Diagrams
+*
+*--#[ d51:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p2+p4,0)*
+    gr(3,4,p3+p5,mgr)*
+    Vx(1,3,glugluglu,-3,-4,1,p2,-p4,-p2+p4)*
+    Vx(2,3,gluglugr,-2,-6,3,-p3,-p5,p3+p5)*
+    Vx(3,3,gluglugr,-1,2,4,p1,p2-p4,-p3-p5);
+
+*
+*--#] d51:
+*
+* Diagrams
+*
+*--#[ d52:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p2+p4,mgr)*
+    GG(3,4,p3+p5,0)*
+    Vx(1,3,gluglugr,-3,-4,1,p2,-p4,-p2+p4)*
+    Vx(2,3,glugluglu,-2,-6,3,-p3,-p5,p3+p5)*
+    Vx(3,3,gluglugr,-1,4,2,p1,-p3-p5,p2-p4);
+
+*
+*--#] d52:
+*
+* Diagrams
+*
+*--#[ d53:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p2+p5,0)*
+    GG(3,4,p3+p4,0)*
+    Vx(1,3,glugluglu,-3,-6,1,p2,-p5,-p2+p5)*
+    Vx(2,3,glugluglu,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,glugluglu,-1,2,4,p1,p2-p5,-p3-p4);
+
+*
+*--#] d53:
+*
+* Diagrams
+*
+*--#[ d54:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    GG(1,2,-p2+p5,0)*
+    gr(3,4,p3+p4,mgr)*
+    Vx(1,3,glugluglu,-3,-6,1,p2,-p5,-p2+p5)*
+    Vx(2,3,gluglugr,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,gluglugr,-1,2,4,p1,p2-p5,-p3-p4);
+
+*
+*--#] d54:
+*
+* Diagrams
+*
+*--#[ d55:
+*
+
+l Rq =
+    in(glu(-1,p1))*in(glu(-3,p2))*
+    ou(glu(-2,p3))*ou(glu(-4,p4))*ou(glu(-6,p5))*
+     1*
+    gr(1,2,-p2+p5,mgr)*
+    GG(3,4,p3+p4,0)*
+    Vx(1,3,gluglugr,-3,-6,1,p2,-p5,-p2+p5)*
+    Vx(2,3,glugluglu,-2,-4,3,-p3,-p4,p3+p4)*
+    Vx(3,3,gluglugr,-1,4,2,p1,-p3-p4,p2-p5);
+
+*
+*--#] d55:

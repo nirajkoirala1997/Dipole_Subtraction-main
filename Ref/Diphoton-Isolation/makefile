@@ -93,6 +93,9 @@ couplings.o: couplings.f
 cone.o: cone.f
 	$(F77) $(FFLAGS) cone.f
 
+copy_objects:
+	cp *.o objects/
+
 run.x: main.o vsup.o dilog.o event.lo2.o sm.gg.amp.o bsm.gg.intf.amp.o event.nlo2.o event.nlo3.o sig.lo2.o sig.nlo2.qqb.o sig.nlo2.qg.o sig.nlo2.gg.o sig.nlo3.o pdf.o parton_new.o misc.o lum.o pdft.Pqq.o pdft.Pgg.o pdft.Pqg.o pdft.Pgq.o kin.var.lo2.o kin.var.nlo3.o cuts.lo2.o cuts.nlo2.o cuts.nlo3.o matrix.lo.o vrt.col.sft.o couplings.o cone.o diphoton7.o
 
 	$(LINK) -o run.x main.o vsup.o dilog.o event.lo2.o sm.gg.amp.o bsm.gg.intf.amp.o event.nlo2.o event.nlo3.o sig.lo2.o sig.nlo2.qqb.o sig.nlo2.qg.o sig.nlo2.gg.o sig.nlo3.o pdf.o parton_new.o misc.o lum.o pdft.Pqq.o pdft.Pgg.o pdft.Pqg.o pdft.Pgq.o kin.var.lo2.o kin.var.nlo3.o cuts.lo2.o cuts.nlo2.o cuts.nlo3.o matrix.lo.o vrt.col.sft.o couplings.o cone.o diphoton7.o $(LFLAGS) $(LHFLAGS) 

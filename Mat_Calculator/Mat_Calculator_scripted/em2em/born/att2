@@ -1,0 +1,23 @@
+ mat =
+      1/16*phprop( - p1 + p3)^2*G(six1,six1,p1,li102,p3,li2)*G(six3,six3,p2,
+      li102,p4,li2)*qe^4 + 1/16*phprop( - p1 + p3)^2*G(six1,six1,p1,li102,p3,
+      li2)*G(six3,six3,p2,li102,li2)*mm*qe^4 + 1/16*phprop( - p1 + p3)^2*G(
+      six1,six1,p1,li102,p3,li2)*G(six3,six3,li102,p4,li2)*mm*qe^4 + 1/16*
+      phprop( - p1 + p3)^2*G(six1,six1,p1,li102,p3,li2)*G(six3,six3,li102,li2)
+      *mm^2*qe^4 + 1/16*phprop( - p1 + p3)^2*G(six1,six1,p1,li102,li2)*G(six3,
+      six3,p2,li102,p4,li2)*me*qe^4 + 1/16*phprop( - p1 + p3)^2*G(six1,six1,p1
+      ,li102,li2)*G(six3,six3,p2,li102,li2)*me*mm*qe^4 + 1/16*phprop( - p1 + 
+      p3)^2*G(six1,six1,p1,li102,li2)*G(six3,six3,li102,p4,li2)*me*mm*qe^4 + 1/
+      16*phprop( - p1 + p3)^2*G(six1,six1,p1,li102,li2)*G(six3,six3,li102,li2)
+      *me*mm^2*qe^4 + 1/16*phprop( - p1 + p3)^2*G(six1,six1,li102,p3,li2)*G(
+      six3,six3,p2,li102,p4,li2)*me*qe^4 + 1/16*phprop( - p1 + p3)^2*G(six1,
+      six1,li102,p3,li2)*G(six3,six3,p2,li102,li2)*me*mm*qe^4 + 1/16*phprop(
+       - p1 + p3)^2*G(six1,six1,li102,p3,li2)*G(six3,six3,li102,p4,li2)*me*mm*
+      qe^4 + 1/16*phprop( - p1 + p3)^2*G(six1,six1,li102,p3,li2)*G(six3,six3,
+      li102,li2)*me*mm^2*qe^4 + 1/16*phprop( - p1 + p3)^2*G(six1,six1,li102,
+      li2)*G(six3,six3,p2,li102,p4,li2)*me^2*qe^4 + 1/16*phprop( - p1 + p3)^2*
+      G(six1,six1,li102,li2)*G(six3,six3,p2,li102,li2)*me^2*mm*qe^4 + 1/16*
+      phprop( - p1 + p3)^2*G(six1,six1,li102,li2)*G(six3,six3,li102,p4,li2)*
+      me^2*mm*qe^4 + 1/16*phprop( - p1 + p3)^2*G(six1,six1,li102,li2)*G(six3,
+      six3,li102,li2)*me^2*mm^2*qe^4;
+

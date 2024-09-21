@@ -1,49 +1,55 @@
 # Compiler and flags
 FC = gfortran
-FFLAGS = -O
+FFLAGS = -O -w 
 LDFLAGS = -lc -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/Cuba-4.2.2 -lcuba
 export LHFLAGS = $(shell lhapdf-config --ldflags)
 
+# Directories
+OBJDIR = objects
+SRCDIR = ..
+LOCALSRCDIR = .
+
 # Program and object files
 PROG = runLO
-OBJECTS = cuba.o mat.amp.o cuts.lo2.o cone.o printframe.o misc.o lum.o pdf_lha.o vsup.o integrand.o phasespace.o couplings.o
 
-# Main target
-$(PROG): $(OBJECTS) main.f
-	$(FC) main.f $(FFLAGS) -o $(PROG) $(OBJECTS) $(LIB) $(LHFLAGS) $(LDFLAGS)
+OBJECTS = $(OBJDIR)/filehandle.o \
+          $(OBJDIR)/cuba.o       \
+          $(OBJDIR)/mat.amp.o    \
+          $(OBJDIR)/cuts.lo2.o   \
+          $(OBJDIR)/cone.o       \
+          $(OBJDIR)/printframe.o \
+          $(OBJDIR)/misc.o       \
+          $(OBJDIR)/lum.o        \
+          $(OBJDIR)/pdf_lha.o    \
+          $(OBJDIR)/vsup.o       \
+          $(OBJDIR)/integrand.o  \
+          $(OBJDIR)/phasespace.o \
+          $(OBJDIR)/couplings.o
 
-# Individual object file rules
-lum.o: ../lum.f
-	$(FC) $(FFLAGS) -c ../lum.f -o lum.o
+# Main target: Build executable from object files
+$(PROG): $(OBJDIR) $(OBJECTS) $(LOCALSRCDIR)/main.f
+	$(FC) $(LOCALSRCDIR)/main.f $(FFLAGS) -o $(PROG) $(OBJECTS) $(LIB) $(LHFLAGS) $(LDFLAGS)
 
-vsup.o: ../vsup.f
-	$(FC) $(FFLAGS) -c ../vsup.f -o vsup.o
+# Create the object directory if not present.
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
 
-pdf_lha.o: ../pdf_lha.f
-	$(FC) $(FFLAGS) -c ../pdf_lha.f -o pdf_lha.o
+# Ensure the object directory exists and compile .f files into .o files
+$(OBJDIR)/%.o: $(SRCDIR)/%.f $(LOCALSRCDIR)/%.f| $(OBJDIR)
+	$(FC) $(FFLAGS) -c $< -o $@
 
-phasespace.o: ../phasespace.f
-	$(FC) $(FFLAGS) -c ../phasespace.f -o phasespace.o
+# Pattern rule for all Fortran files in $(SRCDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.f | $(OBJDIR)
+	$(FC) $(FFLAGS) -c $< -o $@
 
-misc.o: ../misc.f
-	$(FC) $(FFLAGS) -c ../misc.f -o misc.o
+# For the specific files in $(SRCDIR)/slicing_files
+$(OBJDIR)/%.o: $(SRCDIR)/slicing_files/%.f | $(OBJDIR)
+	$(FC) $(FFLAGS) -c $< -o $@
 
-printframe.o: ../printframe.f
-	$(FC) $(FFLAGS) -c ../printframe.f -o printframe.o
-
-mat.amp.o: ../mat.amp.f
-	$(FC) $(FFLAGS) -c ../mat.amp.f -o mat.amp.o
-
-couplings.o: ../slicing_files/couplings.f
-	$(FC) $(FFLAGS) -c ../slicing_files/couplings.f -o couplings.o
-
-cuts.lo2.o: ../slicing_files/cuts.lo2.f
-	$(FC) $(FFLAGS) -c ../slicing_files/cuts.lo2.f -o cuts.lo2.o
-
-cone.o: ../slicing_files/cone.f
-	$(FC) $(FFLAGS) -c ../slicing_files/cone.f -o cone.o
+# For files in the current directory 
+$(OBJDIR)/%.o: %.f | $(OBJDIR)
+	$(FC) $(FFLAGS) -c $< -o $@
 
 # Clean target
 clean:
-	rm -f *.o core *~ *.x $(PROG)
-
+	rm -f $(OBJDIR)/*.o core *~ $(PROG)

@@ -68,10 +68,9 @@ c      if (rsp .gt. xcut) then
         
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
         call cuts0(p1,p2,p3,p4,ipass)
+c	ipass =1
 
 c        print*,ipass
-
-c	  ipass = 1
 
         if (ipass .eq. 1) then 
         scale  = xinvmass

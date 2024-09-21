@@ -80,7 +80,7 @@ a`ii'=n,bb`ii'=n,cc`ii'=n,dd`ii'=n,ee`ii'=n,ff`ii'=n,gg`ii'=n,hh`ii'=n,ii`ii'=n,
       ;
 Index g5;
 
-CFunction in,ou,upq,UPQ,elt,ELT,glu,ph,gr,Hig;
+CFunction in,ou,upq,UPQ,elt,ELT,glu,ph,gr,Hig,MUO,muo;
 CFunction U,UB,V,VB,epolph,epolglu,epolmz,epolgr,hext;
 CFunction AA,Vx,zz,QQ,EE,GG,ggg,ggH,gggH;
 Cfunction phprop,zprop,fprop,gprop,Prop,Iprop,grprop;
@@ -98,8 +98,8 @@ Symbol
 x`ii',xx`ii',
 #enddo
       ;
-Symbol ELTeltzbos,UPQupqzbos,ELTeltph,UPQupqph,UPQupqglu,glugluglu,gluglugr,phphgr,glugluHig;
-Symbol m,mz,me,mu,mH,mgr;
+Symbol ELTeltzbos,UPQupqzbos,ELTeltph,UPQupqph,UPQupqglu,glugluglu,gluglugr,phphgr,glugluHig,MUOmuoph;
+Symbol m,mz,me,mu,mH,mgr,mm;
 Symbol s,t,u;
 Symbol qe,qu,gew,sw,cw,gs,ch,kg;
 Symbol cf,ca;
@@ -124,3 +124,6 @@ Symbol propA,propB,propC,propD;
 Symbol k11,k12;
 AutoDeclare Symbol F1,F1x12,F1x123,F1x124,F2,F3,F1x132,F1;
 Symbol flag,flag1,flag2;
+
+
+Symbol p3nv,p4nv,p2nv,p1nv,[-p3.nv+p1.nv+p2.nv];

@@ -16,9 +16,6 @@ c     SM AND BSM
       e=DSQRT(4.0D0*PI*ALEM)
       if (model.eq.1 .or. model.eq.2 .or. model.eq.3) then
       call coupfact(model,rp34,AK2D,AK2DINTF)
-      print*,"model,rp34,AK2D"
-      print*,model,rp34,AK2D
-      stop
       endif
 
 !qqb sm

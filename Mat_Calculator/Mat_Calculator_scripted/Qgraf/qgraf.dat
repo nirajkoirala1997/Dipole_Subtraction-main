@@ -1,9 +1,9 @@
-output= 'uU2uU_LO.dat';
+output= 'gg2gg_LO.dat';
 style= 'form_v1.sty';
 
 model= 'QCDGRHIGGS';
-in= upq[p1], UPQ[p2];
-out= upq[p3], UPQ[p4];
+in= glu[p1], glu[p2];
+out= glu[p3], glu[p4];
 loops= 0;
 loop_momentum=k;
 options= notadpole, nosnail, onshell;

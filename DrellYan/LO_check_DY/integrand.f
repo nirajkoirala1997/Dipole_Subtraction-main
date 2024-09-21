@@ -37,7 +37,7 @@ c      parameter (hbarc2=0.3894d9)  ! in pb
       rsp = dsqrt(xa*xb*s)
         
       ipass = 0
-        eps = 0.5d0
+        eps = 1.0d0
        xlow = xq - eps
       xhigh = xq + eps
 

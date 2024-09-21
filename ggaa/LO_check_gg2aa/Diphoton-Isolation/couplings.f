@@ -91,77 +91,19 @@ C THE THREE-LOOP RUNNING COUPLING CONSTANT
        IMPLICIT REAL*8 (A-H,O-Z)
        complex*8 lambdaf
        complex*8 sprop
-       common/xpar/c00,ams,amh                   ! bsm.gg.intf.amp.f (only)
-       common/add_par/xms,nd                     ! main file ✓
-       common/add_par1/acut                      ! run.add.dat read in main.f
-       common/rs_par/aam1,c0,aamh                ! run.es.dat  read in main.f
-       common/unpar/xl3,xdu,xlamu                ! run.up.dat  read in main.f
-       common/param/aem,xmur,lambda              ! usual, lambda= xlqcd2 for NLO read from run.param.dat
-       common/sparam/smass,xlam                  ! common within couplings.f only 
-       common/scalar_couplings/cph,cgl,cfe       ! common within couplings.f only 
-       common/sm_couplings/c1,c2,c3,ct,g1,g2,g3  ! common within couplings.f only 
-       common/weak/amz,amw,sw2,cw2               ! common within couplings.f only 
-       common/amfermion/amtau,amc,amb,amt        ! common within couplings.f only  
+       common/xpar/c00,ams,amh
+       common/add_par/xms,nd
+       common/add_par1/acut
+       common/rs_par/aam1,c0,aamh
+       common/unpar/xl3,xdu,xlamu
+       common/param/aem,xmur,lambda
+       common/sparam/smass,xlam
+       common/scalar_couplings/cph,cgl,cfe
+       common/sm_couplings/c1,c2,c3,ct,g1,g2,g3
+       common/weak/amz,amw,sw2,cw2
+       common/amfermion/amtau,amc,amb,amt
 
        data PI/3.141592653589793238462643D0/
-
-c       print*,c00,ams,amh
-c       print*,xms,nd
-c       print*,acut
-c       print*,aam1,c0,aamh
-c       print*,xl3,xdu,xlamu
-c       print*,aem,xmur,lambda
-c       print*,smass,xlam
-c       print*,cph,cgl,cfe
-c       print*,c1,c2,c3,ct,g1,g2,g3
-c       print*,amz,amw,sw2,cw2
-c       print*,amtau,amc,amb,amt
-c       stop
-
-
-c------------------------------------------------------[taking common files read from main to isolate couplings.f]
-      if (model.eq.1) then
-      open(unit=30,file='run.add.dat',status='unknown')
-      read (30,*) xms            ! M_s Fundamental Planck scale
-      read (30,*) nd             ! number of extra dimensions, 2<d<6
-      read (30,*) acut           ! \Lambda = acut*M_s
-      close (30)
-      write (*,*) 'ADD model'
-      write (*,*) 'M_s = ',xms,'GeV'
-      write (*,*) 'ND=',nd
-      write (*,*) 'acut=',acut
-
-      elseif (model.eq.2 .or. isw.eq.2) then
-      open(unit=35,file='run.rs.dat',status='unknown')
-      read (35,*) aam1           ! M1 mass of the 1st excited RS mode
-      read (35,*) c0_a           ! c0 effective RS coupling
-      read (35,*) aamh           ! Higgs mass
-      close (35)
-
-            c0 = c0_a/dsqrt(8.0d0*pi)
-c      c0 = c0_a
-
-      write (*,*) 'RS model'
-c      write (*,*) 'M1 = ',aam1,'GeV'
-      write (*,*) 'C0 bar= ',c0_a
-      write (*,*) 'M_H = ',aamh,'GeV'
-      elseif (model.eq.3) then
-      open(unit=40,file='run.up.dat',status='unknown')
-      read (40,*) xlamu         ! Lambda_U
-      read (40,*) xdu           ! du
-      read (40,*) xl3           ! lam_T
-      read (40,*) xlams         ! lam_S
-      close(40)
-      write (*,*) 'Lambda_U  = ',xlamu
-      write (*,*) 'du        = ',xdu
-      write (*,*) 'lam_T     = ',xl3
-      endif
-
-
-c------------------------------------------------------[taking common files read from main to isolate couplings.f]
-
-
-
 
 
 c       write(*,*)'Ph, Gl, Fe =',cph, cgl, cfe
@@ -236,9 +178,6 @@ c       abslam = 32.0D0*PI/ams/ams/ams/ams/2.D0
 c       abslam=abslam*dsqrt(xpi2**2+xc**2)
 
        xc = cabs(lambdaf(0,0,ND,rms))           ! (Direct)
-c       print*,"xc=",xc,ND,rms
-c       stop
-
        xd = xlambms**(ND-2)
        abslam = 16.0D0*PI/ams/ams/ams/ams*xd
        abslam=abslam*xc
@@ -403,12 +342,6 @@ C          common/dpar/dim
      > 0.587955, 0.581160, 0.574519, 0.568029, 0.561683, 0.555478, 
      > 0.549408, 0.543469, 0.537658, 0.531969, 0.526399, 0.520945, 
      > 0.515603, 0.510369, 0.505240, 0.500213, 0.495286/
-
-
-
-          
-          print*,"c00,ams,amh:",c00,ams,amh
-          stop
 *--------------------------------------------------------------------*
 *  Branch between models:          
 *  ~~~~~~~~~~~~~~~~~~~~~                                              
