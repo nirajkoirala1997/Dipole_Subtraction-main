@@ -67,7 +67,10 @@ PK_standalone is giving double the value in PK_Plus. However in the Dummy Plus i
 |
 !-> I am still struggling with the kinematic dependence in the LO higgs case. The Integration has to be done in only one dimesion. 
 
-=================================> [5 Sept]
+=================================> [21  Sept]
+
+
+
 
 
 

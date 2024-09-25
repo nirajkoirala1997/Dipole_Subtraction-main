@@ -22,6 +22,7 @@ c       Leading Order
       read (15,*) run_tag               ! name of run directory to save output
       close(15)
 
+c      open(unit=20,file='../../output_files2.dat',status='unknown')
       open(unit=20,file='../../output_files.dat',status='unknown')
       read (20,*) real_dipole
       read (20,*) virtual 
@@ -280,7 +281,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        print*," "
        print*,"/"//trim(ref)
        write(*,*)achar(27)//'[1;32m'//"   xq  ",
-     ."     sigma N^3LO Xs code", 
+     ."     sigma slicing code", 
      . achar(27)//'[0m'
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
@@ -291,7 +292,7 @@ c~~~~~~~~~~~~~~~~~[ ratio ]
         if (inlo + inloch .eq. 4) then
        print*," "
         write(*,*)achar(27)//'[1;32m'//"   xq  ",
-     .  "  chinmoy/dipole sigma_NLO",
+     .  "  slicing/dipole sigma_NLO",
      . achar(27)//'[0m'
         xq = xq_initial
         do i=1,it_max

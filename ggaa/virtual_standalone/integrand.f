@@ -9,6 +9,7 @@
       parameter (cf=4d0/3d0)
       parameter (zeta2=1.64493406684823d0)
       parameter (N=3)
+      parameter (Nf=1)
       parameter (Ca=3)
       parameter (Tf=0.5D0) 
       parameter (EulerGamma = 0.5772156649015328606065120d0)
@@ -58,25 +59,47 @@
 
              Born = Born_gg2aa(0,p1,p2,p3,p4)
 
+c**********[ From Slicing Code ] **********o
         vir = Born*( -N*203.d0/9.d0
      &            +1.*Tf*70.d0/9.d0
      &            +N*zeta2*8.0d0 )
+c**********[ From Slicing Ends ] **********o
+        model =1
+        rp34 = dsqrt(s12)
+        call coupfact(model,rp34,AK2D,AK2DINTF)
+c	print*,AK2D,EulerGamma,Pi,s,t,u
+c	stop
 
-        eikonal= (-0.013888888888888888d0*
-     &  (AL*Born*(8*N*Tf*(-8 + 3*EulerGamma - 6*Log(2.) - 3*Log(Pi)) + 
-     &       CA*(200 + 18*EulerGamma**2 - 21*Pi**2 + 132*Log(2.) + 
-     &          72*Log(2.)**2 + 66*Log(Pi) + 72*Log(2.)*Log(Pi) + 
-     &          18*Log(Pi)**2 - 
-     &          6*EulerGamma*(11 + Log(4096.) + 6*Log(Pi))) - 
-     &       6*(4*N*Tf + CA*
-     &           (-11 + 6*EulerGamma - 12*Log(2.) - 6*Log(Pi)))*
-     &        Log(xmu2/s12) + 18*CA*Log(xmu2/s12)**2))/Pi)
+          eikonal_born = -0.00005425347222222222d0*
+     &  (AK2D**2*AL*(CA*(264d0*t**3*u + 462d0*t**2*u**2 + 264d0*t*u**3 +
+     &  t**4*(-235d0 + 132d0*EulerGamma + 12d0*Pi**2 - 264d0*Log(2d0)-
+     &       132d0*Log(Pi)) + 
+     &    u**4*(-235d0 + 132d0*EulerGamma + 12d0*Pi**2 -264d0*Log(2d0)-
+     &       132d0*Log(Pi))) - 
+     & 4d0*Nf*TR*(24d0*t**3*u + 42d0*t**2*u**2 + 24d0*t*u**3 + 
+     &    t**4*(-17d0 + 12d0*EulerGamma - 24d0*Log(2d0)-12d0*Log(Pi)) +
+     &    u**4*(-17d0 + 12d0*EulerGamma - 24d0*Log(2d0)-12d0*Log(Pi)))-
+     & 6d0*CF*(6d0*t**2*u**2*
+     &     (6d0 + 7d0*EulerGamma - 14d0*Log(2d0) - 7d0*Log(Pi)) + 
+     &    6d0*t**3*u*(3d0 + 4d0*EulerGamma - 8d0*Log(2d0)- 4d0*Log(Pi))+
+     &    6*t*u**3*(3d0 + 4d0*EulerGamma - 8d0*Log(2d0) - 4d0*Log(Pi))+
+     &    t**4*(3d0 + 6d0*EulerGamma**2 - 5d0*Pi**2 + 24d0*Log(2d0)**2-
+     &       15d0*Log(Pi) + 6d0*Log(Pi)**2 + 
+     &       6d0*Log(2d0)*(-5d0 + 4d0*Log(Pi)) - 
+     &       3d0*EulerGamma*(-5d0 + Log(256d0) + 4d0*Log(Pi))) + 
+     &    u**4*(3d0 + 6d0*EulerGamma**2 - 5d0*Pi**2+24d0*Log(2d0)**2 - 
+     &       15d0*Log(Pi) + 6d0*Log(Pi)**2 + 
+     &       6d0*Log(2d0)*(-5d0 + 4d0*Log(Pi)) - 
+     &       3d0*EulerGamma*(-5d0 + Log(256d0) + 4d0*Log(Pi)))) + 
+     & 6d0*(-22d0*CA*(t**4 + u**4) + 8d0*Nf*TR*(t**4 + u**4) + 
+     &    3d0*CF*(8d0*t**3*u + 14d0*t**2*u**2 + 8d0*t*u**3d0 + 
+     &       t**4*(5d0 + 4d0*EulerGamma - 8d0*Log(2d0)- 4d0*Log(Pi)) + 
+     &       u**4*(5d0 + 4d0*EulerGamma - 8d0*Log(2d0)- 4d0*Log(Pi))))*
+     &  Log(xmu2/s12) - 36d0*CF*(t**4 + u**4)*Log(xmu2/s12)**2))/Pi 
 
-c	print*,"Virtual:",vir
-c	print*,"I-term :",eikonal
-c	print*," "
 
-        sig= xl(4)*(Vir + eikonal)  
+
+        sig= xl(4)*(Vir + eikonal_born)  
 c       sig= xl(1)*SumI(1)   
 
          xnorm=hbarc2/16d0/pi/(xa*xb*s)

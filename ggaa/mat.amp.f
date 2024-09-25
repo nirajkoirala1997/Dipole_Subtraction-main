@@ -36,6 +36,10 @@ c         IF(k .eq. 1)  CF = -1d0               !leg 1 reduced born k=1
 c         IF(k .eq. 2)  CF = -1d0               !Leg 2 reduced born k=2
 
          Born_gg2aa= CF*(u**4 + t**4)*AK2D**2/16.d0/8d0
+c	print*,"Born1:",Born_gg2aa
+c         Born_gg2aa= (4 (t**4 + u**4))/(t + u + xmg)^2
+c	print*,"Born2:",Born_gg2aa
+c	print*," "
 
        return
        end

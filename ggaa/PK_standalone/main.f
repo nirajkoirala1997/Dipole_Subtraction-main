@@ -97,7 +97,7 @@ c ~~~~~~~~~~~~~~~~~--------------------------~~~~~~~~~~~~~~~~~~~~c
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
       open(unit=20,file='../output_files.dat',status='unknown')
-      do i=1,5   
+      do i=1,2   
       read (20,*) 
       enddo
       read (20,*) filename

@@ -380,8 +380,11 @@ c        i=imin
             xc1 = smvr(mf)
 
 
-             aam1 = mq*aqstep
-             xq =  mq*aqstep
+c             aam1 = mq*aqstep
+c             xq =  mq*aqstep
+                aam1 = mq + aqstep
+                  xq = mq + aqstep
+
              xlow = xq - xeps
              xhigh = xq + xeps
 
@@ -593,8 +596,11 @@ c================================================================
        do mq=mqmin,mqmax
 
  
-       aam1 = mq*aqstep
-       xq   = aam1
+c       aam1 = mq*aqstep
+c       xq   = aam1
+
+                aam1 = mq + aqstep
+                  xq = mq + aqstep
 c       xq = sqrs(mq)*aqstep + 300d0
 c           cf = cfdn(mq)
 
