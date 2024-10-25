@@ -1,4 +1,4 @@
-
+c This is the amplitude optimized for the real part of diphoton. Original one is present in the mat.amp file. 
       a(1)=aN2m1**(-1)
       a(2)=P12**(-1)
       a(3)=P25**(-1)

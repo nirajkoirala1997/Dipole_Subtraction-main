@@ -71,6 +71,16 @@ PK_standalone is giving double the value in PK_Plus. However in the Dummy Plus i
 
 
 
+=================================> [03 Octoebr]
+-> The LO for the Diphoton In Slicing is already matching but thr NLO part is still not matching as there is some problem with virtual contribution case. 
+-> [NOW?] I can check without including the virtual part in slicing and compute NLO cross-section then compare my result of 
+
+REAL-Dipole + PK(maybe). To get the idea of weather my dipole part is working, idealy that should work.  
+
+
+
+
+=================================> [03 Octoebr]
 
 
 

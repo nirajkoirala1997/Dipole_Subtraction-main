@@ -7,15 +7,15 @@ cd ../../
 
 # Define the commands to run in parallel, and add a unique identifier to each command
 commands=(
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
+    "(./.shell/runDipole.sh)"
+    "(./.shell/runDipole.sh)"
+    "(./.shell/runDipole.sh)"
+    "(./.shell/runDipole.sh)"
+    "(./.shell/runDipole.sh)"
+    "(./.shell/runDipole.sh)"
+    "(./.shell/runDipole.sh)"
+    "(./.shell/runDipole.sh)"
+    "(./.shell/runDipole.sh)"
 )
 
 # Define the new values for the "max # of distribution increment step_size from xq"

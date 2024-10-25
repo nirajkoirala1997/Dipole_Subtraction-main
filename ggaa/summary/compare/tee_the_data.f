@@ -4,6 +4,7 @@
      .  ,filename1,filename2,filename3,filename4
      .  ,filename5,filename6,filename7,filename8,input_machine
      .  ,input_files
+       character*100 filename_tmp1
 
        call get_command_argument(1,mode)
        call get_command_argument(2,tag)
@@ -44,14 +45,27 @@ c       open(unit=20,file='../../output_files.dat',status='unknown')
        if (tag .eq. 'PK_Delta')   filename = filename8
 
        if (iprint .eq. 1 ) then
+
+       if (tag .eq. 'PK_Plus' .or. tag .eq. 'PK_Regular'
+     .  .or. tag .eq. 'PK_Delta') then    
+       call system("cd ../../trash/broken && cat "//trim(mode)// " >>
+     . ../../PK_Isolated/summary/"//trim(run_tag)//"/"//trim(filename))
+c     .  ../../summary/"//trim(run_tag)//"/"//trim(filename)) !//
+c     .  " && rm -f "//trim(mode))
+        filename_tmp1 = "../../PK_Isolated/summary/"
+     .    //trim(run_tag)//"/"//trim(filename)
+
+       call system(
+     . 'sed -i -r "s/\\x1B\\[[0-9;]*[a-zA-Z]//g" '//trim(filename_tmp1))
+       else
        call system("cd ../../trash/broken && cat "//trim(mode)// " >>
      .  ../../summary/"//trim(run_tag)//"/"//trim(filename)) !//
 c     .  " && rm -f "//trim(mode))
-
         filename_tmp = "../"//trim(run_tag)//"/"//trim(filename)
 
        call system(
      . 'sed -i -r "s/\\x1B\\[[0-9;]*[a-zA-Z]//g" '//trim(filename_tmp))
+       endif
        endif
        
        end

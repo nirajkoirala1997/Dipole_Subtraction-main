@@ -29,11 +29,12 @@ c         common/energy/s12
 c         u = -(s+t)
 c Reduced born used different kinematics, Colour factor multiply here.
          IF(k .eq. 0)  CF =  1d0               !Leading Order k=0
-         IF(k .eq. 1)  CF = -4d0/3d0               !leg 1 reduced born k=1 
-         IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2 reduced born k=2
+c         IF(k .eq. 1)  CF = -4d0/3d0               !leg 1 reduced born k=1 
+c         IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2 reduced born k=2
 
-c         IF(k .eq. 1)  CF = -1d0               !leg 1 reduced born k=1 
-c         IF(k .eq. 2)  CF = -1d0               !Leg 2 reduced born k=2
+
+         IF(k .eq. 1)  CF = -1d0               !leg 1 reduced born k=1 
+         IF(k .eq. 2)  CF = -1d0               !Leg 2 reduced born k=2
 
          Born_gg2aa= CF*(u**4 + t**4)*AK2D**2/16.d0/8d0
 c	print*,"Born1:",Born_gg2aa

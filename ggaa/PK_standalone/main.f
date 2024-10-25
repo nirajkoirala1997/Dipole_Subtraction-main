@@ -90,8 +90,8 @@ c      write (*,*) 'acut=',acut
 
 c ~~~~~~~~~~~~~~~~~--------------------------~~~~~~~~~~~~~~~~~~~~c        
 ! [ SWITCH ON(1) OFF (0) ]	
-	iselect_plus=1
-	iselect_Regu=1
+	iselect_plus=0
+	iselect_Regu=0
 	iselect_Delt=1
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        

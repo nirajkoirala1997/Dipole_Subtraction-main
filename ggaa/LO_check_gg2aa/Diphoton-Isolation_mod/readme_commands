@@ -1,0 +1,7 @@
+
+
+# this will make similar commands in all the directories
+ for dir in ../Diphoton-invmass_Q_700 ../Diphoton-invmass_Q_1000 ../Diphoton-invmass_Q_1300 ../Diphoton-invmass_Q_1600 ../Diphoton-invmass_Q_1900
+    cat cuts.nlo3.f > "$dir/cuts.nlo3.f"
+end
+

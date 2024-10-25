@@ -124,9 +124,10 @@ c      am1 = 0.51099895000d-3
       ! energy
       s=ecm*ecm
       print*,'  '
-      print*,"Press 1 to initialise VEGAS:"
-      print*,"Press 2 to initialise CUBA-VEGAS:"
-      read*,I
+c      print*,"Press 1 to initialise VEGAS:"
+c      print*,"Press 2 to initialise CUBA-VEGAS:"
+c      read*,I
+	I = 1
       if (I .eq. 1 .or. I .eq. 2 ) then
        continue
       else

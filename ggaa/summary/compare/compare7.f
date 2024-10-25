@@ -83,12 +83,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       print*," "
       print*,"Reading Data from directory: /summary/"//trim(run_tag)
       print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
-      print*,"            ecm:", int(ecm),"[GeV]"                   ! ecm
-      print*,"     LHApdfname:   ", name                  !lhapdf set
-      print*,"         it_max:" ,int(it_max)                !it_max no of q for distribution
-      print*,"initial Q value:", int(xq_initial),"[GeV]"            ! initialise xq value
-      print*,"     step size :", int(step_size)             ! size in the multiplle of loop variable
-      print*,"Run Description:   ",message
+      call system("cat ../"//trim(run_tag)//"/run.machine.dat")
+c      print*,"            ecm:", int(ecm),"[GeV]"                   ! ecm
+c      print*,"     LHApdfname:   ", name                  !lhapdf set
+c      print*,"         it_max:" ,int(it_max)                !it_max no of q for distribution
+c      print*,"initial Q value:", int(xq_initial),"[GeV]"            ! initialise xq value
+c      print*,"     step size :", int(step_size)             ! size in the multiplle of loop variable
+c      print*,"Run Description:   ",message
       print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
       print*," "
       call sleep(1)
@@ -292,12 +293,13 @@ c~~~~~~~~~~~~~~~~~[ ratio ]
         if (inlo + inloch .eq. 4) then
        print*," "
         write(*,*)achar(27)//'[1;32m'//"   xq  ",
-     .  "  slicing/dipole sigma_NLO",
+     .  "  slicing/dipole sigma_NLO, and dipole/slicing",
      . achar(27)//'[0m'
         xq = xq_initial
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xq),
-     .  xintch(i)/(xintPK(i)+xintvir(i)+xintreal(i))
+     .  xintch(i)/(xintPK(i)+xintvir(i)+xintreal(i)),
+     .  (xintPK(i)+xintvir(i)+xintreal(i))/xintch(i)
 c     .  (xintPK(i)+xintvir(i)+xintreal(i))/xintch(i)
 c          write(*,'(i7,3e27.15)')int(xqPKterm2(i)),
 c     .  xintvir(i)+xintreal(i)+xintLO(i)
