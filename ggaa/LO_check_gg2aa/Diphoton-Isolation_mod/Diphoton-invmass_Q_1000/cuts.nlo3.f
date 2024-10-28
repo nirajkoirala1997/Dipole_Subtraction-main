@@ -54,11 +54,21 @@ c         return
 c         r0=0.4d0
 c         rgg=0.4d0
 c         ET_iso=15d0
+         pt_hard = max(pt1,pt2)
+         pt_soft = min(pt1,pt2)
 
-         if( (abs(y1).ge.2.50d0 .or. abs(y2).ge.2.50d0) ) return
-         if( (pt1.lt.40d0 .or. pt2.lt.25d0) 
-     &        .and. (pt1.lt.25d0 .or. pt2.lt.40d0) )return
-         
+
+         if (dabs(y1) .ge. 2.50d0) return
+         if (dabs(y2) .ge. 2.50d0) return
+
+         if (pt_hard .le. 40.0d0) return
+         if (pt_soft .le. 25.0d0) return
+
+
+c         if( (abs(y1).ge.2.50d0 .or. abs(y2).ge.2.50d0) ) return
+c         if( (pt1.lt.40d0 .or. pt2.lt.25d0) 
+c     &        .and. (pt1.lt.25d0 .or. pt2.lt.40d0) )return
+c         
 c         if(r34.lt.rgg)return         
 c         if(r35.gt.r0 .and. r45.gt.r0)then
 c            ipass=1
