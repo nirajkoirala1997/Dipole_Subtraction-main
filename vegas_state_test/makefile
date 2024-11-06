@@ -1,6 +1,6 @@
 # Compiler and flags
 FC = gfortran
-FFLAGS = -O
+FFLAGS = -O -w
 
 # Directories
 OBJDIR = objects

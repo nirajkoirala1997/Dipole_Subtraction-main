@@ -81,8 +81,8 @@ c       read*,firstfile
 c       print*,"Enter the second file name"
 c       read*,secondfile
 
-	firstfile = 'LO.dat'
-	secondfile = 'LO2.dat'
+	firstfile = 'PK1.dat'
+	secondfile = 'PK2.dat'
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        
 

@@ -16,8 +16,8 @@
 
 ! Check if state file exists
       state_exists = .FALSE.
-      INQUIRE(FILE='state.dat', EXIST=state_exists)
-      INQUIRE(FILE='integral.state', EXIST=integral_state)
+c      INQUIRE(FILE='state.dat', EXIST=state_exists)
+c      INQUIRE(FILE='integral.state', EXIST=integral_state)
       
       IF (state_exists) THEN
           ! Restore state from file
@@ -48,7 +48,12 @@ c       call system('rm integral.state state.dat')
       implicit double precision (a-h,o-z)
       dimension xx(1)
 
-      fnlo3 = xx(1)
+	fnlo3 = 0d0
+	delta = 1d-15
+	if (xx(1) .le. 1d0-delta) then
+      fnlo3 = 1d0+xx(1)**2
+      fnlo3 = fnlo3/(1d0-xx(1))-2d0*dLog(1d0-xx(1))
+	endif
      
       return
       end
