@@ -32,9 +32,9 @@ c      PqqP=CF*CQQB1PLUS
       double precision function AKbarP_qq(x)
       implicit double precision (a-h,o-z)
 
-      dlgx = dlog((1.0d0-x)/x)
-      CF = 4.0d0/3.0d0
-      AKbarP_qq = CF*2.0d0/(1.0d0-x)*dlgx
+      dlgx = dlog((1d0-x)/x)
+      CF = 4d0/3d0
+      AKbarP_qq = CF*2d0/(1d0-x)*dlgx
       return
       end
 

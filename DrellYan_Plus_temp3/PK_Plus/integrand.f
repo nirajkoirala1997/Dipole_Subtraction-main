@@ -4,6 +4,7 @@
       dimension f1(-6:6),f2(-6:6),xl(15)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
       dimension xp1(0:3),xp2(0:3)
+      dimension AllP(1:4),AllK(1:4),SumP(1:2),SumK(1:2)
       double precision Kbar_qq_Plus,Ktil_qq_Plus
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+6)
@@ -13,17 +14,19 @@
       common/factscale/xmuf
       common/usedalpha/AL,ge
       common/distribution/xq
+      common/plus_cutoff/delta
 
       xa     = yy(1)
       xb     = yy(2)
       xc     = yy(3)
-
-      delta  = 1d-6
+c
+c      delta  = 1d-6
 c      xmin   = 0.0d0
 c      xmax   = 1.0d0 - delta
 c      xjac4   = (xmax-xmin)
 c      x      = xmin+ xjac4*yy(4)
 c
+c      delta = 1d-6
       almin = delta
       almax = 1.0d0
       al = almin*(almax/almin)**yy(4)
@@ -42,32 +45,13 @@ c
       xhigh = xq + eps
 
 
-        flo2_Plus  = 0.0d0
-        PKplus_x = 0.0d0
-        PKplus_1 = 0.0d0
-        PKplus = 0.0d0
-        PKReg    = 0.0d0
-        PKDel    = 0.0d0
-
-        sig1 = 0.0d0
-        sig2 = 0.0d0
-        sig3 = 0.0d0
-        sig4 = 0.0d0
+         PKplus = 0.0d0
+        SumPlus = 0.0d0
 
         do k = 1,2
 
-c        do iplus = 0,1
-c        if (x .le. 1d0-delta_cut) iplus = 0
-c        if (x .ge. 1d0-delta_cut) iplus = 1
-
-c        if (iplus .eq. 1) then
-
          if (k .eq. 1) call kinvar2_PK(x*xa,xb,xc,Qmass,p1,p2,p3,p4)
          if (k .eq. 2) call kinvar2_PK(xa,x*xb,xc,Qmass,p1,p2,p3,p4)
-
-c        elseif (iplus .eq. 0) then
-c        call kinvar2_PK(xa,xb,xc,Qmass,p1,p2,p3,p4)
-c        endif
 
          scale = Qmass
 
@@ -96,44 +80,128 @@ c        endif
             call pdf(xb,xmuf,f2)
             call setlum(f1,f2,xl)
 
-c            call getPKPlus(iplus,x,xmuf,p1,p2,p3,p4,SumPlus)
-c           xone_plus_x2 = 1d0 + x**2
-c           xone_minusx  = 1d0 - x
-c           SumPlus = xone_plus_x2/xone_minus_x
-c            SumPlus = (1d0+x**2)/(1d0-x) 
-
-c        Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
-              P_qq_Plus = Cf*(-1.0d0)*dlog(xmuf2/s12)*(1d0+x**2)/(1d0-x)
-            aKbar_qq_Plus =Cf* 2d0*dLog(1d0 - x)/(1d0 - x) 
-            aKtil_qq_Plus =Cf* 2d0*dLog(1d0-x)/(1d0 - x) 
+                P_qq_Plus = PqqP(x)
+                P_qq_Plus = P_qq_Plus*(-1.0d0)*dlog(xmuf2/s12)
+            aKbar_qq_Plus = aKbarP_qq(x) 
+            aKtil_qq_Plus = aKtilP_qq(x) 
 
 c           SumPlus = P_qq_Plus + aKbar_qq_Plus + aKtil_qq_Plus
-           SumPlus =  aKbar_qq_Plus 
+c           SumPlus = aKtil_qq_Plus
+           SumPlus = aKbar_qq_Plus
+c           SumPlus = P_qq_Plus
 
-            Cf = 4d0/3d0 
             sig = xl(1)*SumPlus*coef
-c            if (iplus .eq. 0) sig3 = xl(1)*SumPlus*coef
-  
-c          if (iplus .eq. 1) then
             wgt = sig/flux*ps2*xjac*vwgt
             PKplus = xnorm*wgt/vwgt/2d0/eps
 
-c          elseif (iplus .eq.0) then
-c            wgt3 = sig3/flux*ps2*xjac*vwgt
-c            PKplus_1= xnorm*wgt3/vwgt/2d0/eps
-
-c         endif
-
            endif                ! bin choice
-c           enddo
-
-c         PK(k) = PKplus_x - PKplus_1 ! Plus is regulated at SumPlus
-c Iplus will divide integral into two regions.
-         PK(k) = PKplus
-c	 print*,PKplus
+          PK(k) = PKplus
          enddo
 
         flo2_Plus = ALP * ( PK(1) + PK(2) )
       return
       end
-c---------------------------------------------------------------------
+
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta terms]
+      function flo2_PKDel(yy,vwgt)
+      implicit double precision (a-h,o-z)
+      dimension yy(10)
+     .         ,f1(-6:6),f2(-6:6),xl(15)
+     .         ,p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
+     .         ,p(0:3,1:4),Born(1:2)
+     .         ,PK(1:2)
+      dimension AllPK(1:2),AllK(1:4)
+      parameter (pi=3.14159265358979d0)
+      parameter (hbarc2=389.3856741D+6)
+      common/energy/s
+      common/factscale/xmuf
+      common/usedalpha/AL,ge
+      common/distribution/xq
+      common/plus_cutoff/delta
+
+c      xa     = yy(1)
+c      xb     = yy(2)
+
+c      delta = 1d-3
+      TAUH = xq*xq/s
+
+      xa = (1D0-TAUH)*yy(1)    + TAUH
+c      xb = (1D0-TAUH/xa)*yy(2) + TAUH/xa
+      xb = TAUH/xa
+      xc = yy(2)
+
+      sp     = xa*xb*s
+      rsp    = dsqrt(sp)
+      xjac = 2.0d0*(1.0d0-TAUH)
+      xnorm=hbarc2*2.0d0*xq/s/xa
+
+        call kinvar2_PK(xa,xb,xc,xinvmass,p1,p2,p3,p4)
+
+        pin  = 0.5d0*rsp
+        flux_1 = 4.0d0*pin*rsp
+        s12 = 2d0*dot(p1,p2)
+
+        scale = xq
+
+      flo2_PKDel  = 0.0d0
+      sig1 = 0d0
+      Pqq_int_ = 0d0
+
+
+            xmuf = scale
+            xmuf2 = xmuf*xmuf
+            xmur = scale
+            AL = alphasPDF(xmur)
+            ALP = AL/2d0/Pi
+             Cf = 4d0/3d0
+
+         do k=1,2  ! for two Legs I can multiply by 2 also instead of using loop.
+         ! corrspond to g(1)*(theta(1-delta) -theta(0) 
+
+
+c       ~~~~[ P term ]~~~~c
+c          Pqq_int_= Pqq_int_P(1d0-delta) - Pqq_int_P(0d0)
+          Pqq_int_= -3d0/2d0-0.5d0*(delta-4d0)*delta - 2d0*dLog(delta) 
+          Pqq_int_= (-1.0d0)*dlog(xmuf2/s12)*Pqq_int_*Cf 
+
+c the coefficients log(muf/s12) is there as overall in eq.(10.25)
+
+c       ~~~~[ Kb term ]~~~~c
+          aKb_qq_int_ = Cf*Pi**2/3d0 - Cf*dLog(delta)**2 ! -2PolyLog[2,delta] !! Here Ignoring PolyLog as delta is very small. 
+
+
+c       ~~~~[ Kt term ]~~~~c
+          aKt_qq_int_ = -Cf*dLog(delta)**2
+
+c            PK(k) = Pqq_int_ + aKb_qq_int_ + aKt_qq_int_ 
+c            PK(k) = aKt_qq_int_ 
+          PK(k) = aKb_qq_int_
+c          PK(k) = Pqq_int_*Cf 
+         enddo
+        coef = Born_uU2eE(0,p1,p2,p3,p4)
+
+         SumDel = PK(1)+PK(2)
+
+            call pdf(xa,xmuf,f1)
+            call pdf(xb,xmuf,f2)
+            call setlum(f1,f2,xl)
+
+            sig1 = ALP * xl(1) * coef * SumDel  
+
+c          [Note-] 
+c          qq lum and overall factor al/2/pi and Born with x=1
+c          kinematics which is component of g(1) in our notation.
+
+
+            azmth = 2.0d0*pi
+            pf = 0.5d0*rsp
+            ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
+
+            wgt1 = sig1/flux_1*ps2*xjac*vwgt
+            PKDel = xnorm*wgt1/vwgt
+
+         flo2_PKDel = PKDel
+
+      return
+      end
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta terms .end]

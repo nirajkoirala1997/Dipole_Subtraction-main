@@ -22,7 +22,7 @@ c      xmax   = 1.0d0 - 1d-5
 c      xjac4   = (xmax-xmin)
 c      x      = xmin+ xjac4*yy(4)
 
-      delta  = 1d-15
+      delta  = 1d-6
       almin = delta
       almax = 1.0d0
       al = almin*(almax/almin)**yy(4)

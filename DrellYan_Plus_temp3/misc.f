@@ -21,6 +21,17 @@ c      PqqP=CF*CQQB1PLUS
       return
       end
 
+      double precision function Pqq_int_P(x)
+      implicit double precision (a-h,o-z)
+      data PI/3.141592653589793238462643D0/
+
+      CF = 1d0!4.0d0/3.0d0
+      Pqq_int_P = CF*1d0/2d0*(3d0- 2d0*x - x**2 - 4d0*dLog(1d0 - x))
+
+      return
+      end
+
+
       double precision function Pqqreg(x)
       implicit double precision (a-h,o-z)
       CF = 4.0d0/3.0d0
@@ -29,7 +40,7 @@ c      PqqP=CF*CQQB1PLUS
       end
 
 
-      double precision function AKbarP_qq(x)
+      double precision function aKbarP_qq(x)
       implicit double precision (a-h,o-z)
 
       dlgx = dlog((1.0d0-x)/x)
@@ -37,6 +48,16 @@ c      PqqP=CF*CQQB1PLUS
       AKbarP_qq = CF*2.0d0/(1.0d0-x)*dlgx
       return
       end
+
+c      double precision function aKbar_int_qq(x)
+c      implicit double precision (a-h,o-z)
+c
+c      dlgx = dlog((1.0d0-x)/x)
+c      CF = 4.0d0/3.0d0
+c      aKbar_int_qq = 
+c      return
+c      end
+
 
 
 c      double precision function AKbarP_qq(x)

@@ -24,15 +24,16 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plu
 
 c        Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)
 c        SumPlus = Pplus + AKtilP_qq(x) + AKbarP_qq(x)
-        SumPlus = AKbarP_qq(x)
+c        SumPlus =  AKtilP_qq(x)
 c        Pplus = PqqP(x)
 c        SumPlus = Pplus
-c        SumPlus = AKbarP_qq(x)
+        SumPlus = AKbarP_qq(x)
 
         elseif( iplus .eq. 0 ) then
 
 c        Pplus = PqqP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
 c        SumPlus = Pplus + AKbarP_qq(x) + AKtilP_qq(x)
+c        SumPlus =  AKtilP_qq(x)
         SumPlus = AKbarP_qq(x)
 c        Pplus = PqqP(x)
 c        SumPlus = Pplus

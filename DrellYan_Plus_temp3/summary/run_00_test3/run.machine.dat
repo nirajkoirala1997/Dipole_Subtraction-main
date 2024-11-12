@@ -1,0 +1,25 @@
+1				! machine id Tevatron:0 LHC:1	
+13600.0				! ecm
+MMHT2014nlo68cl			! lhapdf set name common for all
+9				! max # of distribution increment step_size from xq
+100
+300				! step size
+run_00_test3  			! name of dir to save data for analysis
+1				! 1 to write data in file or 0 just to run
+!MMHT2014nlo68cl			! lhapdf set name common for all
+NNPDF30_nlo_as_0118		! lhapdf set name common for all
+
+
+
+    xq    chinmoy/dipole sigma_NLO
+    100      0.106502668317025E+01
+    400      0.109371026870249E+01
+    700      0.113010249234813E+01
+   1000      0.115167762839149E+01
+   1300      0.117992434087905E+01
+   1600      0.122290107888149E+01
+   1900      0.124411531667668E+01
+   2200      0.125298565303289E+01
+   2500      0.127813378945112E+01
+
+I am getting Kinematic dependence in the result. At Higher Q values there is some contribution we are missing I will Now decrease Delta values to very small value then we can compare the result.

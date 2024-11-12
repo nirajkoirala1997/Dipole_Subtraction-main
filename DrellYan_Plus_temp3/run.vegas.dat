@@ -10,5 +10,5 @@
 1E+6    	! vegas points        For [ LO  ] only 
 10	 	! vegas iterations    For [ LO  ] only 
 
-1E+7    	! vegas points        For [ PK_Plus terms ] only 
-10	 	! vegas iterations    For [ PK_Plus terms ] only 
+1E+9    	! vegas points        For [ PK_Plus terms ] only 
+15	 	! vegas iterations    For [ PK_Plus terms ] only 

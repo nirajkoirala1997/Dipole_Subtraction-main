@@ -92,6 +92,7 @@ for i in ${!distribution_steps[@]}; do
         echo $first_line | awk -v q_value=$q_value '{printf "%10d %25.15e %25.15e\n", q_value, $2, $3}' >> $temp_file
         # Append the rest of the file's content to the output summary file
         tail -n +2 $file >> $output_summary_file
+        rm -f $file
     else
         echo "Warning: File $file not found."
     fi
