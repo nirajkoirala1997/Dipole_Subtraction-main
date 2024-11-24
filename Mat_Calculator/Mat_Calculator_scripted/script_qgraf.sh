@@ -12,10 +12,11 @@ echo "  GH   = anti-ghost"
 echo "  ph   = photon"
 echo "  muo  = muon"
 echo "  MUO  = anti-muon"
+echo "  Hig  = Higgs"
 echo ""
 
 # Define valid particles
-VALID_PARTICLES=("glu" "upq" "UPQ" "gh" "GH" "ph" "elt" "ELT" "muo" "MUO")
+VALID_PARTICLES=("glu" "upq" "UPQ" "gh" "GH" "ph" "elt" "ELT" "muo" "MUO" "Hig")
 
 # Function to check if a particle is valid
 is_valid_particle() {

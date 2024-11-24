@@ -1,6 +1,6 @@
 #!/bin/bash
 
-filename="compare3.f"
+filename="compare8.f"
 
 
 home_path=$(dirname "$0")
@@ -43,6 +43,13 @@ rm a.out
 #      -----------------------------------------------------------------------------------------------
 #	compare7.f  combinati  of compare2.f and compare5.f and can display PK indiv data + delta reg  ✅
 #      -----------------------------------------------------------------------------------------------
+
+
+#      -----------------------------------------------------------------------------------------------
+#	compare8.f  this is specific for PK_Isolated, reads Regular Delta and plus frm summary there   ✅
+#      -----------------------------------------------------------------------------------------------
+
+
 
 #	✅ Working
 #	‼️  No Longer updating

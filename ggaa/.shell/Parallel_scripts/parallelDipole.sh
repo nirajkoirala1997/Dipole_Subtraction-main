@@ -15,11 +15,10 @@ commands=(
     "(./.shell/runDipole.sh)"
     "(./.shell/runDipole.sh)"
     "(./.shell/runDipole.sh)"
-    "(./.shell/runDipole.sh)"
 )
 
 # Define the new values for the "max # of distribution increment step_size from xq"
-distribution_steps=(100 400 700 1000 1300 1600 1900 2200 2500)
+distribution_steps=(100 400 700 1000 1300 1600 1900 2200)
 
 # Function to modify the input files
 modify_input_files() {
@@ -77,7 +76,7 @@ temp_file="temp_summary.dat"
 > $temp_file
 
 # Define the Q values
-distribution_steps=(100 400 700 1000 1300 1600 1900 2200 2500)
+distribution_steps=(100 400 700 1000 1300 1600 1900 2200)
 
 # Iterate over the distribution steps and process the corresponding output files
 for i in ${!distribution_steps[@]}; do

@@ -24,8 +24,8 @@ c     total 4-momentum of the system
       pz_total = p1(3) + p2(3)
 
 c     calculate the boost in lab frame 
-      beta = 0d0
-c      beta = (xa - xb) / (xa + xb)
+c      beta = 0d0
+      beta = (xa - xb) / (xa + xb)
       gama = 1d0 / sqrt(1d0 - beta**2)
 
 c     calculate momentum of the Higgs boson
@@ -40,6 +40,7 @@ c     Set the 4-vector for the outgoing Higgs boson
       p3(2) = py_total
       p3(3) = gama * (pz_total + beta * e_higgs)
 
+      return
       end
 
 cc      subroutine kinvar1(xx,p1,p2,p3)

@@ -55,6 +55,7 @@
 *
 *** for tTH coupling close this off as it does genetate additional ggH vertex
 [glu,glu,Hig; gs=0, kap=0, CH=1, ew=0,kg=0]
+[glu,glu,glu,Hig; gs=0, kap=0, CH=1, ew=0,kg=0]
 *[g,g,g,H; gs=1, kap=0, CH=1,ew=0]
 *[g,g,g,g,H; gs=2, kap=0, CH=1,ew=0]
 *

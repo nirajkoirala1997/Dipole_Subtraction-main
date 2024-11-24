@@ -81,8 +81,8 @@ c       read*,firstfile
 c       print*,"Enter the second file name"
 c       read*,secondfile
 
-	firstfile = 'LO.dat'
-	secondfile = '2LO.dat'
+	firstfile = 'LO_all.dat'
+	secondfile = 'LO_ref.dat'
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        
 
@@ -154,7 +154,7 @@ c     .     /xintLO_ch(i)*100d0
         do i=1,it_max
 c      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),xintLO(i)+xintLO_ch(i)
 c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
-      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),xintLO_ch(i)/xintLO(i)
+      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
 c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),
 c     .          dabs(xintLO(i)-xintLO_ch(i))
 c     .     /xintLO_ch(i)*100d0

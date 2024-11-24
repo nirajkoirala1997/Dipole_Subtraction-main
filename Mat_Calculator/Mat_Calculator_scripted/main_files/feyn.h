@@ -238,38 +238,36 @@ id Vx(x1?,x2?,UPQupqzbos,-`i',-`j',-`k',p1?,p2?,p3?) = (i_)*gew*(cvu*G(six`i',si
 #do k=1,10
 
 id Vx(x1?,x2?,glugluglu,`i',`j',`k',p1?,p2?,p3?) = gs*f(ci`i',ci`j',ci`k')*(d_(li`i',li`j')*(p1(li`k')-p2(li`k'))+
-							              d_(li`j',li`k')*(p2(li`i')-p3(li`i'))+
-							              d_(li`k',li`i')*(p3(li`j')-p1(li`j'))); 
+							                    d_(li`j',li`k')*(p2(li`i')-p3(li`i'))+
+							                    d_(li`k',li`i')*(p3(li`j')-p1(li`j'))); 
 
 id Vx(x1?,x2?,glugluglu,`i',`j',-`k',p1?,p2?,p3?) = gs*f(ci`i',ci`j',cix`k')*(d_(li`i',li`j')*(p1(lix`k')-p2(lix`k'))+
-									d_(li`j',lix`k')*(p2(li`i')-p3(li`i'))+
-									d_(lix`k',li`i')*(p3(li`j')-p1(li`j'))); 
+								              d_(li`j',lix`k')*(p2(li`i')-p3(li`i'))+
+									      d_(lix`k',li`i')*(p3(li`j')-p1(li`j'))); 
 
 id Vx(x1?,x2?,glugluglu,`i',-`j',`k',p1?,p2?,p3?) = gs*f(ci`i',cix`j',ci`k')*(d_(li`i',lix`j')*(p1(li`k')-p2(li`k'))+
-									d_(lix`j',li`k')*(p2(li`i')-p3(li`i'))+
-									d_(li`k',li`i')*(p3(lix`j')-p1(lix`j'))); 
+									      d_(lix`j',li`k')*(p2(li`i')-p3(li`i'))+
+								      	      d_(li`k',li`i')*(p3(lix`j')-p1(lix`j'))); 
 
 id Vx(x1?,x2?,glugluglu,`i',-`j',-`k',p1?,p2?,p3?) = gs*f(ci`i',cix`j',cix`k')*(d_(li`i',lix`j')*(p1(lix`k')-p2(lix`k'))+
-									  d_(lix`j',lix`k')*(p2(li`i')-p3(li`i'))+
-									  d_(lix`k',li`i')*(p3(lix`j')-p1(lix`j'))); 
+									        d_(lix`j',lix`k')*(p2(li`i')-p3(li`i'))+
+									        d_(lix`k',li`i')*(p3(lix`j')-p1(lix`j'))); 
 
 id Vx(x1?,x2?,glugluglu,-`i',`j',`k',p1?,p2?,p3?) = gs*f(cix`i',ci`j',ci`k')*(d_(lix`i',li`j')*(p1(li`k')-p2(li`k'))+
-									d_(li`j',li`k')*(p2(lix`i')-p3(lix`i'))+
-									d_(li`k',lix`i')*(p3(li`j')-p1(li`j'))); 
+									      d_(li`j',li`k')*(p2(lix`i')-p3(lix`i'))+
+									      d_(li`k',lix`i')*(p3(li`j')-p1(li`j'))); 
 
 id Vx(x1?,x2?,glugluglu,-`i',`j',-`k',p1?,p2?,p3?) = gs*f(cix`i',ci`j',cix`k')*(d_(lix`i',li`j')*(p1(lix`k')-p2(lix`k'))+
-									  d_(li`j',lix`k')*(p2(lix`i')-p3(lix`i'))+
-									  d_(lix`k',lix`i')*(p3(li`j')-p1(li`j'))); 
+									        d_(li`j',lix`k')*(p2(lix`i')-p3(lix`i'))+
+									        d_(lix`k',lix`i')*(p3(li`j')-p1(li`j'))); 
 
-id Vx(x1?,x2?,glugluglu,-`i',-`j',`k',p1?,p2?,p3?) = gs*f(cix`i',cix`j',ci`k')*(d_(lix`i',lix`j')*( p1(li`k') - p2(li`k') )
-									 +d_(lix`j',li`k')*( p2(lix`i') - p3(lix`i') )
- 									  +d_(li`k',lix`i')*( p3(lix`j') - p1(lix`j') )
-									  ); 
+id Vx(x1?,x2?,glugluglu,-`i',-`j',`k',p1?,p2?,p3?) = gs*f(cix`i',cix`j',ci`k')*(d_(lix`i',lix`j')*( p1(li`k') - p2(li`k'))+
+									        d_(lix`j',li`k')*( p2(lix`i') - p3(lix`i'))+
+ 									        d_(li`k',lix`i')*( p3(lix`j') - p1(lix`j'))); 
 
 id Vx(x1?,x2?,glugluglu,-`i',-`j',-`k',p1?,p2?,p3?) = gs*f(cix`i',cix`j',cix`k')*(d_(lix`i',lix`j')*(p1(lix`k')-p2(lix`k'))+
-									    d_(lix`j',lix`k')*(p2(lix`i')-p3(lix`i'))+
-									    d_(lix`k',lix`i')*(p3(lix`j')-p1(lix`j'))); 
-
+									          d_(lix`j',lix`k')*(p2(lix`i')-p3(lix`i'))+
+									          d_(lix`k',lix`i')*(p3(lix`j')-p1(lix`j'))); 
 #enddo
 #enddo
 #enddo
@@ -286,9 +284,9 @@ id Vx(x1?,x2?,glugluglu,-`i',-`j',-`k',p1?,p2?,p3?) = gs*f(cix`i',cix`j',cix`k')
 #do i = 1,10
 #do j = 1,10
 
-id Vx(x1?,x2?,glugluHig,`i',`j',x3?,p1?,p2?,p3?) = -i_*ch*d_(ci`i',ci`j')*(-d_(li`i',li`j')*p1.p2 + p1(li`i')*p2(li`j'));
-id Vx(x1?,x2?,glugluHig,`i',-`j',x3?,p1?,p2?,p3?) = -i_*ch*d_(ci`i',cix`j')*(-d_(li`i',lix`j')*p1.p2 + p1(li`i')*p2(lix`j'));
-id Vx(x1?,x2?,glugluHig,-`i',`j',x3?,p1?,p2?,p3?) = -i_*ch*d_(cix`i',ci`j')*(-d_(lix`i',li`j')*p1.p2 + p1(lix`i')*p2(li`j'));
+id Vx(x1?,x2?,glugluHig,`i',`j',x3?,p1?,p2?,p3?) =   -i_*ch*d_(ci`i',ci`j')*(-d_(li`i',li`j')*p1.p2 + p1(li`i')*p2(li`j'));
+id Vx(x1?,x2?,glugluHig,`i',-`j',x3?,p1?,p2?,p3?) =  -i_*ch*d_(ci`i',cix`j')*(-d_(li`i',lix`j')*p1.p2 + p1(li`i')*p2(lix`j'));
+id Vx(x1?,x2?,glugluHig,-`i',`j',x3?,p1?,p2?,p3?) =  -i_*ch*d_(cix`i',ci`j')*(-d_(lix`i',li`j')*p1.p2 + p1(lix`i')*p2(li`j'));
 id Vx(x1?,x2?,glugluHig,-`i',-`j',x3?,p1?,p2?,p3?) = -i_*ch*d_(cix`i',cix`j')*(-d_(lix`i',lix`j')*p1.p2 + p1(lix`i')*p2(lix`j'));
 
 *id Vx(x1?,x2?,glugluHig,`i',`j',x3?,p1?,p2?,p3?) = -i_*ch*d_(ci`i',ci`j')*(+d_(li`i',li`j')*p1.p2 + p1(li`i')*p2(li`j'));
@@ -302,45 +300,45 @@ id Vx(x1?,x2?,glugluHig,-`i',-`j',x3?,p1?,p2?,p3?) = -i_*ch*d_(cix`i',cix`j')*(-
 *****************************
 ** g g g H effective vertex *
 *****************************
-*#do i=1,10
-*#do j=1,10
-*#do k=1,10
-*
-*id Vx(x1?,x2?,gluglugluHig,`i',`j',`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(ci`i',ci`j',ci`k')*( (p3(li`i')-p2(li`i'))*d_(li`j',li`k')
-*										  + (p1(li`j')-p3(li`j'))*d_(li`i',li`k')
-*                                                                              	  + (p2(li`k')-p1(li`k'))*d_(li`i',li`j'));
-*
-*id Vx(x1?,x2?,gluglugluHig,`i',`j',-`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(ci`i',ci`j',cix`k')*( (p3(li`i')-p2(li`i'))*d_(li`j',lix`k')
-*										  + (p1(li`j')-p3(li`j'))*d_(li`i',lix`k')
-*                                                                              	  + (p2(lix`k')-p1(lix`k'))*d_(li`i',li`j'));
-*
-*id Vx(x1?,x2?,gluglugluHig,`i',-`j',`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(ci`i',cix`j',ci`k')*( (p3(li`i')-p2(li`i'))*d_(lix`j',li`k')
-*										  + (p1(lix`j')-p3(lix`j'))*d_(li`i',li`k')
-*										  + (p2(li`k')-p1(li`k'))*d_(li`i',lix`j'));
-*
-*id Vx(x1?,x2?,gluglugluHig,`i',-`j',-`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(ci`i',cix`j',cix`k')*( (p3(li`i')-p2(li`i'))*d_(lix`j',lix`k')
-*										  + (p1(lix`j')-p3(lix`j'))*d_(li`i',lix`k')
-*                                                                              	  + (p2(lix`k')-p1(lix`k'))*d_(li`i',lix`j'));
-*
-*id Vx(x1?,x2?,gluglugluHig,-`i',`j',`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(cix`i',ci`j',ci`k')*( (p3(lix`i')-p2(lix`i'))*d_(li`j',li`k')
-*										  + (p1(li`j')-p3(li`j'))*d_(lix`i',li`k')
-*                                                                              	  + (p2(li`k')-p1(li`k'))*d_(lix`i',li`j'));
-*
-*id Vx(x1?,x2?,gluglugluHig,-`i',`j',-`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(cix`i',ci`j',cix`k')*( (p3(lix`i')-p2(lix`i'))*d_(li`j',lix`k')
-*										  + (p1(li`j')-p3(li`j'))*d_(lix`i',lix`k')
-*                                                                             	  + (p2(lix`k')-p1(lix`k'))*d_(lix`i',li`j'));
-*
-*id Vx(x1?,x2?,gluglugluHig,-`i',-`j',`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(cix`i',cix`j',ci`k')*( (p3(lix`i')-p2(lix`i'))*d_(lix`j',li`k')
-*										  + (p1(lix`j')-p3(lix`j'))*d_(lix`i',li`k')
-*                                                                              	  + (p2(li`k')-p1(li`k'))*d_(lix`i',lix`j'));
-*
-*id Vx(x1?,x2?,gluglugluHig,-`i',-`j',-`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(cix`i',cix`j',cix`k')*( (p3(lix`i')-p2(lix`i'))*d_(lix`j',lix`k')
-*										  + (p1(lix`j')-p3(lix`j'))*d_(lix`i',lix`k')
-*                                                                              	  + (p2(lix`k')-p1(lix`k'))*d_(lix`i',lix`j'));
-*
-*#enddo
-*#enddo
-*#enddo
+#do i=1,10
+#do j=1,10
+#do k=1,10
+
+id Vx(x1?,x2?,gluglugluHig,`i',`j',`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(ci`i',ci`j',ci`k')*( (p3(li`i')-p2(li`i'))*d_(li`j',li`k')
+										  + (p1(li`j')-p3(li`j'))*d_(li`i',li`k')
+                                                                              	  + (p2(li`k')-p1(li`k'))*d_(li`i',li`j'));
+
+id Vx(x1?,x2?,gluglugluHig,`i',`j',-`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(ci`i',ci`j',cix`k')*( (p3(li`i')-p2(li`i'))*d_(li`j',lix`k')
+										  + (p1(li`j')-p3(li`j'))*d_(li`i',lix`k')
+                                                                              	  + (p2(lix`k')-p1(lix`k'))*d_(li`i',li`j'));
+
+id Vx(x1?,x2?,gluglugluHig,`i',-`j',`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(ci`i',cix`j',ci`k')*( (p3(li`i')-p2(li`i'))*d_(lix`j',li`k')
+										  + (p1(lix`j')-p3(lix`j'))*d_(li`i',li`k')
+										  + (p2(li`k')-p1(li`k'))*d_(li`i',lix`j'));
+
+id Vx(x1?,x2?,gluglugluHig,`i',-`j',-`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(ci`i',cix`j',cix`k')*( (p3(li`i')-p2(li`i'))*d_(lix`j',lix`k')
+										  + (p1(lix`j')-p3(lix`j'))*d_(li`i',lix`k')
+                                                                              	  + (p2(lix`k')-p1(lix`k'))*d_(li`i',lix`j'));
+
+id Vx(x1?,x2?,gluglugluHig,-`i',`j',`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(cix`i',ci`j',ci`k')*( (p3(lix`i')-p2(lix`i'))*d_(li`j',li`k')
+										  + (p1(li`j')-p3(li`j'))*d_(lix`i',li`k')
+                                                                              	  + (p2(li`k')-p1(li`k'))*d_(lix`i',li`j'));
+
+id Vx(x1?,x2?,gluglugluHig,-`i',`j',-`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(cix`i',ci`j',cix`k')*( (p3(lix`i')-p2(lix`i'))*d_(li`j',lix`k')
+										  + (p1(li`j')-p3(li`j'))*d_(lix`i',lix`k')
+                                                                             	  + (p2(lix`k')-p1(lix`k'))*d_(lix`i',li`j'));
+
+id Vx(x1?,x2?,gluglugluHig,-`i',-`j',`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(cix`i',cix`j',ci`k')*( (p3(lix`i')-p2(lix`i'))*d_(lix`j',li`k')
+										  + (p1(lix`j')-p3(lix`j'))*d_(lix`i',li`k')
+                                                                              	  + (p2(li`k')-p1(li`k'))*d_(lix`i',lix`j'));
+
+id Vx(x1?,x2?,gluglugluHig,-`i',-`j',-`k',x3?,p1?,p2?,p3?,p4?) = -gs*ch*f(cix`i',cix`j',cix`k')*( (p3(lix`i')-p2(lix`i'))*d_(lix`j',lix`k')
+										  + (p1(lix`j')-p3(lix`j'))*d_(lix`i',lix`k')
+                                                                              	  + (p2(lix`k')-p1(lix`k'))*d_(lix`i',lix`j'));
+
+#enddo
+#enddo
+#enddo
 *
 
 

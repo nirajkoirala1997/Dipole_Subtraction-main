@@ -103,8 +103,9 @@ c         print*,"p",p4
 
             call getPKPlus(iplus,x,xmuf,p1,p2,p3,p4,SumPlus)
            
-            if (iplus .eq. 1) sig1 = xl(4)*SumPlus*coef*2D0
-            if (iplus .eq. 0) sig3 = xl(4)*SumPlus*coef*2D0 
+            if (iplus .eq. 1) sig1 = xl(4)*SumPlus*coef
+            if (iplus .eq. 0) sig3 = xl(4)*SumPlus*coef 
+c~~[ Here sig is multiplied by 2d0 ???? so removed it ]~~~
 
 c            if (iplus .eq. 1) sig1 = SumPlus
 c            if (iplus .eq. 0) sig3 = SumPlus

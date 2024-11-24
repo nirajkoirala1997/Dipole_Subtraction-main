@@ -1,1 +1,37 @@
 This directory is created for K bar data test. Ktil is present in the test5 directory. 
+
+
+ /PK_Plus_all_Ref.dat
+    xq        Integral firstfile
+    100      0.757205119340013E-02
+    400      0.288553773825624E-04
+    700      0.279976685163929E-05
+   1000      0.560714881367924E-06
+   1300      0.160416020382540E-06
+   1600      0.574298844894178E-07
+   1900      0.226667301061375E-07
+   2200      0.978510787576907E-08
+   2500      0.446531260588755E-08
+ /PK_Plus_all.dat
+    xq       integral secondfile
+    100      0.666331225242667E-02
+    400      0.296819923097241E-04
+    700      0.244458756455158E-05
+   1000      0.553850200586182E-06
+   1300      0.154919394425431E-06
+   1600      0.558540498267129E-07
+   1900      0.237057078451889E-07
+   2200      0.995197195208352E-08
+   2500      0.454678359107092E-08
+ /PK_Plus_all_Ref.dat and  /PK_Plus_all.dat
+    xq                             [first-second]/first*100
+    100      0.113637946212749E+01
+    400      0.972150962154556E+00
+    700      0.114529211071760E+01
+   1000      0.101239447196097E+01
+   1300      0.103548055411329E+01
+   1600      0.102821343604616E+01
+   1900      0.956171832293028E+00
+   2200      0.983233064048225E+00
+   2500      0.982081622414717E+00
+This is the result in this directory, the values are not matching with the reference codes, there must be something we are missing with the contribution when Log is present in the function @numerator.

@@ -6,8 +6,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
      .          ,p(0:3,1:4),c(1:2),Born(1:2),coef(2,-2:0),SumI(-2:0)
       parameter (pi=3.14159265358979d0)
-      parameter (hbarc2=0.3894d9)      ! in Pb
-c      parameter (hbarc2=0.3894d12)    ! in Fb
+c      parameter (hbarc2=0.3894d9)      ! in Pb
+      parameter (hbarc2=0.3894d12)    ! in Fb
       common/leg_choice/leg
       common/energy/s
       common/distribution/xq
@@ -18,21 +18,24 @@ c      parameter (hbarc2=0.3894d12)    ! in Fb
       external Born_gg2H
        
         xa = yy(1)
-c       xb = yy(2) 
-        xb = amh**2d0/xa/s
+        xb = yy(2) 
+c        xb = amh**2d0/xa/S
         sp = xa*xb*S
-       rsp = dsqrt(sp)
+        rsp = dsqrt(sp)
+c	print*,"xa: ",xa
+c	print*,"xb: ",xb
+c	print*,"amh,xa+xb: ",amh,xa+xb,dsqrt(sp)
 
-      call kinvar1(xa,xb,p1,p2,p3)
-      scale = 2d0 * dot(p1,p2) 
+        call kinvar1(xa,xb,p1,p2,p3)
+        scale = 2d0*dot(p1,p2)
 
-c	eps = 0.05d0
-c	Q2 = dsqrt(scale)
-c	Qmin = amh - eps
-c	Qmax = amh + eps
+	eps = 0.5d0
+	Q2 = dsqrt(scale)
+	Qmin = amh - eps
+	Qmax = amh + eps
 
-c	if(Q2 .ge. Qmin .and. Q2 .le. Qmax) then
-      xmuf=dsqrt(scale) / 2d0
+	if(Q2 .ge. Qmin .and. Q2 .le. Qmax) then
+      xmuf=dsqrt(scale)
       xmur= xmuf
 
       xmu2=xmuf**2
@@ -47,12 +50,12 @@ c	if(Q2 .ge. Qmin .and. Q2 .le. Qmax) then
       flux = 4d0*pi_1*rsp
       xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
 
-      flo1_LO  = xnorm*sig
+c      flo1_LO  = xnorm*sig
+      flo1_LO  = xnorm*sig/2d0/eps
 
-c      else
-c        flo1_LO= 0d0
-c      endif
-
+      else
+        flo1_LO= 0d0
+      endif
       return
       end
 

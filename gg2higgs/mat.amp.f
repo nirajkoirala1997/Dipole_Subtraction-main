@@ -23,7 +23,7 @@ c         common/energy/s12
          rp34  = dsqrt(s12)
 
          
-c Reduced born used different kinematics, Colour factor multiply here.
+c  Reduced born used different kinematics, Colour factor multiply here.
          IF(k .eq. 0)  CF =  1d0               !Leading Order k=0
          IF(k .eq. 1)  CF = -4d0/3d0               !leg 1 reduced born k=1 
          IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2 reduced born k=2
@@ -32,9 +32,8 @@ c         IF(k .eq. 1)  CF = -1d0               !leg 1 reduced born k=1
 c         IF(k .eq. 2)  CF = -1d0               !Leg 2 reduced born k=2
 
           NA = 8
-c          AL = alphasPDF(xmur)
-          AL = alphasPDF(amh/2d0)
-          AS = AL/4d0/PI
+          AS = alphasPDF(xmur)
+c          AS = AS/4d0/PI
 
             v = 246d0
            ch = -4d0*AS/3d0/v 
@@ -44,7 +43,7 @@ c           Born_gg2h= AS**2/72d0/PI/v**2/8d0
 
 c 3manually.frm :amp=  1/36*PI^-4*v^-2*s12^2*AL^2    .or.  amp= 1d0/2d0*s12**2*ch2
 c          Born_gg2H =  1d0/2d0*s12**2*ch2
-          Born_gg2H =  1d0/2d0*amh**4*ch2
+          Born_gg2H = CF * 0.5d0*amh**4*ch2/16d0
 
        return
        end

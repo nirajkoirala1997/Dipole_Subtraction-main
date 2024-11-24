@@ -74,15 +74,15 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     Ready to start comparing files    
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-c       print*,"Available files in "//trim(run_tag)//"  are"
-c       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
-c       print*,"Enter the first file name"
-c       read*,firstfile
-c       print*,"Enter the second file name"
-c       read*,secondfile
+       print*,"Available files in "//trim(run_tag)//"  are"
+       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
+       print*,"Enter the first file name"
+       read*,firstfile
+       print*,"Enter the second file name"
+       read*,secondfile
 
-	firstfile = 'PK1.dat'
-	secondfile = 'PK2.dat'
+c	firstfile = 'PK1.dat'
+c	secondfile = 'PK2.dat'
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        
 
@@ -135,9 +135,9 @@ c~~~~~~~~~~~~~~~~~[ ratio ]
 
        if(ierr1 + ierr2 .eq. 2) then
         print*,"/"//trim(firstfile)//" and  /"//trim(secondfile)
-c       write(*,*)achar(27)//'[1;32m'//"   xq         first / second",
-       write(*,*)achar(27)//'[1;32m'//"   xq
-     . [first-second]/first*100",
+       write(*,*)achar(27)//'[1;32m'//"   xq         first / second",
+c       write(*,*)achar(27)//'[1;32m'//"   xq
+c     . [first-second]/first*100",
      . achar(27)//'[0m'
         do i=1,it_max
 c      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),xintLO(i)+xintLO_ch(i)

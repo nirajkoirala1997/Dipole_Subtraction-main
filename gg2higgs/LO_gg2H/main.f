@@ -128,7 +128,7 @@ c      read*,int_choice
 	if (int_choice .eq. 1 ) then
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
          call brm48i(40,0,0) ! initialize random number generator
-         call vsup(1,npt1,its1,flo1_LO,ans,sd,chi2)
+         call vsup(2,npt1,its1,flo1_LO,ans,sd,chi2)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	elseif( int_choice .eq. 2 ) then
 	call cubacheck(ans,sd)

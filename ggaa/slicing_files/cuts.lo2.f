@@ -27,7 +27,7 @@ c     ppt1 ppt2
         return          
       ELSEIF(mid.eq.1)THEN      !LHC     
          if( (dabs(y1).ge.2.50d0 .or. dabs(y2).ge.2.50d0) ) return
-         if( (pt1.lt.40.d0 .or. pt2.lt.40.d0) ) return
+c         if( (pt1.lt.40.d0 .or. pt2.lt.40.d0) ) return
          
          ipass =1
          return
