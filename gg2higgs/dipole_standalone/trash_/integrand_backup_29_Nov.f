@@ -5,7 +5,8 @@ C -------------------------------------------------------------------- C
       implicit double precision(a-h,o-z) 
       dimension  xx(10),p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),q(0:3)
      .             ,p(0:3,1:5),dip(27),B1(1:2),xl(15),f1(-6:6),f2(-6:6)
-c      integer i35,i45,is5,itest
+     .             , SumD(1:2)
+      integer i35,i45,is5,itest
       integer k1,k2,k3,ipass,n4,unphy
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+6)
@@ -36,7 +37,23 @@ c      integer i35,i45,is5,itest
           Q_min = Q_ - eps
           Q_max = Q_ + eps
         
-        if( sp  .ge. am3**2) then
+	 if( sp  .ge. am3**2) then
+c	print*,Sp,rsp,am3**2
+c	 if( 2d0*dot(p1,p2) .ge. Q_**2) then
+c	  if (scale .ne. scale ) then 
+c           print*,"Error",scale
+c	   print*,p1
+c	   print*,p2
+c	   print*,p3
+c	   print*,p4
+c	  do i=0,3
+c	   print*,"p1+p2",p1(i)+p2(i)-p3(i)-p4(i)
+c	  enddo
+c	  print*,dot(p3,p3)
+c	  print*,"xa,xb,xc",xa,xb,xc
+c	  stop
+c	endif
+
           if ( scale .ge. Q_min .and. scale .le. Q_max ) then
 
           call pdf(xa,am3,f1)
@@ -47,25 +64,51 @@ c      integer i35,i45,is5,itest
 
           call amp_mat_r(p1,p2,p3,p4,sig)
 
-          SumD = dipole_type_1_gg_g(1,p1,p2,p3,p4) +
-     .           dipole_type_1_gg_g(2,p1,p2,p3,p4)
-c	print*,"dip1:",dipole_type_1_gg_g(1,p1,p2,p3,p4)
-c	print*,"dip2:",dipole_type_1_gg_g(2,p1,p2,p3,p4)
-c	print*,"SumD:",SumD
-c	print*," "
+          SumD(1) = dipole_type_1_gg_g(1,p1,p2,p3,p4) +
+     .              dipole_type_1_gg_g(2,p1,p2,p3,p4)
 
-          sigma = xl(2)*( sig - SumD )
-c          print*,sig,SumD,sig/SumD
+c          sigma = xl(2)
+          sigma = xl(2)*( sig - SumD(1) )
+c          sigma = ( sig - SumD(1) )
+c         sigma = (xl(2)* sig  )
+c          sigma = (xl(2)*  SumD(1) )
+c        print*,p1
+c        print*,p2
+c        print*,p3
+cc        print*,p4
+c	print*,"sig :",sig
+c        print*,"dip :",xl(2)*SumD(1)
+c        print*,"sig :",xl(2)*sig
+c        print*,"rat :",sig/SumD(1)
+c	print*,sig,SumD(1),sig/SumD(1)
+c	stop
+c          sigma = xl(2)*( SumD(1) )
+c          sigma = xl(4)*( SumD(1) )
+c          sigma = xl(4)*( sig )
+c          sigma = xl(2)*(  sig )
+c           sigma = SumD(1) 
+
+
+c          print*,sig,SumD(1)
 
           pi_1 = 0.5d0*rsp
           flux = 4d0*pi_1*rsp
           xnorm=hbarc2/16d0/pi/(xa*xb*s)
           wgt=xnorm*sigma*weight
           fnlo3=wgt/weight/2d0/eps
+c          fnlo3=wgt/weight
+c	fnlo3 = xx(1)*xx(2)*xx(3)*xx(4)*xx(5)*xx(6)
+c	print*,"fnlo3=",fnlo3
+c	print*,fnlo3
+c	print*,xx
+c	stop
+c          endif
+c          endif
         else
            fnlo3  = 0d0
-        endif
-        endif
+c        endif
+	endif
+	endif
 151   return
       end
 c---------------------------------------------------------------------

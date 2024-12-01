@@ -9,12 +9,12 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c      parameter (hbarc2=0.3894d9)      ! in Pb
       parameter (hbarc2=0.3894d12)    ! in Fb
       common/leg_choice/leg
-      common/energy/s
+      common/energy/S
       common/distribution/xq
       common/renor_scale/scale
       common/usedalpha/AL,ge
-      common/mass/amh
       common/param2/xmur
+      common/amass/am1,am2,amH,am4,am5
       external Born_gg2H
        
         xa = yy(1)
@@ -22,10 +22,14 @@ c      parameter (hbarc2=0.3894d9)      ! in Pb
 c        xb = amh**2d0/xa/S
         sp = xa*xb*S
         rsp = dsqrt(sp)
-c	print*,"xa: ",xa
-c	print*,"xb: ",xb
+c	print*,"xa  :",xa
+c	print*,"xb  :",xb
+c	print*,"sp :",sp
+c	print*,"rsp :",rsp
+c	print*," "
 c	print*,"amh,xa+xb: ",amh,xa+xb,dsqrt(sp)
 
+         AL = alphasPDF(amh)
         call kinvar1(xa,xb,p1,p2,p3)
         scale = 2d0*dot(p1,p2)
 
@@ -33,32 +37,31 @@ c	print*,"amh,xa+xb: ",amh,xa+xb,dsqrt(sp)
 	Q2 = dsqrt(scale)
 	Qmin = amh - eps
 	Qmax = amh + eps
-
+c
 	if(Q2 .ge. Qmin .and. Q2 .le. Qmax) then
-      xmuf=dsqrt(scale)
-      xmur= xmuf
+        xmuf=amH
+        xmur= xmuf
+        xmu2=xmuf**2
 
-      xmu2=xmuf**2
-
-      call pdf(xa,xmuf,f1)
-      call pdf(xb,xmuf,f2)
-      call setlum(f1,f2,xl)
+        call pdf(xa,xmuf,f1)
+        call pdf(xb,xmuf,f2)
+        call setlum(f1,f2,xl)
 
       sig= xl(2)*Born_gg2H(0,p1,p2,p3)
-
+c      sig= Born_gg2H(0,p1,p2,p3)
       pi_1 = 0.5d0*rsp
       flux = 4d0*pi_1*rsp
       xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
 
-c      flo1_LO  = xnorm*sig
-      flo1_LO  = xnorm*sig/2d0/eps
+      flo1_LO  = xnorm * sig
+c      flo1_LO  = xnorm
+c      flo1_LO  = xnorm*sig/2d0/eps
 
       else
         flo1_LO= 0d0
       endif
       return
       end
-
 c---------------------------------------------------------------------
 cC ~~~~~~~~~~~~~~~~~~~C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
       integer function integrand(ndim,yy,ncomp,f,userdata,nvec ,core

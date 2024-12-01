@@ -13,18 +13,15 @@ LOCALSRCDIR = .
 PROG = runLO
 
 OBJECTS = $(OBJDIR)/filehandle.o \
-          $(OBJDIR)/cuba.o       \
           $(OBJDIR)/mat.amp.o    \
-          $(OBJDIR)/cuts.lo2.o   \
-          $(OBJDIR)/cone.o       \
           $(OBJDIR)/printframe.o \
           $(OBJDIR)/misc.o       \
           $(OBJDIR)/lum.o        \
+          $(OBJDIR)/cone.o        \
           $(OBJDIR)/pdf_lha.o    \
           $(OBJDIR)/vsup.o       \
           $(OBJDIR)/integrand.o  \
-          $(OBJDIR)/phasespace.o \
-          $(OBJDIR)/couplings.o
+          $(OBJDIR)/phasespace.o 
 
 # Main target: Build executable from object files
 $(PROG): $(OBJDIR) $(OBJECTS) $(LOCALSRCDIR)/main.f

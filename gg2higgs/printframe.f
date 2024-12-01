@@ -2,6 +2,8 @@ c       subroutine printframe1(pt1,its1)
 c       subroutine printframe2(xq)
 c       subroutine printframe3(name,xintegral,error,chi2)
 c       subroutine printframe4(name)
+c       subroutine printframe6(ecm,xmur,xmuf,pdf_name,amH)
+c       subroutine printframe5(e_cut,t_cut)
 
 c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
        subroutine printframe0(name)

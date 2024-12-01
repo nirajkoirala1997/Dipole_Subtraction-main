@@ -2,7 +2,7 @@
       implicit double precision (a-h,o-z)
       dimension p1(0:3),p2(0:3),p3(0:3)
       common/energy/s
-      common/mass/amh
+      common/amass/am1,am2,amH,am4,am5
 
       srs2 = 0.5 * dsqrt(s)
 
@@ -43,76 +43,21 @@ c     Set the 4-vector for the outgoing Higgs boson
       return
       end
 
-cc      subroutine kinvar1(xx,p1,p2,p3)
-c      subroutine kinvar1(xa,xb,p1,p2,p3)
-c      implicit double precision (a-h,o-z)
-c      dimension xx(2)
-c      dimension p1(0:3),p2(0:3),p3(0:3)
-c      common/energy/s
-c      common/mass/amh
-c
-cc       xa=xx(1)
-cc      xb=xx(2)
-cc      v=xx(3)
-cc      omv=1d0-v
-cc      amh2 = amh*amh
-cc        sp = amh2
-c
-cc      sp = xa*xb*s
-cc       xb = sp/xa/s 
-cc       sp=s*xa*xb 
-cc	print*,"xa",xa
-cc	print*,"xb",xb
-c      srs2=0.5*dsqrt(s)
-c
-cc     incoming parton 4-vectors
-c      p1(0)=srs2*xa
-c      p1(1)=0d0
-c      p1(2)=0d0
-c      p1(3)=p1(0)
-c
-c      p2(0)=srs2*xb
-c      p2(1)=0d0
-c      p2(2)=0d0
-c      p2(3)=-p2(0)
-c
-cc     outgoing parton 4-vectors
-cc      e3=srs2
-cc      px=0d0
-cc      py=0d0
-cc      pz=0d0
-c
-c      e3 = p1(0)+p2(0)
-c      px = p1(1)+p2(1)
-c      py = p1(2)+p2(2)
-c      pz = p1(3)+p2(3)
-c
-cc calculate the boost in lab frame 
-c
-c      beta = (xa-xb)/(xa+xb)
-cc      beta = 0d0 
-c      gama = 1d0/sqrt(1d0-beta**2)
-c
-c      p3(0)= gama*(e3 + beta*pz)
-c      p3(1)= px
-c      p3(2)= py
-c      p3(3)= gama*(pz + beta*e3)
-c      
-c      end
 c---------------------------------------------------------------o
+C          C~~~~~~[ MASSLESS CASE ]~~~~~~~~C
       subroutine kinvar2(xx,xxinvmass,p1,p2,p3,p4)
       implicit double precision (a-h,o-z)
       dimension xx(6)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3)
       dimension qa(0:3),qb(0:3)
       common/energy/s
+      common/amass/am1,am2,am3,am4,am5
 
       xa=xx(1)
       xb=xx(2)
       v=xx(3)
       omv=1d0-v
       
-
 c      s=s*xa*xb 
       srs2=0.5*dsqrt(s)
 
@@ -144,49 +89,80 @@ c     p3 + p4
       q(3) = p3(3) +p4(3)
 
 c     invariant mass of diphoton pair.
-      s34    = 2*dot(p3,p4)
+      s34    = 2d0*dot(p3,p4)
       xxinvmass= dsqrt(s34)
 
-c     yy1: rapidity of photons 3 
-      yrpda  = (p3(0)+p3(3))/(p3(0)-p3(3))
-      yy1    = 0.5*dlog(yrpda)
-
-c     yy2: rapiditiy of photon 4
-      yrpdb  = (p4(0)+p4(3))/(p4(0)-p4(3))
-      yy2    = 0.5*dlog(yrpdb)
-
-c     rapidity YY
-      p2q = dot(p2,q)
-      p1q = dot(p1,q)
-      rr  = xa*p2q/(xb*p1q)
-      YY12  = dlog(rr)/2.d0
-
-c     cos-theta
-      ccst1=p3(3)/p3(0)
-      ccst2=p4(3)/p4(0)
-
-c     ppt1 ppt2
-      ppt1=dsqrt(p3(1)**2+p3(2)**2)
-      ppt2=dsqrt(p4(1)**2+p4(2)**2)
-
-      qa(0) =  p3(0) - p4(0)
-      qa(1) =  p3(1) - p4(1)
-      qa(2) =  p3(2) - p4(2)
-      qa(3) =  p3(3) - p4(3)
-
-      qb(0) =  p3(0) + p4(0)
-      qb(1) =  p3(1) + p4(1)
-      qb(2) =  p3(2) + p4(2)
-      qb(3) =  p3(3) + p4(3)
-
-      p1qa = dot(p1,qa)
-      p1qb = dot(p1,qb)
-
-      cststar = p1qa/p1qb
 
       return
       end
 c---------------------------------------------------------------------
+c---------------------------------------------------------------o
+
+C          C~~~~~~[ MASSIVE  CASE ]~~~~~~~~C
+
+      subroutine kinvar2_type_1(x1,x2,x4,xinvmass,p1,p2,p3,p4)
+      implicit double precision (a-h,o-z)
+      dimension xx(10)
+      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3)
+      dimension qa(0:3),qb(0:3)
+      COMMON/energy/s
+      common/amass/am1,am2,am3,am4,am5
+
+      xa=x1
+      xb=x2
+      v=x4
+      omv=1d0-v     
+
+c      s = RS*RS
+      sp = xa*xb*s
+      rsp = dsqrt(sp)
+
+      srs2=0.5*dsqrt(s)
+
+c     incoming parton 4-vectors
+      p1(0)=srs2*xa
+      p1(1)=0d0
+      p1(2)=0d0
+      p1(3)=p1(0)
+
+      p2(0)=srs2*xb
+      p2(1)=0d0
+      p2(2)=0d0
+      p2(3)=-p2(0)
+
+c For massive case where m3 and m4 are non-zero
+c ---------------------------------------------
+c       Parametrization in the c.o.m. frame
+c ---------------------------------------------
+      xmd = (am3**2 - am4**2)
+      e3 = 0.5d0*(rsp + xmd/rsp)
+      pf = dsqrt(e3**2 - am3**2)
+      ct = 2d0*v-1
+      st = dsqrt(1d0 - ct**2d0)
+      px3 = pf*st
+      py3 = 0d0
+      pz3 = pf*ct
+        
+c ---------------------------------------------
+c       Boost to lab frame
+c ---------------------------------------------
+      beta=(xb-xa)/(xa+xb)
+      gamma=1d0/dsqrt(1d0-beta*beta)
+
+      p3(0) = gamma*(e3 - beta*pz3)
+      p3(1) = px3
+      p3(2) = py3
+      p3(3) = gamma*(pz3 - beta*e3)
+
+      p4(0)=p1(0)+p2(0)-p3(0)
+      p4(1)=p1(1)+p2(1)-p3(1)
+      p4(2)=p1(2)+p2(2)-p3(2)
+      p4(3)=p1(3)+p2(3)-p3(3)
+
+      xinvmass = dsqrt(dot(p3,p3))
+
+      return
+      end
 
 ! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++            
 ! +                            Three Body Phase space                                      +
