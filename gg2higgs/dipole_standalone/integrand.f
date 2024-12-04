@@ -37,6 +37,7 @@ c      integer i35,i45,is5,itest
           Q_max = Q_ + eps
         
         if( sp  .ge. am3**2) then
+
           if ( scale .ge. Q_min .and. scale .le. Q_max ) then
 
           call pdf(xa,am3,f1)
@@ -55,7 +56,7 @@ c	print*,"SumD:",SumD
 c	print*," "
 
           sigma = xl(2)*( sig - SumD )
-c          print*,sig,SumD,sig/SumD
+          print*,sig,SumD,sig/SumD
 
           pi_1 = 0.5d0*rsp
           flux = 4d0*pi_1*rsp
